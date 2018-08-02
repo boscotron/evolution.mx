@@ -43,19 +43,18 @@
                     	<div class="contact-form" >
                             <div class="column dt-sc-one-half first">
                             	<div class="" data-delay="100" data-animation="fadeIn">
-                                    <p><input type="text" name="username" placeholder="Your Name (required)" required/> </p>
-                                    <p><input type="email" name="txtemail" placeholder="Email (required)" required/></p>                                                        
+                                    <p>Para quien es el servicio</p>                                                        
                                 </div>
                             </div>
                             <div class="column dt-sc-one-half">
                             	<div class="" data-delay="300" data-animation="fadeIn">
-                                    <p><input type="text" required name="txtname" placeholder="Your Phone (required)"/></p>
-                                    <p><input id="datepicker" type="text" placeholder="Date of Appointment" value="" name="datepicker"><span class="icons fa fa-calendar"></span></p>
-                                </div>
-                            </div>
-                            <div class="column dt-sc-one-column">
-                            	<div class="" data-delay="500" data-animation="fadeIn">
-                                	<p><textarea class="message" required rows="10" placeholder="Comments(required)" cols="5" name="txtmessage"></textarea></p>
+                                    <p><select>
+                                            <option value="Seleccionarar">Seleccionar</option>
+                                            <option value="Personal">Personal</option>
+                                            <option value="Hijo">Hijo(a)</option>
+                                            <option value="Pareja">Pareja</option>
+                                            <option value="Amigos">Amigos</option>
+                                        </select></p>
                                 </div>
                             </div>                                                                                             
                             <div class="form-row aligncenter " data-delay="7 00" data-animation="fadeIn">
@@ -66,21 +65,86 @@
                     </div>
 
 
+
                     <div class="column dt-sc-two-third hidden" id="div_paso_2">
                     	<h3 class="border-title">Paso <span>Dos</span></h3>
                     	<div class="contact-form" >
                             <div class="column dt-sc-one-half first">
-                                Instrucciones paso 2
+                                <div class="" data-delay="100" data-animation="fadeIn">
+                                    <p>Selecciona el servicio</p>                                                        
+                                </div>
+                            </div>
+                            <div class="column dt-sc-one-half">
+                                <div class="" data-delay="300" data-animation="fadeIn">
+                                    <p><select>
+                                            <option value="">Seleccionar</option>
+                                            <option value="">Cortes</option>
+                                            <option value="">Tintes</option>
+                                            <option value="">Mechas</option>
+                                            <option value="">Rayos</option>
+                                            <option value="">Manicure</option>
+                                            <option value="">Pedicure</option>
+                                            <option value="">Maquillaje</option>
+                                            <option value="">Tratamientos </option>
+                                        </select></p>
+                                </div>
                             </div>                                                                                             
                             <div class="form-row aligncenter " data-delay="7 00" data-animation="fadeIn">
-                                <button type="button" id="btn_paso_2">Paso 3</button>
+                                <div class="column dt-sc-one-half first">
+                                    <div class="" data-delay="100" data-animation="fadeIn">
+                                        <button type="button" id="btn_paso_r1">Regresar</button>  
+                                    </div>
+                                </div>
+                                <div class="column dt-sc-one-half">
+                                    <div class="" data-delay="300" data-animation="fadeIn">
+                                        <button type="button" id="btn_paso_2">Paso 3</button>                
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     	<div id="ajax_contactform_msg"> </div>
                     </div>
 
 
+                    <div class="column dt-sc-two-third hidden" id="div_paso_3">
+                        <h3 class="border-title">Paso <span>Tres</span></h3>
+                        <div class="contact-form" >
+                            <div class="column dt-sc-one-half first">
+                                <div class="" data-delay="100" data-animation="fadeIn">
+                                    <p><input id="datepicker" type="text" placeholder="Fecha de la cita" value="" name="datepicker"><span class="icons fa fa-calendar"></span></p>
+                                    <p>Quien quieres que te atienda</p>
+                                    <p><select>
+                                            <option value="">Seleccionar</option>
+                                            <option value="">Cualquiera</option>
+                                            <option value="">Alfredo</option>
+                                            <option value="">Esmeralda</option>
+                                            <option value="">Aida</option>
+                                            <option value="">Beatris</option>
+                                        </select></p>
+                                </div>
+                            </div>
+                            <div class="column dt-sc-one-half">
+                                <div class="" data-delay="300" data-animation="fadeIn">
+                                    <p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>
 
+                                </div>
+                            </div>
+
+                            <div class="form-row aligncenter " data-delay="7 00" data-animation="fadeIn">
+                                <div class="column dt-sc-one-half first">
+                                    <div class="" data-delay="100" data-animation="fadeIn">
+                                        <button type="button" id="btn_paso_r2">Regresar</button>  
+                                    </div>
+                                </div>
+                                <div class="column dt-sc-one-half">
+                                    <div class="" data-delay="300" data-animation="fadeIn">
+                                        <button type="button" id="btn_paso_3">Agendar cita</button>                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="ajax_contactform_msg"> </div>
+                    </div>
 
 
                 </div>
