@@ -9,4 +9,12 @@ jQuery(function ($) {
 
     });
 
+      $("#btn_paso_2").click(function(){
+        console.log('paso 3');
+        $("#div_paso_2").hide(50);
+        $("#div_paso_3").show(200);
+    });
+
+
+
 });

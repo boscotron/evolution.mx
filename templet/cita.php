@@ -27,13 +27,10 @@
                     <div class="column dt-sc-one-third first">
                         <h3 class="border-title"> Opening <span>Time</span> </h3>
                         <ul class="opening-time branch_details">
-                            <li class="close"><span>Monday</span><h5>Closed</h5></li>
-                            <li><span>Tuesday</span><h5>9 am - 8 pm</h5></li>
-                            <li><span>Wednesday</span><h5>9 am - 8 pm</h5></li>
-                            <li><span>Thursday</span><h5>9 am - 8 pm</h5></li>
-                            <li><span>Friday</span><h5>9 am - 8 pm</h5></li>
-                            <li><span>Saturday</span><h5>9 am - 8 pm</h5></li>
-                            <li><span>Sunday</span><h5>9 am - 8 pm</h5></li>
+                            <li class="close">Instrucciones</li>
+                            <li><span>Paso 1</span><h5>1.Elige para quien es el corte.</h5></li>
+                            <li><span>Paso 2</span><h5>2.Elige el servicio a realizar.</h5></li>
+                            <li><span>Paso 3</span><h5>3.Coloca la fecha y la hora.</h5></li>
                         </ul>
                     </div>
 
@@ -41,24 +38,13 @@
                     <div class="column dt-sc-two-third" id="div_paso_1">
                     	<h3 class="border-title">Paso <span>Uno</span></h3>
                     	<div class="contact-form" >
-                            <div class="column dt-sc-one-half first">
-                            	<div class="" data-delay="100" data-animation="fadeIn">
-                                    <p><input type="text" name="username" placeholder="Your Name (required)" required/> </p>
-                                    <p><input type="email" name="txtemail" placeholder="Email (required)" required/></p>                                                        
-                                </div>
-                            </div>
+                         
                             <div class="column dt-sc-one-half">
                             	<div class="" data-delay="300" data-animation="fadeIn">
-                                    <p><input type="text" required name="txtname" placeholder="Your Phone (required)"/></p>
                                     <p><input id="datepicker" type="text" placeholder="Date of Appointment" value="" name="datepicker"><span class="icons fa fa-calendar"></span></p>
                                 </div>
-                            </div>
-                            <div class="column dt-sc-one-column">
-                            	<div class="" data-delay="500" data-animation="fadeIn">
-                                	<p><textarea class="message" required rows="10" placeholder="Comments(required)" cols="5" name="txtmessage"></textarea></p>
-                                </div>
-                            </div>                                                                                             
-                            <div class="form-row aligncenter " data-delay="7 00" data-animation="fadeIn">
+                            </div>          
+                            <div class="form-row aligncenter" data-delay="7 00" data-animation="fadeIn">
                                 <button type="button" id="btn_paso_1">Paso 2</button>
                             </div>
                         </div>
@@ -71,12 +57,35 @@
                     	<div class="contact-form" >
                             <div class="column dt-sc-one-half first">
                                 Instrucciones paso 2
-                            </div>                                                                                             
+                            </div>  
+                                                                                                                     
                             <div class="form-row aligncenter " data-delay="7 00" data-animation="fadeIn">
                                 <button type="button" id="btn_paso_2">Paso 3</button>
                             </div>
+                            <div class="form-row alignleft " data-delay="7 00" data-animation="fadeIn">
+                                <button type="button" id="btn_atras_2">atras</button>
+                            </div>  
                         </div>
                     	<div id="ajax_contactform_msg"> </div>
+                    </div>
+
+                    <div class="column dt-sc-two-third hidden" id="div_paso_3">
+                        <h3 class="border-title">Paso <span>Tres</span></h3>
+                        <div class="contact-form" >
+                            <div class="column dt-sc-one-half first">
+                                <div class="" data-delay="300" data-animation="fadeIn">
+                                   
+
+
+
+
+                                </div>
+                            </div>                                                                                             
+                            <div class="form-row aligncenter " data-delay="7 00" data-animation="fadeIn">
+                                <button type="button" id="btn_paso_2">Agendar cita</button>
+                            </div>
+                        </div>
+                        <div id="ajax_contactform_msg"> </div>
                     </div>
 
 
