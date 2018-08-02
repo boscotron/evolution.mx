@@ -27,13 +27,10 @@
                     <div class="column dt-sc-one-third first">
                         <h3 class="border-title"> Opening <span>Time</span> </h3>
                         <ul class="opening-time branch_details">
-                            <li class="close"><span>Monday</span><h5>Closed</h5></li>
-                            <li><span>Tuesday</span><h5>9 am - 8 pm</h5></li>
-                            <li><span>Wednesday</span><h5>9 am - 8 pm</h5></li>
-                            <li><span>Thursday</span><h5>9 am - 8 pm</h5></li>
-                            <li><span>Friday</span><h5>9 am - 8 pm</h5></li>
-                            <li><span>Saturday</span><h5>9 am - 8 pm</h5></li>
-                            <li><span>Sunday</span><h5>9 am - 8 pm</h5></li>
+                            <li class="close"><span>Paso 1</span><h5>Elige para quien es el servicio</h5></li>
+                            <li><span>Paso 2</span><h5>Elije el servicio</h5></li>
+                            <li><span>Paso 3</span><h5>Elije la hora y fecha</h5></li>
+                          
                         </ul>
                     </div>
 
