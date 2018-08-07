@@ -28,8 +28,8 @@
                         <h3 class="border-title"> Opening <span>Time</span> </h3>
                         <ul class="opening-time branch_details">
                             <li class="close"><span>Paso 1</span><h5>Elige para quien es el servicio</h5></li>
-                            <li><span>Paso 2</span><h5>Elije el servicio</h5></li>
-                            <li><span>Paso 3</span><h5>Elije la hora y fecha</h5></li>
+                            <li><span>Paso 2</span><h5>Elige el servicio</h5></li>
+                            <li><span>Paso 3</span><h5>Elige la hora y fecha</h5></li>
                           
                         </ul>
                     </div>
@@ -122,8 +122,23 @@
                             </div>
                             <div class="column dt-sc-one-half">
                                 <div class="" data-delay="300" data-animation="fadeIn">
-                                    <p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>
-
+                                    <!--<p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>-->
+                                    <p>Hora:
+                                        <select>
+                                            <option>09:00 am</option>
+                                            <option>10:00 am</option>
+                                            <option>11:00 am</option>
+                                            <option>12:00 pm</option>
+                                            <option>01:00 pm</option>
+                                            <option>02:00 pm</option>
+                                            <option>03:00 pm</option>
+                                            <option>04:00 pm</option>
+                                            <option>05:00 pm</option>
+                                            <option>06:00 pm</option>
+                                            <option>07:00 pm</option>
+                                            <option>08:00 pm</option>
+                                        </select>
+                                    </p>
                                 </div>
                             </div>
 
@@ -133,11 +148,11 @@
                                         <button type="button" id="btn_paso_r2">Regresar</button>  
                                     </div>
                                 </div>
-                                <div class="column dt-sc-one-half">
+                                <!--<div class="column dt-sc-one-half">
                                     <div class="" data-delay="300" data-animation="fadeIn">
                                         <button type="button" id="btn_paso_3">Agendar cita</button>                
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                         <div id="ajax_contactform_msg"> </div>
