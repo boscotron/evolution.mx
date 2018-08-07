@@ -122,6 +122,7 @@
                             </div>
                             <div class="column dt-sc-one-half">
                                 <div class="" data-delay="300" data-animation="fadeIn">
+<<<<<<< HEAD
                                     <!--<p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>-->
                                     <p>Hora:
                                         <select>
@@ -139,6 +140,24 @@
                                             <option>08:00 pm</option>
                                         </select>
                                     </p>
+=======
+                                    <!-- <p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>--><p>Horario: 
+                                        <select>
+                                            <option value="">09:00 am</option>
+                                            <option value="">10:00 am</option>
+                                            <option value="">11:00 am</option>
+                                            <option value="">12:00 pm</option>
+                                            <option value="">13:00 pm</option>
+                                            <option value="">14:00 pm</option>
+                                            <option value="">15:00 pm</option>
+                                            <option value="">16:00 pm</option>
+                                            <option value="">17:00 pm</option>
+                                            <option value="">18:00 pm</option>
+                                            <option value="">19:00 pm</option>
+                                            <option value="">20:00 pm</option>
+                                        </select></p>
+
+>>>>>>> 10c6467896fe8c13054fc8809094f84bc504e669
                                 </div>
                             </div>
 
