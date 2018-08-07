@@ -1,4 +1,4 @@
-$(document).ready(function (){
+jQuery(function ($) { 
 	console.log("contacto");
 
 

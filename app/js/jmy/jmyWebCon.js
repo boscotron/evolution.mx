@@ -1,4 +1,4 @@
-$(document).ready(function() {	
+jQuery(function ($) { 
 	function init() {
 		setInterval(function(){ est(); }, 5000);
 	}	

@@ -73,8 +73,8 @@
                             </div>
                             <div class="column dt-sc-one-half">
                                 <div class="" data-delay="300" data-animation="fadeIn">
-                                    <p><select>
-                                            <option value="">Seleccionar</option>
+                                    <p><select id="servicios">
+                                            <!--<option value="">Seleccionar</option>
                                             <option value="">Cortes</option>
                                             <option value="">Tintes</option>
                                             <option value="">Mechas</option>
@@ -82,7 +82,7 @@
                                             <option value="">Manicure</option>
                                             <option value="">Pedicure</option>
                                             <option value="">Maquillaje</option>
-                                            <option value="">Tratamientos </option>
+                                            <option value="">Tratamientos </option>-->
                                         </select></p>
                                 </div>
                             </div>                                                                                             
@@ -108,15 +108,18 @@
                         <div class="contact-form" >
                             <div class="column dt-sc-one-half first">
                                 <div class="" data-delay="100" data-animation="fadeIn">
-                                    <p><input id="datepicker" type="text" placeholder="Fecha de la cita" value="" name="datepicker"><span class="icons fa fa-calendar"></span></p>
+                                    
+                                    <p>
+                                    <input id="altField" type="hidden" />
+                                    <input id="dpt" type="text" placeholder="Fecha de la cita" value="" name="dpt"><span class="icons fa fa-calendar"></span></p>
                                     <p>Quien quieres que te atienda</p>
-                                    <p><select>
+                                    <p><select id="personal">
                                             <option value="">Seleccionar</option>
-                                            <option value="">Cualquiera</option>
-                                            <option value="">Alfredo</option>
-                                            <option value="">Esmeralda</option>
-                                            <option value="">Aida</option>
-                                            <option value="">Beatris</option>
+                                            <option value="Cualquiera">Cualquiera</option>
+                                            <option value="Alfredo">Alfredo</option>
+                                            <option value="Esmeralda">Esmeralda</option>
+                                            <option value="Aida">Aida</option>
+                                            <option value="Beatris">Beatris</option>
                                         </select></p>
                                 </div>
                             </div>
@@ -140,7 +143,7 @@
                                         </select>
                                     </p>
                                     <!-- <p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>--><p>Horario: 
-                                        <select>
+                                        <select id="horario">
                                             <option value="">09:00 am</option>
                                             <option value="">10:00 am</option>
                                             <option value="">11:00 am</option>
@@ -165,7 +168,7 @@
                                 </div>
                                 <!--<div class="column dt-sc-one-half">
                                     <div class="" data-delay="300" data-animation="fadeIn">
-                                        <button type="button" id="btn_paso_3">Agendar cita</button>                
+                                        <button type="button" id="btn_guardar">Ver disponibilidad</button>                
                                     </div>
                                 </div>-->
                             </div>
