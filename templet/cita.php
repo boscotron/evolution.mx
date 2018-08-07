@@ -28,8 +28,8 @@
                         <h3 class="border-title"> Opening <span>Time</span> </h3>
                         <ul class="opening-time branch_details">
                             <li class="close"><span>Paso 1</span><h5>Elige para quien es el servicio</h5></li>
-                            <li><span>Paso 2</span><h5>Elije el servicio</h5></li>
-                            <li><span>Paso 3</span><h5>Elije la hora y fecha</h5></li>
+                            <li><span>Paso 2</span><h5>Elige el servicio</h5></li>
+                            <li><span>Paso 3</span><h5>Elige la hora y fecha</h5></li>
                           
                         </ul>
                     </div>
