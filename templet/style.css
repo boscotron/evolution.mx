@@ -184,11 +184,11 @@
 	
 	textarea { height:160px; overflow:auto; resize: none; }
 	#respond textarea { height:180px; }
-	select{ background:#fff; border:1px solid #e5e5d8; padding:10px; margin:10px 0 10px; display:block; width:100%; }
-	select option { background:#353737; padding: 3px 10px; }
+	select{ background:#fff; border:1px solid #333; padding:10px; margin:10px 0 10px; display:block; width:100%; }
+	select option { background:#e5e5d8; padding: 3px 10px; }
 	
-	select { height:40px; color: #feecda; border:1px solid #494542; width:100%; margin:0px 0px 30px; padding:0 10px; -webkit-appearance:none; -moz-appearance:none; appearance:none; cursor:pointer; }
-	
+	select { height:40px; color: #333; border:1px solid #494542; width:100%; margin:0px 0px 30px; padding:0 10px; -webkit-appearance:none; -moz-appearance:none; appearance:none; cursor:pointer; }
+	select::placeholder{ color:#333;}
 	.selection-box { position:relative; clear:both; }
 	.selection-box:before, .selection-box:after { content:""; pointer-events: none; position:absolute; }
 	.selection-box:before { z-index:1; right:13px; top:3px; bottom:0px; height:0px; margin:auto; border-left:7px solid transparent; border-right:7px solid transparent; border-top:7px solid; }
