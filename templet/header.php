@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
     
-	<title>Home | TrendSalon HTML Template</title> 
+	<title>Salon Evolution</title> 
 	
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -66,7 +66,7 @@
         <div class="inner three"></div>
     </div>
     <h3 class="loader-text">
-    	TrendSalon
+    	SalonEvolution
     </h3>
 </div><!-- PreLoader -->
 <div class="wrapper"><!-- Wrapper -->
