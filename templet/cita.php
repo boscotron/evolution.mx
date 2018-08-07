@@ -125,6 +125,25 @@
                             </div>
                             <div class="column dt-sc-one-half">
                                 <div class="" data-delay="300" data-animation="fadeIn">
+<<<<<<< HEAD
+                                    <!--<p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>-->
+                                    <p>Hora:
+                                        <select>
+                                            <option>09:00 am</option>
+                                            <option>10:00 am</option>
+                                            <option>11:00 am</option>
+                                            <option>12:00 pm</option>
+                                            <option>01:00 pm</option>
+                                            <option>02:00 pm</option>
+                                            <option>03:00 pm</option>
+                                            <option>04:00 pm</option>
+                                            <option>05:00 pm</option>
+                                            <option>06:00 pm</option>
+                                            <option>07:00 pm</option>
+                                            <option>08:00 pm</option>
+                                        </select>
+                                    </p>
+=======
                                     <!-- <p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>--><p>Horario: 
                                         <select id="horario">
                                             <option value="">09:00 am</option>
@@ -141,6 +160,7 @@
                                             <option value="">20:00 pm</option>
                                         </select></p>
 
+>>>>>>> 10c6467896fe8c13054fc8809094f84bc504e669
                                 </div>
                             </div>
 
@@ -150,11 +170,11 @@
                                         <button type="button" id="btn_paso_r2">Regresar</button>  
                                     </div>
                                 </div>
-                                <div class="column dt-sc-one-half">
+                                <!--<div class="column dt-sc-one-half">
                                     <div class="" data-delay="300" data-animation="fadeIn">
                                         <button type="button" id="btn_guardar">Ver disponibilidad</button>                
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                         <div id="ajax_contactform_msg"> </div>
