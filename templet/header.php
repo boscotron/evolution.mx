@@ -90,7 +90,7 @@
         </div><!-- End of Top Bar -->
         <header id="header" class="dt-sticky-menu type2"><!-- Header -->
         	<div id="logo"><!-- Logo -->
-                <a title="TrendSalon" href="index.html"><img title="TrendSalon" alt="Trendy" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/logo.fw.png"></a>
+                <a title="TrendSalon" href="index.html"><img title="TrendSalon" alt="Trendy" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/logoblanco3.fw.png"></a>
             </div><!-- End of Logo -->
             <div id="menu-container">
             	<div class="container">
@@ -99,7 +99,7 @@
                             Menu
                             <span class="dt-menu-toggle-icon"></span>
                         </div>
-                        <a title="TrendSalon" href="index.html" class="sticky-logo"><img title="TrendSalon" alt="Trendy" src="images/logo.png"></a>
+                        <a title="TrendSalon" href="index.html" class="sticky-logo"><img title="TrendSalon" alt="Trendy" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/logo.png"></a>
                         <ul class="menu">
                             <li class="current_page_item menu-item-simple-parent"><a href="index.html">Home</a>
                             	<ul class="sub-menu">
