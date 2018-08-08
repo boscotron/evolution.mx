@@ -73,12 +73,18 @@
     <div class="inner-wrapper"><!-- Inner-Wrapper -->
     	<div class="top-bar"><!-- Top Bar -->
         	<div class="container">
-            	<p>Lorem ipsum dolor sit amet consectetur</p>
+                <p class="jmy_web_div"  id="slogan" data-editor="no" data-tabla="vistaweb" data-page="header"><?php 
+						$this->pnt('slogan','Lorem ipsum dolor sit amet consectetur',["secundario"=>"header"]);
+						 ?>
+                </p>
                 <div class="top-right">
                 	<ul>
                         <li>
-                            <span class="fa fa-phone-square"></span>
-                            1 (800) 567 8765
+                            <span class="jmy_web_div fa fa-phone-square"  id="numeros" data-tabla="vistaweb" data-editor="no" data-page="header"><?php $this->pnt('numeros','1 (800) 567 8765',["secundario"=>"header"]);
+                            ?>
+                             </span>
+                            
+                            
                         </li>
                         <li>
                             <span class="fa fa-envelope"></span>
