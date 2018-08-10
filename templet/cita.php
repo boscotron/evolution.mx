@@ -4,7 +4,7 @@
     
     <script type="text/javascript">
 	$(document).ready(function() {
-		$("#datepicker").datepicker();
+		$("#dpt").datepicker();
 	});
 	</script>
 <div id="main"><!-- Main -->
@@ -114,18 +114,20 @@
                                     <input id="dpt" type="text" placeholder="Fecha de la cita" value="" name="dpt"><span class="icons fa fa-calendar"></span></p>
                                     <p>Quien quieres que te atienda</p>
                                     <p><select id="personal">
+                                        <!-- html comment 
+                                        
                                             <option value="">Seleccionar</option>
                                             <option value="Cualquiera">Cualquiera</option>
                                             <option value="Alfredo">Alfredo</option>
                                             <option value="Esmeralda">Esmeralda</option>
                                             <option value="Aida">Aida</option>
-                                            <option value="Beatris">Beatris</option>
+                                            <option value="Beatris">Beatris</option>-->
                                         </select></p>
                                 </div>
                             </div>
                             <div class="column dt-sc-one-half">
                                 <div class="" data-delay="300" data-animation="fadeIn">
-                                    <!--<p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>-->
+                                    <!--<p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>
                                     <p>Hora:
                                         <select>
                                             <option>09:00 am</option>
@@ -141,7 +143,7 @@
                                             <option>07:00 pm</option>
                                             <option>08:00 pm</option>
                                         </select>
-                                    </p>
+                                    </p>-->
                                     <!-- <p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>--><p>Horario: 
                                         <select id="horario">
                                             <option value="">09:00 am</option>
@@ -166,11 +168,11 @@
                                         <button type="button" id="btn_paso_r2">Regresar</button>  
                                     </div>
                                 </div>
-                                <!--<div class="column dt-sc-one-half">
+                                <div class="column dt-sc-one-half">
                                     <div class="" data-delay="300" data-animation="fadeIn">
                                         <button type="button" id="btn_guardar">Ver disponibilidad</button>                
                                     </div>
-                                </div>-->
+                                </div>
                             </div>
                         </div>
                         <div id="ajax_contactform_msg"> </div>

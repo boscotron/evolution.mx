@@ -73,12 +73,18 @@
     <div class="inner-wrapper"><!-- Inner-Wrapper -->
     	<div class="top-bar"><!-- Top Bar -->
         	<div class="container">
-            	<p>Lorem ipsum dolor sit amet consectetur</p>
+                <p class="jmy_web_div"  id="slogan" data-editor="no" data-tabla="vistaweb" data-page="header"><?php 
+						$this->pnt('slogan','Lorem ipsum dolor sit amet consectetur',["secundario"=>"header"]);
+						 ?>
+                </p>
                 <div class="top-right">
                 	<ul>
                         <li>
-                            <span class="fa fa-phone-square"></span>
-                            1 (800) 567 8765
+                            <span class="jmy_web_div fa fa-phone-square"  id="numeros" data-tabla="vistaweb" data-editor="no" data-page="header"><?php $this->pnt('numeros','1 (800) 567 8765',["secundario"=>"header"]);
+                            ?>
+                             </span>
+                            
+                            
                         </li>
                         <li>
                             <span class="fa fa-envelope"></span>
@@ -90,7 +96,7 @@
         </div><!-- End of Top Bar -->
         <header id="header" class="dt-sticky-menu type2"><!-- Header -->
         	<div id="logo"><!-- Logo -->
-                <a title="TrendSalon" href="index.html"><img title="TrendSalon" alt="Trendy" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/logo.fw.png"></a>
+                <a title="TrendSalon" href="index.html"><img title="TrendSalon" alt="Trendy" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/logoblanco3.fw.png"></a>
             </div><!-- End of Logo -->
             <div id="menu-container">
             	<div class="container">
@@ -99,7 +105,7 @@
                             Menu
                             <span class="dt-menu-toggle-icon"></span>
                         </div>
-                        <a title="TrendSalon" href="index.html" class="sticky-logo"><img title="TrendSalon" alt="Trendy" src="images/logo.png"></a>
+                        <a title="TrendSalon" href="index.html" class="sticky-logo"><img title="TrendSalon" alt="Trendy" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/logo.png"></a>
                         <ul class="menu">
                             <li class="current_page_item menu-item-simple-parent"><a href="index.html">Home</a>
                             	<ul class="sub-menu">
