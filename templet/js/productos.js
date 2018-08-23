@@ -21,15 +21,13 @@ jQuery(function ($) {
         event.preventDefault();
         $('#id_marca').val('');
         $('#nombre_marca').val('');
-        $('#marcas_ventana').hide(500);
-        document.getElementById("#marca_guardar").disabled = false;
+        $('#marcas_ventana').hide(500);       
     });
     $('.marca_abrir').on('click', function(){
         console.log('marca_abrir');
         event.preventDefault();
         $('#marcas_ventana').show(200);
         document.getElementById("#marca_guardar").disabled = false;
-
     });
     $('#marca_guardar').on('click', function(){
         event.preventDefault();
@@ -51,6 +49,7 @@ jQuery(function ($) {
         console.log(v);
         
         $('#id_marca').val(v);
+        lista_marcas();
     }
 
     function lista_marcas(){
@@ -65,6 +64,7 @@ jQuery(function ($) {
     function listar_marcas(d){
         console.log(d);
         let lista = d.out.ver.otFm;
+        $("#botones_marcas").html('');
         for (let i = 0; i < lista.length; i++) {
             const element = lista[i];
             $("#botones_marcas").append( '<a data-filter=".tab_'+element.ID_F+'" href="#" class="btn-eff3  active-sort jmy_web_div" data-page="productos" id="'+element.ID_F+'" data-editor="no">'+element.nombre_marca+' </a>' );
