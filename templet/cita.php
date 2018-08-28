@@ -1,7 +1,7 @@
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-    
+     
     <script type="text/javascript">
 	$(document).ready(function() {
 		$("#dpt").datepicker();
@@ -12,39 +12,40 @@
         	<section class="fullwidth-background">
         		<div class="breadcrumb-wrapper">
                     <div class="container">
-                        <h4> Our contact details </h4>
-                        <h6><a href="index.html">Home</a> / Contact</h6>
+                        <h4> Salon evolution </h4>
+                        <h6><a href="index.html">Inicio</a></h6>
                     </div>
                 </div>                
             </section>
             <div class="hr-invisible-very-small"></div>
             <div class="clear"></div>
             <section id="primary" class="content-full-width"><!-- Primary Section -->
-            	<h2 class="border-title aligncenter"> Our Salon Location </h2>
+            	<h2 class="border-title aligncenter"> Realiza tu cita </h2>
                 <div class="clear"></div>
                 <div class="hr-invisible-medium"></div>
                 <div class="container">
                     <div class="column dt-sc-one-third first">
-                        <h3 class="border-title"> Opening <span>Time</span> </h3>
+                        <h3 class="border-title"> Pasos <span>ha seguir:</span> </h3>
                         <ul class="opening-time branch_details">
-                            <li class="close"><span>Paso 1</span><h5>Elige para quien es el servicio</h5></li>
+                            <li><span>Paso 1</span><h5>Elige para quien es el servicio</h5></li>
+                            <br>
                             <li><span>Paso 2</span><h5>Elige el servicio</h5></li>
+                            <br>
                             <li><span>Paso 3</span><h5>Elige la hora y fecha</h5></li>
                           
                         </ul>
                     </div>
 
+<!-- Parte uno -->
 
-                    <div class="column dt-sc-two-third" id="div_paso_1">
+
+                    <div class="column dt-sc-two-third form-group" id="div_paso_1">
                     	<h3 class="border-title">Paso <span>Uno</span></h3>
-                    	<div class="contact-form" >
-                            <div class="column dt-sc-one-half first">
+                    	<div class="box" >
+                            <div class="column dt-sc-one-half first ">
                             	<div class="" data-delay="100" data-animation="fadeIn">
-                                    <p>Para quien es el servicio</p>                                                        
-                                </div>
-                            </div>
-                            <div class="column dt-sc-one-half">
-                            	<div class="" data-delay="300" data-animation="fadeIn">
+                                    <p>Para quien es el servicio</p>                      
+                               
                                     <p><select>
                                             <option value="Seleccionarar">Seleccionar</option>
                                             <option value="Personal">Personal</option>
@@ -60,6 +61,8 @@
                         </div>
                     	<div id="ajax_contactform_msg"> </div>
                     </div>
+
+<!-- Parte dos -->
 
 
 
@@ -101,6 +104,7 @@
                         </div>
                     	<div id="ajax_contactform_msg"> </div>
                     </div>
+<!-- Parte tres -->
 
 
                     <div class="column dt-sc-two-third hidden" id="div_paso_3">
@@ -170,7 +174,7 @@
                                 </div>
                                 <div class="column dt-sc-one-half">
                                     <div class="" data-delay="300" data-animation="fadeIn">
-                                        <button type="button" id="btn_guardar">Ver disponibilidad</button>                
+                                        <button type="button" id="btn_guardar">Agendar cita</button>                
                                     </div>
                                 </div>
                             </div>

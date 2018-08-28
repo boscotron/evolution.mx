@@ -19,7 +19,7 @@ $out=[
 	
 	"db"=>$jmy->db([$get['post']['TABLA']]),
 	
-					
+					 
 	"guardar"=>$jmy->guardar([	"TABLA"=>"PRODUCTOS", // STRING
 								"ID_F"=>[$get['id']], // Array
 								"A_D"=>TRUE, 
