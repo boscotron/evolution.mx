@@ -24,7 +24,9 @@
                 <div class="clear"></div>
                 <div class="hr-invisible-medium"></div>
                 <div class="container">
+                    
                     <div class="column dt-sc-one-third first">
+                        <h3 class="border-title" id="alerta">  </h3>
                         <h3 class="border-title"> Pasos <span>ha seguir:</span> </h3>
                         <ul class="opening-time branch_details">
                             <li><span>Paso 1</span><h5>Elige para quien es el servicio</h5></li>
@@ -71,6 +73,10 @@
                     	<div class="contact-form" >
                             <div class="column dt-sc-one-half first">
                                 <div class="" data-delay="100" data-animation="fadeIn">
+                                <p>Selecciona la fecha</p>                                     
+                                <p>
+                                    <input id="altField" type="hidden" />
+                                    <input id="dpt" type="text" placeholder="Fecha de la cita" value="" name="dpt"><span class="icons fa fa-calendar"></span></p>
                                     <p>Selecciona el servicio</p>                                                        
                                 </div>
                             </div>
@@ -113,9 +119,7 @@
                             <div class="column dt-sc-one-half first">
                                 <div class="" data-delay="100" data-animation="fadeIn">
                                     
-                                    <p>
-                                    <input id="altField" type="hidden" />
-                                    <input id="dpt" type="text" placeholder="Fecha de la cita" value="" name="dpt"><span class="icons fa fa-calendar"></span></p>
+                                   
                                     <p>Quien quieres que te atienda</p>
                                     <p><select id="personal">
                                         <!-- html comment 

@@ -1,13 +1,13 @@
 <?php
- /*
-
+ 
+/*
 $out['personal'][]=['nombre'=>'Alfredo',
                     'horario_mat_ini'=>'8',
                     'horario_mat_fin'=>'14',
                     'horario_ves_ini'=>'15',
                     'horario_ves_fin'=>'20',
                     'dias_laborales'=>['lunes','martes','miercoles','jueves','viernes','sabado'],
-                    'servicios'=>['cortes']
+                    'servicios'=>['5b858452f1162']
 ];
 
 $out['personal'][]=['nombre'=>'Esmeralda',
@@ -15,7 +15,7 @@ $out['personal'][]=['nombre'=>'Esmeralda',
                     'horario_mat_fin'=>'14',
                     'horario_ves_ini'=>'15',
                     'horario_ves_fin'=>'20',
-                    'servicios'=>['cortes','tintes','unas']
+                    'servicios'=>['5b858452f1162','5b858453026ac','5b8584530512a']
 ];
 
 $out['personal'][]=['nombre'=>'Aida',
@@ -24,7 +24,7 @@ $out['personal'][]=['nombre'=>'Aida',
                     'horario_ves_ini'=>'15',
                     'horario_ves_fin'=>'20',
                     'dias_laborales'=>['lunes','martes','miercoles','jueves','viernes','sabado'],
-                    'servicios'=>['cortes','tintes']
+                    'servicios'=>['5b858452f1162','5b858453026ac']
 ];
 
 $out['personal'][]=['nombre'=>'Rafa',
@@ -33,7 +33,7 @@ $out['personal'][]=['nombre'=>'Rafa',
                     'horario_ves_ini'=>'15',
                     'horario_ves_fin'=>'20',
                     'dias_laborales'=>['lunes','martes','miercoles','jueves','viernes','sabado'],
-                    'servicios'=>['tintes']
+                    'servicios'=>['5b858453026ac']
 ];
 
 $out['personal'][]=['nombre'=>'Beatris',
@@ -42,7 +42,7 @@ $out['personal'][]=['nombre'=>'Beatris',
                     'horario_ves_ini'=>'15',
                     'horario_ves_fin'=>'20',
                     'dias_laborales'=>['lunes','martes','miercoles','jueves','viernes','sabado'],
-                    'servicios'=>['cortes','unas']
+                    'servicios'=>['5b858452f1162','5b8584530512a']
 ];
 
 $out['personal'][]=['nombre'=>'Yoly',
@@ -51,8 +51,8 @@ $out['personal'][]=['nombre'=>'Yoly',
                     'horario_ves_ini'=>'15',
                     'horario_ves_fin'=>'20',
                     'dias_laborales'=>['lunes','martes','miercoles','jueves','viernes','sabado'],
-                    'servicios'=>['unas']
-];*/
+                    'servicios'=>['5b8584530512a']
+];
 /*
 $jmy->db(['personal']);
 
@@ -68,46 +68,18 @@ for ($i=0; $i <count($out['personal']) ; $i++) {
 
 
 
-$out['servicios'][]=['nombre'=>'Cortes',
-                     'tiempo_estimado'=>'30'];
-
- $out['servicios'][]=['nombre'=>'Tintes',
-                     'tiempo_estimado'=>'90'];
-
-$out['servicios'][]=['nombre'=>'Mechas',
-                     'tiempo_estimado'=>'40'];
-
-$out['servicios'][]=['nombre'=>'Rayos',
-                     'tiempo_estimado'=>'50'];
-
-$out['servicios'][]=['nombre'=>'unas',
-                     'tiempo_estimado'=>'60'];
-
-
-
-/* $jmy->db(['servicio']);    
-
-for ($i=0; $i <count($out['servicios']) ; $i++) { 
-    
-    $jmy->guardar([ "TABLA"=>"servicio", // STRING
-    //"ID_F"=>[$get['id']], // Array
-    "A_D"=>TRUE, 
-    "GUARDAR"=>$out['servicios'][$i],
-    ]);
-}*/
-
 
 
 
 switch ($_GET['peticion']) {
     case 'personal':
-       $out['respuesta_personal']=$jmy->ver([	
+       $out['respuesta_personal'][]=$jmy->ver([	
                 "TABLA"=>"personal",
                 //"ID_D"=>["servicios"], 
-                "LIKE_V"=>[$_POST['servicios']],
+                "LIKE_V"=>[strtolower($_POST['servicios'])],
                // "SALIDA"=>'ID'
             ]);
-          $out['respuesta_personal']=$jmy->ver([	
+          $out['respuesta_personal'][]=$jmy->ver([	
                 "TABLA"=>"personal",
                 "ID"=>$out['respuesta_personal']['otKey'], 
                 "SALIDA"=>'ARRAY'
@@ -123,11 +95,11 @@ switch ($_GET['peticion']) {
     break;
 
     case 'servicios':
-       $out['respuesta_servicios']=$jmy->ver([   
+       $out=$jmy->ver([   
                 "TABLA"=>"servicio",
                 //"ID_D"=>["servicios"], 
-                "LIKE_V"=>[$_POST['servicios']],
-                "SALIDA"=>'ARRAY'
+                //"LIKE_V"=>[$_POST['servicios']],
+                "SALIDA"=>'ARRAY' 
             ]);
          /* $out['respuesta_servicios']=$jmy->ver([    
                 "TABLA"=>"servicio",
@@ -158,7 +130,6 @@ switch ($_GET['peticion']) {
                                 ]);
     break;
 
-   
     default:
         # code...
         break;
