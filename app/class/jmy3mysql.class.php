@@ -19,7 +19,7 @@ class JMY3MySQL {
       $tmb=($IDF!='')?$IDF:'';
       $tm=(is_array($ver['ot'])&&$IDF!='')?$ver['ot'][$tmb]:[];    
       $tmkey=(is_array($tm))?array_keys($tm):[];
-      $col=$this->col($colKey);
+     
       $resCol=$col;
       $col=$col['o']; 
       for($i=0;$i<count($colKey);$i++){
@@ -28,7 +28,7 @@ class JMY3MySQL {
           $fa[]=$tmb;}else{$ac[]=$tmb;} 
         $comparando[]=$tmb;}
       $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
-      if ($cu->connect_error) { $error ='Error de Conexión ('.$mysqli->connect_errno.')'. $mysqli->error;}else{
+      if ($cu->connect_error) { $error ='Error de Conexiï¿½n ('.$mysqli->connect_errno.')'. $mysqli->error;}else{
         if(count($fa)>0){ 
           for($ib=0;$ib<count($IDF);$ib++){
       $va=[];for($i=0;$i<count($fa);$i++){
@@ -45,8 +45,8 @@ class JMY3MySQL {
           $ssU[$ib] [$i]=($d['b'])? "UPDATE ".DB_PX.$d["TABLA"]." SET ID_S = '0' WHERE ID_D = '".$ac[$i]["I"]."' AND ID_F = '".$IDF[$ib]."' AND ID_S = '1' " : "UPDATE ".DB_PX.$d["TABLA"]." SET V = '".$ac[$i]["V"]."' WHERE ID_D = '".$ac[$i]["I"]."' AND ID_F = '".$IDF[$ib]."' AND ID_S = '1' ";  
         if( !$rs = $cu->query($ssU[$ib] [$i]) ){$error = "error-g-ssU".$ib.'-'.$cu->error; $ssU[$ib] [$i] =$cu->error; }}}}}
     }else{$error="Faltan Datos";}
-    return [  "ver"=>$ver, "ssI"=>$ssI, "ssU"=>$ssU,  
-              "ac"=>$ac, "fa"=>$fa, "ver"=>$ver, "d"=>$d, 
+    return [  //"ver"=>$ver, "ssI"=>$ssI, "ssU"=>$ssU,  
+              //"ac"=>$ac, "fa"=>$fa, "ver"=>$ver, "d"=>$d, 
               "resCol"=>$resCol, "tm"=>$tm,"comparando"=> $comparando,
               "colKey"=> $colKey,"col"=> $col
       ]; 
@@ -63,7 +63,7 @@ class JMY3MySQL {
   public function db($d=[]){
     if(count($d)>0 && DB_JMY_ADD_TABLA===true){      
       $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
-      if ($cu->connect_error) { $error ='Error de Conexión ('.$mysqli->connect_errno.')'. $mysqli->error;}else{        
+      if ($cu->connect_error) { $error ='Error de Conexiï¿½n ('.$mysqli->connect_errno.')'. $mysqli->error;}else{        
         for($i=0;$i<count($d);$i++){
           $t=$d[$i];
           $t=trim(strtolower($t));if($t!=''){
@@ -109,7 +109,7 @@ class JMY3MySQL {
     $ca=($d['SELECT']!='')?$d['SELECT']:'ID_F,ID_D,V ';
     $ss="SELECT ".$ca." FROM ".DB_PX.$pr." WHERE ".$w." ".$or." ".$limit." ";
     $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
-    if($cu->connect_error){$error='Error de Conexión ('.$mysqli->connect_errno.') '.$mysqli->connect_error;}else{$ot=[];  
+    if($cu->connect_error){$error='Error de Conexiï¿½n ('.$mysqli->connect_errno.') '.$mysqli->connect_error;}else{$ot=[];  
         if(!is_array($d['COL']) && !count($d['COL'])>0) {
           if( !$rs = $cu->query($ss) ){$error = " error ss ".$cu->error;}else{
           while( $rw = $rs->fetch_assoc() ){ 
@@ -155,22 +155,21 @@ class JMY3MySQL {
     if(count($d)>0){
       $sa=0;$ss="SELECT * FROM cat_d WHERE ".$col." IN ('".implode("','",$d)."') LIMIT 1000; ";
       $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
-      if($cu->connect_error){$error='Error de Conexión ('.$mysqli->connect_errno.') '.$mysqli->connect_error;}else{
+      if($cu->connect_error){$error='Error de Conexiï¿½n ('.$mysqli->connect_errno.') '.$mysqli->connect_error;}else{
         while($sa<3){if(!$rs=$cu->query($ss)){$error="error-col-ss".$cu->error;}else{$ot=[];          
             while( $rw = $rs->fetch_assoc() ){  
               $w[]=$rw;
+              $col_e[]=$rw['NAME'];
               $ot['i'][$rw['ID']] = $rw['NAME'];
               $ot['n'][$rw['NAME']] = $rw['ID'];}$error="Sin error";
-
             $ot['ik']=(is_array($ot['i']))?array_keys($ot['i']):false;
             $ot['nk']=(is_array($ot['n']))?array_keys($ot['n']):false;
-            $sa=(count($d)==count($ot['nk']))?5:$sa;
-            if($ad){ $fa=[];
-              for($i=0;$i<count($d);$i++){if($ot['nk']==false){if(!in_array($d[$i],$ot['nk'])){$fa[]=$d[$i];}}}
-              if(is_array($fa) && count($fa)>0){
-                $ssI = "INSERT INTO `cat_d` (`NAME`) VALUES ('".implode("'),('",$fa)."')  ";
-                if( !$rs = $cu->query($ssI) ){$error = " error ssI ".$cu->error;} 
+            $sa=(count($d)==count($ot['nk']))?5:$sa;            
+            if($ad){ $fa=[]; for($i=0;$i<count($d);$i++){if(!in_array($d[$i],$col_e)) $fa[]=$d[$i];}
+            if(is_array($fa) && count($fa)>0){
+              $ssI = "INSERT INTO `cat_d` (`NAME`) VALUES ('".implode("'),('",$fa)."')  ";
+              if( !$rs = $cu->query($ssI) ){$error = " error ssI ".$cu->error;} 
               }}}$sa++;}}}
-    return ["d"=>$d,"o"=>$ot,"error"=>$error,"ss"=>$ss,"w"=>$w,"fa"=>$fa];
+    return ["d"=>$d,"o"=>$ot,"error"=>$error,"ss"=>$ss,"w"=>$w,"fa"=>$fa,"ad"=>$ad];
   }
 }
