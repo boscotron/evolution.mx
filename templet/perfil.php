@@ -1,6 +1,5 @@
 <div class="hr-invisible-very-very-small"></div>
   <div class="column dt-sc-one-fourth first">
-    <div class="column dt-sc-one-fourth first">
       <div class="dt-sc-team type1">
           <div class="image">
               <img src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/team-img4.jpg" alt="" title="">
@@ -14,7 +13,6 @@
           <h4><a href="#"> Angel Sienna </a></h4>
           <h5>Professional Hairstylist</h5>
       </div>
-  </div> 
   </div>
   <div class="column dt-sc-three-fourth">
           <div class="dt-sc-special-services-carousel-wrapper">
@@ -94,97 +92,37 @@
               </div>         
           </div> <!-- Fotos -->
   </div>
+
+<div class="hr-invisible-very-very-small"></div>
+    <div class="column dt-sc-one-sixth first">
+        <div class="column dt-sc-one-third">
+            <div class="dt-sc-ico-content type1">
+                <div class="icon">
+                    <span class="fa fa-desktop"> </span>
+                </div>
+                <h5>
+                    <a href="#"> Puntos <br/> Evolution  </a>
+                </h5>
+            </div>
+        </div>
+    </div>
+    <div class="column dt-sc-five-sixth">
+      <?php include 'perfil_detalle.php'; ?>
+    </div>
+    <div class="hr-invisible"></div>
+
+
+
+
+
+
+
+
+<?php /*
+
 <div class="hr-invisible-small"></div>
-
-
-
- <div class="fullwidth-bg">
-  <div class="parallax-spacing">
-    <div class="container">
-      <h2 class="border-title aligncenter"> Our Special Services </h2>
-            <div class="hr-invisible-small"></div>
-            <div class="clear"></div>
-            <div class="dt-sc-special-services-carousel-wrapper">
-              <div class="dt-sc-special-services-carousel">
-                    <div class="column dt-sc-one-third">
-                        <div class="dt-sc-service type2">
-                            <figure class="gallery-thumb">
-                                <a href="#">
-                                    <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img5.jpg">
-                                </a>
-                            </figure>
-                            <div class="hr-invisible-very-small"></div>
-                            <h3><a href="#"> Cutting & Styling </a></h3>
-                            <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
-                        </div>
-                    </div>
-                    <div class="column dt-sc-one-third">
-                        <div class="dt-sc-service type2">
-                            <figure class="gallery-thumb">
-                                <a href="#">
-                                    <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img6.jpg">
-                                </a>
-                            </figure>
-                            <div class="hr-invisible-very-small"></div>
-                            <h3><a href="#"> Colouring </a></h3>
-                            <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
-                        </div>
-                    </div>
-                    <div class="column dt-sc-one-third">
-                        <div class="dt-sc-service type2">
-                            <figure class="gallery-thumb">
-                                <a href="#">
-                                    <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img7.jpg">
-                                </a>
-                            </figure>
-                            <div class="hr-invisible-very-small"></div>
-                            <h3><a href="#"> Facials </a></h3>
-                            <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
-                        </div>
-                    </div>
-                    <div class="column dt-sc-one-third">
-                        <div class="dt-sc-service type2">
-                            <figure class="gallery-thumb">
-                                <a href="#">
-                                    <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img5.jpg">
-                                </a>
-                            </figure>
-                            <div class="hr-invisible-very-small"></div>
-                            <h3><a href="#"> Cutting & Styling </a></h3>
-                            <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
-                        </div>
-                    </div>
-                    <div class="column dt-sc-one-third">
-                        <div class="dt-sc-service type2">
-                            <figure class="gallery-thumb">
-                                <a href="#">
-                                    <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img6.jpg">
-                                </a>
-                            </figure>
-                            <div class="hr-invisible-very-small"></div>
-                            <h3><a href="#"> Colouring </a></h3>
-                            <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
-                        </div>
-                    </div>
-                    <div class="column dt-sc-one-third">
-                        <div class="dt-sc-service type2">
-                            <figure class="gallery-thumb">
-                                <a href="#">
-                                    <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img7.jpg">
-                                </a>
-                            </figure>
-                            <div class="hr-invisible-very-small"></div>
-                            <h3><a href="#"> Facials </a></h3>
-                            <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
-                        </div>
-                    </div>
-              </div>         
-          </div>           
-      </div>
-  </div>
-</div>                   
-
-
+<div class="hr-invisible-small"></div>
+<div class="hr-invisible-small"></div>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   
