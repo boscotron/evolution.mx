@@ -93,6 +93,12 @@
 <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
 <script src="<?php $this->url_templet(); ?>js/jquery.gmap.min.js"></script>
 
+<script src="<?php $this->url_templet(); ?>js/jquery-1.11.3.min.js"></script>  
+<script type="text/javascript" src="<?php $this->url_templet(); ?>js/jquery.sticky.min.js"></script> 
+<script src="<?php $this->url_templet(); ?>js/jsplugins.js" type="text/javascript"></script>
+<script src="<?php $this->url_templet(); ?>js/jquery.meanmenu.min.js" type="text/javascript"></script>
+<script src="<?php $this->url_templet(); ?>js/custom.js"></script>
+
 <?php  $this->llamar_js(); ?> 
 </body>
 </html>
