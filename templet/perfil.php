@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="row">
     <div class="hr-invisible-very-very-small"></div>
@@ -92,12 +91,17 @@
                           <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
                       </div>
                   </div>
-            </div>         
+            </div> 
+            <div class="bx-controls bx-has-controls-direction">
+              <div class="bx-controls-direction">
+                <a class="bx-prev" href="">Prev</a>
+                <a class="bx-next" href="">Next</a>
+              </div>
+            </div>    
         </div> <!-- Fotos -->
       </div>
   </div>
 </div>
-
 
 <div class="container">
   <div class="row">
@@ -115,28 +119,20 @@
             </div>
         </div>
     </div>
-  </div>
-</div>   
 
+    <div class="col-lg-2">
+    </div>
 
-<div class="container">
-  <div class="row">
-      <div class="col-lg-3">
-      </div>
-      
-      <?php include 'perfil_detalle.php'; ?>
-      
+    <div class="col-lg-8">
+      <hr>
+    </div>
+
   </div>
 </div> 
 
+<?php include 'perfil_detalle.php'; ?>
 
 <div class="hr-invisible"></div>
-
-
-
-
-
-
 
 
 <?php /*

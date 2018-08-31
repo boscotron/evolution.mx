@@ -97,7 +97,8 @@
 <script type="text/javascript" src="<?php $this->url_templet(); ?>js/jquery.sticky.min.js"></script> 
 <script src="<?php $this->url_templet(); ?>js/jsplugins.js" type="text/javascript"></script>
 <script src="<?php $this->url_templet(); ?>js/jquery.meanmenu.min.js" type="text/javascript"></script>
-<script src="<?php $this->url_templet(); ?>js/custom.js"></script>
+
+<script src="<?php $this->url_templet(); ?>js/animate-txt.js"></script>
 
 <?php  $this->llamar_js(); ?> 
 </body>
