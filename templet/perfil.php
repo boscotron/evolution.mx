@@ -130,7 +130,10 @@
   </div>
 </div> 
 
-<?php include 'perfil_detalle.php'; ?>
+<?php include 'perfil_detalle.php' ; ?>
+
+<div class="hr-invisible"></div>
+<?php include 'perfil_historial.php' ; ?>
 
 <div class="hr-invisible"></div>
 
