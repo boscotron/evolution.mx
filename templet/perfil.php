@@ -130,14 +130,7 @@
   </div>
 </div> 
 
-<<<<<<< HEAD
 <?php include $data['carga_centro']; ?>
-=======
-<?php include 'perfil_detalle.php' ; ?>
-
-<div class="hr-invisible"></div>
-<?php include 'perfil_historial.php' ; ?>
->>>>>>> 4da7d8b111e96e1c4221a8554b5a1112af9fa736
 
 <div class="hr-invisible"></div>
 
