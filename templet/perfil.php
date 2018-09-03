@@ -130,7 +130,7 @@
   </div>
 </div> 
 
-<?php include 'perfil_detalle.php'; ?>
+<?php include $data['carga_centro']; ?>
 
 <div class="hr-invisible"></div>
 
