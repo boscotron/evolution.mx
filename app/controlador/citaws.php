@@ -85,15 +85,6 @@ switch ($_GET['peticion']) {
                 "SALIDA"=>'ARRAY'
             ]);
         break;
-
-    case 'verPersonaHorario':
-                $out['verPersonaHorario']=$jmy->ver([	
-                    "TABLA"=>"personal",
-                    "ID"=>[$_POST['persona']], 
-                    "SALIDA"=>'ARRAY'
-                ]);
-    break;
-
     case 'servicios':
        $out=$jmy->ver([   
                 "TABLA"=>"servicio",
@@ -108,11 +99,61 @@ switch ($_GET['peticion']) {
             ]);*/
         break;
     case 'verPersonaHorario':
-                $out['verPersonaHorario']=$jmy->ver([   
-                    "TABLA"=>"personal",
-                    "ID"=>[$_POST['persona']], 
-                    "SALIDA"=>'ARRAY'
-                ]);
+        $out['verPersonaHorario']=$jmy->ver([   
+            "TABLA"=>"personal",
+            "ID"=>[$_POST['persona']], 
+            "SALIDA"=>'ARRAY'
+        ]);
+        $out['verPersonaHorario'] = $out['verPersonaHorario']['ot'][$_POST['persona']];
+        //CONSULTA DE SERVICIOS
+        $out['servicio']=$jmy->ver([   
+            "TABLA"=>"servicio",
+            "ID"=>[$_POST['servicios']], 
+            //"SALIDA"=>'ARRAY'
+        ]);
+        $out['servicio'] = $out['servicio']['ot'][$_POST['servicios']];
+        $out['tiempo_servicio'] = $out['servicio']['tiempo_estimado']*60;
+        /// VER CITAS SI EXISTEN
+        $out['agendarcita']=$jmy->ver([   
+            "TABLA"=>"agendarcita",
+            "V"=>[$_POST['fecha']], 
+            //"SALIDA"=>'ARRAY'
+        ]); 
+        $out['agendarcita2']=$jmy->ver([   
+            "TABLA"=>"agendarcita",
+            "ID"=>$out['agendarcita']['otKey'], 
+            "V"=>[$_POST['persona']]
+            //"SALIDA"=>'ARRAY'
+        ]); 
+        $out['quitarHora'] = [];
+        if(count($out['agendarcita2']['otKey'])>0){
+            $out['infoCitaExistente']=$jmy->ver([   
+                "TABLA"=>"agendarcita",
+                "COL"=>["horario"],
+                "ID"=>$out['agendarcita2']['otKey'],
+                "SALIDA"=>'ARRAY'
+            ]);             
+            $out['infoCitaExistente'] = $out['infoCitaExistente']['otFm'];
+            for ($i=0; $i < count($out['infoCitaExistente']) ; $i++) { 
+                
+                $out['quitarHora'][] = $out['infoCitaExistente'][$i]['horario'];
+            }
+        }else{
+            $out['infoCitaExistente'] = false;
+        }
+
+        // generar Horario
+        for ($i=$out['verPersonaHorario']['horario_mat_ini']; $i<=$out['verPersonaHorario']['horario_mat_fin'] ; $i++) { 
+            if(!in_array($i,$out['quitarHora']))
+                $out['horario'][] = $i;
+        }
+        for ($i=$out['verPersonaHorario']['horario_ves_ini']; $i<=$out['verPersonaHorario']['horario_ves_fin'] ; $i++) { 
+            if(!in_array($i,$out['quitarHora']))
+                $out['horario'][] = $i;
+        }
+
+
+
     break;
 
     case 'guardarCita':
@@ -123,9 +164,9 @@ switch ($_GET['peticion']) {
             $out['agendarcita'] = $jmy->guardar(["TABLA"=>"agendarcita",
                                 "A_D"=>TRUE,
                                 "GUARDAR"=>["nombre"=>$_POST['servicios'],
-                                            "persona"=>$_POST['personal'],
+                                            "persona"=>$_POST['persona'],
                                             "horario"=>$_POST['horario'],
-                                            "fecha"=>$_POST['dpt']
+                                            "fecha"=>$_POST['fecha']
                                         ]
                                 ]);
     break;

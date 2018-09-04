@@ -21,12 +21,20 @@ jQuery(function ($) {
 
     $("#btn_paso_2").click(function(){
         console.log('paso 3');
-        mostrarPersonal({
-            servicios:$("#servicios option:selected").val(),
-            fecha:$("#dpt").val()
-        });
-        $("#div_paso_2").hide(50);
-        $("#div_paso_3").show(200);
+        let fecha = $("#dpt").val();
+        console.log(fecha);
+        
+        if(fecha!=''){
+            mostrarPersonal({
+                servicios:$("#servicios option:selected").val(),
+                fecha:fecha
+            });
+            $("#div_paso_2").hide(50);
+            $("#div_paso_3").show(200);
+        }else{
+            alerta('Selecione una fecha');
+
+        }
         
     });
 
@@ -101,37 +109,18 @@ jQuery(function ($) {
     }
     function verPersonaHorario(data){
     	$.ajax({
-            url: location.origin + '/personalws/',
+            url: location.origin + '/citaws/verPersonaHorario',
             type: 'post',
             dataType: 'json',
             success: function(res) {
-                console.log(res);
+                let horario = res.out.horario;
+                console.log(horario);
                 $("#horario").html('');
-                let horario = res.out.resultado.otFm[0];
-                //console.log(horario);
-                let i,j;
-                //let h_m_i = horario.horario_mat_ini;
-                //let h_v_f = horario.horario_ves_fin;
-                 for ( i = 8 ; i <= horario.horario_mat_fin; i++) {
-                         $("#horario").append(new Option(i+"Hrs",i));
-                            console.log(i+"Hrs");
-                         //personal[i];
-                        }
-                     /*console.log(horario.horario_mat_ini);
-                    console.log(horario.horario_mat_fin);
-                    console.log(horario.horario_ves_ini);
-                    console.log(horario.horario_ves_fin);*/
-
-                   for ( j = horario.horario_ves_ini ; j < horario.horario_ves_fin; j++) {
-                         $("#horario").append(new Option(j+"Hrs",j));
-                            console.log(j+"Hrs");
-                        }
-
-
-                //selectHorario(h_m_i,h_v_f);
-               //selectHorario(horario.horario_ves_ini,horario.horario_ves_fin);
-             
-
+                
+                for ( let i = 0 ; i < horario.length; i++) {
+                    $("#horario").append(new Option(horario[i]+" Hrs",horario[i]));
+                    //console.log(i+"Hrs");
+                }                
             },
             error: function(res) {
                 console.log(res);
@@ -143,10 +132,11 @@ jQuery(function ($) {
     $( "#personal" ).change(function() {
         console.log('hola');
       
-        /*verPersonaHorario({
+        verPersonaHorario({
             servicios:$("#servicios option:selected").val(),
-            fecha:$("#dpt").val()
-        });*/
+            fecha:$("#dpt").val(),
+            persona:$("#personal").val(),
+        });
 
     });
 
