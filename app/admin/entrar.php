@@ -2,7 +2,6 @@
 require(BASE_APP.'class/jmy3webAdmin.class.php');
 $out = new JmyWebSession();
 $tkn = $out->session();
-$jmyWeb ->pre(['p'=>$tkn,'t'=>'tkn']);
 if($tkn['o']['out']['error']!=''){
 $jmyWeb ->pre(['p'=>$tkn,'t'=>'Error:']);
 }else{

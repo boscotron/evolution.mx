@@ -11,7 +11,7 @@
             <p class="card-text">
                 <div class="row">
                     <div class="col-md-4">
-                    Nombre de la Marca  
+                    Nombre de Producto  
                     </div>
                     <div class="col-md-8">
                         <input type="text" id="nombre_marca" value="">
@@ -31,23 +31,18 @@
     margin: 0 20%;">
 <div class="card " style="width: 100%;">
   <div class="card-body">
-    <h5 class="card-title">Editando el producto {NOMBRE}</h5>
+    <h5 class="card-title">Editando el prducto {NOMBRE}</h5>
     <p class="card-text">
         <div class="row" id="cel_formulario">
             <div class="column dt-sc-one-third">
-                <img src=".jpg" alt="Producto">
+                <a href="prac5.html"><img src="col.jpg" alt="caja"></a>
             </div>
             <div class="column dt-sc-one-third">
-                    <h3>Nombre de Producto  <INPUT type="text" name="NomP" size="25"></h3>
-                <h3>Codigo de Producto  <INPUT type="text" name="Codigo" size="25"></h3> 
-                <h3>Precio <INPUT type="text" name="Precio" size="25"></h3> 
-                    <h3>Descripción <TEXTAREA rows="5" cols="30" name="txtsugerencias"></TEXTAREA><BR></h3> 
-                </div>
-                <div>
-                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br>
-                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
-                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
-                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
+                    <h3>Nombre de Producto  <INPUT type="radio" name="estado" value="visible">Visible<INPUT type="text" name="NomP" size="25"></h3>
+                <h3>Codigo de Producto  <INPUT type="radio" name="estado" value="visible">Visible<INPUT type="text" name="Codigo" size="25"></h3> 
+                <h3>Precio <INPUT type="radio" name="estado" value="visible">Visible<INPUT type="text" name="Precio" size="25"></h3> 
+                    <h3>Descripción  <INPUT type="radio" name="estado" value="visible">Visible<TEXTAREA rows="5" cols="30" name="txtsugerencias"></TEXTAREA><BR></h3> 
+                        <INPUT type="submit" value="Guardar">
                 </div>
         </div>
     </p>
