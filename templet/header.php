@@ -53,6 +53,8 @@
     
     <!-- jQuery -->
     <script src="<?php $this->url_templet();?>js/modernizr.custom.js"></script>
+     <!-- SweetAlert 2 -->
+    <script src="<?php $this->url_templet();?>js/sweetalert2.all.js"></script>
     
 </head>
 
