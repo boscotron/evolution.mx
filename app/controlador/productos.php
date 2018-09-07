@@ -1,11 +1,13 @@
 <?php 
 /* config tabla */
 switch ($_GET['peticion']) {
+    
     /*
     case instalar
     $jmy->db
 
     */
+
 
     default:
         $jmyWeb->cargar(["pagina"=>"productos"]); //agregar tabla 
