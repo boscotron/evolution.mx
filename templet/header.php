@@ -101,7 +101,7 @@
                             
                             
                         </li>
-                        <li class="alignright">&nbsp;&nbsp;<span class="fa fa-shield"></span><a href="#"> Login</a></li>
+                        <li class="alignright">&nbsp;&nbsp;<span class="fa fa-shield"></span><a href="#"> Registrate</a></li>
                         <li class="alignright">
                             &nbsp;&nbsp;<span class="fa fa-user"></span>
                             <a href="<?php 
