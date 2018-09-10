@@ -97,7 +97,7 @@
                         </li>
                         <span class="jmy_web_div fa fa-phone-square"  id="numeros" data-tabla="vistaweb" data-editor="no" data-page="header"><?php $this->pnt('numeros','1 (800) 567 8765',["secundario"=>"header"]);
                             ?>
-                             </span>
+                         </span>
                             
                             
                         </li>
