@@ -95,6 +95,25 @@
                             <span class="fa fa-envelope"></span>
                             <a href="mailto:yourname@somemail.com">name@somemail.com</a>
                         </li>
+                        <span class="jmy_web_div fa fa-phone-square"  id="numeros" data-tabla="vistaweb" data-editor="no" data-page="header"><?php $this->pnt('numeros','1 (800) 567 8765',["secundario"=>"header"]);
+                            ?>
+                             </span>
+                            
+                            
+                        </li>
+                        <li class="alignright">&nbsp;&nbsp;<span class="fa fa-shield"></span><a href="#"> Login</a></li>
+                        <li class="alignright">
+                            &nbsp;&nbsp;<span class="fa fa-user"></span>
+                            <a href="<?php 
+                              $this->pnt( 'header_disenadopor_href', 'perfil', ["secundario"=>"header"] ); 
+                            ?>" title="" class="disenado jmy_web_div" id="header_disenadopor" data-page="header" data-editor="no"><?php 
+                              $this->pnt( 'header_disenadopor',
+                                          'Iniciar Sesion',
+                                          ["secundario"=>"header"]
+                                ); 
+                            ?></a>
+                        </li>
+
                 	</ul>        
                 </div>
             </div>
