@@ -1,4 +1,5 @@
 <?php $page= "productos"; ?>
+<?php echo ($this->modoEditor())?'<input type="hidden" value="1" id="modoEditor">':''; ?>
 <link href="<?php $this->url_templet();?>css/prettyPhoto.css" rel="stylesheet" type="text/css" /> 
 
 <div id="marcas_ventana" style="position: fixed;
@@ -20,6 +21,7 @@
                 </div>
             </p>
             <a href="#" class="btn btn-primary" id="marca_cerrar">Cerrar</a>
+            <a href="#" class="btn btn-warning" id="marca_borrar">Borrar marca</a>
             <a href="#" class="btn btn-primary" id="marca_guardar">Guardar cambios</a>
         </div>
     </div>
@@ -75,13 +77,9 @@
         <div class="fullwidth-section">
             <h2 class="border-title aligncenter"> Our Beauty Gallery </h2>
 
-<?php echo ($this->modoEditor())?'<button class="marca_abrir">Editar Marcas</button>':''; ?>
+<?php echo ($this->modoEditor())?'<button class="marca_abrir">Nueva Marcas</button>':''; ?>
             
-            <div class="jmy_web_categorias" data-tabla="vistaweb" data-page="<?php echo $page; ?>" id="marcas" data-value="<?php
-                    $categorias = ["TOP","TOP2"];
-                    $categorias = $this->pnt('marcas',implode(',', $categorias),['return'=>true]); 
-                    echo $categorias;
-                    $categorias = explode("," , $categorias); ?>" data-titulo=" Indica el nombre de categoría separado por comas"></div>
+           
             <div class="hr-invisible-very-small"></div>
             <div class="container">
                 <div class="dt-sc-sorting-container" id="botones_marcas">
@@ -89,6 +87,8 @@
                     <?php 
                     for ($i=0; $i <count($categorias) ; $i++) { 
                         echo '<a data-filter=".'.$categorias[$i].'"  href="#"  class="btn-eff3  active-sort jmy_web_div" data-page="'.$page.'" id="titulo_categoria_'.$i.'" data-editor="no">'.$this->pnt('titulo_categoria_'.$i,$categorias[$i],['return'=>true]).' </a> ';
+
+                        echo ($this->modoEditor())? '<a href="" class="editar_marca" data-idmarca="" ><i class="fa fa-edit"></i></a>':'';
                     }?>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                 <?php }*/ ?>
             <div class="dt-sc-portfolio-container isotope no-space"> <!-- **dt-sc-portfolio-container Starts Here** -->
                 <?php
-                for ($i=0; $i < count($categorias) ; $i++) {                     
+                for ($i=0; $i <5 ; $i++) {                     
                     for ($o=0; $o <  $this->pnt('no_imagenes_'.$i,'2',['return'=>true]) ; $o++) { ?>
                     <div class="portfolio dt-sc-one-fourth column no-space todos <?php echo $categorias[$i]; ?>">
                         <figure>
