@@ -1,5 +1,5 @@
 <?php
-//require('../../config.inc.php');
+require('../../config.inc.php');
 $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
 if($cu->connect_error){$error='Error de Conexión ('.$mysqli->connect_errno.')'.$mysqli->error;}else{
 $n='CREATE TABLE IF NOT EXISTS `cat_d` (

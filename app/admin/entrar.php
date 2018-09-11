@@ -11,7 +11,7 @@ if($token['permiso']!='' && $_SESSION['re_login']!=''){?>
 	//-->
 	</script>
 <?php unset($_SESSION['re_login']); }else{
-	//$jmyWeb ->pre(['p'=>$token,'t'=>'TOKEN']);
+	if($_GET['peticion']=='token'){$jmyWeb ->pre(['p'=>$token,'t'=>'TOKEN']);}
 	?>
 	<html>
 	<head>

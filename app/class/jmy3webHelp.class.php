@@ -226,6 +226,31 @@ class JMY3WEB extends JMY3MySQL{
 			echo $tmp;
 		}
 	}
+
+	public function cargar_css($d=[]){	
+		if(!is_array($_SESSION['JMY3WEB']['add_c']))
+			$_SESSION['JMY3WEB']['add_c']=[];
+		if($d['url']!="" && !in_array($d['url'],$_SESSION['JMY3WEB']['add_c']))
+			$_SESSION['JMY3WEB']['add_c'][]=$d['url'];
+		if($d['unico'])
+			$_SESSION['JMY3WEB']['cargar_c_borrar'][]=$d['url'];
+	}
+	public function llamar_css($d=[],$tmp = ''){	
+		if(is_array($_SESSION['JMY3WEB']['add_c'])){
+			$key = array_keys($_SESSION['JMY3WEB']['add_c']);
+			for($i=0;$i<count($key) ;$i++){
+				if($_SESSION['JMY3WEB']['add_c'][$i]!=''){
+					$u=$_SESSION['JMY3WEB']['add_c'][$key[$i]];
+					$u=(strpos($u,'http')===0)?$u:RUTA_ACTUAL.$u;
+					$tmp.='<link rel="stylesheet" href="'.$u.'">'; 
+				}
+				if(in_array($_SESSION['JMY3WEB']['add_c'][$i],$_SESSION['JMY3WEB']['cargar_c_borrar']))
+					unset($_SESSION['JMY3WEB']['add_c'][$i]);
+			}
+			unset($_SESSION['JMY3WEB']['add_c']);
+			echo $tmp;
+		}
+	}
 	private function sess($d=[]){
 		/*$va = ($_SESSION['JMY3WEB']!="")?[]:json_decode(base64_decode($_SESSION['JMY3WEB']));
 		if($d["nom"]!="" && $d["val"]!="")

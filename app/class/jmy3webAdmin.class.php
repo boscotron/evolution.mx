@@ -25,7 +25,7 @@ class JmyWebSession {
 		$result = file_get_contents($d['url'], false, $context);
 		return $result;
 	}
-	public function session_activa($d=[],$logout=0){
+	public function session_activa($d=[],$logout=0){ 
 		if($logout){unset($_SESSION);}
 		if($d[0]!=''&&$d[1]!=''){
 		$d['id']=$d[0];$d['token']=$d[1];unset($d[0]);unset($d[1]);
