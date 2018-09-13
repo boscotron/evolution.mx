@@ -17,12 +17,12 @@ switch ($peticion[0]) {
     break;
 }
 
-$jmy->guardar([ "TABLA"=>"juans", // STRING
+/*$jmy->guardar([ "TABLA"=>"juans", // STRING
     "ID_F"=>[$get['id']], // Array
     "A_D"=>TRUE, 
     "GUARDAR"=>$out['juans'][$i],
-    ]);
-
+    ]);*/
+$jmyWeb->cargar(["pagina"=>"perfil"]);
 
 //$jmyWeb ->pre(['p'=>$carga_centro,'t'=>'peticion']);
 

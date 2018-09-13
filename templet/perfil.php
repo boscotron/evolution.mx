@@ -19,17 +19,16 @@
       <div class="column dt-sc-three-fourth">
         <div class="dt-sc-special-services-carousel-wrapper">
 
-           <div class="jmy_web_contador" data-page="inicio" id="numero_de_carrusel" data-value="<?php
+           <div class="jmy_web_contador" data-page="perfil" id="numero_de_carrusel" data-value="<?php
         $this->pnt('numero_de_carrusel','3'); 
-        ?>" data-titulo="Inica el número de páginas a mostrar"></div>
+        ?>" data-titulo='Minimo puedes ver 3 imagenes, máximo "n" números '></div>
 
             <div class="dt-sc-special-services-carousel">
 
            <?php 
          $paginas = $this->pnt('numero_de_carrusel','3',["return"=>true]); 
          
-         $flechas =$paginas; 
-         echo $flechas;             
+         $flechas =$paginas;                     
          
                 $contador = 0;
                 for($i=0;$i<$paginas;$i++){ ?>
@@ -49,13 +48,13 @@
                   </div>
                  <?php } ?>
                   
-            </div> 
+            </div><!--  
             <div class="bx-controls bx-has-controls-direction">
               <div class="bx-controls-direction">
                 <a class="bx-prev" href="">Prev</a>
                 <a class="bx-next" href="">Next</a>
               </div>
-            </div>    
+            </div>    --> 
         </div> <!-- Fotos -->
       </div>
   </div>
