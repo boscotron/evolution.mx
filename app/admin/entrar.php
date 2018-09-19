@@ -4,6 +4,8 @@ $out = new JmyWebSession();
 if($_GET['peticion']=='salir'){$out->session_activa([],1);}
 $token = explode("/",$_GET['peticion']);
 $token = $out->session_activa($token);
+if($token['permiso']=='')
+	$jmyWeb->guardar_session();
 if($token['permiso']!='' && $_SESSION['re_login']!=''){?>
 	<script type="text/javascript">
 	<!--

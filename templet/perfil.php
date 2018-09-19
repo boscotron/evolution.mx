@@ -50,7 +50,26 @@
                             "placeholder"=>"parrafo"];  ?>  data-var='<?php echo json_encode($va); ?>' >
  
         <div class="dt-sc-special-services-carousel-wrapper">
+<<<<<<< HEAD
             <div class="dt-sc-special-services-carousel"> 
+=======
+
+           <div class="jmy_web_contador" data-page="perfil" id="numero_de_carrusel" data-value="<?php
+        $this->pnt('numero_de_carrusel','3'); 
+        ?>" data-titulo='Minimo puedes ver 3 imagenes, máximo "n" números '></div>
+
+            <div class="dt-sc-special-services-carousel">
+
+           <?php 
+         $paginas = $this->pnt('numero_de_carrusel','3',["return"=>true]); 
+         
+         $flechas =$paginas;                     
+         
+                $contador = 0;
+                for($i=0;$i<$paginas;$i++){ ?>
+
+
+>>>>>>> 1700b684412567b7acf64c4d95d1ee61b5993677
                   <div class="column dt-sc-one-third">
                       <div class="dt-sc-service type2">
                           <figure class="gallery-thumb">
@@ -63,17 +82,29 @@
                           <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
                       </div>
                   </div>
+<<<<<<< HEAD
                
             </div> 
                
            <!-- <div class="bx-controls bx-has-controls-direction">
+=======
+                 <?php } ?>
+                  
+            </div><!--  
+            <div class="bx-controls bx-has-controls-direction">
+>>>>>>> 1700b684412567b7acf64c4d95d1ee61b5993677
               <div class="bx-controls-direction">
                 <a class="bx-prev" href="">Prev</a>
                 <a class="bx-next" href="">Next</a>
               </div>
+<<<<<<< HEAD
             </div>  --> 
 
         </div>  <?php  } ?> <!-- Fotos termina carruzel --> 
+=======
+            </div>    --> 
+        </div> <!-- Fotos -->
+>>>>>>> 1700b684412567b7acf64c4d95d1ee61b5993677
       </div>
   </div>
 </div>

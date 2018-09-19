@@ -1,5 +1,4 @@
 <?php
-session_start();
 class JmyWebSession {
 	public function session(){
 		$sj=$_SESSION['jmyWebApp'];
@@ -44,6 +43,9 @@ class JmyWebSession {
 		$o = ($d['fn']!='' && $d['token']!='' )?$this->s($d):["out"=>["error"=>"sin asignar token ó fn (función)","d"=>$d]];
 		return $o;
 	}
+	public function h(){
+		return 'hola mundo';
+	}
 	private function s($s){
 		$ch = curl_init();
 		$sk = (is_array($s)) ? array_keys($s):false;$se = "";
@@ -58,4 +60,3 @@ class JmyWebSession {
 		return $out;
 	}
 }
-?>

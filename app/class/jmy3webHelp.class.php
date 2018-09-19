@@ -1,5 +1,5 @@
 <?php
-//require_once();
+session_start();
 class JMY3WEB extends JMY3MySQL{
   public $print;
   public $printSec;
@@ -178,6 +178,9 @@ class JMY3WEB extends JMY3MySQL{
 			$this->cargar_js(['url'=>BASE_APP.'js/jmy/jmyWeb.js']);
 		}
 		if(file_exists(BASE_TEMPLET.TEMPLET_HEADER)){
+			if(file_exists(BASE_APP.'controlador/'.TEMPLET_HEADER))
+				include(BASE_APP.'controlador/'.TEMPLET_HEADER); 
+			//$this ->pre(['p'=>BASE_TEMPLET.'controlador/'.TEMPLET_HEADER,'t'=>'TITULO_ARRAY']);	
 			$this -> cargar([ 	"pagina"=>PAGE_HEADER,
 						 		"tabla"=>"vistaweb", 
 						 		"secundario"=>PAGE_HEADER, 
@@ -251,11 +254,64 @@ class JMY3WEB extends JMY3MySQL{
 			echo $tmp;
 		}
 	}
-	private function sess($d=[]){
-		/*$va = ($_SESSION['JMY3WEB']!="")?[]:json_decode(base64_decode($_SESSION['JMY3WEB']));
-		if($d["nom"]!="" && $d["val"]!="")
-			$va[$d["nom"]] = $d["val"];
-		$_SESSION['JMY3WEB'] = base64_encode(json_encode($va));
-		return $va;*/
+
+	public function s2($d){
+		$postdata = json_encode($d);
+		$opts = ['http' =>[
+				'method'  => 'POST',
+				'header'  => 'Content-type: application/json',
+				'content' => $postdata
+			]];
+		$context  = stream_context_create($opts);
+		$result = file_get_contents($d['url'], false, $context);
+		return $result;
+	}
+	public function session_activa($d=[],$logout=0){ 
+		if($logout){unset($_SESSION);}
+		if($d[0]!=''&&$d[1]!=''){
+		$d['id']=$d[0];$d['token']=$d[1];unset($d[0]);unset($d[1]);
+		$d['api']="e2ad454bea7d919f0fc411a8b885580c";
+		$d['api_web']=JMY_API;
+		$d['datos_device']=true;
+		$d['apis'][$d['api']]=["nombre"=>"JmyWeb","version"=>"1.0"];
+		$d['url']='https://comsis.mx/api/auth/v1/token';
+		$o=(is_array($_SESSION['jmysa']))?$_SESSION['jmysa']:json_decode($this->s2($d),1);		
+		$_SESSION['jmysa']=(is_array($_SESSION['jmysa']))?$o:["user"=>$o['out']['userData'],"devices"=>$o['out']['devices'],"body"=>$o['out']['jmyapi']['body'],"permiso"=>$o['out']['jmyapi']['body']['permisos_api']['PERMISOS']];
+		}$_SESSION['JMY3WEB'][DOY]=($_SESSION['jmysa']['permiso']>2)?1:0;
+		return $_SESSION['jmysa'];
+	}	
+	public function session($d=null){	
+		return $this->session_activa($d);  
+	} 
+	public function guardar_session($d=null){
+		$this ->pre(['p'=>$d,'t'=>'TITULO_ARRAY']);
+		$s=$this->session($d);
+		$f=(is_array($d))?array_keys($d):[];
+		if(is_array($s)){
+			$ta='clientes_'.$s['body']['api_web']['ID_F'];
+			if(in_array('instalar',$f))
+				$this->pre(['p'=>parent::db([$ta]),'t'=>'Instalar Info']);
+			$t=[
+				"perfil"=>$s['user'],
+				"email"=>$s['user']['email'],
+				"nombre"=>$s['user']['name'],
+				"foto_perfil"=>$s['devices']['json']['url_foto'],
+			];
+			$t=["TABLA"=>$ta, 
+			"ID_F"=>$s['user']['user_id'],
+			"A_D"=>TRUE, 
+			"GUARDAR"=>$t];
+			$r=parent::guardar($t);
+		}
+	}
+
+	public function quitarAcentos($d){
+		return str_replace(['À','Á','Â','Ã','Ä','Å','Æ','Ç','È','É','Ê','Ë','Ì','Í','Î','Ï','Ð','Ñ','Ò','Ó','Ô','Õ','Ö','Ø','Ù','Ú','Û','Ü','Ý','ß','à','á','â','ã','ä','å','æ','ç','è','é','ê','ë','ì','í','î','ï','ñ','ò','ó','ô','õ','ö','ø','ù','ú','û','ü','ý','ÿ','Ā','ā','Ă','ă','Ą','ą','Ć','ć','Ĉ','ĉ','Ċ','ċ','Č','č','Ď','ď','Đ','đ','Ē','ē','Ĕ','ĕ','Ė','ė','Ę','ę','Ě','ě','Ĝ','ĝ','Ğ','ğ','Ġ','ġ','Ģ','ģ','Ĥ','ĥ','Ħ','ħ','Ĩ','ĩ','Ī','ī','Ĭ','ĭ','Į','į','İ','ı','Ĳ','ĳ','Ĵ','ĵ','Ķ','ķ','Ĺ','ĺ','Ļ','ļ','Ľ','ľ','Ŀ','ŀ','Ł','ł','Ń','ń','Ņ','ņ','Ň','ň','ŉ','Ō','ō','Ŏ','ŏ','Ő','ő','Œ','œ','Ŕ','ŕ','Ŗ','ŗ','Ř','ř','Ś','ś','Ŝ','ŝ','Ş','ş','Š','š','Ţ','ţ','Ť','ť','Ŧ','ŧ','Ũ','ũ','Ū','ū','Ŭ','ŭ','Ů','ů','Ű','ű','Ų','ų','Ŵ','ŵ','Ŷ','ŷ','Ÿ','Ź','ź','Ż','ż','Ž','ž','ſ','ƒ','Ơ','ơ','Ư','ư','Ǎ','ǎ','Ǐ','ǐ','Ǒ','ǒ','Ǔ','ǔ','Ǖ','ǖ','Ǘ','ǘ','Ǚ','ǚ','Ǜ','ǜ','Ǻ','ǻ','Ǽ','ǽ','Ǿ','ǿ'],['A','A','A','A','A','A','AE','C','E','E','E','E','I','I','I','I','D','N','O','O','O','O','O','O','U','U','U','U','Y','s','a','a','a','a','a','a','ae','c','e','e','e','e','i','i','i','i','n','o','o','o','o','o','o','u','u','u','u','y','y','A','a','A','a','A','a','C','c','C','c','C','c','C','c','D','d','D','d','E','e','E','e','E','e','E','e','E','e','G','g','G','g','G','g','G','g','H','h','H','h','I','i','I','i','I','i','I','i','I','i','IJ','ij','J','j','K','k','L','l','L','l','L','l','L','l','L','l','N','n','N','n','N','n','n','O','o','O','o','O','o','OE','oe','R','r','R','r','R','r','S','s','S','s','S','s','S','s','T','t','T','t','T','t','U','u','U','u','U','u','U','u','U','u','U','u','W','w','Y','y','Y','Z','z','Z','z','Z','z','s','f','O','o','U','u','A','a','I','i','O','o','U','u','U','u','U','u','U','u','U','u','A','a','AE','ae','O','o'],$d);
+	}
+	public function URLFriendly($u){
+		$u = $this->quitarAcentos($u);
+		$u = preg_replace(array('/[^a-zA-Z0-9 \'-]/','/[ -\']+/','/^-|-$/'),['', '-', ''],$u);
+		$u = preg_replace('/-inc$/i','', $u);
+		return strtolower($u);
 	}
 }

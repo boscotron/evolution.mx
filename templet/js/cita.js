@@ -7,9 +7,21 @@ jQuery(function ($) {
  
     $("#btn_paso_1").click(function(){
         console.log('paso 2');
-        mostrarServicios();
-        $("#div_paso_1").hide(50);
-        $("#div_paso_2").show(200);
+        let valor = $("#sulfuro option:selected").val();
+        console.log(valor)
+
+        if (valor === 'Personal' || valor === 'Hijo' || valor === 'Pareja' || valor === 'Amigos') {
+            mostrarServicios();
+            $("#div_paso_1").hide(50);
+            $("#div_paso_2").show(200);
+        }else{
+            swal(
+              'Debes seleccionar para quien es el servicio!',
+              'Pulsa el botón para continuar!',
+              'warning'
+            )
+
+            }
     });
 
     $("#btn_paso_r1").click(function(){
@@ -32,8 +44,11 @@ jQuery(function ($) {
             $("#div_paso_2").hide(50);
             $("#div_paso_3").show(200);
         }else{
-            alerta('Selecione una fecha');
-
+           swal(
+              'Debes seleccionar una fecha!',
+              'Pulsa el botón para continuar!',
+              'warning'
+            )
         }
         
     });
@@ -43,6 +58,8 @@ jQuery(function ($) {
         $("#div_paso_3").hide(50);
         $("#div_paso_2").show(200);
     });
+
+
 
     function mostrarServicios(){
         $.ajax({
@@ -129,7 +146,7 @@ jQuery(function ($) {
         });
     }
 
-    $( "#personal" ).change(function() {
+    $( "#personal" ).click(function() {
         console.log('hola');
       
         verPersonaHorario({
@@ -170,14 +187,28 @@ jQuery(function ($) {
     $("#btn_guardar").click(function(){
        
        guardarCita();
-        // mostrarHorario();
-        //console.log(fecha);
+       alerta();
+
     });
 
     function alerta(mensaje){
-        $("#alerta").html('');
-        $("#alerta").html(mensaje);
+        //window.location:cita;
+         swal({
+             type: "success",
+             title: "¡Cita agendada!",
+             showConfirmButton: true,
+             confirmButtonText: "Cerrar",
+             closeOnConfirm: true
+             }).then((result)=>{
+             if(result.value){
+                window.location = "cita";
+                }
+            });
     }
+
+
+
+
 
 
     /*("#dpt").datepicker({
