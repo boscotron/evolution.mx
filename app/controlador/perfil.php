@@ -1,6 +1,5 @@
 <?php 
 $peticion = explode("/",$_GET['peticion']);
-
 $carga_centro = '';
 switch ($peticion[0]) {
     case 'editar':
@@ -16,16 +15,13 @@ switch ($peticion[0]) {
         $carga_centro = "error_perfil.php";
     break;
 }
-
-$jmy->guardar([ "TABLA"=>"juans", // STRING
+/*$jmy->guardar([ "TABLA"=>"juans", // STRING
     "ID_F"=>[$get['id']], // Array
     "A_D"=>TRUE, 
     "GUARDAR"=>$out['juans'][$i],
-    ]);
-
-
+    ]);*/
+$jmyWeb->cargar(["pagina"=>"perfil"]);
 //$jmyWeb ->pre(['p'=>$carga_centro,'t'=>'peticion']);
-
 $jmyWeb ->cargar_vista(["url"=>"perfil.php",
                         "data"=>[
                                 "carga_centro"=>$carga_centro

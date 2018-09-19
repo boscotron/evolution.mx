@@ -101,17 +101,12 @@
                             
                             
                         </li>
-                        <li class="alignright">&nbsp;&nbsp;<span class="fa fa-shield"></span><a href="#"> Registrate</a></li>
-                        <li class="alignright">
-                            &nbsp;&nbsp;<span class="fa fa-user"></span>
-                            <a href="<?php 
-                              $this->pnt( 'header_disenadopor_href', 'perfil', ["secundario"=>"header"] ); 
-                            ?>" title="" class="disenado jmy_web_div" id="header_disenadopor" data-page="header" data-editor="no"><?php 
-                              $this->pnt( 'header_disenadopor',
-                                          'Iniciar Sesion',
-                                          ["secundario"=>"header"]
-                                ); 
-                            ?></a>
+                        <li class="alignright">&nbsp;&nbsp;<span class="fa fa-user"></span>
+    <?php
+        echo ($SESSION['user']['user_id']=='') ?  
+            '<a href="https://comsis.mx/app/entrar/?re='.$this->url_inicio(['return'=>true]).'perfil/entrar/&api=e2ad454bea7d919f0fc411a8b885580c&api_web='.JMY_API.'&sep=1"> Registrate | Iniciar Sesión</a>':
+            '<a href="'.$this->url_inicio(['return'=>true]).'perfil/"> Mi perfil</a>';
+        ?>
                         </li>
 
                 	</ul>        
