@@ -1,7 +1,7 @@
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-     
+      
     <script type="text/javascript">
 	$(document).ready(function() {
 		$("#dpt").datepicker();
@@ -48,7 +48,7 @@
                             	<div class="" data-delay="100" data-animation="fadeIn">
                                     <p>Para quien es el servicio</p>                      
                                
-                                    <p><select>
+                                    <p><select id="sulfuro">
                                             <option value="Seleccionarar">Seleccionar</option>
                                             <option value="Personal">Personal</option>
                                             <option value="Hijo">Hijo(a)</option>
@@ -65,9 +65,6 @@
                     </div>
 
 <!-- Parte dos -->
-
-
-
                     <div class="column dt-sc-two-third hidden" id="div_paso_2">
                     	<h3 class="border-title">Paso <span>Dos</span></h3>
                     	<div class="contact-form" >
@@ -83,8 +80,8 @@
                             <div class="column dt-sc-one-half">
                                 <div class="" data-delay="300" data-animation="fadeIn">
                                     <p><select id="servicios">
-                                            <!--<option value="">Seleccionar</option>
-                                            <option value="">Cortes</option>
+                                            <option value="">Seleccionar</option>
+                                            <!--<option value="">Cortes</option>
                                             <option value="">Tintes</option>
                                             <option value="">Mechas</option>
                                             <option value="">Rayos</option>
@@ -122,10 +119,9 @@
                                    
                                     <p>Quien quieres que te atienda</p>
                                     <p><select id="personal">
-                                        <!-- html comment 
-                                        
+                                                                               
                                             <option value="">Seleccionar</option>
-                                            <option value="Cualquiera">Cualquiera</option>
+                                          <!-- <option value="Cualquiera">Cualquiera</option>
                                             <option value="Alfredo">Alfredo</option>
                                             <option value="Esmeralda">Esmeralda</option>
                                             <option value="Aida">Aida</option>
@@ -154,7 +150,8 @@
                                     </p>-->
                                     <!-- <p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>--><p>Horario: 
                                         <select id="horario">
-                                            <option value="">09:00 am</option>
+                                          <!-- html comment 
+                                              <option value="">09:00 am</option>
                                             <option value="">10:00 am</option>
                                             <option value="">11:00 am</option>
                                             <option value="">12:00 pm</option>
@@ -165,7 +162,7 @@
                                             <option value="">17:00 pm</option>
                                             <option value="">18:00 pm</option>
                                             <option value="">19:00 pm</option>
-                                            <option value="">20:00 pm</option>
+                                            <option value="">20:00 pm</option>-->
                                         </select></p>
                                 </div>
                             </div>
