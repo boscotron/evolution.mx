@@ -5,12 +5,44 @@ jQuery(function ($) {
     let personal = [];
     $(".hidden").hide(0);
  
+
+    function select_lista_perfiles(){
+        let id_perfil = $("#id_perfil").val();
+        console.log(id_perfil);
+        
+        $.ajax({
+            url: location.origin + '/perfilws/lista_perfiles/',
+            type: 'post',
+            dataType: 'json',
+            success: function(res) {
+                
+                let lista = res.perfil.otFm;
+                console.log(lista);
+                let selec = $("#cita_id_perfil").val();
+                let h = '<option value="sinSeleccion" selected>Selecciona...</option>';
+                lista.forEach(e => {
+                    let s = (selec==e.ID_F)?'selected':'';
+                    h = h + '<option  value="'+e.ID_F+'" '+s+'>'+e.nombre+'</option>';
+                });
+                $("#select_lista_perfiles").html(h);
+
+              
+            },
+            error: function(res) {
+                console.log(res);
+            },
+            data: {}
+        });
+    }
+    select_lista_perfiles();
+
+
     $("#btn_paso_1").click(function(){
         console.log('paso 2');
-        let valor = $("#sulfuro option:selected").val();
+        let valor = $("#select_lista_perfiles option:selected").val();
         console.log(valor)
 
-        if (valor === 'Personal' || valor === 'Hijo' || valor === 'Pareja' || valor === 'Amigos') {
+        if (valor !== 'sinSeleccion') {
             mostrarServicios();
             $("#div_paso_1").hide(50);
             $("#div_paso_2").show(200);
@@ -76,8 +108,10 @@ jQuery(function ($) {
                     $("#servicios").append(new Option(element, element));
                 });*/
                 if(servicios!=null){
+                    let id = $("#cita_nombre").val();
                     for (var i = 0 ; i < servicios.length ; i++) {
-                        $("#servicios").append(new Option(servicios[i].nombre, servicios[i].ID_F));
+                        let selected  = (id==servicios[i].ID_F) ? true:false;
+                        $("#servicios").append(new Option(servicios[i].nombre, servicios[i].ID_F,0,selected));
                     }
                 }else{ 
                     alerta('Seleccione una fecha para ver la disponibilidad');
@@ -167,6 +201,7 @@ jQuery(function ($) {
            let data = { servicios:$("#servicios option:selected").val(),
             persona:$("#personal option:selected").val(),
             horario:$("#horario option:selected").val(),
+            id_perfil:$("#select_lista_perfiles option:selected").val(),
             fecha:$("#dpt").val()}
 
     	$.ajax({
@@ -175,7 +210,41 @@ jQuery(function ($) {
             dataType: 'json',
             success: function(res) {
                 console.log(res);
-          
+                if(res.out.error!=''){
+                    swal({
+                        type: "error",
+                        title: res.out.error,
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar",
+                        closeOnConfirm: true
+                        }).then((result)=>{
+                        if(result.value){
+                            verPersonaHorario({
+                                servicios:$("#servicios option:selected").val(),
+                                fecha:$("#dpt").val(),
+                                persona:$("#personal").val(),
+                            });
+                           //window.location = "cita";
+                           }
+                       });
+                }else{
+                    $.when(swal({
+                        type: "success",
+                        title: "¡Cita agendada!",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar",
+                        closeOnConfirm: true
+                        }).then((result)=>{
+                            if(result.value){
+                                window.location = location.origin+"/cita";
+                            }
+                       })).done(function (){
+                           $(".swal2-container ").on("click",function () {
+                            window.location = location.origin+"/cita";
+                           });
+                       });      
+
+                }
             },
             error: function(res) {
                 console.log(res);
@@ -187,7 +256,6 @@ jQuery(function ($) {
     $("#btn_guardar").click(function(){
        
        guardarCita();
-       alerta();
 
     });
 

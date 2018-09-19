@@ -1,3 +1,9 @@
+<input type="hidden" id="cita_fecha" value="<?php echo $data['editar']['fecha']; ?>" >
+<input type="hidden" id="cita_horario" value="<?php echo $data['editar']['horario']; ?>" >
+<input type="hidden" id="cita_id_perfil" value="<?php echo $data['editar']['id_perfil']; ?>" >
+<input type="hidden" id="cita_persona" value="<?php echo $data['editar']['persona']; ?>" >
+<input type="hidden" id="cita_nombre" value="<?php echo $data['editar']['nombre']; ?>" >
+
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
@@ -48,12 +54,8 @@
                             	<div class="" data-delay="100" data-animation="fadeIn">
                                     <p>Para quien es el servicio</p>                      
                                
-                                    <p><select id="sulfuro">
-                                            <option value="Seleccionarar">Seleccionar</option>
-                                            <option value="Personal">Personal</option>
-                                            <option value="Hijo">Hijo(a)</option>
-                                            <option value="Pareja">Pareja</option>
-                                            <option value="Amigos">Amigos</option>
+                                    <p><select id="select_lista_perfiles">
+                                         
                                         </select></p>
                                 </div>
                             </div>                                                                                             

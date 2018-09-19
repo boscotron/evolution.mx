@@ -67,7 +67,9 @@ for ($i=0; $i <count($out['personal']) ; $i++) {
 }*/
 
 
-
+$session = $jmyWeb->session(); 
+//$out['session'] = $session;
+$idUsuario = $session['user']['user_id'];
 
 
 
@@ -158,17 +160,55 @@ switch ($_GET['peticion']) {
 
     case 'guardarCita':
            #$jmy->db(['agendarCita']);
+            // CAMBIAR EL NOMBRE DE VARIABLE mostrarCitas al final del desarrollo
+
+            $out['error']='';
+            $guardar = true;
+            $out['mostrarCitas_fil_1'] = $jmy->ver([
+                "TABLA"=>"agendarcita",
+                "V"=>[$_POST['fecha']],
+            ]);
     
-          //  $out['mostrarCitas']$jmy->ver(["TABLA"=>"agendarcita"])
-   
-            $out['agendarcita'] = $jmy->guardar(["TABLA"=>"agendarcita",
-                                "A_D"=>TRUE,
-                                "GUARDAR"=>["nombre"=>$_POST['servicios'],
-                                            "persona"=>$_POST['persona'],
-                                            "horario"=>$_POST['horario'],
-                                            "fecha"=>$_POST['fecha']
-                                        ]
-                                ]);
+            $out['mostrarCitas_fil_2'] = $jmy->ver([
+                "TABLA"=>"agendarcita",
+                "COL"=>['horario'],
+                "V"=>[$_POST['horario']],
+                "FO"=>true,
+
+                "ID"=>$out['mostrarCitas_fil_1']['otKey']
+            ]);
+
+            $guardar = (count($out['mostrarCitas_fil_2']['ot'])>0)?false:true;
+            
+            if(!$guardar){
+                $out['mostrarCitas'] = $jmy->ver([
+                    "TABLA"=>"agendarcita",
+                    "COL"=>['persona'],
+                    "V"=>[$_POST['persona']],
+                    "FO"=>true,
+                    "ID"=>$out['mostrarCitas_fil_2']['otKey']
+                    ]);   
+                    
+                $guardar = (count($out['mostrarCitas']['ot'])>0)?false:true;
+            }
+
+            $out['resultado_guardar'] = $guardar;
+
+            if($guardar){
+                $out['agendarcita'] = $jmy->guardar([
+                    "TABLA"=>"agendarcita",
+                    "A_D"=>TRUE,
+                    "GUARDAR"=>["nombre"=>$_POST['servicios'],
+                                "persona"=>$_POST['persona'],
+                                "usuario"=>$idUsuario,
+                                "id_perfil"=>$_POST['id_perfil'],
+                                "horario"=>$_POST['horario'],
+                                "fecha"=>$_POST['fecha']
+                            ]
+                    ]);
+            }else{
+                $out['error']='Ya existe una cita en este horario';
+            }   
     break;
 
     default:
