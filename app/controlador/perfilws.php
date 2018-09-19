@@ -1,0 +1,67 @@
+<?php 
+$peticion = explode("/",$_GET['peticion']);
+$session = $jmyWeb->session(); 
+//$out['session'] = $session;
+$idUsuario = $session['user']['user_id'];
+$out['perfiles'] = $idUsuario;
+
+if($idUsuario!=''){
+    $out['perfiles']['principal']=$jmy->ver([
+        "TABLA"=>"clientes_".$session['body']['api_web']['ID_F'],
+        "ID"=>$idUsuario,
+    ]);
+    $out['perfiles']['principal'] = (is_array($out['perfiles']['principal']['ot'][$idUsuario]))?$out['perfiles']['principal']['ot'][$idUsuario]:["error"=>"No existe usuario"];
+
+
+    switch ($peticion[0]) {
+        case 'ver': 
+            $out['peticion'] = $peticion;
+            if($peticion[1]!=''){
+                $out['perfil'] = $jmy->ver([
+                    "TABLA"=>"clientes_".$session['body']['api_web']['ID_F'],
+                    "ID"=>$peticion[1],
+                ]);
+                $out['perfil'] = (is_array($out['perfil']['ot'][$peticion[1]]))?$out['perfil']['ot'][$peticion[1]]:["error"=>"No existe usuario"];
+            }else{
+                $out['perfil'] = ["error"=>"No de entrego id usuario"];
+            }
+        break;
+        case 'lista_perfiles': 
+            $out['filtro'] = $jmy->ver([
+                "TABLA"=>"clientes_".$session['body']['api_web']['ID_F'],
+                "COL"=>["perfil_principal"],
+                "V"=>$idUsuario
+            ]);
+            $out['perfil'] = $jmy->ver([
+                "TABLA"=>"clientes_".$session['body']['api_web']['ID_F'],
+                "ID_F"=>$out['filtro']['otKey'],
+                "SALIDA"=>"ARRAY"
+            ]);
+        break;
+        case 'guardar':
+            $id=($peticion[1]!='')?$peticion[1]:uniqid();
+            if(is_array($_POST)){
+                $out['guardar'] = $_POST;
+                $out['guardar']['perfil_principal']=$idUsuario;
+                $out['perfil'] = $jmy->guardar([
+                    "TABLA"=>"clientes_".$session['body']['api_web']['ID_F'],
+                    "ID"=>$id,
+                    "GUARDAR"=>$out['guardar']
+                ]);
+            }
+            $out['perfil'] = $jmy->ver([
+                "TABLA"=>"clientes_".$session['body']['api_web']['ID_F'],
+                "ID"=>$id,
+            ]);
+        break;    
+        case 'historial':
+        break;    
+        default:
+            $out = ["error"=>"No hay peticon o función"];
+        break;
+    }
+}else{
+    $out = ["error"=>"No hay session"];
+}
+echo json_encode($out);
+?>

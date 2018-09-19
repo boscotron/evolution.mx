@@ -1,4 +1,5 @@
 <div class="container">
+	<input type = "text" id="id_perfil" value="<?php echo $data['id_perfil']; ?>">
 	<div class="row">
 		<div class="col-lg-2">
 		</div>
@@ -7,12 +8,12 @@
 			<form class="contact-form" method="post" name="enqform" action="php/send.php">
 		        <div class="col-lg-10">
 		        	<div data-delay="100" data-animation="fadeIn">
-		                <p><input type="text" name="username" placeholder="Nombre (requerido)" required/> </p>
+		                <p><input type="text" id="perfil_nombre" name="username" placeholder="Nombre (requerido)" required/> </p>
 		            </div>
 		        </div>
 		        <div class="col-lg-10">
 		        	<div  data-delay="300" data-animation="fadeIn">
-		        		<p><input type="text" required name="txtname" placeholder="Telefono (requerido)"/></p>
+		        		<p><input type="text" id="perfil_telefono"  required name="txtname" placeholder="Telefono (requerido)"/></p>
 		                <p><input type="text" name="txtedad" placeholder="Edad (requerido)" required/></p>
 		                <p><input id="datepicker" type="text" placeholder="Fecha de Nacimiento" value="" name="datepicker"><span class="icons fa fa-calendar"></span></p>
 		            </div>
@@ -40,14 +41,11 @@
 						<div class="input-group-prepend">
 						<label class="input-group-text" for="inputGroupSelect01">Perfiles</label>
 						</div>
-						<select class="custom-select" id="inputGroupSelect01">
-							<option selected>Selecciona...</option>
-							<option value="Hijo">Hijo</option>
-		                    <option value="Amigo">Amigo</option>
-		                    <option value="Esposo">Esposo(a)</option>
+						<select class="custom-select" id="select_lista_perfiles">
 						</select>
 					</div>
 						<button type="button" class="btn btn-success">Historial</button>
+						<button type="button" id="boton_guardar" class="btn btn-success">Guardar</button>
 	            	
 	            </div>
 	        </div> 

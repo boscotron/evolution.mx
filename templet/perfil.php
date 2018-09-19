@@ -4,16 +4,15 @@
       <div class="column dt-sc-one-fourth first">
           <div class="dt-sc-team type1">
               <div class="image">
-                  <img src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/team-img4.jpg" alt="" title="">
+                  <img src="<?php echo ($data['perfiles']['principal']['foto_perfil']!="")?$data['perfiles']['principal']['foto_perfil']:RUTA_ACTUAL.BASE_TEMPLET.'images/team-img4.jpg'; ?>" width="60%" alt="" title="">
                   <div class="image-overlay">
                       <div class="team-details-social-icons">
-                          <a class="fa fa-facebook" href="#"> </a>
-                          <a class="fa fa-twitter" href="#"> </a>
+                          <a class="fa fa-user" href="<?php echo $this->url_inicio(['return'=>1]).'perfil/editar/'.$data['user_id']; ?>"> </a>
                       </div>
                   </div>
               </div>
-              <h4><a href="#"> Angel Sienna </a></h4>
-              <h5>Professional Hairstylist</h5>
+              <h4><a href="<?php $this->url_inicio(['return'=>1]).'perfil/editar/'.$data['user_id']; ?>"> <?php echo $data['perfiles']['principal']['nombre']; ?> </a></h4>
+              <h5><?php echo $data['perfiles']['principal']['email']; ?></h5>
           </div>
       </div>
       <div class="column dt-sc-three-fourth">

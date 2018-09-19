@@ -84,68 +84,77 @@ class JMY3MySQL {
     $d['LIKE_V']=($d['BUSQUEDA']!='')?$d['BUSQUEDA']:$d['LIKE_V'];
     $d['V']=($d['VALOR']!='')?$d['VALOR']:$d['V'];
     $w='';$wa=0;$s=['ID_F','ID_D','V'];$pr=$d["TABLA"];$d['ID_S']=($d['ID_S']!='')? $d['ID_S']:1;
+    $pl=1;
     if(count($d['COL'])>0){
       $tmp = $this->col($d['COL'],0,"NAME","Error al solcitar columnas");
-      $d['ID_D']=$tmp['o']['ik'];}
-    for($i=0;$i<count($s);$i++){
-      if(is_array($d[$s[$i]])){
-        if($wa==1){$w.=' AND ';}else{$wa=1;}
-        $w.=" ".$s[$i]." IN ('".implode("','",$d[$s[$i]])."') ";}elseif($d[$s[$i]]!=''){
-      if($wa==1){$w.=' AND ';}else{$wa=1;}
-      $w.=" ".$s[$i]." = '".$d[$s[$i]]."' ";}   
-  }  
-    if($wa==1){$w .= ' AND ';}else{ $wa=1;}
-    $w.=" ID_S='".$d['ID_S']."' ";  
-    if(is_array($d['LIKE_V'])){$wo=0;
-      $op=($d['LIKE_V_OPER']!='')?trim($d['LIKE_V_OPER']):'OR';
-      if($wa==1){$w .=' AND ';}else{$wa=1;}
-      $w .=" ( ";
-      for($o=0;$o<count($d['LIKE_V']) ;$o++){            
-        if($wo==1){$w .= ' '.$op.' ' ; }else{ $wo=1; }
-        $w .= " V LIKE '%".$d['LIKE_V'][$o]."%' ";}
-      $w .=" ) ";}
-    $limit=($d["LIMIT"])?$d["LIMIT"]:'LIMIT 3000'; 
-    $or=($d["ORDER"])?$d["ORDER"]:" ORDER BY ID DESC ";
-    $ca=($d['SELECT']!='')?$d['SELECT']:'ID_F,ID_D,V ';
-    $ss="SELECT ".$ca." FROM ".DB_PX.$pr." WHERE ".$w." ".$or." ".$limit." ";
-    $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
-    if($cu->connect_error){$error='Error de Conexi�n ('.$mysqli->connect_errno.') '.$mysqli->connect_error;}else{$ot=[];  
-        if(!is_array($d['COL']) && !count($d['COL'])>0) {
-          if( !$rs = $cu->query($ss) ){$error = " error ss ".$cu->error;}else{
-          while( $rw = $rs->fetch_assoc() ){ 
-            $colKey[]=$rw['ID_D'];}}}
-        $d['COL'] = (count($d['COL'])>0) ? $this->col($d['COL'],$d['A_D'],"NAME","Error al solcitar columnas")  : $this->col($colKey,$d['A_D'],"ID","Error al solcitar columnas");
-        $tmpCol=$d['COL'];
-        if(!$rs=$cu->query($ss)){$error = " error ver-ss-".$cu->error;}else{
-          while($rw=$rs->fetch_assoc()){ 
-            switch($d['SALIDA']):
-              case"ID_F":if(!in_array($rw['ID_F'],$ot)){$ot[]=$rw['ID_F'];}break;
-              case"ALL":if(!in_array($rw['ALL'],$ot)){$ot[]=$rw;}break;
-              case "CONTADOR":
-              $tmp = ($this->isJson($rw['V'])) ? json_decode($rw['V'],1):[$rw['V']];
-              for($i=0;$i<count($tmp);$i++){
-                if(count($ot[$d["COL"]['o']['i'][$rw['ID_D']]])<1){
-                $ot[$d["COL"]['o']['i'][$rw['ID_D']]]=[];}
-                if(!in_array($tmp[$i],
-                $ot[$d["COL"]['o']['i'][$rw['ID_D']]]))
-                $ot[$d["COL"]['o']['i'][$rw['ID_D']]][]=$tmp[$i];}
-              break;
-              default:
-              $idd=($d["COL"]['o']['i'][$rw['ID_D']]!='') ? $d["COL"]['o']['i'][$rw['ID_D']] : $rw['ID_D'];
-              $ot[$rw['ID_F']][$idd]=$rw['V']; 
-          endswitch;
+      $d['ID_D']=$tmp['o']['ik']; $pl=(is_array($d['ID_D']))?1:0;}
+      if($pl){
+        for($i=0;$i<count($s);$i++){
+          if(is_array($d[$s[$i]])){
+            if($wa==1){$w.=' AND ';}else{$wa=1;}
+            $w.=" ".$s[$i]." IN ('".implode("','",$d[$s[$i]])."') ";}elseif($d[$s[$i]]!=''){
+          if($wa==1){$w.=' AND ';}else{$wa=1;}
+          $w.=" ".$s[$i]." = '".$d[$s[$i]]."' ";}   
+        }  
+        if($wa==1){$w .= ' AND ';}else{ $wa=1;}
+        $w.=" ID_S='".$d['ID_S']."' ";  
+        if(is_array($d['LIKE_V'])){$wo=0;
+          $op=($d['LIKE_V_OPER']!='')?trim($d['LIKE_V_OPER']):'OR';
+          if($wa==1){$w .=' AND ';}else{$wa=1;}
+          $w .=" ( ";
+          for($o=0;$o<count($d['LIKE_V']) ;$o++){             
+            if($wo==1){$w .= ' '.$op.' ' ; }else{ $wo=1; }
+            $w .= " V LIKE '%".$d['LIKE_V'][$o]."%' ";}
+            $w .=" ) ";}
+          $limit=($d["LIMIT"])?$d["LIMIT"]:'LIMIT 3000'; 
+          $or=($d["ORDER"])?$d["ORDER"]:" ORDER BY ID DESC ";
+          $ca=($d['SELECT']!='')?$d['SELECT']:'ID_F,ID_D,V ';
+          $ss="SELECT ".$ca." FROM ".DB_PX.$pr." WHERE ".$w." ".$or." ".$limit." ";
+          $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
+          if($cu->connect_error){$error='Error de Conexi�n ('.$mysqli->connect_errno.') '.$mysqli->connect_error;}else{$ot=[];  
+            if(!is_array($d['COL']) && !count($d['COL'])>0) {
+            if( !$rs = $cu->query($ss) ){$error = " error ss ".$cu->error;}else{
+            while( $rw = $rs->fetch_assoc() ){ 
+              $colKey[]=$rw['ID_D'];}}}
+              $d['COL'] = (count($d['COL'])>0) ? $this->col($d['COL'],$d['A_D'],"NAME","Error al solcitar columnas")  : $this->col($colKey,$d['A_D'],"ID","Error al solcitar columnas");
+              $tmpCol=$d['COL'];
+              if(!$rs=$cu->query($ss)){$error = " error ver-ss-".$cu->error;}else{
+                while($rw=$rs->fetch_assoc()){ 
+                  switch($d['SALIDA']):
+                    case"ID_F":if(!in_array($rw['ID_F'],$ot)){$ot[]=$rw['ID_F'];}break;
+                    case"ALL":if(!in_array($rw['ALL'],$ot)){$ot[]=$rw;}break;
+                    case "CONTADOR":
+                    $tmp = ($this->isJson($rw['V'])) ? json_decode($rw['V'],1):[$rw['V']];
+                    for($i=0;$i<count($tmp);$i++){
+                      if(count($ot[$d["COL"]['o']['i'][$rw['ID_D']]])<1){
+                      $ot[$d["COL"]['o']['i'][$rw['ID_D']]]=[];}
+                      if(!in_array($tmp[$i],
+                      $ot[$d["COL"]['o']['i'][$rw['ID_D']]]))
+                      $ot[$d["COL"]['o']['i'][$rw['ID_D']]][]=$tmp[$i];}
+                    break;
+                    default:
+                    $idd=($d["COL"]['o']['i'][$rw['ID_D']]!='') ? $d["COL"]['o']['i'][$rw['ID_D']] : $rw['ID_D'];
+                    $ot[$rw['ID_F']][$idd]=$rw['V']; 
+                endswitch;
+                }
+                $otK=(is_array($ot))?array_keys($ot):0;
+                if($d['SALIDA']=='ARRAY'){ for($i=0;$i<count($otK);$i++){
+                  if(count($ot[$otK[$i]])>=1){
+                    $ot[$otK[$i]]['ID_F']=$otK[$i]; 
+                    $otFm[]=$ot[$otK[$i]];
+                    }
+                  } 
+                }
+              }
           }
-      $otK=(is_array($ot))?array_keys($ot):0;
-      if($d['SALIDA']=='ARRAY'){ for($i=0;$i<count($otK);$i++){
-        if(count($ot[$otK[$i]])>=1){
-          $ot[$otK[$i]]['ID_F']=$otK[$i]; 
-          $otFm[]=$ot[$otK[$i]];
-          }
-        } }
-    }
-    } 
+        }else{
+          $ot=["mensaje"=>"No hay columnas con esa busqueda"];
+          $otKey=[];
+          $otFm=[];
+          
+        }
     //return ["tmp"=>$tmp,"tmpCol"=>$tmpCol,"ss"=>$ss,"d"=>$d,"ot"=>$ot,"otKey"=>$otK,"d"=>$d];    
-    return (!$d['FO']) ? ["ot"=>$ot,"otFm"=>$otFm,"otKey"=>$otK] : ["DB_DB"=>DB_DB,"tmp"=>$tmp,"tmpCol"=>$tmpCol,"ss"=>$ss,"d"=>$d,"ot"=>$ot,"otKey"=>$otK,"otFm"=>$otFm,"d"=>$d];   
+    return (!$d['FO']) ? ["ot"=>$ot,"otFm"=>$otFm,"otKey"=>$otK] : ["DB_DB"=>DB_DB,"tmp"=>$tmp,"tmpCol"=>$tmpCol,"ss"=>$ss,"pl"=>$pl,"ot"=>$ot,"otKey"=>$otK,"otFm"=>$otFm,"d"=>$d];   
   }
   private function isJson($string) {
    json_decode($string);
