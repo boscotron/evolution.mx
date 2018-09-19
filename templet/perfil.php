@@ -4,7 +4,7 @@
       <div class="column dt-sc-one-fourth first">
           <div class="dt-sc-team type1">
               <div class="image">
-                  <img src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/team-img4.jpg" alt="" title="">
+                  <img src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/productos2/iconotecitaly.fw.png" alt="" title="">
                   <div class="image-overlay">
                       <div class="team-details-social-icons">
                           <a class="fa fa-facebook" href="#"> </a>
@@ -15,15 +15,47 @@
               <h4><a href="#"> Angel Sienna </a></h4>
               <h5>Professional Hairstylist</h5>
           </div>
-      </div>
-      <div class="column dt-sc-three-fourth">
+                </div>
+                     <div class"row"> 
+                         <div class="jmy_web_contador" data-page="inicio" id="numero_de_carrusel" data-value="<?php
+                    $this->pnt('numero_de_carrusel','3'); 
+                    ?>" data-titulo="Inica el número de páginas a mostrar"></div>
+                     </div>
+                            <?php 
+                            $paginas = $this->pnt('numero_de_carrusel','3',["return"=>true]); 
+                            
+                            $flechas =$paginas;
+                            
+                            $contador = 0;
+                            for($i=0;$i<$paginas;$i++){ ?>
+                    <div class="column dt-sc-three-fourth   jmy_web_slider" id="grupo_slider_<?php echo $i;?>" data-page="inicio"                data-tabla="vistaweb" data-marco="works-container" 
+
+
+
+
+                          <?php  $va=[];	$va[] = [ "type"=>"imagen",
+                           "id"=>"carr_imagen",
+                            "width"=>"356",
+                            "height"=>"480",
+                            "url"=>$this->url_templet(["return"=>true])."images/img1.jpg"];
+                        
+                $va[] =["type"=>"text",
+                           "id"=>"carr_titulo",
+                           "value"=>$this->pnt("carr_titulo","",["return"=>true]),
+                            "placeholder"=>"TituloH3"];
+
+                $va[] =	["type"=>"text",
+                           "id"=>"carr_text",
+                           "value"=>$this->pnt("carr_text","",["return"=>true]),
+                            "placeholder"=>"parrafo"];  ?>  data-var='<?php echo json_encode($va); ?>' >
+ 
         <div class="dt-sc-special-services-carousel-wrapper">
-            <div class="dt-sc-special-services-carousel">
+            <div class="dt-sc-special-services-carousel"> 
                   <div class="column dt-sc-one-third">
                       <div class="dt-sc-service type2">
                           <figure class="gallery-thumb">
                               <a href="#">
-                                  <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img5.jpg">
+                                  <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/productos2/iconotecitaly.fw.png">
                               </a>
                           </figure>
                           <div class="hr-invisible-very-small"></div>
@@ -31,74 +63,17 @@
                           <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
                       </div>
                   </div>
-                  <div class="column dt-sc-one-third">
-                      <div class="dt-sc-service type2">
-                          <figure class="gallery-thumb">
-                              <a href="#">
-                                  <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img6.jpg">
-                              </a>
-                          </figure>
-                          <div class="hr-invisible-very-small"></div>
-                          <h3><a href="#"> Colouring </a></h3>
-                          <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
-                      </div>
-                  </div>
-                  <div class="column dt-sc-one-third">
-                      <div class="dt-sc-service type2">
-                          <figure class="gallery-thumb">
-                              <a href="#">
-                                  <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img7.jpg">
-                              </a>
-                          </figure>
-                          <div class="hr-invisible-very-small"></div>
-                          <h3><a href="#"> Facials </a></h3>
-                          <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
-                      </div>
-                  </div>
-                  <div class="column dt-sc-one-third">
-                      <div class="dt-sc-service type2">
-                          <figure class="gallery-thumb">
-                              <a href="#">
-                                  <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img5.jpg">
-                              </a>
-                          </figure>
-                          <div class="hr-invisible-very-small"></div>
-                          <h3><a href="#"> Cutting & Styling </a></h3>
-                          <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
-                      </div>
-                  </div>
-                  <div class="column dt-sc-one-third">
-                      <div class="dt-sc-service type2">
-                          <figure class="gallery-thumb">
-                              <a href="#">
-                                  <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img6.jpg">
-                              </a>
-                          </figure>
-                          <div class="hr-invisible-very-small"></div>
-                          <h3><a href="#"> Colouring </a></h3>
-                          <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
-                      </div>
-                  </div>
-                  <div class="column dt-sc-one-third">
-                      <div class="dt-sc-service type2">
-                          <figure class="gallery-thumb">
-                              <a href="#">
-                                  <img class="dt-sc-filter" title="" alt="" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/service-img7.jpg">
-                              </a>
-                          </figure>
-                          <div class="hr-invisible-very-small"></div>
-                          <h3><a href="#"> Facials </a></h3>
-                          <h4>Lorem ipsum dolor sit amet consectetur adipiscing</h4>
-                      </div>
-                  </div>
+               
             </div> 
-            <div class="bx-controls bx-has-controls-direction">
+               
+           <!-- <div class="bx-controls bx-has-controls-direction">
               <div class="bx-controls-direction">
                 <a class="bx-prev" href="">Prev</a>
                 <a class="bx-next" href="">Next</a>
               </div>
-            </div>    
-        </div> <!-- Fotos -->
+            </div>  --> 
+
+        </div>  <?php  } ?> <!-- Fotos termina carruzel --> 
       </div>
   </div>
 </div>
