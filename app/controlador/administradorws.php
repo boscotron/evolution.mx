@@ -1,7 +1,7 @@
 <?php 
 
 $peticion = explode('/',$_GET['peticion']);
-//$jmyWeb ->pre(['p'=>$peticion,'t'=>'peticion']);
+$jmyWeb ->pre(['p'=>$peticion,'t'=>'peticion']);
 switch($peticion[0]):
     case 'instalar':
         $jmyWeb->guardar_session(['instalar'=>true]);

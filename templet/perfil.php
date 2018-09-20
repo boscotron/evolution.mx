@@ -18,9 +18,8 @@
       <div class="column dt-sc-three-fourth">
         <div class="dt-sc-special-services-carousel-wrapper">
 
-           <div class="jmy_web_contador" data-page="perfil" id="numero_de_carrusel" data-value="<?php
-        $this->pnt('numero_de_carrusel','3'); 
-        ?>" data-titulo='Minimo puedes ver 3 imagenes, máximo "n" números '></div>
+          <div class="jmy_web_contador" data-page="perfil" id="numero_de_carrusel" data-value="<?php
+        $this->pnt('numero_de_carrusel','3');?>" data-titulo='Minimo puedes ver 3 imagenes, máximo  números '></div>
 
             <div class="dt-sc-special-services-carousel">
 
