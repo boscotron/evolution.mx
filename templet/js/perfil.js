@@ -33,6 +33,12 @@ jQuery(function ($) {
                 dataType: 'json',
                 success: function(res) {
                     console.log(res);
+                    let id = res.perfil.otKey[0];
+                    $("#id_perfil").val((id!=undefined)?id:'');
+                    history.pushState(null, "", location.origin+"/perfil/editar/"+id);
+                    $("#select_lista_perfiles").show(100);
+                    $("#boton_historial").show(100);
+                    ver_perfil();
                 },
                 error: function(res) {
                     console.log(res);
@@ -49,22 +55,30 @@ jQuery(function ($) {
     });
     function ver_perfil(){
         let id_perfil = $("#id_perfil").val();
-        console.log(id_perfil);
-        
-        $.ajax({
-            url: location.origin + '/perfilws/ver/'+id_perfil,
-            type: 'post',
-            dataType: 'json',
-            success: function(res) {
-                console.log(res);
-               if(res.perfil.nombre!=undefined)    
-                    $("#perfil_nombre").val(res.perfil.nombre);
-            },
-            error: function(res) {
-                console.log(res);
-            },
-            data: {}
-        });
+        console.log('id_perfil',id_perfil);
+        if(id_perfil!=''){
+            
+            select_lista_perfiles();
+            $.ajax({
+                url: location.origin + '/perfilws/ver/'+id_perfil,
+                type: 'post',
+                dataType: 'json',
+                success: function(res) {
+                    console.log(res);
+                if(res.perfil.nombre!=undefined)    
+                        $("#perfil_nombre").val(res.perfil.nombre);
+                },
+                error: function(res) {
+                    console.log(res);
+                },
+                data: {}
+            });
+        }else{
+            console.log('agregar perfil');
+            $("#select_lista_perfiles").hide();
+            $("#boton_historial").hide();
+            $('#pizzarra').html('  <div class="icon"> <span class="fa fa-users"> </span>  </div> <h5>Agrega<br>un usuario nuevo</h5>' );
+        }
     }
     function select_lista_perfiles(){
         let id_perfil = $("#id_perfil").val();
@@ -84,12 +98,7 @@ jQuery(function ($) {
                 });
                 $("#select_lista_perfiles").html(h);
 
-                $("#select_lista_perfiles").change( function () {
-                    let id = $(this).val();
-                    console.log(id);
-                    $("#id_perfil").val(id);
-                    ver_perfil();
-                });
+               
 
             },
             error: function(res) {
@@ -97,7 +106,11 @@ jQuery(function ($) {
             },
             data: {}
         });
-    }
-    select_lista_perfiles();
-    ver_perfil();
+    }  $("#select_lista_perfiles").change( function () {
+                    let id = $(this).val();
+                    console.log(id);
+                    $("#id_perfil").val(id);
+                    ver_perfil();
+                });
+    ver_perfil(); 
 });

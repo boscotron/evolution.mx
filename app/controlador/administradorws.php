@@ -1,19 +1,33 @@
 <?php 
 
 $peticion = explode('/',$_GET['peticion']);
-$jmyWeb ->pre(['p'=>$peticion,'t'=>'peticion']);
+//$jmyWeb ->pre(['p'=>$peticion,'t'=>'peticion']);
+$out['session'] =$jmyWeb->session();
+$out['error'] = '';
 switch($peticion[0]):
     case 'instalar':
         $jmyWeb->guardar_session(['instalar'=>true]);
     break;
 
     case 'usuarios':
-        $out['session'] =$jmyWeb->session();
+    
         $out['usuarios'] = $jmy->ver([
-            "TABLA"=>"clientes_".$out['session']['body']['api_web']['ID_F'],
-            "COL"=>['nombre'],
+            "TABLA"=>TABLA_USUARIOS."_".$out['session']['body']['api_web']['ID_F'],
+            "COL"=>['nombre','tipo','proveedor'],
             "SALIDA"=>'ARRAY',
             ]);
+    break;
+
+    case 'ver-usuario':
+        if($_POST['id']!=''){
+        $out['usuarios'] = $jmy->ver([
+            "TABLA"=>TABLA_USUARIOS."_".$out['session']['body']['api_web']['ID_F'],
+            "ID"=>$_POST['id'],
+            //"COL"=>['nombre'],
+            "SALIDA"=>'ARRAY',
+            ]);}else{
+                $out['error'] = 'Sin ID';
+            }
     break;
     default:
         $url_marco = 'administrador_dashboard.php';

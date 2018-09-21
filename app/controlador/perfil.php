@@ -1,6 +1,10 @@
 <?php 
 $peticion = explode("/",$_GET['peticion']);
 $session = $jmyWeb->session(); 
+
+include(RUTA_APP.'controlador/PERMISOS.php');
+$licencia_evolution  = licencia_evolution(["id"=>$session['user']['user_id']]);
+//$jmyWeb ->pre(['p'=>$resultado,'t'=>'resultado']);
 $carga_centro = '';
 if($peticion[0]=='entrar'){
     $session = $jmyWeb->session([$peticion[1],$peticion[2]]);
@@ -14,17 +18,25 @@ if($idUsuario!=''){
         "ID"=>$idUsuario,
     ]);
     $perfiles['principal'] = (is_array($perfiles['principal']['ot'][$idUsuario]))?$perfiles['principal']['ot'][$idUsuario]:["error"=>"No existe usuario"];
-    $jmyWeb ->pre(['p'=>$perfiles,'t'=>'perfiles']);
+   // $jmyWeb ->pre(['p'=>$perfiles,'t'=>'perfiles']);
 
 
     switch ($peticion[0]) {
         case 'editar':    
-            $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(['return'=>1])."js/perfil.js"]);
+            $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(['return'=>1])."js/perfil.js?d=".date('U')]);
             $carga_centro = "header_perfil.php";
             $carga_centro = "perfil_detalle.php";
-        break;
-        case 'historial':
+            break;
+            case 'historial':
             $carga_centro = "perfil_historial.php";
+            break;
+            case 'preferencias-empleado':            
+            $accesos = ['admin','empleado'];
+            $carga_centro=(in_array($licencia_evolution['tipo'],$accesos))? "preferencias-empleado.php":"error_perfil.php";
+            if(in_array($licencia_evolution['tipo'],$accesos)){
+                $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(['return'=>1])."js/preferencias-empleado.js?d=".date('U')]);
+
+            }
         break;    
         default:
             $carga_centro = "perfil_dashboard.php";
@@ -44,12 +56,16 @@ if($idUsuario!=''){
 
 //$jmyWeb ->pre(['p'=>$carga_centro,'t'=>'peticion']);
 
+
+$jmyWeb->cargar(["pagina"=>"perfil"]);
+
 $jmyWeb ->cargar_vista(["url"=>$pagina_marco,
                         "data"=>[
                                 "carga_centro"=>$carga_centro,
                                 "perfiles"=>$perfiles,
                                 "user_id"=>$idUsuario,
                                 "id_perfil"=>$peticion[1],
+                                "licencia_evolution"=>$licencia_evolution,
                             ]
                         ]);
 ?>

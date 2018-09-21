@@ -37,6 +37,7 @@ define(	"DB_HO","localhost"); //servidor
 define(	"DB_US","root"); //usuario
 define(	"DB_PA",""); //contrase�a
 define(	"DB_DB","evolution"); //Base de datos
+define(	"TABLA_USUARIOS","clientes"); //Base de datos
 
 
 define(	"DB_PX",""); //prefijo de tablas en Base de datos //ACT

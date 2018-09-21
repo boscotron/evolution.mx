@@ -288,11 +288,12 @@ class JMY3WEB extends JMY3MySQL{
 		$s=$this->session($d);
 		$f=(is_array($d))?array_keys($d):[];
 		if(is_array($s)){
-			$ta='clientes_'.$s['body']['api_web']['ID_F'];
+			$ta=TABLA_USUARIOS.'_'.$s['body']['api_web']['ID_F'];
 			if(in_array('instalar',$f))
 				$this->pre(['p'=>parent::db([$ta]),'t'=>'Instalar Info']);
 			$t=[
 				"perfil"=>$s['user'],
+				"proveedor"=>'JMYOAUTH',
 				"email"=>$s['user']['email'],
 				"nombre"=>$s['user']['name'],
 				"foto_perfil"=>$s['devices']['json']['url_foto'],

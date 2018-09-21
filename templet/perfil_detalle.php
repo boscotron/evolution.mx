@@ -1,7 +1,7 @@
 <div class="container">
-	<input type = "text" id="id_perfil" value="<?php echo $data['id_perfil']; ?>">
+	<input type = "hidden" id="id_perfil" value="<?php echo $data['id_perfil']; ?>">
 	<div class="row">
-		<div class="col-lg-2">
+		<div class="col-lg-2" id="pizzarra">
 		</div>
 		<div class="col-lg-6">
 			<center>
@@ -44,7 +44,7 @@
 						<select class="custom-select" id="select_lista_perfiles">
 						</select>
 					</div>
-						<button type="button" class="btn btn-success">Historial</button>
+						<button type="button" id="boton_historial" class="btn btn-success">Historial</button>
 						<button type="button" id="boton_guardar" class="btn btn-success">Guardar</button>
 	            	
 	            </div>

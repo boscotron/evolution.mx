@@ -3,7 +3,7 @@
     <div class="hr-invisible-very-very-small"></div>
       <div class="column dt-sc-one-fourth first">
           <div class="dt-sc-team type1">
-              <div class="image">
+              <div class="image" style="height: 170px !important; ">
                   <img src="<?php echo ($data['perfiles']['principal']['foto_perfil']!="")?$data['perfiles']['principal']['foto_perfil']:RUTA_ACTUAL.BASE_TEMPLET.'images/team-img4.jpg'; ?>" width="60%" alt="" title="">
                   <div class="image-overlay">
                       <div class="team-details-social-icons">
@@ -60,9 +60,8 @@
 
 <div class="container">
   <div class="row">
-    <div class="hr-invisible"></div>
     <div class="hr-invisible-very-very-small"></div>
-    <div class="column dt-sc-one-sixth first">
+    <div class="col-lg-2">
         <div class="column dt-sc-one-third">
             <div class="dt-sc-ico-content type1">
                 <div class="icon">
@@ -76,7 +75,15 @@
     </div>
 
     <div class="col-lg-2">
-
+      
+      <div class="dt-sc-ico-content type1">
+        <div class="icon">
+            <span class="fa fa-users"> </span>
+        </div>
+        <h5>
+            <a href="<?php $this->url_inicio(); ?>perfil/editar"> Agrega <br/> perfiles  </a>
+        </h5>
+      </div>
     </div>
 
     <div class="col-lg-8">

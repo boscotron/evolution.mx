@@ -42,10 +42,15 @@ if($idUsuario!=''){
             $id=($peticion[1]!='')?$peticion[1]:uniqid();
             if(is_array($_POST)){
                 $out['guardar'] = $_POST;
-                $out['guardar']['perfil_principal']=$idUsuario;
+                if(!$out['guardar']['admin']){
+                    $out['guardar']['perfil_principal']=$idUsuario;
+                }else{
+                    unset($out['guardar']['admin']);
+                }
                 $out['perfil'] = $jmy->guardar([
                     "TABLA"=>"clientes_".$session['body']['api_web']['ID_F'],
                     "ID"=>$id,
+                    "A_D"=>true,
                     "GUARDAR"=>$out['guardar']
                 ]);
             }
