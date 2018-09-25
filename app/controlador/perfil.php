@@ -43,6 +43,7 @@ if($idUsuario!=''){
         break;
     }
     $pagina_marco="perfil.php";
+    $carga_centro = "perfil_historial.php";
 }else{
     $pagina_marco="login.php";
     $carga_centro = "error_perfil.php";
