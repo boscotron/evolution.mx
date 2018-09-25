@@ -4,7 +4,7 @@ $session = $jmyWeb->session();
 $carga_centro = '';
 if($peticion[0]=='entrar'){
     $session = $jmyWeb->session([$peticion[1],$peticion[2]]);
-    $jmyWeb->guardar_session();
+    $jmyWeb->guardar_session();//$jmyWeb->guardar_session(["instalar"=>true]);
 }
 
 $idUsuario = $session['user']['user_id'];

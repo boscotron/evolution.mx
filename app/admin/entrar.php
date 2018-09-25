@@ -1,10 +1,11 @@
 <?php
-require(BASE_APP.'class/jmy3webAdmin.class.php');
-$out = new JmyWebSession();
-if($_GET['peticion']=='salir'){$out->session_activa([],1);}
+
+if($_GET['peticion']=='salir'){$jmyWeb->session_activa([],1);}
 $token = explode("/",$_GET['peticion']);
-$token = $out->session_activa($token);
-if($token['permiso']=='')
+$token = $jmyWeb->session_activa($token);
+if($token['permiso']!='' && $_GET['peticion']=='instalar') 
+	$jmyWeb->guardar_session(["instalar"=>true]);
+if($token['permiso']!='') 
 	$jmyWeb->guardar_session();
 if($token['permiso']!='' && $_SESSION['re_login']!=''){?>
 	<script type="text/javascript">

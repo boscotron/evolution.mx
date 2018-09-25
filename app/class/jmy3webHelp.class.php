@@ -284,7 +284,7 @@ class JMY3WEB extends JMY3MySQL{
 		return $this->session_activa($d);  
 	} 
 	public function guardar_session($d=null){
-		$this ->pre(['p'=>$d,'t'=>'TITULO_ARRAY']);
+		//$this ->pre(['p'=>$d,'t'=>'TITULO_ARRAY']);
 		$s=$this->session($d);
 		$f=(is_array($d))?array_keys($d):[];
 		if(is_array($s)){
@@ -314,5 +314,12 @@ class JMY3WEB extends JMY3MySQL{
 		$u = preg_replace(array('/[^a-zA-Z0-9 \'-]/','/[ -\']+/','/^-|-$/'),['', '-', ''],$u);
 		$u = preg_replace('/-inc$/i','', $u);
 		return strtolower($u);
+	}
+	public function redireccionar($url){
+		echo '<script type="text/javascript">
+		<!--
+		window.location = "'.$url.'"
+		//-->
+		</script>';
 	}
 }
