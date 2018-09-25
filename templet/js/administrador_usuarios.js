@@ -1,5 +1,7 @@
 jQuery(function ($) {  
     $("#datos").hide();
+    $("#btn_preferencias_empledo").hide();
+    
     function lista_usuarios(){
         $.ajax({
             url: location.origin + '/administradorws/usuarios',
@@ -19,24 +21,27 @@ jQuery(function ($) {
     function imprimir_lista(d){
         let html = '';
         console.log(d);
-        
-        for (let i = 0; i < d.length; i++) {
-            const e = d[i];
-            //html = html + '<li class="list-group-item ver_usuario" data-id="'+e.ID_F+'">'+e.nombre+'</li>';    
-            
-            let m = (e.proveedor==='JMYOAUTH')?'Usuario primario':'Usuario secundario';
-            let s = (e.proveedor==='JMYOAUTH')?'list-group-item-info':'';
-            html = html + '  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start '+s+' ver_usuario" data-id="'+e.ID_F+'" ><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">'+e.nombre+'</h5><small>'+((e.tipo!=undefined)?e.tipo:'usuario')+'</small></div><p class="mb-1">'+m+'</p></small></a>';            
+        if(d!=null){
+            for (let i = 0; i < d.length; i++) {
+                const e = d[i];
+                //html = html + '<li class="list-group-item ver_usuario" data-id="'+e.ID_F+'">'+e.nombre+'</li>';    
+                
+                let m = (e.proveedor==='JMYOAUTH')?'Usuario primario':'Usuario secundario';
+                let s = (e.proveedor==='JMYOAUTH')?'list-group-item-info':'';
+                html = html + '  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start '+s+' ver_usuario" data-id="'+e.ID_F+'" ><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">'+e.nombre+'</h5><small>'+((e.tipo!=undefined)?e.tipo:'usuario')+'</small></div><p class="mb-1">'+m+'</p></small></a>';            
+            }
+            $("#listado_usuario").html(html);
+            $(".ver_usuario").on('click',function(){
+                event.preventDefault();
+                $("#datos").show(150);
+                $("#id_perfil").val($(this).data('id'));
+                ver_perfil();
+            });
+        }else{
+            $("#listado_usuario").html('No hay usuarios');
         }
-        $("#listado_usuario").html('');
-        $("#listado_usuario").html(html);
+    
         //boton_usuario(d);
-        $(".ver_usuario").on('click',function(){
-            event.preventDefault();
-            $("#datos").show(150);
-            $("#id_perfil").val($(this).data('id'));
-            ver_perfil();
-        });
     }
 
     function boton_usuario(d){
@@ -142,16 +147,22 @@ jQuery(function ($) {
                     console.log(d);
                     console.log(p);
                     if(p==='JMYOAUTH')
-                        $("#div_tipo_de_usuario").show(120);
+                        $("#div_    ").show(120);
                     else
                         $("#div_tipo_de_usuario").hide(100);
                         
                     $(".cambiar_tipo").removeClass('active');
                     $("#tipo_de_usuario").html('');
                     if(d.tipo!=''){
-                    $("#btn_tipo_usuario_"+d.tipo).addClass('active');
-                    $("#tipo_de_usuario").html(d.tipo);
+                        $("#btn_tipo_usuario_"+d.tipo).addClass('active');
+                        $("#tipo_de_usuario").html(d.tipo);
                     }
+                    if(d.tipo=='empleado'||d.tipo=='admin'){
+                        $("#btn_preferencias_empledo").show(100);
+                        $("#btn_preferencias_empledo").attr('href',location.origin+'/perfil/preferencias-empleado/'+d.perfil_principal);
+
+                    }
+
                 if(res.perfil.nombre!=undefined)    
                         $("#perfil_nombre").val(res.perfil.nombre);
                         

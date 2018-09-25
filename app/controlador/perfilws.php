@@ -12,8 +12,26 @@ if($idUsuario!=''){
     ]);
     $out['perfiles']['principal'] = (is_array($out['perfiles']['principal']['ot'][$idUsuario]))?$out['perfiles']['principal']['ot'][$idUsuario]:["error"=>"No existe usuario"];
 
-
+    
     switch ($peticion[0]) {
+        case 'preferencias-empleado-guardar':            
+            if($peticion[1]!=''){
+                $out['preferencias'][] = $jmy->guardar([
+                    'TABLA'=>'personal',
+                    'I_D'=>true,
+                    'ID'=>$peticion[1],
+                    'GUARDAR'=>$_POST['guardar'],
+                ]);
+            }
+        case 'preferencias-empleado':
+            
+            if($peticion[1]!=''){
+                $out['preferencias'][] = $jmy->ver([
+                    'TABLA'=>'personal',
+                    'ID'=>$peticion[1],
+                ]);
+            }
+        break;
         case 'ver': 
             $out['peticion'] = $peticion;
             if($peticion[1]!=''){

@@ -4,13 +4,13 @@ $session = $jmyWeb->session();
 
 include(RUTA_APP.'controlador/PERMISOS.php');
 $licencia_evolution  = licencia_evolution(["id"=>$session['user']['user_id']]);
-$jmyWeb ->pre(['p'=>$resultado,'t'=>'resultado']);
+//$jmyWeb ->pre(['p'=>$resultado,'t'=>'resultado']);
 $carga_centro = '';
 if($peticion[0]=='entrar'){
     $session = $jmyWeb->session([$peticion[1],$peticion[2]]);
     $jmyWeb->guardar_session();
 }
-$jmyWeb ->pre(['p'=>$session,'t'=>'SESSION']);
+//$jmyWeb ->pre(['p'=>$session,'t'=>'SESSION']);
 $idUsuario = $session['user']['user_id'];
 if($idUsuario!=''){
     $perfiles['principal']=$jmy->ver([
@@ -18,7 +18,7 @@ if($idUsuario!=''){
         "ID"=>$idUsuario,
     ]);
     $perfiles['principal'] = (is_array($perfiles['principal']['ot'][$idUsuario]))?$perfiles['principal']['ot'][$idUsuario]:["error"=>"No existe usuario"];
-    $jmyWeb ->pre(['p'=>$perfiles,'t'=>'perfiles']);
+    //$jmyWeb ->pre(['p'=>$perfiles,'t'=>'perfiles']);
 
 
     switch ($peticion[0]) {
@@ -30,12 +30,16 @@ if($idUsuario!=''){
             case 'historial':
             $carga_centro = "perfil_historial.php";
             break;
-            case 'preferencias-empleado':            
-            $accesos = ['admin','empleado'];
-            $carga_centro=(in_array($licencia_evolution['tipo'],$accesos))? "preferencias-empleado.php":"error_perfil.php";
-            if(in_array($licencia_evolution['tipo'],$accesos)){
-                $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(['return'=>1])."js/preferencias-empleado.js?d=".date('U')]);
+            case 'preferencias-empleado':   
+            if($peticion[1]!=''){
+                $accesos = ['admin','empleado'];
 
+                $jmyWeb ->pre(['p'=>$licencia_evolution['tipo'],'t'=>'algo']);
+                $carga_centro=(in_array($licencia_evolution['tipo'],$accesos))? "preferencias-empleado.php":"error_perfil.php";
+                if(in_array($licencia_evolution['tipo'],$accesos)){
+                    $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(['return'=>1])."js/preferencias-empleado.js?d=".date('U')]);
+
+                }
             }
         break;    
         default:
@@ -43,7 +47,7 @@ if($idUsuario!=''){
         break;
     }
     $pagina_marco="perfil.php";
-    $carga_centro = "perfil_historial.php";
+    //$carga_centro = "perfil_historial.php";
 }else{
     $pagina_marco="login.php";
     $carga_centro = "error_perfil.php";

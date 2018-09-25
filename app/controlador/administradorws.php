@@ -20,7 +20,8 @@ switch($peticion[0]):
 
     case 'ver-usuario':
         if($_POST['id']!=''){
-        $out['usuarios'] = $jmy->ver([
+            $out['tabla'] = TABLA_USUARIOS."_".$out['session']['body']['api_web']['ID_F'];
+            $out['usuarios'] = $jmy->ver([
             "TABLA"=>TABLA_USUARIOS."_".$out['session']['body']['api_web']['ID_F'],
             "ID"=>$_POST['id'],
             //"COL"=>['nombre'],

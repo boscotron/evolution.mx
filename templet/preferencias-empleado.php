@@ -89,17 +89,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
                             <div class="col-md-6">
                                 <h3>Dias laborables</h3>
                                 <div class="btn-group-vertical" role="group" id="botones_dias" aria-label="Basic example">
-                                    <button type="button" class="btn btn-secondary">Left</button>
-                                    <button type="button" class="btn btn-secondary">Middle</button>
-                                    <button type="button" class="btn btn-secondary">Right</button>
+                               
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <h3>Servicios</h3>
-                                <div class="btn-group-vertical" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-secondary">Left</button>
-                                    <button type="button" class="btn btn-secondary">Middle</button>
-                                    <button type="button" class="btn btn-secondary">Right</button>
+                                <div class="btn-group-vertical" role="group" id="botones_servicios" aria-label="Basic example">
+                               
                                 </div>
                             </div>
                         </div>

@@ -52,6 +52,10 @@
                                     <button type="button" id="btn_tipo_usuario_empledo" class="btn btn-secondary cambiar_tipo" data-tipo="empleado">Empledos</button>
                                     <button type="button" id="btn_tipo_usuario_admin" class="btn btn-secondary cambiar_tipo" data-tipo="admin">Administrador</button>
                                 </div>
+                          
+                                 <div class="btn-group" role="group" id="opciones_empleado">
+                                    <a type="button" href="<?php echo $this->url_inicio();?>perfil/preferencias-empledo/" id="btn_preferencias_empledo" class="btn btn-secondary cambiar_tipo" data-tipo="cliente">Editar preferencias</a>
+                                </div>
                             </div>
                             <div class="col-lg-10">
                                 <button type="button" id="boton_guardar" class="btn btn-success">Guardar</button>
