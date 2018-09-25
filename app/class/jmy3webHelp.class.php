@@ -267,17 +267,18 @@ class JMY3WEB extends JMY3MySQL{
 		return $result;
 	}
 	public function session_activa($d=[],$logout=0){ 
-		if($logout){unset($_SESSION);}
+		if($logout){unset($_SESSION);session_destroy();}else{
 		if($d[0]!=''&&$d[1]!=''){
-		$d['id']=$d[0];$d['token']=$d[1];unset($d[0]);unset($d[1]);
-		$d['api']="e2ad454bea7d919f0fc411a8b885580c";
-		$d['api_web']=JMY_API;
-		$d['datos_device']=true;
-		$d['apis'][$d['api']]=["nombre"=>"JmyWeb","version"=>"1.0"];
-		$d['url']='https://comsis.mx/api/auth/v1/token';
-		$o=(is_array($_SESSION['jmysa']))?$_SESSION['jmysa']:json_decode($this->s2($d),1);		
-		$_SESSION['jmysa']=(is_array($_SESSION['jmysa']))?$o:["user"=>$o['out']['userData'],"devices"=>$o['out']['devices'],"body"=>$o['out']['jmyapi']['body'],"permiso"=>$o['out']['jmyapi']['body']['permisos_api']['PERMISOS']];
-		}$_SESSION['JMY3WEB'][DOY]=($_SESSION['jmysa']['permiso']>2)?1:0;
+			$d['id']=$d[0];$d['token']=$d[1];unset($d[0]);unset($d[1]);
+			$d['api']="e2ad454bea7d919f0fc411a8b885580c";
+			$d['api_web']=JMY_API;
+			$d['datos_device']=true;
+			$d['apis'][$d['api']]=["nombre"=>"JmyWeb","version"=>"1.0"];
+			$d['url']='https://comsis.mx/api/auth/v1/token';
+			$o=(is_array($_SESSION['jmysa']))?$_SESSION['jmysa']:json_decode($this->s2($d),1);		
+			$_SESSION['jmysa']=(is_array($_SESSION['jmysa']))?$o:["user"=>$o['out']['userData'],"devices"=>$o['out']['devices'],"body"=>$o['out']['jmyapi']['body'],"permiso"=>$o['out']['jmyapi']['body']['permisos_api']['PERMISOS']];
+			}$_SESSION['JMY3WEB'][DOY]=($_SESSION['jmysa']['permiso']>2)?1:0;
+		}
 		return $_SESSION['jmysa'];
 	}	
 	public function session($d=null){	
