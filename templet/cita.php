@@ -10,7 +10,7 @@
       
     <script type="text/javascript">
 	$(document).ready(function() {
-		$("#dpt").datepicker();
+		$("#dpt").datepicker({minDate:0});
 	});
 	</script>
 <div id="main"><!-- Main -->
