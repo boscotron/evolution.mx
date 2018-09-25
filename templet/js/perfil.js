@@ -9,8 +9,10 @@ jQuery(function ($) {
         let guardar = {
             nombre:$("#perfil_nombre").val(),
             telefono:$("#perfil_telefono").val(), // Filtrar por teléfono
+            edad:$("#perfil_edad").val(), // Filtrar por edad
         };
         
+
         let seguir = true;
         let error = '';
 
@@ -20,6 +22,13 @@ jQuery(function ($) {
         }else{
             seguir = false;
             error = error + " El teléfono no es válido ";
+        }
+         /* caso por caso */
+         if(guardar.edad < 19){
+            seguir = true;            
+        }else{
+            seguir = false;
+            error = error + " Aceptas que se guarde informacion del menor ";
         }
         
         

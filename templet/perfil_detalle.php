@@ -8,13 +8,13 @@
 			<form class="contact-form" method="post" name="enqform" action="php/send.php">
 		        <div class="col-lg-10">
 		        	<div data-delay="100" data-animation="fadeIn">
-		                <p><input type="text" id="perfil_nombre" name="username" placeholder="Nombre (requerido)" required/> </p>
+		                <p><input type="text" id="perfil_nombre" name="username" placeholder="Nombre (requerido)" /> </p>
 		            </div>
 		        </div>
 		        <div class="col-lg-10">
 		        	<div  data-delay="300" data-animation="fadeIn">
-		        		<p><input type="text" id="perfil_telefono"  required name="txtname" placeholder="Telefono (requerido)"/></p>
-		                <p><input type="text" name="txtedad" placeholder="Edad (requerido)" required/></p>
+		        		<p><input type="text" id="perfil_telefono" name="txtname" placeholder="Telefono (requerido)"/></p>
+		                <p><input type="text" id="perfil_edad"name="txtedad" placeholder="Edad (requerido)" required/></p>
 		                <p><input id="datepicker" type="text" placeholder="Fecha de Nacimiento" value="" name="datepicker"><span class="icons fa fa-calendar"></span></p>
 		            </div>
 		        </div>

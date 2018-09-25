@@ -4,13 +4,13 @@ $session = $jmyWeb->session();
 
 include(RUTA_APP.'controlador/PERMISOS.php');
 $licencia_evolution  = licencia_evolution(["id"=>$session['user']['user_id']]);
-//$jmyWeb ->pre(['p'=>$resultado,'t'=>'resultado']);
+$jmyWeb ->pre(['p'=>$resultado,'t'=>'resultado']);
 $carga_centro = '';
 if($peticion[0]=='entrar'){
     $session = $jmyWeb->session([$peticion[1],$peticion[2]]);
     $jmyWeb->guardar_session();
 }
-//$jmyWeb ->pre(['p'=>$session,'t'=>'SESSION']);
+$jmyWeb ->pre(['p'=>$session,'t'=>'SESSION']);
 $idUsuario = $session['user']['user_id'];
 if($idUsuario!=''){
     $perfiles['principal']=$jmy->ver([
@@ -18,7 +18,7 @@ if($idUsuario!=''){
         "ID"=>$idUsuario,
     ]);
     $perfiles['principal'] = (is_array($perfiles['principal']['ot'][$idUsuario]))?$perfiles['principal']['ot'][$idUsuario]:["error"=>"No existe usuario"];
-   // $jmyWeb ->pre(['p'=>$perfiles,'t'=>'perfiles']);
+    $jmyWeb ->pre(['p'=>$perfiles,'t'=>'perfiles']);
 
 
     switch ($peticion[0]) {
@@ -58,6 +58,7 @@ if($idUsuario!=''){
 
 
 $jmyWeb->cargar(["pagina"=>"perfil"]);
+
 
 $jmyWeb ->cargar_vista(["url"=>$pagina_marco,
                         "data"=>[
