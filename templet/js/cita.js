@@ -40,7 +40,7 @@ jQuery(function ($) {
     $("#btn_paso_1").click(function(){
         console.log('paso 2');
         let valor = $("#select_lista_perfiles option:selected").val();
-        console.log(valor)
+        console.log(valor);
 
         if (valor !== 'sinSeleccion') {
             mostrarServicios();
