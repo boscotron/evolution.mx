@@ -17,7 +17,7 @@ function licencia_evolution($d=[]){
             $out['error'] = 'Sin ID';
         }
         
-    $jmyWeb ->pre(['p'=>$out,'t'=>'licencia_evolution o']);
+   // $jmyWeb ->pre(['p'=>$out,'t'=>'licencia_evolution o']);
     return $out;
 }
 

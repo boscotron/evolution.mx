@@ -54,7 +54,7 @@
                                 </div>
                           
                                  <div class="btn-group" role="group" id="opciones_empleado">
-                                    <a type="button" href="<?php echo $this->url_inicio();?>perfil/preferencias-empledo/" id="btn_preferencias_empledo" class="btn btn-secondary cambiar_tipo" data-tipo="cliente">Editar preferencias</a>
+                                    <a type="button" href="<?php echo $this->url_inicio();?>perfil/preferencias-empledo/" id="btn_preferencias_empledo" class="btn btn-secondary" data-tipo="cliente">Editar preferencias</a>
                                 </div>
                             </div>
                             <div class="col-lg-10">

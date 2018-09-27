@@ -16,9 +16,11 @@ if($idUsuario!=''){
     switch ($peticion[0]) {
         case 'preferencias-empleado-guardar':            
             if($peticion[1]!=''){
-                $out['preferencias'][] = $jmy->guardar([
+                $out['preferencias']['post'] = $_POST;
+                $out['preferencias']['id'] = $peticion[1];
+                $out['preferencias']['guardar'] = $jmy->guardar([
                     'TABLA'=>'personal',
-                    'I_D'=>true,
+                    'A_D'=>true,
                     'ID'=>$peticion[1],
                     'GUARDAR'=>$_POST['guardar'],
                 ]);
@@ -26,7 +28,7 @@ if($idUsuario!=''){
         case 'preferencias-empleado':
             
             if($peticion[1]!=''){
-                $out['preferencias'][] = $jmy->ver([
+                $out['preferencias']['ver'] = $jmy->ver([
                     'TABLA'=>'personal',
                     'ID'=>$peticion[1],
                 ]);

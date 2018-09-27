@@ -123,6 +123,8 @@
   </div>
 </div> 
 
-<?php include $data['carga_centro']; ?>
+<?php
+//$this ->pre(['p'=>$data['carga_centro'],'t'=>'carga_centro']);
+include $data['carga_centro']; ?>
 
 <div class="hr-invisible"></div>

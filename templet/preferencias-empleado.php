@@ -25,8 +25,12 @@ background: linear-gradient(to bottom, rgba(241,231,103,0.5) 0%,rgba(254,182,69,
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', endColorstr='#80feb645',GradientType=0 ); /* IE6-9 */
 }
 
-.btn-group-vertical {
+.btn-group-vertical-dias {
     width:40%;
+}
+
+.btn-group-vertical-servicios {
+    width:60%;
 }
 .btn-group-vertical .btn{
     text-align: left;
@@ -88,13 +92,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
                         <div class="row">
                             <div class="col-md-6">
                                 <h3>Dias laborables</h3>
-                                <div class="btn-group-vertical" role="group" id="botones_dias" aria-label="Basic example">
+                                <div class="btn-group-vertical btn-group-vertical-dias " role="group" id="botones_dias" aria-label="Basic example">
                                
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <h3>Servicios</h3>
-                                <div class="btn-group-vertical" role="group" id="botones_servicios" aria-label="Basic example">
+                                <div class="btn-group-vertical btn-group-vertical-servicios" role="group" id="botones_servicios" aria-label="Basic example">
                                
                                 </div>
                             </div>
