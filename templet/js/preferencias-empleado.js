@@ -15,15 +15,20 @@ jQuery(function ($) {
                 console.log(res);
                 let data = res.preferencias.ver.ot[res.preferencias.ver.otKey[0]];
                 console.log('data',data);
-                
-                servicios({select:JSON.parse(data.servicios)});
-                horario({
-                    horario_mat_ini:data.horario_mat_ini,
-                    horario_ves_fin:data.horario_ves_fin,
-                    horario_mat_fin:data.horario_mat_fin,
-                    horario_ves_ini:data.horario_ves_ini,
-                });
-                dias({select:JSON.parse(data.dias_laborables)});
+                if(data!=undefined){
+                    servicios({select:JSON.parse(data.servicios)});
+                    horario({
+                        horario_mat_ini:data.horario_mat_ini,
+                        horario_ves_fin:data.horario_ves_fin,
+                        horario_mat_fin:data.horario_mat_fin,
+                        horario_ves_ini:data.horario_ves_ini,
+                    });
+                    dias({select:JSON.parse(data.dias_laborables)});
+                }else{
+                    servicios();
+                    horario();
+                    dias();
+                }
             },
             error: function(res) {
                 console.log(res);
