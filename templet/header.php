@@ -101,12 +101,15 @@
                             
                             
                         </li>
-                        <li class="alignright">&nbsp;&nbsp;<span class="fa fa-user"></span>
-    <?php
-        echo ($SESSION['user']['user_id']=='') ?  
-            '<a href="https://comsis.mx/app/entrar/?re='.$this->url_inicio(['return'=>true]).'perfil/entrar/&api=e2ad454bea7d919f0fc411a8b885580c&api_web='.JMY_API.'&sep=1"> Registrate | Iniciar Sesión</a>':
-            '<a href="'.$this->url_inicio(['return'=>true]).'perfil/"> Mi perfil</a>';
-        ?>
+                        
+                        <li class="alignright prod">&nbsp;&nbsp;<span class="fa fa-user"></span>
+                            <?php
+                                echo ($SESSION['user']['user_id']=='') ?  
+                                    '<a href="https://comsis.mx/app/entrar/?re='.$this->url_inicio(['return'=>true]).'perfil/entrar/&api=e2ad454bea7d919f0fc411a8b885580c&api_web='.JMY_API.'&sep=1"> Registrate | Iniciar Sesión</a>':
+                                    '<a class="linkprod" href="'.$this->url_inicio(['return'=>true]).'perfil/"> Mi perfil</a><ul class="submenu">
+                                    <li><a href="#">Salir</a></li>
+                                </ul>';
+                                ?>
                         </li>
 
                 	</ul>        
