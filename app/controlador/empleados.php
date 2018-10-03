@@ -1,5 +1,5 @@
 <?php
-
+ 
 if($_SESSION['JMY3WEB'][DOY]){
 
     $tmp = explode("/",$_GET['peticion']);

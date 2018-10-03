@@ -1,9 +1,6 @@
 jQuery(function ($) {  
     console.log('ola k ase');
 
-
-
-
     function guardar_perfil() {
         // AQUI VAN LAS REGLAS DE INGRESO
         let guardar = {

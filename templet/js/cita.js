@@ -3,6 +3,7 @@ jQuery(function ($) {
     let fecha = "";
     let servicios = [];
     let personal = [];
+    let ServicioPersonal = [];
     $(".hidden").hide(0);
  
 
@@ -76,11 +77,11 @@ jQuery(function ($) {
             $("#div_paso_2").hide(50);
             $("#div_paso_3").show(200);
         }else{
-           swal(
-              'Debes seleccionar una fecha!',
+          /* swal(
+              'No hay servicios',
               'Pulsa el botón para continuar!',
               'warning'
-            )
+            )*/
         }
         
     });
@@ -101,7 +102,7 @@ jQuery(function ($) {
             success: function(res) {
                 console.log(res);
                 $("#servicios").html('');
-                servicios = res.out.otFm;
+                servicios = res.out.lista.otFm;
                 console.log(servicios);
                 
                 /*servicios.forEach(element => {
@@ -114,7 +115,11 @@ jQuery(function ($) {
                         $("#servicios").append(new Option(servicios[i].nombre, servicios[i].ID_F,0,selected));
                     }
                 }else{ 
-                    alerta('Seleccione una fecha para ver la disponibilidad');
+                     /**swal(
+                      'Debes seleccionar una fecha!',
+                      'Pulsa el botón para continuar!',
+                      'warning'
+                    )*/
                 }
 
             },
@@ -143,14 +148,16 @@ jQuery(function ($) {
             success: function(res) {
                 console.log(res);
                 $("#personal").html('');
-                personal = res.out.resultado.otFm;
+                personal = res.out.ResultadoNombre.otFm;
+                ServicioPersonal = res.out.resultado.otFm;
+
                 console.log(personal);
+                console.log(ServicioPersonal);
                 for (var i = 0 ; i < personal.length ; i++) {
-                	 $("#personal").append(new Option(personal[i].nombre, personal[i].ID_F));
+                	 $("#personal").append(new Option(personal[i].nombre, personal[i].perfil_principal));
                 	//console.log(personal[i]);
                 	//personal[i];
                 }
-
             },
             error: function(res) {
                 console.log(res);

@@ -52,7 +52,7 @@ jQuery(function ($) {
             console.log('servicio',s);
             servicios.push(s);
         });
-
+        let empleado = $("#id_perfil").val();
         let guardar ={
             horario_mat_ini:$("#horario_mat_ini option:selected").val(),
             horario_mat_fin:$("#horario_mat_fin option:selected").val(),
@@ -60,7 +60,9 @@ jQuery(function ($) {
             horario_ves_fin:$("#horario_ves_fin option:selected").val(),
             dias_laborables:dias_laborables,
             servicios:servicios,
+            empleado:empleado
         };
+
         cargar_preferencias({
             url:'-guardar',
             guardar:guardar
@@ -78,11 +80,13 @@ jQuery(function ($) {
             success: function(res) {
                 console.log(res);
                 let servicios = res.out.lista.otFm;
+
                 let sele ='<button type="button" class="btn btn-secondary nuevo_servicio" >Nuevo servicio <i class="fa fa-toggle-off"></i> </button>';
                 console.log(d.select);
                 
                 
                 let selec=(d.select!=undefined)?d.select:[];
+                console.log(selec);
                 servicios.forEach(e => {
                     let impSelect = {
                         class:"btn-secondary",

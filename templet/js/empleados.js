@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+     
     $("#actualizar").click(function(){
         let formulario = {
             nombre:$("#nombre").val(),

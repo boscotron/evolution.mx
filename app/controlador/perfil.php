@@ -31,11 +31,11 @@ if($idUsuario!=''){
             $carga_centro = "perfil_historial.php";
             break;
             case 'preferencias-empleado':   
-                $jmyWeb ->pre(['p'=>$peticion,'t'=>'TITULO_ARRAY']);
+               // $jmyWeb ->pre(['p'=>$peticion,'t'=>'TITULO_ARRAY']);
                 if($peticion[1]!=''){
                     $accesos = ['admin','empleado'];
 
-                    $jmyWeb ->pre(['p'=>$licencia_evolution['tipo'],'t'=>'algo']);
+                    //$jmyWeb ->pre(['p'=>$licencia_evolution['tipo'],'t'=>'algo']);
 
                     $carga_centro=
                     (in_array($licencia_evolution['tipo'],$accesos))? "preferencias-empleado.php":"error_perfil.php";
@@ -44,7 +44,7 @@ if($idUsuario!=''){
 
                     }
                 }else{
-                    $jmyWeb ->pre(['Error'=>$out,'t'=>'No hay id']);
+                    //$jmyWeb ->pre(['Error'=>$out,'t'=>'No hay id']);
                 }
             break;    
             default:

@@ -46,7 +46,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
     <div class="col-md-12">
        
     <div class="container">
-    <input type = "hidden" id="id_perfil" value="<?php echo $data['id_perfil']; ?>">
+    <input type = "text" id="id_perfil" value="<?php echo $data['id_perfil']; ?>">
     <div class="row">
         <div class="col-lg-12">
             <h2>Horario y habilidades</h2>
