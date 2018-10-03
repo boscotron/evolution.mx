@@ -3304,3 +3304,46 @@ Copyright (c) 2015 Daniel Eden
   -webkit-animation-name: slideOutUp;
   animation-name: slideOutUp;
 }
+
+nav .menu {
+
+  text-align: center;
+
+  }
+
+ nav .menu li{
+
+  display: inline-block;
+  padding: 15px 29px;
+  list-style: none;
+
+   }
+
+ nav .menu li a{
+
+   text-decoration: none;
+   color: #000;
+   text-transform: uppercase;
+   font-family: 'Signika Negative', sans-serif;
+   font-size: 0.9em;
+
+   }
+
+
+  nav .menu li a:hover{
+
+     border-bottom: 2px solid #F13006;
+     border-radius: 4px;
+
+   }
+
+  /*ACÁ COMIENZA CSS PARA SUBMENU*/
+
+  .submenu{
+     display: none;
+     position: absolute;
+   }
+   
+   .linkprod:hover ~ .submenu {
+     display: block;
+   }
