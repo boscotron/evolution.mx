@@ -15,6 +15,7 @@ jQuery(function ($) {
                 console.log(res);
                 let data = res.preferencias.ver.ot[res.preferencias.ver.otKey[0]];
                 console.log('data',data);
+
                 if(data!=undefined){
                     servicios({select:JSON.parse(data.servicios)});
                     horario({
@@ -173,19 +174,24 @@ jQuery(function ($) {
             let impSelect = {
                 class:"btn-secondary",
                 icon:"fa-toggle-off",
+                fechasClass:"oculto",
             };
             selec.forEach(sel => {                
                 impSelect = (e==sel) ?{
                     class:"",
                     icon:"fa-toggle-on",
+                    fechasClass:"visible",
                 }:impSelect;
             });
-            sele = sele + ' <button type="button" class="btn '+impSelect.class+'   toogle_dias" data-dia="'+e+'" >'+e+' <i class="fa '+impSelect.icon+'"></i> </button>';
+            sele = sele + ' <button type="button" class="btn '+impSelect.class+'   toogle_dias" data-dia="'+e+'" >'+e+' <i class="fa '+impSelect.icon+'"></i> </button><div class="div_fechas_'+e+' verde div_fechas '+impSelect.fechasClass+'"><div class="grupo_fechas"><div class="form-group"><label for="horario_mat_ini">Entrrada</label><select class="form-control form-control-sm valid" > </select></div> <div class="form-group"><label for="horario_mat_ini">Salida</label><select class="form-control form-control-sm valid" > </select></div><button class="btn btn-flat btn-sm btn-outline-warning agregar_turno" style="left: 0px;"><i class="fa fa-add"></i> &nbsp;Agregar turno</button></div> </div>';
         });
         $("#botones_dias").html(sele);
         $('.toogle_dias').on('click',function(){
             $(this).toggleClass('btn-secondary','');
             $(this).toggleClass('dias_laborables','');
+            let div = $(this).data('dia');
+            $(".div_fechas_"+div).toggleClass('visible','');
+            $(".div_fechas_"+div).toggleClass('oculto','');
             $(this).find("i").toggleClass('fa-toggle-on','fa-toggle-off');
         });
     }

@@ -10,30 +10,44 @@ jQuery(function ($) {
     function select_lista_perfiles(){
         let id_perfil = $("#id_perfil").val();
         console.log(id_perfil);
-        
-        $.ajax({
-            url: location.origin + '/perfilws/lista_perfiles/',
-            type: 'post',
-            dataType: 'json',
-            success: function(res) {
-                
-                let lista = res.perfil.otFm;
-                console.log(lista);
-                let selec = $("#cita_id_perfil").val();
-                let h = '<option value="sinSeleccion" selected>Selecciona...</option>';
-                lista.forEach(e => {
-                    let s = (selec==e.ID_F)?'selected':'';
-                    h = h + '<option  value="'+e.ID_F+'" '+s+'>'+e.nombre+'</option>';
-                });
-                $("#select_lista_perfiles").html(h);
+        if(id_perfil!=undefined && id_perfil!=''){
+            $.ajax({
+                url: location.origin + '/perfilws/lista_perfiles/',
+                type: 'post',
+                dataType: 'json',
+                success: function(res) {
+                    console.log(res);
+                    
+                    let lista = res.perfil.otFm;
+                    console.log(lista);
+                    let selec = $("#cita_id_perfil").val();
+                    let h = '<option value="sinSeleccion" selected>Selecciona...</option>';
+                    lista.forEach(e => {
+                        let s = (selec==e.ID_F)?'selected':'';
+                        h = h + '<option  value="'+e.ID_F+'" '+s+'>'+e.nombre+'</option>';
+                    });
+                    $("#select_lista_perfiles").html(h);
 
-              
-            },
-            error: function(res) {
-                console.log(res);
-            },
-            data: {}
-        });
+                
+                },
+                error: function(res) {
+                    console.log(res);
+                },
+                data: {}
+            });
+        }else{
+            swal({
+                type: "error",
+                title: "Error al solicitar perfiles",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar",
+                closeOnConfirm: true
+                }).then((result)=>{
+                if(result.value){
+                   window.location = "cita";
+                   }
+               });
+        }
     }
     select_lista_perfiles();
 
@@ -44,6 +58,7 @@ jQuery(function ($) {
         console.log(valor);
 
         if (valor !== 'sinSeleccion') {
+           
             mostrarServicios();
             $("#div_paso_1").hide(50);
             $("#div_paso_2").show(200);
@@ -68,20 +83,31 @@ jQuery(function ($) {
         console.log('paso 3');
         let fecha = $("#dpt").val();
         console.log(fecha);
-        
+        let servicios_seleccionados = [];
+        $('.servicios_seleccionados').each(function(){
+
+            servicios_seleccionados.push($("option:selected",this).val());
+
+        });
+        console.log('servicios_seleccionados',servicios_seleccionados);
+            
         if(fecha!=''){
             mostrarPersonal({
-                servicios:$("#servicios option:selected").val(),
+                servicios:servicios_seleccionados,
                 fecha:fecha
             });
             $("#div_paso_2").hide(50);
             $("#div_paso_3").show(200);
         }else{
-          /* swal(
-              'No hay servicios',
-              'Pulsa el botón para continuar!',
-              'warning'
-            )*/
+            swal({
+                type: "warning",
+                title: "Selecione una fecha",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar",
+                closeOnConfirm: true
+                }).then((result)=>{
+               
+               });
         }
         
     });
@@ -95,6 +121,20 @@ jQuery(function ($) {
 
 
     function mostrarServicios(){
+        var fn_select = function (d=[]) {
+            $(".servicios_p").each(function(e){
+                let h = $(this).html();
+                if(h.trim()===''){
+                    $(".servicios_p").html('<select class="servicios_seleccionados"><option value="">Seleccionar</option></select>');
+                    for (var i = 0 ; i < d.servicios.length ; i++) {
+                        let selected  = (d.id==d.servicios[i].ID_F) ? true:false;
+                        $(this).find('select').append(new Option(d.servicios[i].nombre, d.servicios[i].ID_F,0,selected));
+                    }  
+                    $(".servicios_p").addClass('servicios_final');
+                    $(".servicios_final").removeClass('servicios_p');
+                }
+            });
+        }
         $.ajax({
             url: location.origin + '/serviciows/',
             type: 'post',
@@ -104,22 +144,27 @@ jQuery(function ($) {
                 $("#servicios").html('');
                 servicios = res.out.lista.otFm;
                 console.log(servicios);
-                
-                /*servicios.forEach(element => {
-                    $("#servicios").append(new Option(element, element));
-                });*/
                 if(servicios!=null){
+                    $("#lista_servicios").html('<div id="listado"><p class="servicios_p"></p></div><p><button class="btn btn-info btn-sm btn-flat" id="agregar_servicio">Agregar servicio</button></p>');
+                    
+                    $("#agregar_servicio").on('click', function(){
+                        $.when($("#listado").append('<p class="servicios_p"></p>')).done(function () {
+                            fn_select({servicios:servicios,id:id});
+                        });   
+
+                    });
                     let id = $("#cita_nombre").val();
-                    for (var i = 0 ; i < servicios.length ; i++) {
-                        let selected  = (id==servicios[i].ID_F) ? true:false;
-                        $("#servicios").append(new Option(servicios[i].nombre, servicios[i].ID_F,0,selected));
-                    }
+                    fn_select({servicios:servicios,id:id});
                 }else{ 
-                     /**swal(
-                      'Debes seleccionar una fecha!',
-                      'Pulsa el botón para continuar!',
-                      'warning'
-                    )*/
+                    swal({
+                        type: "warning",
+                        title: "Selecione una fecha",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar",
+                        closeOnConfirm: true
+                        }).then((result)=>{
+                       
+                       });
                 }
 
             },
@@ -141,6 +186,8 @@ jQuery(function ($) {
     }*/
 
     function mostrarPersonal(data){
+        console.log(data);
+        
     	$.ajax({
             url: location.origin + '/personalws/',
             type: 'post',
@@ -260,13 +307,21 @@ jQuery(function ($) {
         });
     }
 
+
+
+	$("#dpt").datepicker({
+        minDate:0,
+    });
+   
+
+
     $("#btn_guardar").click(function(){
        
        guardarCita();
 
     });
 
-    function alerta(mensaje){
+    function alerta(d=[]){
         //window.location:cita;
          swal({
              type: "success",

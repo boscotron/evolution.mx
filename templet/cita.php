@@ -1,18 +1,12 @@
 <input type="hidden" id="cita_fecha" value="<?php echo $data['editar']['fecha']; ?>" >
 <input type="hidden" id="cita_horario" value="<?php echo $data['editar']['horario']; ?>" >
+<input type="hidden" id="id_perfil" value="<?php echo $data['id_perfil']; ?>" >
 <input type="hidden" id="cita_id_perfil" value="<?php echo $data['editar']['id_perfil']; ?>" >
 <input type="hidden" id="cita_persona" value="<?php echo $data['editar']['persona']; ?>" >
 <input type="hidden" id="cita_nombre" value="<?php echo $data['editar']['nombre']; ?>" >
 
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-      
-    <script type="text/javascript">
-	$(document).ready(function() {
-		$("#dpt").datepicker({minDate:0});
-	});
-	</script>
+
 <div id="main"><!-- Main -->
         	<div class="hr-invisible-small"></div>
         	<section class="fullwidth-background">
@@ -80,18 +74,8 @@
                                 </div>
                             </div>
                             <div class="column dt-sc-one-half">
-                                <div class="" data-delay="300" data-animation="fadeIn">
-                                    <p><select id="servicios">
-                                            <option value="">Seleccionar</option>
-                                            <!--<option value="">Cortes</option>
-                                            <option value="">Tintes</option>
-                                            <option value="">Mechas</option>
-                                            <option value="">Rayos</option>
-                                            <option value="">Manicure</option>
-                                            <option value="">Pedicure</option>
-                                            <option value="">Maquillaje</option>
-                                            <option value="">Tratamientos </option>-->
-                                        </select></p>
+                                <div class="" data-delay="300" data-animation="fadeIn" id="lista_servicios">
+                                    
                                 </div>
                             </div>                                                                                             
                             <div class="form-row aligncenter " data-delay="7 00" data-animation="fadeIn">

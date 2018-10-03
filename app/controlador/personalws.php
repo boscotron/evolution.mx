@@ -3,7 +3,7 @@ $session = $jmyWeb->session();
  
 $out['busqueda']=$jmy->ver([	
     "TABLA"=>"personal",
-    "LIKE_V"=>[$_POST['servicios']],
+    "LIKE_V"=>$_POST['servicios'],
 ]);
 
  $out['resultado']=$jmy->ver([	

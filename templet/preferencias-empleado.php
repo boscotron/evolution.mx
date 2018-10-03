@@ -1,8 +1,8 @@
 <style>
 .preferencias-empledo, .form-group{
-    width: 20%;
+    width: 31%;
     float: left;
-    margin: 0 15%;
+    margin: -0px 5%;
     min-width: 60px;
 }
 .borde-redondeado{
@@ -26,7 +26,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
 }
 
 .btn-group-vertical-dias {
-    width:40%;
+    width:100%;
 }
 
 .btn-group-vertical-servicios {
@@ -39,6 +39,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
     position: absolute;
     right: 10px;
     top: 12px;
+}
+.div_fechas{
+    padding:  0;
+    /* margin:  0 !important; */
+    margin-left: -16%;
+    width:  100%
+}
+.oculto{
+    display:none;
+}
+.visible{
+    display:block;
+}
+.verde {
+    background-color:#006400;
+    color:#fff;
 }
 </style>
 
