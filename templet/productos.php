@@ -37,56 +37,26 @@
     <p class="card-text">
         <div class="row" id="cel_formulario">
             <div class="column dt-sc-one-third">
-            <input name="file-input" id="file-input" type="file" />
-            <br />
-            <img id="imgSalida" width="100%" height="100%" src="" />
-            <script src="//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js"></script>
-           <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-                <script>
-                    $(window).load(function(){
-                    $(function() {
-                    $('#file-input').change(function(e) {
-                        addImage(e); 
-                        });
-
-                        function addImage(e){
-                        var file = e.target.files[0],
-                        imageType = /image.*/;
-                    
-                        if (!file.type.match(imageType))
-                        return;
-                    
-                        var reader = new FileReader();
-                        reader.onload = fileOnload;
-                        reader.readAsDataURL(file);
-                        }
-                    
-                        function fileOnload(e) {
-                        var result=e.target.result;
-                        $('#imgSalida').attr("src",result);
-                        }
-                    });
-                    });
-                </script>
+                <img src=".jpg" alt="Producto">
             </div>
             <div class="column dt-sc-one-third">
                     <h3>Nombre de Producto  <INPUT type="text" name="NomP" size="25"></h3>
-                    <h3>Codigo de Producto  <INPUT type="text" name="Codigo" size="25"></h3> 
-                    <h3>Precio <INPUT type="text" name="Precio" size="25"></h3> 
+                <h3>Codigo de Producto  <INPUT type="text" name="Codigo" size="25"></h3> 
+                <h3>Precio <INPUT type="text" name="Precio" size="25"></h3> 
                     <h3>Descripción <TEXTAREA rows="5" cols="30" name="txtsugerencias"></TEXTAREA><BR></h3> 
-                    </div>
-                        <div>
-                            <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br>
-                            <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
-                            <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
-                            <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
-                         </div>
-                    </div>
-                </p>
-                <a href="#" class="btn btn-primary" id="editor_cerrar">Cerrar</a>
-                <a href="#" class="btn btn-primary" id="editor_guardar">Guardar cambios</a>
-  <     /div>
-    </div>
+                </div>
+                <div>
+                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br>
+                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
+                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
+                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
+                </div>
+        </div>
+    </p>
+    <a href="#" class="btn btn-primary" id="editor_cerrar">Cerrar</a>
+    <a href="#" class="btn btn-primary" id="editor_guardar">Guardar cambios</a>
+  </div>
+</div>
 </div>
 
 
@@ -104,11 +74,10 @@
     <div class="hr-invisible-very-small"></div>
     <div class="clear"></div>
     <section id="primary" class="content-full-width"><!-- Primary Section -->
-       
         <div class="fullwidth-section">
             <h2 class="border-title aligncenter"> Our Beauty Gallery </h2>
 
-            <?php echo ($this->modoEditor())?'<button class="marca_abrir">Nueva Marcas</button>':''; ?>
+<?php echo ($this->modoEditor())?'<button class="marca_abrir">Nueva Marcas</button>':''; ?>
             
            
             <div class="hr-invisible-very-small"></div>
