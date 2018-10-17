@@ -309,9 +309,9 @@ jQuery(function ($) {
 
 
 
-	$("#dpt").datepicker({
+	/*$("#dpt").datepicker({
         minDate:0,
-    });
+    });*/
    
 
 

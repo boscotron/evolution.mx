@@ -6,6 +6,14 @@
 <input type="hidden" id="cita_nombre" value="<?php echo $data['editar']['nombre']; ?>" >
 
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+      
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#dpt").datepicker({minDate:0});
+    });
+</script>
 
 <div id="main"><!-- Main -->
         	<div class="hr-invisible-small"></div>
@@ -70,10 +78,11 @@
                                 <p>
                                     <input id="altField" type="hidden" />
                                     <input id="dpt" type="text" placeholder="Fecha de la cita" value="" name="dpt"><span class="icons fa fa-calendar"></span></p>
-                                    <p>Selecciona el servicio</p>                                                        
+                                                                                            
                                 </div>
                             </div>
                             <div class="column dt-sc-one-half">
+                                <p>Selecciona el servicio:</p>
                                 <div class="" data-delay="300" data-animation="fadeIn" id="lista_servicios">
                                     
                                 </div>
