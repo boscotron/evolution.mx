@@ -9,6 +9,13 @@ switch($peticion[0]):
         $jmyWeb->guardar_session(['instalar'=>true]);
     break;
 
+    case 'productos':
+        $out['productos'] = $jmy->ver([
+            "TABLA"=>'productos',
+            "COL"=>['nombre','foto_producto'],
+            "SALIDA"=>'ARRAY',
+            ]);
+    break;
     case 'usuarios':
     
         $out['usuarios'] = $jmy->ver([

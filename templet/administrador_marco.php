@@ -4,6 +4,7 @@
             <ul>
                 <li><a href="<?php $this->url_inicio(); ?>administrador">Dashboard</a></li>
                 <li><a href="<?php $this->url_inicio(); ?>administrador/usuarios">Usuarios</a></li>
+                <li><a href="<?php $this->url_inicio(); ?>administrador/productos">Productos</a></li>
         </nav>
     </div>
 </div>

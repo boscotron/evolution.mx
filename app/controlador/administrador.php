@@ -7,6 +7,13 @@ switch($peticion[0]):
         $jmyWeb->guardar_session(['instalar'=>true]);
     break;
 
+    case 'productos':      
+        $jmyWeb->cargar_css(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"]);    
+        $jmyWeb->cargar_js(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"]);    
+        $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(["return"=>true])."js/administrador_productos.js?f=".date('U')]);    
+        $url_marco = 'administrador_productos.php';
+    break;
+
     case 'usuarios':      
         $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(["return"=>true])."js/administrador_usuarios.js?f=".date('U')]);
         //$jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(['return'=>1])."js/perfil.js?d=".date('U')]);

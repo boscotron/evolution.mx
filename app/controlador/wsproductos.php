@@ -131,12 +131,19 @@
             if($jmyWeb->modoEditor()){
                 $out['id']=$_POST['id_producto'];
 
-                if($out['id']!=''){ 
-                    $jmy->borrar([	
-                        "TABLA"=>$config['tabla'], 
-                        "ID_F"=>$out['id'],
-						"COLUMNAS"=>["nombre","nombreEstado","foto_producto","codigo","id_marca","precio","codigoEstado","id_marcaEstado","precioEstado"], 
-					]);
+                if($out['id']!=''){
+                    $out['ver'] = $jmy->ver([	
+                        "TABLA"=>$config['tabla'],
+                        "ID_F"=>$out['id'], 
+                    ]); 
+                    if(is_array($out['ver']['ot'][$out['id']])){
+                        $out['columnas'] = array_keys($out['ver']['ot'][$out['id']]);
+                        $jmy->borrar([	
+                            "TABLA"=>$config['tabla'], 
+                            "ID_F"=>$out['id'],
+                            "COLUMNAS"=>$out['columnas'], 
+                        ]);
+                    }
                 }
 
                 if($out['id']!=''){

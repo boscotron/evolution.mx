@@ -37,7 +37,7 @@ jQuery(function ($) {
         console.log('producto_borrar',d);
         producto_lista();
         $("#productos_ventana").hide(100);
-        
+          
     }
 
 
@@ -206,7 +206,8 @@ jQuery(function ($) {
         let datos = d.out.ver.ot[page];
         console.log('datos',datos);
         if(datos!=undefined){
-            $("#foto_producto").attr('src',datos.foto_producto);
+            let foto = (datos.foto_producto!=undefined && datos.foto_producto!='')?datos.foto_producto:'http://local.evolution.mx/templet/images/portfolio-images/portfolio-img1.jpg';
+            $("#foto_producto").attr('src',foto);
             $("#NomP").val(datos.nombre);
             $("#pnt_nombre_producto").html('Editando el producto '+datos.nombre);
             /* ...... */

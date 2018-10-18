@@ -73,7 +73,7 @@
         </div>
     </p>
     <a href="#" class="btn btn-primary" id="editor_cerrar">Cerrar</a>
-    <a href="#" class="btn btn-warning" id="producto_borrar">Borrar producto</a>
+    <a href="#" class="btn btn-warning" id="producto_borrar" data-idproducto="">Borrar producto</a>
     <a href="#" class="btn btn-primary" id="editor_guardar">Guardar cambios</a>
   </div>
 </div>
