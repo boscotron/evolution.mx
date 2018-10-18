@@ -587,21 +587,7 @@ jQuery(document).ready(function($) {
 				});
 				
 			}
-			
-			if($container.parents('#primary').find("div.dt-sc-sorting-container").length){
-				$container.parents('#primary').find("div.dt-sc-sorting-container a").on('click', function(){
-					$width = $container.hasClass("no-space") ? 0 : 34;				
-					$container.parents('#primary').find("div.dt-sc-sorting-container a").removeClass("active-sort");
-					var selector = $(this).attr('data-filter');
-					$(this).addClass("active-sort");
-					$container.isotope({
-						filter: selector,
-						masonry: { gutterWidth: $width },
-						animationOptions: { duration:750, easing: 'linear',  queue: false }
-					});
-				return false;	
-				});
-			}
+		
 		
 		}
 		//Portfolio isotope End			

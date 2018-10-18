@@ -1,5 +1,5 @@
 <?php $page= "productos"; ?>
-<?php echo ($this->modoEditor())?'<input type="hidden" value="1" id="modoEditor">':''; ?>
+<?php echo ($this->modoEditor())?'<input type="hidden" value="1" id="modoEditor"><input type="hidden" value="" id="id_marca">':''; ?>
 <link href="<?php $this->url_templet();?>css/prettyPhoto.css" rel="stylesheet" type="text/css" /> 
 
 <div id="marcas_ventana" style="position: fixed;
@@ -30,30 +30,50 @@
 <div class="bsk_editar_producto editor_ventana" style="    position: fixed;
     z-index: 10000;
     width: 60%;
-    margin: 0 20%;">
+    margin: 0 20%;" id="productos_ventana">
 <div class="card " style="width: 100%;">
   <div class="card-body">
-    <h5 class="card-title">Editando el producto {NOMBRE}</h5>
+    <h5 class="card-title" id="pnt_nombre_producto">Editando el producto {NOMBRE}</h5>
     <p class="card-text">
         <div class="row" id="cel_formulario">
-            <div class="column dt-sc-one-third">
-                <img src=".jpg" alt="Producto">
+            <div class="row">
+                <div class="col-3">
+                    Nombre de Producto
+                </div>
+                <div class="col-6">
+                    <input type="text" name="NomP" id="NomP" size="25">
+                </div>
+                <div class="col-3">
+                <label for="NomPestado"><input type="checkbox" name="NomPestado" id="NomPestado" value="visible">Visible</label>
+                </div>
             </div>
-            <div class="column dt-sc-one-third">
-                    <h3>Nombre de Producto  <INPUT type="text" name="NomP" size="25"></h3>
-                <h3>Codigo de Producto  <INPUT type="text" name="Codigo" size="25"></h3> 
-                <h3>Precio <INPUT type="text" name="Precio" size="25"></h3> 
-                    <h3>Descripción <TEXTAREA rows="5" cols="30" name="txtsugerencias"></TEXTAREA><BR></h3> 
+
+            <div class="row" id="productos_detalles_editar" >
+                <div class="column dt-sc-one-third">
+                    <div id="pnt_foto_producto">
+                    </div>
+                   
+                <br />
+                <img id="foto_producto" width="100%" height="100%" src="" />
+            
+                </div>
+                <div class="column dt-sc-one-third">
+                    <h3>Codigo de Producto  <input type="text" name="Codigo" id="Codigo" size="25"></h3> 
+                    <h3>Precio <input type="text" name="Precio" id="Precio" size="25"></h3> 
+                    <h3>Descripción <textarea rows="5" cols="30" name="txtsugerencias" id="txtsugerencias"></textarea><BR></h3> 
                 </div>
                 <div>
-                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br>
-                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
-                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
-                    <h3><INPUT type="radio" name="estado" value="visible">Visible</h3><br><br><br>
+                    <h3></h3><br><br>
+                    <h3><input type="radio" name="estado" id="estado" value="visible">Visible</h3><br><br><br>
+                    <h3><input type="radio" name="estado" id="estado" value="visible">Visible</h3><br><br><br>
+                    <h3><input type="radio" name="estado" id="estado" value="visible">Visible</h3><br><br><br>
                 </div>
+            </div>
+
         </div>
     </p>
     <a href="#" class="btn btn-primary" id="editor_cerrar">Cerrar</a>
+    <a href="#" class="btn btn-warning" id="producto_borrar">Borrar producto</a>
     <a href="#" class="btn btn-primary" id="editor_guardar">Guardar cambios</a>
   </div>
 </div>
@@ -77,21 +97,17 @@
         <div class="fullwidth-section">
             <h2 class="border-title aligncenter"> Our Beauty Gallery </h2>
 
-<?php echo ($this->modoEditor())?'<button class="marca_abrir">Nueva Marcas</button>':''; ?>
+<?php echo ($this->modoEditor())?'<button class="marca_abrir">Nueva Marcas</button><button class="actualizar_productos"><i class="fa fa-refresh"></i> </button>':''; ?>
             
            
             <div class="hr-invisible-very-small"></div>
             <div class="container">
                 <div class="dt-sc-sorting-container" id="botones_marcas">
                     
-                    <?php 
-                    for ($i=0; $i <count($categorias) ; $i++) { 
-                        echo '<a data-filter=".'.$categorias[$i].'"  href="#"  class="btn-eff3  active-sort jmy_web_div" data-page="'.$page.'" id="titulo_categoria_'.$i.'" data-editor="no">'.$this->pnt('titulo_categoria_'.$i,$categorias[$i],['return'=>true]).' </a> ';
-
-                        echo ($this->modoEditor())? '<a href="" class="editar_marca" data-idmarca="" ><i class="fa fa-edit"></i></a>':'';
-                    }?>
+                   
                 </div>
             </div>
+
             <div class="clear"></div>
             <?php
                 /*for ($i=0; $i < count($categorias) ; $i++) { ?>
@@ -99,25 +115,8 @@
                      <div class="jmy_web_contador" data-page="<?php echo $page; ?>" id="no_imagenes_<?php echo $i; ?>" data-value="<?php $this->pnt('no_imagenes_'.$i,'2'); ?>" data-titulo="Número de productos en la categoría <?php echo $categorias[$i]; ?>"></div>
 
                 <?php }*/ ?>
-            <div class="dt-sc-portfolio-container isotope no-space"> <!-- **dt-sc-portfolio-container Starts Here** -->
-                <?php
-                for ($i=0; $i <5 ; $i++) {                     
-                    for ($o=0; $o <  $this->pnt('no_imagenes_'.$i,'2',['return'=>true]) ; $o++) { ?>
-                    <div class="portfolio dt-sc-one-fourth column no-space todos <?php echo $categorias[$i]; ?>">
-                        <figure>
-                            <img src="<?php $this->url_templet();?>images/portfolio-images/portfolio-img1.jpg" alt="portfolio1" title="">
-                            <figcaption>
-                                <div class="fig-content">
-                                    <ul class="cart-whislist">
-                                        <li><a href="images/portfolio-images/portfolio-img1.jpg" data-gal="prettyPhoto[gallery]" class="button wpshop-cart-button add_to_cart_button product_type_simple"><i class="fa fa-search-plus"></i></a></li>
-                                        <li><a href="portfolio-details.html" ><i class="fa fa-external-link"></i></a></li>
-                                        <li><a href="" class="editor_abrir" ><i class="fa fa-edit"></i></a></li>
-                                    </ul>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    </div>
-                <?php } }  ?>
+            <div class="dt-sc-portfolio-container isotope no-space" id="listado_productos"> <!-- **dt-sc-portfolio-container Starts Here** -->
+                
 
             </div> <!-- **dt-sc-portfolio-container Ends Here** -->      
         </div>

@@ -267,7 +267,7 @@ class JMY3WEB extends JMY3MySQL{
 		return $result;
 	}
 	public function session_activa($d=[],$logout=0){ 
-		if($logout){unset($_SESSION);session_destroy();}else{
+		if($logout){$_SESSION=[];setcookie('SE', '', time() - 42000, '/'); setcookie(session_name(), '', time() - 42000, '/'); session_destroy();}else{
 		if($d[0]!=''&&$d[1]!=''){
 			$d['id']=$d[0];$d['token']=$d[1];unset($d[0]);unset($d[1]);
 			$d['api']="e2ad454bea7d919f0fc411a8b885580c";
@@ -275,12 +275,28 @@ class JMY3WEB extends JMY3MySQL{
 			$d['datos_device']=true;
 			$d['apis'][$d['api']]=["nombre"=>"JmyWeb","version"=>"1.0"];
 			$d['url']='https://comsis.mx/api/auth/v1/token';
+			
+			setcookie('SE', json_encode($d), time() + 30 * 24 * 60 * 60); // 30 días de 
+			$mensaje = 'Número de visitas: ' . $_COOKIE['contador']; 
+			
 			$o=(is_array($_SESSION['jmysa']))?$_SESSION['jmysa']:json_decode($this->s2($d),1);		
+			
 			$_SESSION['jmysa']=(is_array($_SESSION['jmysa']))?$o:["user"=>$o['out']['userData'],"devices"=>$o['out']['devices'],"body"=>$o['out']['jmyapi']['body'],"permiso"=>$o['out']['jmyapi']['body']['permisos_api']['PERMISOS']];
-			}$_SESSION['JMY3WEB'][DOY]=($_SESSION['jmysa']['permiso']>2)?1:0;
+			
+		}else{
+			if($_SESSION['jmysa']['permiso']=='' && $_COOKIE['SE']!=''){
+				
+				$_SESSION['jmysa']= json_decode(
+					$this->s2(
+						json_encode($_COOKIE['SE'],1)
+					),1);
+			}
+
 		}
+		$_SESSION['JMY3WEB'][DOY]=($_SESSION['jmysa']['permiso']>2)?1:0;
 		return $_SESSION['jmysa'];
-	}	
+	}}	
+
 	public function session($d=null){	
 		return $this->session_activa($d);  
 	} 

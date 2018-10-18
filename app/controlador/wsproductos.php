@@ -47,7 +47,7 @@
                 $out['error']='Sessión no iniciada';
             }
         break;  
-        case 'producto':
+        case 'productos':
             if($jmyWeb->modoEditor()){
                 if($_POST['nombre']!='' && $_POST['id_marca']!=''){
                     $out['id']=($_POST['id']!='')?$_POST['id']:uniqid();
@@ -84,46 +84,70 @@
                 $out['error']='Sessión no iniciada';
             }
             break;      
-             
+            
+        case 'productos-lista':
+            $out['ver'] = $jmy->ver([	
+                "TABLA"=>$config['tabla'],
+                "COL"=>['id_marca'] 
+            ]);
+            $out['ver'] = $jmy->ver([	
+                "TABLA"=>$config['tabla'],
+                "ID"=>$out['ver']['otKey'], 
+                "SALIDA"=>'ARRAY', 
+            ]);
+        break;      
         case 'producto-editar':
+            $out['hola']='mundo';
             if($jmyWeb->modoEditor()){
-                if($_POST['nombre']!='' && $_POST['id_producto']!=''){
-                    
+                $out['id']=($_POST['id_producto']!='')?$_POST['id_producto']:uniqid();
+                if($_POST['guardar']['nombre']!=''){ 
 
-
-
+                    if($_POST['id_marca']!='')
+                        $_POST['guardar']['id_marca'] = $_POST['id_marca'];
 
                     $out['g']= $jmy->guardar([	
                             "TABLA"=>$config['tabla'], 
-                            "ID_F"=>$_POST['id_producto'], 
+                            "ID_F"=>$out['id'],
                             "A_D"=>TRUE, 
-                            "GUARDAR"=>[
-                                'nombre_producto'=>$_POST['nombre'],
-                                'codigo'=>substr($_POST['codigo'],0,5),  // Corata a 5 caracteres el código
-
-                            ],
+                            "GUARDAR"=>$_POST['guardar'],
                         ]);
                 }
-                if($out['id']!='' ||  $_POST['id']!=''){
+
+                if($out['id']!=''){
                     $out['ver'] = $jmy->ver([	
                         "TABLA"=>$config['tabla'],
-                        "ID_F"=>($_POST['id']!='')?$_POST['id']:$out['id'], 
+                        "ID_F"=>$out['id'], 
                     ]);
                 }
-                if($_POST['nombre']=='' && $_POST['id_marca']!=''){
-                    $tmp = $jmy->ver([	
-                        "TABLA"=>$config['tabla'],
-                        "COL"=>['id_marca'],
-                        "V"=>$_POST['id_marca'],
-                        //"ID_F"=>($_POST['id']!='')?$_POST['id']:$out['id'], 
-                    ]);
-                
+           
+
+
+            }else{
+                $out['error']='Sessión no iniciada';
+            }
+        break;      
+        case 'producto-borrar':
+            $out['fn']='producto-borrar';
+            if($jmyWeb->modoEditor()){
+                $out['id']=$_POST['id_producto'];
+
+                if($out['id']!=''){ 
+                    $jmy->borrar([	
+                        "TABLA"=>$config['tabla'], 
+                        "ID_F"=>$out['id'],
+						"COLUMNAS"=>["nombre","nombreEstado","foto_producto","codigo","id_marca","precio","codigoEstado","id_marcaEstado","precioEstado"], 
+					]);
+                }
+
+                if($out['id']!=''){
                     $out['ver'] = $jmy->ver([	
                         "TABLA"=>$config['tabla'],
-                        "ID_F"=>$tmp['otKey'], 
+                        "ID_F"=>$out['id'], 
                     ]);
-                    
                 }
+           
+
+
             }else{
                 $out['error']='Sessión no iniciada';
             }
