@@ -46,6 +46,7 @@
                 <div class="col-3">
                 <label for="NomPestado"><input type="checkbox" name="NomPestado" id="NomPestado" value="visible">Visible</label>
                 </div>
+                
             </div>
 
             <div class="row" id="productos_detalles_editar" >
@@ -57,17 +58,40 @@
                 <img id="foto_producto" width="100%" height="100%" src="" />
             
                 </div>
-                <div class="column dt-sc-one-third">
-                    <h3>Codigo de Producto  <input type="text" name="Codigo" id="Codigo" size="25"></h3> 
-                    <h3>Precio <input type="text" name="Precio" id="Precio" size="25"></h3> 
-                    <h3>Descripción <textarea rows="5" cols="30" name="txtsugerencias" id="txtsugerencias"></textarea><BR></h3> 
-                </div>
-                <div>
-                    <h3></h3><br><br>
-                    <h3><input type="radio" name="estado" id="estado" value="visible">Visible</h3><br><br><br>
-                    <h3><input type="radio" name="estado" id="estado" value="visible">Visible</h3><br><br><br>
-                    <h3><input type="radio" name="estado" id="estado" value="visible">Visible</h3><br><br><br>
-                </div>
+                    <div class="column dt-sc-one-third">
+                        <div class="row">
+                        <div class="col-3">
+                            Codigo de Producto
+                        </div>
+                        <div class="col-6">
+                            <input type="text" name="NomP" id="NomP" size="25">
+                        </div>
+                        <div class="col-3">
+                        <label for="NomPestado"><input type="checkbox" name="NomPestado" id="NomPestado" value="visible">Visible</label>
+                        </div>
+                        </div> 
+                        <div class="col-3">
+                            Precio
+                        </div>
+                        <div class="col-6">
+                            <input type="text" name="NomP" id="NomP" size="25">
+                        </div>
+                        <div class="col-3">
+                        <label for="NomPestado"><input type="checkbox" name="NomPestado" id="NomPestado" value="visible">Visible</label>
+                        </div>
+                        <div class="col-3">
+                            Descripción
+                        </div>
+                        <div class="col-6">
+                            <input type="text" name="NomP" id="NomP" size="25">
+                        </div>
+                        <div class="col-3">
+                        <label for="NomPestado"><input type="checkbox" name="NomPestado" id="NomPestado" value="visible">Visible</label>
+                        </div>
+                        </div> 
+                    </div>
+                    
+               
             </div>
 
         </div>
