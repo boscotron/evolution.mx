@@ -29,7 +29,7 @@
 
 <div class="bsk_editar_producto editor_ventana" style="    position: fixed;
     z-index: 10000;
-    width: 60%;
+    width: 40%;
     margin: 0 20%;" id="productos_ventana">
 <div class="card " style="width: 100%;">
   <div class="card-body">
@@ -46,52 +46,45 @@
                 <div class="col-3">
                 <label for="NomPestado"><input type="checkbox" name="NomPestado" id="NomPestado" value="visible">Visible</label>
                 </div>
-                
-            </div>
-
-            <div class="row" id="productos_detalles_editar" >
-                <div class="column dt-sc-one-third">
-                    <div id="pnt_foto_producto">
-                    </div>
-                   
-                <br />
-                <img id="foto_producto" width="100%" height="100%" src="" />
-            
-                </div>
-                    <div class="column dt-sc-one-third">
-                        <div class="row">
-                        <div class="col-3">
+                <div class="col-3">
                             Codigo de Producto
                         </div>
                         <div class="col-6">
-                            <input type="text" name="NomP" id="NomP" size="25">
+                            <input type="text" name="CodP" id="CodP" size="25">
                         </div>
                         <div class="col-3">
-                        <label for="NomPestado"><input type="checkbox" name="NomPestado" id="NomPestado" value="visible">Visible</label>
+                        <label for="CodPestado"><input type="checkbox" name="CodPestado" id="CodPestado" value="visible">Visible</label>
                         </div>
                         </div> 
                         <div class="col-3">
                             Precio
                         </div>
                         <div class="col-6">
-                            <input type="text" name="NomP" id="NomP" size="25">
+                            <input type="text" name="PreP" id="PreP" size="25">
                         </div>
                         <div class="col-3">
-                        <label for="NomPestado"><input type="checkbox" name="NomPestado" id="NomPestado" value="visible">Visible</label>
+                        <label for="PrePestado"><input type="checkbox" name="PrePestado" id="PrePestado" value="visible">Visible</label>
                         </div>
                         <div class="col-3">
                             Descripción
                         </div>
                         <div class="col-6">
-                            <input type="text" name="NomP" id="NomP" size="25">
+                            <input type="text" name="DesP" id="DesP" size="25">
                         </div>
                         <div class="col-3">
-                        <label for="NomPestado"><input type="checkbox" name="NomPestado" id="NomPestado" value="visible">Visible</label>
+                        <label for="DesPestado"><input type="checkbox" name="DesPestado" id="DesPestado" value="visible">Visible</label>
                         </div>
-                        </div> 
+            </div>
+            </div>
+
+            <div class="row" id="productos_detalles_editar" >
+                <div class="column dt-sc-one-third">
+                    <div id="pnt_foto_producto">
                     </div>
-                    
-               
+                <br />
+                <img id="foto_producto" width="100%" height="100%" src="" />
+                </div>
+ 
             </div>
 
         </div>
