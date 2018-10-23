@@ -1,5 +1,7 @@
 jQuery(function ($) {  
+    function urlFr(a){return a.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "-").replace(/^-+|-+$/g, '')};
 
+    
     function lista_productos(){
         
         $.ajax({
@@ -9,14 +11,15 @@ jQuery(function ($) {
             success: function(res) {
                 console.log(res);
                 let lista = res.productos.otFm;
-
-                
+                let url = '';                
                 let data = [];
                 
                 lista.forEach(e => {
+
+                    url = '<a href="'+location.origin+'/productos/'+e.ID_F+'/'+urlFr(e.nombre)+'" class="btn btn-round btn-sm btn-info"><i class="fa fa-link"></i></a>';       
                     let foto=(e.foto_producto!=undefined && e.foto_producto!='')?e.foto_producto:'http://local.evolution.mx/templet/images/portfolio-images/portfolio-img1.jpg';
                     foto = '<img src="'+foto+'" width="30" >';
-                    data.push([e.ID_F,e.nombre,foto]);
+                    data.push([e.ID_F,e.nombre,foto,url]);
                 });
                 console.log(data);
                /* https://datatables.net/manual/index */
@@ -25,7 +28,8 @@ jQuery(function ($) {
                     columns: [
                         { title: "Id" },
                         { title: "Nombre" },
-                        { title: "Foto" }
+                        { title: "Foto" },
+                        { title: "Editar" }
                     ]
                 } );        
             },

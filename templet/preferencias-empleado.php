@@ -56,6 +56,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
     background-color:#006400;
     color:#fff;
 }
+.toogle_dias{
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+}
 </style>
 
 <div class="row">
@@ -70,66 +73,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <center>
-            <form class="contact-form" method="post" name="enqform" action="php/send.php">
             
-                <div class="col-lg-10">
-                    <div  data-delay="300" data-animation="fadeIn">
-                       
-                        <div class="row">
-                            <div class="col-md-6 fondo-amanecer borde-redondeado">
-                                <h4>Matutino</h4>
-                                <div class="form-group">
-                                    <label for="horario_mat_ini">Inicio</label>
-                                    <select class="form-control form-control-sm" id="horario_mat_ini">
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="horario_mat_fin">final</label>
-                                    <select class="form-control form-control-sm" id="horario_mat_fin">
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6 fondo-atardecer borde-redondeado">
-                                <h4>Vespertino</h4>
-                                <div class="form-group">
-                                    <label for="horario_ves_ini">Inicio</label>
-                                    <select class="form-control form-control-sm" id="horario_ves_ini">
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="horario_ves_fin">final</label>
-                                    <select class="form-control form-control-sm" id="horario_ves_fin">
-                                    </select>
-                                </div>
-                        
+            <div class="col-lg-10">
+                <div  data-delay="300" data-animation="fadeIn">
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3>Dias laborables</h3>
+                            <div class="btn-group-vertical btn-group-vertical-dias " role="group" id="botones_dias" aria-label="Basic example">
+                            
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3>Dias laborables</h3>
-                                <div class="btn-group-vertical btn-group-vertical-dias " role="group" id="botones_dias" aria-label="Basic example">
-                               
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h3>Servicios</h3>
-                                <div class="btn-group-vertical btn-group-vertical-servicios" role="group" id="botones_servicios" aria-label="Basic example">
-                               
-                                </div>
+                        <div class="col-md-6">
+                            <h3>Servicios</h3>
+                            <div class="btn-group-vertical btn-group-vertical-servicios" role="group" id="botones_servicios" aria-label="Basic example">
+                            
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-10">
-                    
-                </div>
+            </div>
+            <div class="col-lg-10">
                 
-                <div class="col-lg-10">
-                    <button type="button" id="boton_guardar" class="btn btn-success">Guardar</button>
-                </div>
-            </form>
-            </center>
+            </div>
+            
+            <div class="col-lg-10">
+                <button type="button" id="boton_guardar" class="btn btn-success">Guardar</button>
+            </div>
             <div id="ajax_contactform_msg"> </div>	
         </div>
         
