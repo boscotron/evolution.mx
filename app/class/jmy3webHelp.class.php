@@ -297,6 +297,13 @@ class JMY3WEB extends JMY3MySQL{
 		return $_SESSION['jmysa'];
 	}}	
 
+	public function modulos($d=[]){	
+		$out =  $this->session_activa($d);  
+		return [
+			"modulos"=>$out['body']['api_web']['json']['modulos'],
+			"modulos_niveles"=>$out['body']['api_web']['json']['modulos_niveles'],
+		];
+	}
 	public function session($d=null){	
 		return $this->session_activa($d);  
 	} 

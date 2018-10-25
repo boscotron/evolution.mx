@@ -3,8 +3,8 @@ function jmy_web_guardar(d) {
 	d = d.data;
 	jQuery(function ($) { 
 		if (d.id != '') {
-			var v = (d.valor!=undefined)?d.valor:$("#" + d.id).html();
-			var g = {
+			let v = (d.valor!=undefined)?d.valor:$("#" + d.id).html();
+			let g = {
 				valor: v,
 				pagina: d.page,
 				tabla: d.tabla,
@@ -38,42 +38,45 @@ function jmy_web_guardar(d) {
 }
 
 function botones(d = []) {
-	var left = d.pageX;
-	var top = d.pageY + 30;
+	let left = d.pageX;
+	let top = d.pageY + 30;
 	console.log(d);
 	d = d.data;
-	$("#jmy_web").html("");
-	$("#jmy_web").addClass("jmyweb-botones");
-	$("#jmy_web").css({
-		'left': left + 'px',
-		'top': top + 'px',
-		'z-index': '10000',
-		'position': 'absolute',
-		'border-radius': '5px',
-		'padding': '5px',
-		'background-color': 'rgba(200,200,200,0.65)'
-	});
-	var href = ($("#" + d.id).attr("href") != undefined) ? $("#" + d.id).attr("href") : false;
-	var html = ''; 
-	var btne = '';
-	if(href!==false){		
-		html = html + '<input type="text" value="'+href+'" id="jmy_web_href" placeholder="href:#"> ';
-		btne = btne + '<a href="'+href+'" style="'+style.b_azul+'">[->]</a>';
-	}		
-	html = html + '<img src="'+leng.imgLogo+'" heigth="60"><button class="jmy_web_guardar" data-id="' + d.id + '" data-page="' + d.page + '" data-tabla="' + d.tabla + '" style="'+style.b_guardar+'">[=] '+leng.guardar+'</button>'+btne+'<button class="jmy_web_cancelar" style="'+style.b_cancelar+'">[x]</button>';
-	$("#jmy_web").html(html);
-	$("#jmy_web").show(250);
-	$(".jmy_web_guardar").click(function() {
-		jmy_web_guardar({data:d});
-	});
-	$(".jmy_web_cancelar").click(function(e) {
-		$("#jmy_web").hide(250);
+	jQuery(function ($) { 
+		$("#jmy_web").html("");
+		$("#jmy_web").addClass("jmyweb-botones");
+		$("#jmy_web").css({
+			'left': left + 'px',
+			'top': top + 'px',
+			'z-index': '10000',
+			'position': 'absolute',
+			'border-radius': '5px',
+			'padding': '5px',
+			'background-color': 'rgba(200,200,200,0.65)'
+		});
+		let href = ($("#" + d.id).attr("href") != undefined) ? $("#" + d.id).attr("href") : false;
+		let html = ''; 
+		let btne = '';
+		if(href!==false){		
+			html = html + '<input type="text" value="'+href+'" id="jmy_web_href" placeholder="href:#"> ';
+			btne = btne + '<a href="'+href+'" style="'+style.b_azul+'">[->]</a>';
+		}		
+		html = html + '<img src="'+leng.imgLogo+'" heigth="60"><button class="jmy_web_guardar" data-id="' + d.id + '" data-page="' + d.page + '" data-tabla="' + d.tabla + '" style="'+style.b_guardar+'">[=] '+leng.guardar+'</button>'+btne+'<button class="jmy_web_cancelar" style="'+style.b_cancelar+'">[x]</button>';
+		$("#jmy_web").html(html);
+		$("#jmy_web").show(250);
+		$(".jmy_web_guardar").click(function() {
+			jmy_web_guardar({data:d});
+		});
+		$(".jmy_web_cancelar").click(function(e) {
+			$("#jmy_web").hide(250);
+		});
 	});
 }
 
 function herramientas(d = []) {
-	var left = 100;
-	var top = 5;
+	let left = 100;
+	let top = 5;
+	jQuery(function ($) { 
 	$("#jmy_web_tools").html("");
 	$("#jmy_web_tools").addClass("jmyweb-botones");
 	$("#jmy_web_tools").css({
@@ -82,7 +85,7 @@ function herramientas(d = []) {
 		'position': 'fixed',
 		'z-index': '100000'
 	}); 2
-	var html = '';
+	let html = '';
 	/*if(href!==false)	
 		html = html + '<input type="text" value="'+href+'" id="jmy_web_href" placeholder="href:'+d.data.id+'"> ';*/
 	html = html + '<button class="jmy_t_guardar" style="'+style.h_guardar+'">[+] '+leng.guardar_cambios+'</button><button class="jmy_web_tools_cancelar" style="'+style.h_cancelar+'"> [x] '+leng.guardar_cambios+'</button>';
@@ -95,27 +98,30 @@ function herramientas(d = []) {
 	$(".jmy_web_tools_cancelar").click(function(e) {
 		$("#jmy_web_tools").hide(250);
 	});
+	});
 }
 function guardarSinGuardar(){
-	console.log(sinGuardar);
-	var t = [];
-	for (var i = 0; i < sinGuardar.length; i++) {
-		t = {
-			"id": sinGuardar[i],
-			"page": $("#" + sinGuardar[i]).data("page"),
-			"tabla": $("#" + sinGuardar[i]).data("tabla"),
-		};
-		console.log(t);
-		jmy_web_guardar({
-			data: t
-		});
-	}
-	sinGuardar = [];
+	jQuery(function ($) { 
+		console.log(sinGuardar);
+		let t = [];
+		for (let i = 0; i < sinGuardar.length; i++) {
+			t = {
+				"id": sinGuardar[i],
+				"page": $("#" + sinGuardar[i]).data("page"),
+				"tabla": $("#" + sinGuardar[i]).data("tabla"),
+			};
+			console.log(t);
+			jmy_web_guardar({
+				data: t
+			});
+		}
+		sinGuardar = [];
+	});
 }
 function mensajeGuardado(){
 	jQuery(function ($) { 
-	$("#jmy_web").html("");
-	$("#jmy_web").html("<p>"+leng.dato_guardado+"</p>").delay(2000).hide(500);
+		$("#jmy_web").html("");
+		$("#jmy_web").html("<p>"+leng.dato_guardado+"</p>").delay(2000).hide(500);
 	});
 }
 function agregarSinGuardar(d){ /* ({id:785}) */
@@ -126,7 +132,7 @@ function agregarSinGuardar(d){ /* ({id:785}) */
 function jmy_web_div_click(){
 	jQuery(function ($) { 
 	$(".jmy_web_div").click(function(e) {
-	var d = {
+	let d = {
 		"id": $(this).attr('id'),
 		"placeholder": $(this).data("placeholder"),
 		"page": $(this).data("page"),
@@ -148,16 +154,16 @@ function jmy_web_div_click(){
 }
 
 function msk_add_blog() {
-	var html = '<button class="jmy_blog_guardar" >'+leng.agregar_post+'</button>';
+	let html = '<button class="jmy_blog_guardar" >'+leng.agregar_post+'</button>';
 	html = html + '<input type="text" id="nombre_nuevo_post" placeholder="'+leng.nombre_nuevo_post+'"> ';
 	jQuery(function ($) { 
 	$("#jmy_web_agregar_blog").html("");
 	$("#jmy_web_agregar_blog").html(html);
 	$(".jmy_blog_guardar").click(function() {
-		var str = $("#nombre_nuevo_post").val();
+		let str = $("#nombre_nuevo_post").val();
 		if (str != '') {
-			var t = btoa(str);
-			var r = str.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
+			let t = btoa(str);
+			let r = str.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').toLowerCase();
 			r = location.origin + "/blog/" + r + "/guardar/";
 			window.location.href = r;
 		} else {
@@ -169,8 +175,8 @@ function msk_add_blog() {
 
 
 function html_categorias(d=[]){
-	var h='';
-	var b='';
+	let h='';
+	let b='';
 	jQuery(function ($) { 
 	$(".jmy_web_categorias").each(function() {
 		h='';			
@@ -188,14 +194,14 @@ function html_categorias(d=[]){
 function jmy_web_categorias_click(){
 	jQuery(function ($) { 
 		$(".jmy_web_categorias").click(function(e) {
-			var d = { 	"t":$(this).data('titulo'),
+			let d = { 	"t":$(this).data('titulo'),
 						"v":$(this).data('value'),
 						"p":$(this).data('page'),
 						"id":$(this).attr('id'),
 					};
 			console.log(d);
-			var t=(d.t!='')?d.t:leng.seccion_comas;
-			var v = prompt(t,d.v);		
+			let t=(d.t!='')?d.t:leng.seccion_comas;
+			let v = prompt(t,d.v);		
 			if (v != null) {
 				jmy_web_guardar({data:{
 						"valor": v,
@@ -211,7 +217,7 @@ function jmy_web_categorias_click(){
 function jmy_web_contador_click(){
 	jQuery(function ($) { 
 		$(".jmy_web_contador").click(function(e) {
-			var d = { 	"t":$(this).data('titulo'),
+			let d = { 	"t":$(this).data('titulo'),
 						"v":$(this).data('value'),
 						"p":$(this).data('page'),
 						"id":$(this).attr('id'),
@@ -219,8 +225,8 @@ function jmy_web_contador_click(){
 						"re":$(this).data('redi'),
 					};
 			console.log('jmy_web_contador',d);
-			var t = (d.t!='') ? d.t : leng.cont_cant;
-			var v = prompt(t,d.v);		
+			let t = (d.t!='') ? d.t : leng.cont_cant;
+			let v = prompt(t,d.v);		
 			if (v != null) {
 				v = parseInt(v);
 				if (v != null ) {
@@ -240,9 +246,9 @@ function jmy_web_contador_click(){
 	}); 
 }
 function html_contador(d=[]){
-	var c='';
-	var h='';
-	var b='';
+	let c='';
+	let h='';
+	let b='';
 	jQuery(function ($) { 
 		$(".jmy_web_contador").each(function() {
 			h='';
@@ -259,9 +265,9 @@ function html_contador(d=[]){
 
 
 function web_slider(d=[]){	  	
-	var va=JSON.stringify(d.var);
-	var pos = (d.button=='down') ? 'bottom:5px;left:5px;':'top:5px;left:5px;';
-	var style = (d.style==undefined) ?  "z-index:10000;position:absolute;"+pos : d.style;
+	let va=JSON.stringify(d.var);
+	let pos = (d.button=='down') ? 'bottom:5px;left:5px;':'top:5px;left:5px;';
+	let style = (d.style==undefined) ?  "z-index:10000;position:absolute;"+pos : d.style;
 	jQuery(function ($) { 
 	  $("#"+d.id).append("<div style='"+style+"' id='"+d.id+"_DI'><img style='width: 66px;height: auto;' id='"+d.id+"_OP' src='http://social.comsis.mx/templet/images/logo.png' data-var='"+va+"' data-page='"+d.page+"' data-tabla='"+d.tabla+"' heigth='60'></div>");    
 	  
@@ -280,8 +286,8 @@ function web_slider(d=[]){
 
 function guardarSlider(d=[]){
 	jQuery(function ($) { 
-	var t = [];
-	for (var i = 0; i < wSSaveTextArr.length; i++) {
+	let t = [];
+	for (let i = 0; i < wSSaveTextArr.length; i++) {
 		t = wSSaveTextArrDa[wSSaveTextArr[i]];
 		t = {
 			"id": wSSaveTextArr[i],
@@ -305,18 +311,18 @@ function addGuardarSlider(d){ /*({id:785})*/
 		wSSaveTextArrDa[d.id]=d;
 	}
 	if(d.id!=undefined){
-		var t =wSSaveTextArrDa[d.id];
+		let t =wSSaveTextArrDa[d.id];
 		console.log(t);
 		t.val=d.val;
 		wSSaveTextArrDa[d.id]=t;
 	}
 }
 function web_slider_OP(d=[]){
-	  var h="";
-	  var t=[];
-	  var t2="";
-	  var dA = 0;
-	  for(var i=0;i<d.var.length;i++){
+	  let h="";
+	  let t=[];
+	  let t2="";
+	  let dA = 0;
+	  for(let i=0;i<d.var.length;i++){
 		  t=d.var[i];
 		  t2="";
 		  switch (t.type) {
@@ -341,9 +347,15 @@ function web_slider_OP(d=[]){
 		  h=h+'<div style="'+style.wS_he+'"><button class="jmy_slider_guardar" style="'+style.wS_gu+'">[+]</button><button class="jmy_web_slider_cancelar" style="'+style.wS_ca+'"> [x] </button></div>';
 		  jQuery(function ($) { 
 	  $("#"+d.id+"_DI").append('<div class="webSliderOP" style="'+style.wS_OP+'">'+h+'</div>');
-
+	  $(".webSliderOP").draggable({
+		cursor: "move",
+		/*cursorAt: {
+			top: 20,
+			left: 20
+		}*/
+	});
 	  $(".wSSaveText").on('input',function(){
-		  var t={	id:$(this).data('id_target'),
+		  let t={	id:$(this).data('id_target'),
 				page:$(this).data('page'),
 				tabla:$(this).data('tabla'),
 				val:$(this).val(),
@@ -355,7 +367,7 @@ function web_slider_OP(d=[]){
 	  });
 
 	  $(".jmy_web_slider_cancelar").click(function(){
-		  var wSSaveTextArr=[];
+		  let wSSaveTextArr=[];
 		  $(".webSliderOP").remove();
 	  });
 
@@ -371,7 +383,7 @@ function web_slider_OP(d=[]){
 	$(".drop-area").on('drop', function (e){
 		$(this).css('background', '#D8F9D3');
 		e.preventDefault();
-		var im = e.originalEvent.dataTransfer.files;
+		let im = e.originalEvent.dataTransfer.files;
 		uImage(im,{	id:$(this).data('id_target'),
 					page:$(this).data('page'),
 					tabla:$(this).data('tabla'),
@@ -415,7 +427,7 @@ function uForm(formData,d=[]){
 			$(".jmy_slider_guardar").prop('disabled', false);
 			$(".jmy_slider_guardar").html('[+ Guardar]');
 			$(".jmy_slider_guardar").css(style.b_guardar);
-			var h = '<img width="45%" src="'+r.url+'">';
+			let h = '<img width="45%" src="'+r.url+'">';
 			$('#drop-area').html(h);
 			console.log(d);
 			$("#"+d.id).attr("src",r.url);
@@ -458,9 +470,9 @@ function cargaSlider(d = []) {
 }
 
 function img_op(){
-	var h='';
-	var t='';
-	var b=[];
+	let h='';
+	let t='';
+	let b=[];
 	$(".jmy_web_img").each(function() {
 		 d = {
 					"tabla":$(this).data("tabla"),
@@ -469,7 +481,7 @@ function img_op(){
 		};
 		h='';
 		h = '<div style="background-color:rgba(30,170,30,0.7);padding:4px;font-size:16px;color:fcfcfc;border-radius:5px">';
-			for (var i = 0; i < d.var.length; i++) {
+			for (let i = 0; i < d.var.length; i++) {
 				t = d.var[i];
 				h = h+t.id;
 			}

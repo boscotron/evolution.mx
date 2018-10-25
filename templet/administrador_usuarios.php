@@ -5,18 +5,30 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-6" id="lista">
-       <h2>Lista de usuarios</h1>
-       <div class="list-group" id="listado_usuario" >
-     Cargando usuario...
-</div>
+    <div class="col-sm-12 col-md-12 col-lg-6" >
+       <h2 class="lista_usuarios">Lista de usuarios</h1>
+     
+       <table id="listado_usuario_tabla" class="display" style="width:100%">
+</table>
     </div>
-    <div class="col-sm-6" id="datos">
+    <div class="col-sm-12 col-md-12 col-lg-6" id="datos">
         <h2 onclick="ver_perfil()">Editar usuario</h1>
+
+        <style>
+            .btn_tabs {width:50%;}
+        </style>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="btn-group btn-block" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn_tabs btn-secondary active" data-div="perfil">Perfil</button>
+                    <button type="button" class="btn btn_tabs btn-secondary" data-div="modulos">Módulos</button>
+                </div>
+            </div>
+        </div>
         <div class="row">
 
 
-            <div class="container">
+            <div class="container div_tabs" id="div_perfil">
                 <input type = "hidden" id="id_perfil" value="<?php echo $data['id_perfil']; ?>">
                 <div class="row">
                     <div class="col-lg-12">
@@ -66,6 +78,10 @@
                         <div id="ajax_contactform_msg"> </div>	
                     </div>
                     
+                </div>
+            </div>
+            <div class="container div_tabs" id="div_modulos">
+                <div id="listado_modulo_tabla">
                 </div>
             </div>
 

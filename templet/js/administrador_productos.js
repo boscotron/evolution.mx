@@ -22,6 +22,7 @@ jQuery(function ($) {
                     data.push([e.ID_F,e.nombre,foto,url]);
                 });
                 console.log(data);
+                
                /* https://datatables.net/manual/index */
                 $('#tabla_productos').DataTable( {
                     data: data,

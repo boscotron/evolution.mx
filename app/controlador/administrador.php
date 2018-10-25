@@ -14,7 +14,16 @@ switch($peticion[0]):
         $url_marco = 'administrador_productos.php';
     break;
 
+    case 'modulos':      
+        $jmyWeb->cargar_css(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"]);    
+        $jmyWeb->cargar_js(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"]);    
+        $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(["return"=>true])."js/administrador_modulos.js?f=".date('U')]);    
+        $url_marco = 'administrador_modulos.php';
+    break;
+
     case 'usuarios':      
+        $jmyWeb->cargar_css(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"]);    
+        $jmyWeb->cargar_js(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"]); 
         $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(["return"=>true])."js/administrador_usuarios.js?f=".date('U')]);
         //$jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(['return'=>1])."js/perfil.js?d=".date('U')]);
         $url_marco = 'administrador_usuarios.php';

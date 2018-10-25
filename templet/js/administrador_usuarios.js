@@ -1,7 +1,75 @@
 jQuery(function ($) {  
     $("#datos").hide();
     $("#btn_preferencias_empledo").hide();
-    
+    $(".btn_tabs").on('click',function(){
+        let div = $(this).data('div');
+        $(".btn_tabs").removeClass('active');
+        $(this).addClass('active');
+        $(".div_tabs").hide(150);
+        $("#div_"+div).show(100);
+    });
+    $(".lista_usuarios").on('click',function(){
+        lista_usuarios();
+    });
+   
+    function lista_modulos(d=[]){
+        console.log('lista_modulos',d);
+        
+        if(d.id_perfil!=''){
+            $.ajax({
+                url: location.origin + '/administradorws/modulos',
+                type: 'post',
+                dataType: 'json',
+                success: function(res) {
+                    console.log(d);              
+                    console.log(res);   
+                    let m_niveles = res.modulos.modulos_niveles;
+                    let modulos = res.modulos.modulos;
+                    let modulos_key = res.modulos.modulos_key;
+                    console.log(modulos_key);
+                    
+                    
+                    let h = '<div class="row"><div class="col-sm-6">Módulo</div><div class="col-sm-6">Permisos</div>';
+                    let options = '';
+                    for (let i = 0; i < m_niveles.length; i++) {
+                        options = options + '<option value="'+i+'">'+m_niveles[i]+'</option>' ;                        
+                    }
+                    modulos_key.forEach(e => {
+                        
+                        h = h+ '<div class="col-sm-6">'+e+'</div><div class="col-sm-6"><select class="form-control form-control-sm modulos_select" data-modulo="'+e+'" >'+options+'</select></div>';
+                    });
+                    h = h+ '<div class="col-sm-8"></div><div class="col-sm-4"><button class="btn btn-sm btn-success btn-flat btn-block" id="guardar_modulos" data-id="'+d.id_perfil+'">Guardar</button></div></div>';
+                    $("#listado_modulo_tabla").html(h);
+                    $("#guardar_modulos").on('click',function(){
+                        console.log('asd');
+                        
+                        let guardar = [];
+                        $(".modulos_select").each(function(){
+                            guardar.push({
+                                modulo:$(this).data('modulo'),
+                                permiso:$('option:selected',this).val()
+                            });
+                        });
+                        lista_modulos({
+                            id_perfil:d.id_perfil,
+                            guardar:guardar
+                        });
+                    });
+                   
+                    
+                    
+                },
+                error: function(res) {
+                    console.log(res);
+                },
+                data: d.guardar
+            });
+        }else{
+            console.log("Falta Id de usuario");
+            
+        }
+    }
+
     function lista_usuarios(){
         $.ajax({
             url: location.origin + '/administradorws/usuarios',
@@ -9,7 +77,47 @@ jQuery(function ($) {
             dataType: 'json',
             success: function(res) {
                 console.log(res);              
-                imprimir_lista(res.usuarios.otFm);
+                //imprimir_lista(res.usuarios.otFm);
+               // console.log(lista);              
+                let origen  = res.usuarios.otFm;
+                if(origen!=undefined && origen!=''){
+
+                    let lista = [];
+                    origen.forEach(e => {
+                        let link_editar = '<button class="btn btn-sm btn-flat btn-round ver_usuario" data-id="'+e.ID_F+'"><i class="fa fa-edit"></i></button>';
+                        lista.push([
+                            ((e.nombre!='' &&e.nombre!=undefined)?e.nombre:'--'),
+                            '<img src="'+((e.foto_perfil!='' &&e.foto_perfil!=undefined)?e.foto_perfil:location.origin+'/templet/images/logoblanco3.fw.png')+'" width="20">',
+                            ((e.tipo!='' &&e.tipo!=undefined)?e.tipo:'--'),
+                            ((e.proveedor!='' &&e.proveedor!=undefined)?e.proveedor:'--'),
+                            link_editar
+                        ]);
+
+                    });
+
+                    console.log(lista);
+                    
+                    
+                    $.when($('#listado_usuario_tabla').DataTable( {
+                        data: lista,
+                        columns: [
+                            { title: "Nombre" },
+                            { title: "Foto" },
+                            { title: "tipo" },
+                            { title: "Proveedor" },
+                            { title: "Editar" }
+                        ]
+                    } )).done(function(){
+                        $(".ver_usuario").on('click',function(){
+                            event.preventDefault();
+                            $("#datos").show(150);
+                            $("#id_perfil").val($(this).data('id'));
+                            ver_perfil();
+                            lista_modulos({id_perfil:$(this).data('id')});
+                        });
+                    });   
+
+                }
             },
             error: function(res) {
                 console.log(res);
