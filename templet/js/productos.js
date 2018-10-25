@@ -192,10 +192,12 @@ jQuery(function ($) {
             $(".productos_detalles_editar").show(100);
             guardar.nombre = nombre;
             guardar.nombreEstado = $('input[name=NomPestado]:checked').val();
-            guardar.codigo = $("#NomP").val();
-            guardar.codigoEstado = $('input[name=NomPestado]:checked').val();
-            guardar.precio = $("#NomP").val();
-            guardar.precioEstado = $('input[name=NomPestado]:checked').val();
+            guardar.codigo = $("#CodP").val();
+            guardar.codigoEstado = $('input[name=CodPestado]:checked').val();
+            guardar.precio = $("#PreP").val();
+            guardar.precioEstado = $('input[name=PrePestado]:checked').val();
+            guardar.descripcion = $("#DesP").val();
+            guardar.descripcionEstado = $('input[name=DesPestado]:checked').val();
             guardar.foto_producto = $("#foto_producto").attr('src');
             
             d.guardar = guardar ;
@@ -224,6 +226,9 @@ jQuery(function ($) {
             let foto = (datos.foto_producto!=undefined && datos.foto_producto!='')?datos.foto_producto:'http://local.evolution.mx/templet/images/portfolio-images/portfolio-img1.jpg';
             $("#foto_producto").attr('src',foto);
             $("#NomP").val(datos.nombre);
+            $("#CodP").val(datos.codigo);
+            $("#PreP").val(datos.precio);
+            $("#DesP").val(datos.descripcion);
             $("#pnt_nombre_producto").html('Editando el producto '+datos.nombre);
             /* ...... CELINA */
         }
