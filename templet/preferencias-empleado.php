@@ -59,51 +59,54 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
 .toogle_dias{
     border-bottom: 1px solid rgba(255,255,255,0.5);
 }
+.horarios {
+    padding: 5px 8px;
+    border-radius: 5px;
+    width: 100%;
+}
 </style>
 
-<div class="row">
-    <div class="col-md-12">
-       
-    <div class="container">
-    <input type = "text" id="id_perfil" value="<?php echo $data['id_perfil']; ?>">
+<div class="container">
     <div class="row">
-        <div class="col-lg-12">
-            <h2>Horario y habilidades</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
+        <div class="col-md-12">
+        
+            <input type = "hidden" id="id_perfil" value="<?php echo $data['data']['id_perfil']; ?>">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Horario y habilidades</h2>
+                </div>
+            </div>
+        
+                
             
-            <div class="col-lg-10">
-                <div  data-delay="300" data-animation="fadeIn">
+            <div class="row">
+                <div class="col-md-3">
+                   
+                    <div class="btn-group-vertical btn-group-vertical-dias " role="group" id="botones_dias" aria-label="Basic example">
                     
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h3>Dias laborables</h3>
-                            <div class="btn-group-vertical btn-group-vertical-dias " role="group" id="botones_dias" aria-label="Basic example">
-                            
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <h3>Servicios</h3>
-                            <div class="btn-group-vertical btn-group-vertical-servicios" role="group" id="botones_servicios" aria-label="Basic example">
-                            
-                            </div>
-                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="btn-group-vertical btn-group-vertical-dias " role="group" id="botones_horas" aria-label="Basic example">
+                    
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h3>Servicios</h3>
+                    <div class="btn-group-vertical btn-group-vertical-servicios" role="group" id="botones_servicios" aria-label="Basic example">
+                    
                     </div>
                 </div>
             </div>
-            <div class="col-lg-10">
-                
-            </div>
-            
-            <div class="col-lg-10">
-                <button type="button" id="boton_guardar" class="btn btn-success">Guardar</button>
-            </div>
-            <div id="ajax_contactform_msg"> </div>	
-        </div>
+    
+
         
+            <button type="button" id="boton_guardar" class="btn btn-success">Guardar</button>
+        
+        <div id="ajax_contactform_msg"> </div>	
+        
+            
+
     </div>
-</div>
-</div>
+    </div>
 </div>

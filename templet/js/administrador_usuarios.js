@@ -11,32 +11,59 @@ jQuery(function ($) {
     $(".lista_usuarios").on('click',function(){
         lista_usuarios();
     });
-   
-    function lista_modulos(d=[]){
+    
+    function guardar_modulos(d=[]){
+        console.clear();
+       // console.log('guardar_modulos',d.guardar);
+        $.ajax({
+            url: location.origin + '/administradorws/modulos-guardar/'+d.id_perfil,
+            type: 'POST',
+            dataType: 'json',
+            success: function(res) {
+                console.log('guardar_modulos',res);
+            },
+            error: function(res) {
+                console.log(res);
+            },
+            data:{data:d}
+        });
+    };
+    function lista_modulos(d=[],p=[]){
         console.log('lista_modulos',d);
-        
+        let pet_guardar = d.guardar;
         if(d.id_perfil!=''){
+            let permisos = [];
+            p.forEach(e => {
+                permisos[e.modulo]=e.permiso;
+            });
+            console.log('p',permisos);
+            
             $.ajax({
-                url: location.origin + '/administradorws/modulos',
+                url: location.origin + '/administradorws/modulos/'+d.id_,
                 type: 'post',
                 dataType: 'json',
                 success: function(res) {
                     console.log(d);              
                     console.log(res);   
                     let m_niveles = res.modulos.modulos_niveles;
+                    console.log('m_niveles',m_niveles);
                     let modulos = res.modulos.modulos;
+                    console.log('modulos',modulos);
                     let modulos_key = res.modulos.modulos_key;
                     console.log(modulos_key);
+                    let modulos_label = res.modulos.modulos_label;
+                    console.log('modulos_label',modulos_label);
                     
                     
                     let h = '<div class="row"><div class="col-sm-6">Módulo</div><div class="col-sm-6">Permisos</div>';
-                    let options = '';
-                    for (let i = 0; i < m_niveles.length; i++) {
-                        options = options + '<option value="'+i+'">'+m_niveles[i]+'</option>' ;                        
-                    }
                     modulos_key.forEach(e => {
+                        let op = '';
+                        for (let i = 0; i < m_niveles.length; i++) {
+                            let se=(permisos[e]==i)?'selected':'';
+                            op=op+'<option value="'+i+'" '+se+'>'+m_niveles[i]+'</option>' ;                        
+                        }
                         
-                        h = h+ '<div class="col-sm-6">'+e+'</div><div class="col-sm-6"><select class="form-control form-control-sm modulos_select" data-modulo="'+e+'" >'+options+'</select></div>';
+                        h=h+'<div class="col-sm-6">'+modulos_label[e]+'</div><div class="col-sm-6"><select class="form-control form-control-sm modulos_select" data-modulo="'+e+'" >'+op+'</select></div>';
                     });
                     h = h+ '<div class="col-sm-8"></div><div class="col-sm-4"><button class="btn btn-sm btn-success btn-flat btn-block" id="guardar_modulos" data-id="'+d.id_perfil+'">Guardar</button></div></div>';
                     $("#listado_modulo_tabla").html(h);
@@ -44,15 +71,19 @@ jQuery(function ($) {
                         console.log('asd');
                         
                         let guardar = [];
-                        $(".modulos_select").each(function(){
+                        $.when(
+                            $(".modulos_select").each(function(){
                             guardar.push({
                                 modulo:$(this).data('modulo'),
                                 permiso:$('option:selected',this).val()
                             });
-                        });
-                        lista_modulos({
-                            id_perfil:d.id_perfil,
-                            guardar:guardar
+                        })).done(function (){
+                            console.log('guardar',guardar);
+                            
+                            guardar_modulos({
+                                id_perfil:d.id_perfil,
+                                guardar:guardar
+                            });
                         });
                     });
                    
@@ -62,7 +93,7 @@ jQuery(function ($) {
                 error: function(res) {
                     console.log(res);
                 },
-                data: d.guardar
+                data: pet_guardar
             });
         }else{
             console.log("Falta Id de usuario");
@@ -113,7 +144,7 @@ jQuery(function ($) {
                             $("#datos").show(150);
                             $("#id_perfil").val($(this).data('id'));
                             ver_perfil();
-                            lista_modulos({id_perfil:$(this).data('id')});
+                            
                         });
                     });   
 
@@ -154,7 +185,7 @@ jQuery(function ($) {
 
     function boton_usuario(d){
         $(".ver_usuario").on('click',function(){
-            ver_usuario($(this).data('id'));
+            ver_usuario($(this).data('idf'));
         });
     }
     function ver_usuario(d){
@@ -252,8 +283,11 @@ jQuery(function ($) {
 
                     let d = res.perfil;
                     let p = res.perfil.proveedor;
+                    let m = (res.perfil.modulos!=''&&res.perfil.modulos!=undefined)?JSON.parse(res.perfil.modulos):[];
+                    console.log(m);
                     console.log(d);
                     console.log(p);
+                    lista_modulos({id_perfil:$("#id_perfil").val()},m);
                     if(p==='JMYOAUTH')
                         $("#div_    ").show(120);
                     else
@@ -267,7 +301,7 @@ jQuery(function ($) {
                     }
                     if(d.tipo=='empleado'||d.tipo=='admin'){
                         $("#btn_preferencias_empledo").show(100);
-                        $("#btn_preferencias_empledo").attr('href',location.origin+'/perfil/preferencias-empleado/'+d.perfil_principal);
+                        $("#btn_preferencias_empledo").attr('href',location.origin+'/administrador/perfil-empleado/'+d.perfil_principal);
 
                     }
 

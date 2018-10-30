@@ -26,7 +26,7 @@ if($idUsuario!=''){
                 ]);
             }
         case 'preferencias-empleado':
-            
+            $out['fn']=$peticion;
             if($peticion[1]!=''){
                 $out['preferencias']['ver'] = $jmy->ver([
                     'TABLA'=>'personal',

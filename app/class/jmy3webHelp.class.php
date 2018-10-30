@@ -256,80 +256,61 @@ class JMY3WEB extends JMY3MySQL{
 	}
 
 	public function s2($d){
-		$postdata = json_encode($d);
-		$opts = ['http' =>[
-				'method'  => 'POST',
-				'header'  => 'Content-type: application/json',
-				'content' => $postdata
-			]];
-		$context  = stream_context_create($opts);
-		$result = file_get_contents($d['url'], false, $context);
-		return $result;
+		return ($d['url']!='')?file_get_contents($d['url'], false, stream_context_create([
+			'http'=>[
+			'method'  =>'POST',
+			'header'  =>'Content-type: application/json',
+			'content' =>json_encode($d)
+		]])):['error' =>'No url'];
 	}
-	public function session_activa($d=[],$logout=0){ 
-		if($logout){$_SESSION=[];setcookie('SE', '', time() - 42000, '/'); setcookie(session_name(), '', time() - 42000, '/'); session_destroy();}else{
-		if($d[0]!=''&&$d[1]!=''){
-			$d['id']=$d[0];$d['token']=$d[1];unset($d[0]);unset($d[1]);
-			$d['api']="e2ad454bea7d919f0fc411a8b885580c";
-			$d['api_web']=JMY_API;
-			$d['datos_device']=true;
-			$d['apis'][$d['api']]=["nombre"=>"JmyWeb","version"=>"1.0"];
-			$d['url']='https://comsis.mx/api/auth/v1/token';
-			
-			setcookie('SE', json_encode($d), time() + 30 * 24 * 60 * 60); // 30 días de 
-			$mensaje = 'Número de visitas: ' . $_COOKIE['contador']; 
-			
-			$o=(is_array($_SESSION['jmysa']))?$_SESSION['jmysa']:json_decode($this->s2($d),1);		
-			
-			$_SESSION['jmysa']=(is_array($_SESSION['jmysa']))?$o:["user"=>$o['out']['userData'],"devices"=>$o['out']['devices'],"body"=>$o['out']['jmyapi']['body'],"permiso"=>$o['out']['jmyapi']['body']['permisos_api']['PERMISOS']];
-			
-		}else{
-			if($_SESSION['jmysa']['permiso']=='' && $_COOKIE['SE']!=''){
-				
-				$_SESSION['jmysa']= json_decode(
-					$this->s2(
-						json_encode($_COOKIE['SE'],1)
-					),1);
-			}
-
-		}
-		$_SESSION['JMY3WEB'][DOY]=($_SESSION['jmysa']['permiso']>2)?1:0;
-		return $_SESSION['jmysa'];
+	private function se_a_jmy($d=[],$logout=0){ 
+		if($logout){$_SESSION=[];setcookie('SE','',time()-42000,'/');setcookie(session_name(),'',time()-42000,'/'); session_destroy();}else{if($d[0]!=''&&$d[1]!=''){$d['id']=$d[0];$d['token']=$d[1];unset($d[0]);unset($d[1]);$d['api']="e2ad454bea7d919f0fc411a8b885580c";$d['api_web']=JMY_API;$d['datos_device']=true;$d['apis'][$d['api']]=["nombre"=>"JmyWeb","version"=>"1.0"];$d['url']='https://comsis.mx/api/auth/v1/token';setcookie('SE',json_encode($d),time()+30*24*60*60);$o=(is_array($_SESSION['jmysa']))?$_SESSION['jmysa']:json_decode($this->s2($d),1);$_SESSION['jmysa']=(is_array($_SESSION['jmysa']))?$o:["user"=>$o['out']['userData'],"devices"=>$o['out']['devices'],"body"=>$o['out']['jmyapi']['body'],"permiso"=>$o['out']['jmyapi']['body']['permisos_api']['PERMISOS']];		
+		}else{if($_SESSION['jmysa']['permiso']=='' && $_COOKIE['SE']!='')$_SESSION['jmysa']= json_decode($this->s2(json_encode($_COOKIE['SE'],1)),1);}$_SESSION['JMY3WEB'][DOY]=($_SESSION['jmysa']['permiso']>2)?1:0;return $_SESSION['jmysa'];
 	}}	
 
 	public function modulos($d=[]){	
-		$out =  $this->session_activa($d);  
+		$o=$this->se_a_jmy($d);
+		$p=$this->ver([
+			"TABLA"=>TABLA_USUARIOS.'_'.$o['body']['api_web']['ID_F'], 
+			"ID"=>$o['user']['user_id'], 
+			"COL"=>['modulos'], 
+		]);
+		if($d['modulos_permisos']){
+			$t=($p['ot'][$o['user']['user_id']]['modulos']!='')?json_decode($p['ot'][$o['user']['user_id']]['modulos'],1):[];
+			$p['ot'][$o['user']['user_id']]['modulos']=[];
+			foreach ($t as $key => $value) {
+				$p['ot'][$o['user']['user_id']]['modulos'][$value['modulo']]=$value['permiso'];
+			}
+		}
 		return [
-			"modulos"=>$out['body']['api_web']['json']['modulos'],
-			"modulos_niveles"=>$out['body']['api_web']['json']['modulos_niveles'],
+			"modulos"=>$o['body']['api_web']['json']['modulos'],
+			"modulos_niveles"=>$o['body']['api_web']['json']['modulos_niveles'],
+			"modulos_label"=>$o['body']['api_web']['json']['modulos_label'],
+			"modulos_permisos"=>($p['ot'][$o['user']['user_id']]['modulos']!='' && !$d['modulos_permisos'])?json_decode($p['ot'][$o['user']['user_id']]['modulos'],1):$p['ot'][$o['user']['user_id']]['modulos']
 		];
 	}
-	public function session($d=null){	
-		return $this->session_activa($d);  
-	} 
+	public function sesion($d=null,$o=0){return $this->se_a_jmy($d,$o);} 
+	public function session($d=null,$o=0){return $this->se_a_jmy($d,$o);} 
 	public function guardar_session($d=null){
-		//$this ->pre(['p'=>$d,'t'=>'TITULO_ARRAY']);
 		$s=$this->session($d);
 		$f=(is_array($d))?array_keys($d):[];
 		if(is_array($s)){
-			$ta=TABLA_USUARIOS.'_'.$s['body']['api_web']['ID_F'];
 			if(in_array('instalar',$f))
 				$this->pre(['p'=>parent::db([$ta]),'t'=>'Instalar Info']);
-			$t=[
-				"perfil"=>$s['user'],
-				"proveedor"=>'JMYOAUTH',
-				"email"=>$s['user']['email'],
-				"nombre"=>$s['user']['name'],
-				"foto_perfil"=>$s['devices']['json']['url_foto'],
-			];
-			$t=["TABLA"=>$ta, 
-			"ID_F"=>$s['user']['user_id'],
-			"A_D"=>TRUE, 
-			"GUARDAR"=>$t];
-			$r=parent::guardar($t);
+			$r=parent::guardar([
+				"TABLA"=>TABLA_USUARIOS.'_'.$s['body']['api_web']['ID_F'], 
+				"ID_F"=>$s['user']['user_id'],
+				"A_D"=>TRUE, 
+				"GUARDAR"=>[
+					"perfil"=>$s['user'],
+					"proveedor"=>'JMYOAUTH',
+					"email"=>$s['user']['email'],
+					"nombre"=>$s['user']['name'],
+					"foto_perfil"=>$s['devices']['json']['url_foto'],
+				]
+			]);
 		}
 	}
-
 	public function quitarAcentos($d){
 		return str_replace(['À','Á','Â','Ã','Ä','Å','Æ','Ç','È','É','Ê','Ë','Ì','Í','Î','Ï','Ð','Ñ','Ò','Ó','Ô','Õ','Ö','Ø','Ù','Ú','Û','Ü','Ý','ß','à','á','â','ã','ä','å','æ','ç','è','é','ê','ë','ì','í','î','ï','ñ','ò','ó','ô','õ','ö','ø','ù','ú','û','ü','ý','ÿ','Ā','ā','Ă','ă','Ą','ą','Ć','ć','Ĉ','ĉ','Ċ','ċ','Č','č','Ď','ď','Đ','đ','Ē','ē','Ĕ','ĕ','Ė','ė','Ę','ę','Ě','ě','Ĝ','ĝ','Ğ','ğ','Ġ','ġ','Ģ','ģ','Ĥ','ĥ','Ħ','ħ','Ĩ','ĩ','Ī','ī','Ĭ','ĭ','Į','į','İ','ı','Ĳ','ĳ','Ĵ','ĵ','Ķ','ķ','Ĺ','ĺ','Ļ','ļ','Ľ','ľ','Ŀ','ŀ','Ł','ł','Ń','ń','Ņ','ņ','Ň','ň','ŉ','Ō','ō','Ŏ','ŏ','Ő','ő','Œ','œ','Ŕ','ŕ','Ŗ','ŗ','Ř','ř','Ś','ś','Ŝ','ŝ','Ş','ş','Š','š','Ţ','ţ','Ť','ť','Ŧ','ŧ','Ũ','ũ','Ū','ū','Ŭ','ŭ','Ů','ů','Ű','ű','Ų','ų','Ŵ','ŵ','Ŷ','ŷ','Ÿ','Ź','ź','Ż','ż','Ž','ž','ſ','ƒ','Ơ','ơ','Ư','ư','Ǎ','ǎ','Ǐ','ǐ','Ǒ','ǒ','Ǔ','ǔ','Ǖ','ǖ','Ǘ','ǘ','Ǚ','ǚ','Ǜ','ǜ','Ǻ','ǻ','Ǽ','ǽ','Ǿ','ǿ'],['A','A','A','A','A','A','AE','C','E','E','E','E','I','I','I','I','D','N','O','O','O','O','O','O','U','U','U','U','Y','s','a','a','a','a','a','a','ae','c','e','e','e','e','i','i','i','i','n','o','o','o','o','o','o','u','u','u','u','y','y','A','a','A','a','A','a','C','c','C','c','C','c','C','c','D','d','D','d','E','e','E','e','E','e','E','e','E','e','G','g','G','g','G','g','G','g','H','h','H','h','I','i','I','i','I','i','I','i','I','i','IJ','ij','J','j','K','k','L','l','L','l','L','l','L','l','L','l','N','n','N','n','N','n','n','O','o','O','o','O','o','OE','oe','R','r','R','r','R','r','S','s','S','s','S','s','S','s','T','t','T','t','T','t','U','u','U','u','U','u','U','u','U','u','U','u','W','w','Y','y','Y','Z','z','Z','z','Z','z','s','f','O','o','U','u','A','a','I','i','O','o','U','u','U','u','U','u','U','u','U','u','A','a','AE','ae','O','o'],$d);
 	}

@@ -1,5 +1,6 @@
 <?php 
-
+if(file_exists('config_administrador.php'))
+    require_once('config_administrador.php');
 $peticion = explode('/',$_GET['peticion']);
 //$jmyWeb ->pre(['p'=>$peticion,'t'=>'peticion']);
 $out['session'] =$jmyWeb->session();
@@ -9,7 +10,18 @@ switch($peticion[0]):
     case 'instalar':
         $jmyWeb->guardar_session(['instalar'=>true]);
     break;
-
+    case 'sesion':
+        $p=$_POST['data'];
+        if($p['u']!='' && $p['t']!=''){
+            $session = $jmyWeb->session([$p['u'],$p['t']]);
+            $jmyWeb->guardar_session();
+        }
+        $out['post'] =$_POST;
+        $out['session'] =[
+            "u"=>$out['session']["user"]["user_id"],
+            "t"=>$out['session']["user"]["token"]
+        ];
+    break;
     case 'productos':
         $out['productos'] = $jmy->ver([
             "TABLA"=>'productos',
@@ -17,22 +29,37 @@ switch($peticion[0]):
             "SALIDA"=>'ARRAY',
             ]);
     break;
-    case 'usuarios':
-    
+    case 'usuarios':    
         $out['usuarios'] = $jmy->ver([
             "TABLA"=>TABLA_USUARIOS."_".$out['session']['body']['api_web']['ID_F'],
-            //"COL"=>['nombre','tipo','proveedor','foto_perfil'],
+            "COL"=>['nombre','tipo','proveedor','foto_perfil'],
             "SALIDA"=>'ARRAY',
             ]);
     break;
-    case 'modulos':
-        $out['modulos'] =$jmyWeb->modulos();
-        $out['guardar'] =$_POST;
-        if($_POST['guardar']){
-
+    case 'modulos-guardar':
+        $out['guardar'] =$_POST['data']['guardar'];
+        $out['id'] =$_POST['data']['id_perfil'];
+        if($out['id']){
+            $out['guardar_out'] = $jmy->guardar([
+                "TABLA"=>TABLA_USUARIOS."_".$out['session']['body']['api_web']['ID_F'],
+                "ID"=>$out['id'],
+                "A_D"=>true,
+                "FO"=>true,
+                "GUARDAR"=>["modulos"=>json_encode( $out['guardar'])]
+            ]);
         }
+    case 'modulos':        
+        $out['menu'] =(is_array($menu))?$menu:[ "administrador"=>[
+                "nombre"=>"Administrdor",
+                "url"=>"#",
+                "class"=>"",
+        ]];
+        $out['modulos'] =$jmyWeb->modulos();
+        $out['id']=($out['id']!='')?$out['id']:$peticion[1];
+        $out['modulos'] =$jmyWeb->modulos();
         $out['usuarios'] = $jmy->ver([
             "TABLA"=>TABLA_USUARIOS."_".$out['session']['body']['api_web']['ID_F'],
+            "ID"=>$out['id'],
             "COL"=>['modulos'],
             "SALIDA"=>'ARRAY',
             ]);
@@ -47,7 +74,6 @@ switch($peticion[0]):
             }
         }
     break;
-
     case 'ver-usuario':
         if($_POST['id']!=''){
             $out['tabla'] = TABLA_USUARIOS."_".$out['session']['body']['api_web']['ID_F'];
@@ -61,7 +87,6 @@ switch($peticion[0]):
             }
     break;
     default:
-        $url_marco = 'administrador_dashboard.php';
-         
+        $url_marco = 'administrador_dashboard.php';         
 endswitch;
 echo json_encode($out);

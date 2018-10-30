@@ -1,8 +1,8 @@
 <?php
 
-if($_GET['peticion']=='salir'){$jmyWeb->session_activa([],1);}
+if($_GET['peticion']=='salir'){$jmyWeb->sesion([],1);}
 $token = explode("/",$_GET['peticion']);
-$token = $jmyWeb->session_activa($token);
+$token = $jmyWeb->sesion($token);
 if($token['permiso']!='' && $_GET['peticion']=='instalar') 
 	$jmyWeb->guardar_session(["instalar"=>true]);
 if($token['permiso']!='') 

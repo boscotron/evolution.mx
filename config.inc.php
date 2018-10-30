@@ -5,7 +5,7 @@ define(	"BASE_TEMPLET","templet/"); 			// Ruta donde se aloje el tema o templet
 define(	"BASE_APP","app/"); 					// Ruta de la aplicacion
 define(	"BASE_ARCHIVO","att/"); 				// Ruta a guardar los archivos 
 define(	"BASE_ARCHIVOS_THUMS","att/thums/"); 	// Ruta a guardar los archivos thums
-define( "MODO_DESAROLLADOR",false ); 			// Activa o desactiva el editor en todo el sitio para cambios de diseño
+define( "MODO_DESAROLLADOR",true ); 			// Activa o desactiva el editor en todo el sitio para cambios de diseño
 /* DEFINICIONES DEL TEMA O TEMPLET */
 define(	"TEMPLET_HOME","inicio"); 			// Archivo a cargar de inicio
 define(	"TEMPLET_HEADER","header.php"); 	// Define el archivo header

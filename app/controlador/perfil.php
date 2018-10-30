@@ -35,14 +35,12 @@ if($idUsuario!=''){
                 if($peticion[1]!=''){
                     $accesos = ['admin','empleado'];
 
-                    //$jmyWeb ->pre(['p'=>$licencia_evolution['tipo'],'t'=>'algo']);
+                    $jmyWeb ->pre(['p'=>$licencia_evolution['tipo'],'t'=>'algo']);
 
-                    $carga_centro=
-                    (in_array($licencia_evolution['tipo'],$accesos))? "preferencias-empleado.php":"error_perfil.php";
-                    if(in_array($licencia_evolution['tipo'],$accesos)){
+                    $carga_centro="preferencias-empleado.php";
+                    
                         $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(['return'=>1])."js/preferencias-empleado.js?d=".date('U')]);
 
-                    }
                 }else{
                     //$jmyWeb ->pre(['Error'=>$out,'t'=>'No hay id']);
                 }

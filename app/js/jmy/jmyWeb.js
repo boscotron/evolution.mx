@@ -3,7 +3,14 @@ function jmy_web_guardar(d) {
 	d = d.data;
 	jQuery(function ($) { 
 		if (d.id != '') {
-			let v = (d.valor!=undefined)?d.valor:$("#" + d.id).html();
+			let v = [];
+			let t = d.type;
+			console.log(t);
+			switch (t) {
+				case'select':v=$("#"+d.id+" option:selected").val();break;
+				case'input':case'input':case'calendar':case'number':case'indateput':case'email':case'password':case'hidden':v=$("#"+ d.id).val();break;
+				default:v=(d.valor!=undefined)?d.valor:$("#"+d.id).html();break;
+			}
 			let g = {
 				valor: v,
 				pagina: d.page,
@@ -107,6 +114,7 @@ function guardarSinGuardar(){
 		for (let i = 0; i < sinGuardar.length; i++) {
 			t = {
 				"id": sinGuardar[i],
+				"type": $("#" + sinGuardar[i]).attr("type"),
 				"page": $("#" + sinGuardar[i]).data("page"),
 				"tabla": $("#" + sinGuardar[i]).data("tabla"),
 			};
@@ -125,32 +133,36 @@ function mensajeGuardado(){
 	});
 }
 function agregarSinGuardar(d){ /* ({id:785}) */
-
 	if(jQuery.inArray(d.id,sinGuardar)== -1) 
 		sinGuardar.push(d.id);		
 }
 function jmy_web_div_click(){
 	jQuery(function ($) { 
-	$(".jmy_web_div").click(function(e) {
-	let d = {
-		"id": $(this).attr('id'),
-		"placeholder": $(this).data("placeholder"),
-		"page": $(this).data("page"),
-		"tabla": $(this).data("tabla"),
-	};
-	agregarSinGuardar(d);
-	herramientas();
-	if ($(this).data('editor') != 'no') { /*CKEDITOR.remove(data.id); CKEDITOR.replace(this);*/ } else {
-		$(this).attr("contenteditable", "true");
-		CKEDITOR.remove(d.id);
-		botones({
-			pageX: e.pageX,
-			pageY: e.pageY,
-			data: d
-		});
-	}
-}); /*Final de funciones Globales para el tema */ /* Funciones Editor de Blog */
-});
+		$(".jmy_web_div").click(function(e) {
+			console.log(e);
+			
+			let d = {
+				"id": $(this).attr('id'),
+				"type": $(this).attr('type'),
+				"placeholder": $(this).data("placeholder"),
+				"page": $(this).data("page"),
+				"tabla": $(this).data("tabla"),
+			};
+			console.log(d);
+			
+			agregarSinGuardar(d);
+			herramientas();
+			if ($(this).data('editor') != 'no') { /*CKEDITOR.remove(data.id); CKEDITOR.replace(this);*/ } else {
+				$(this).attr("contenteditable", "true");
+				CKEDITOR.remove(d.id);
+				botones({
+					pageX: e.pageX,
+					pageY: e.pageY,
+					data: d
+				});
+			}
+		}); /*Final de funciones Globales para el tema */ /* Funciones Editor de Blog */
+	});
 }
 
 function msk_add_blog() {
@@ -413,7 +425,7 @@ function uForm(formData,d=[]){
 
 	$(".jmy_slider_guardar").html('Cargando imagen...');
 	$.ajax({
-		url: "/jmyWebUpLoIm/width-"+d.width+"/height-"+d.height+"/",
+		url: origin.location+"/jmyWebUpLoIm/width-"+d.width+"/height-"+d.height+"/",
 		type: "POST",
 		data: formData,
 		contentType:false,
@@ -541,6 +553,22 @@ jQuery(function ($) {
 		$(".jmy_web_div").each(function() {
 			if ($(this).data('editor') != 'no') $(this).attr("contenteditable", "true");
 			else console.log(this);
+			let t = $(this).attr('type');
+			if(t!=undefined)
+			console.log('t',t);
+			
+			switch (t) {
+				case'select':
+					let v=$(this).data('value');
+					console.log(v);
+					
+					$(this).attr('name',$(this).attr('id'));
+					$(this).val(v);
+					
+				
+				break;
+				
+			}
 		});
 		//img_op();
 		jmy_web_div_click();

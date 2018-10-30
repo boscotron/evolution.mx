@@ -68,6 +68,26 @@ jQuery(function ($) {
             servicios.push(s);
         });
         let empleado = $("#id_perfil").val();
+
+
+        let horarios = [];
+        let d =[]
+        $(".horario_entrada").each(function () {
+            let id =$(this).data('id');
+
+            d .push( {
+                id : id,
+                h_entrada : Number($('option:selected',this).val()),
+                h_salida : (!isNaN(Number($('#'+id+'_salida option:selected').val())))?Number($('#'+id+'_salida option:selected').val()):0,
+                tipo : $(this).data('tipo'),
+                dia : $(this).data('dia')  
+            });
+            
+            //horarios[dia].push({""});
+            
+        });
+        console.log(d);
+
         let guardar ={
             horario_mat_ini:$("#horario_mat_ini option:selected").val(),
             horario_mat_fin:$("#horario_mat_fin option:selected").val(),
@@ -77,11 +97,14 @@ jQuery(function ($) {
             servicios:servicios,
             empleado:empleado
         };
-        ver_horarios();
+
+        console.log(guardar);
+        
+        /*ver_horarios();
         cargar_preferencias({
             url:'-guardar',
             guardar:guardar
-        });
+        });*/
     }
     $("#boton_guardar").on('click',function(){
         guardar_preferencias();
@@ -179,53 +202,114 @@ jQuery(function ($) {
         $("#horario_ves_ini").html(sele3);
         $("#horario_ves_fin").html(sele4);
     }
-    function select_dias(d=[]){ /*({entrada:5,salida:6})*/
-        let horas = '';
-
+    function select_dias(d=[]){ /*({dia:'lunes',id:'',salida:6})*/
+       console.log(d);
+        
+        let horas_entrada = '';
+        let horas_salida = '';
+        let hora_max_salida = d.salida;
+        let entrada_select = Number(d.entrada_select);
+            entrada_select = (!isNaN(entrada_select))?entrada_select:0;
         for (let i = 1; i <= 24; i++) {
-            horas = horas  + '<option value="'+i+'">'+i+' Hrs. </option>';
+            horas_entrada = horas_entrada  + '<option value="'+i+'" '+((entrada_select==i)?'selected':'')+'>'+i+' Hrs. </option>';
+            horas_salida = (hora_max_salida<=i)? horas_salida  + '<option value="'+i+'">'+i+' Hrs. </option>':'';
         }
-        let h = '<div class="form-group"><label for="horario_mat_ini">Entrrada</label><select id="'+d.id+'_entrada" class="form-control horarios form-control-sm valid" data-dia="'+d.dia+'" data-tipo="entrada" >'+horas+'</select></div> <div class="form-group"><label for="horario_mat_ini">Salida</label><select  id="'+d.id+'_salida" class="form-control horarios form-control-sm valid" data-dia="'+d.dia+'" data-tipo="salida"  >'+horas+' </select></div>';
-       
+        let h = (!d.sin_grupo)?'<div id="'+d.id+'_grupo" >':'';
+        h=h+'<div class="form-group"> <label for="horario_mat_ini">Entrada</label><select data-id="'+d.id+'" id="'+d.id+'_entrada" class="form-control horario horario_'+d.dia+' horario_'+d.dia+' horario_'+d.dia+'_entrada horario_entrada form-control-sm valid" data-dia="'+d.dia+'" data-tipo="entrada" >'+horas_entrada+'</select></div> <div class="form-group"><label for="horario_mat_ini">Salida</label><select  data-id="'+d.id+'" id="'+d.id+'_salida" class="form-control horario_salida horario_'+d.dia+'  horario_'+d.dia+'_salida form-control-sm valid"  data-dia="'+d.dia+'" data-tipo="salida"  >'+horas_salida+' </select></div>';
+        
+        h=(!d.sin_grupo)?h+'</div>':h;
+        
         return h;
+    }
+    function cambio_horario(){
+        let h_max = 0;
+        $(".horario").change(function () {
+            let h_min = Number($('option:selected',this).val());   
+            //console.log($('option:selected',this).val());
+            let d = $(this).data('dia');
+            let id = $(this).data('id');
+           // console.log(id);
+            
+            $(".horario_"+d).each(function () {
+                let h = Number($('option:selected',this).val());   
+                if( !isNaN(h) ){
+                    if( h_max<h ){
+                            console.log(h);
+                            h_max=h;
+                    }
+                }
+            });
+                let sel = select_dias({
+                    dia:d,
+                    id:id,
+                    sin_grupo:true,
+                    salida:h_min,
+                    entrada_select:h_min
+                });
+                //console.log(sel);
+                 
+                $("#grupo_fechas_"+d).html(sel);
+                cambio_horario();
+        });
     }
     function dias(d=[]){
         //console.log('dias',d);
         let dias =['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
         let diasTexto ={'lunes':'Lunes','martes':'Martes','miercoles':'Miércoles','jueves':'Jueves','viernes':'Viernes','sabado':'Sábado','domingo':'Domingo'};
+        /*https://color.adobe.com/es/create/color-wheel/?base=2&rule=Shades&selected=4&name=Mi%20tema%20de%20Color&mode=rgb&rgbvalues=0.386680992607556,0.62,0.41045057530504037,0.3367866709807746,0.54,0.3574892107495513,0.27637540901109314,0.44313725490196076,0.2933644213122679,0.23699802772721174,0.38,0.2515664816385731,0.21205086691382105,0.34,0.2250857993608286&swatchOrder=0,1,2,3,4*/
+        let colores = ['#639E69','#46714B','#639E69','#568A5B','#365739','#568A5B','#3C6140'];
         let sele ='';
         let selec=(d.select!=undefined)?d.select:[];
         $("#botones_dias").html('');
+        let count = 0;
         dias.forEach(e => {
             let impSelect = {
                 class:"btn-secondary",
                 icon:"fa-toggle-off",
                 fechasClass:"oculto",
+                activo:false
             };
             selec.forEach(sel => {                
                 impSelect = (e==sel) ?{
                     class:"",
                     icon:"fa-toggle-on",
                     fechasClass:"visible",
+                    activo:true
                 }:impSelect;
             });
-            sele = ' <button type="button" class="btn '+impSelect.class+'   toogle_dias" data-dia="'+e+'" >'+diasTexto[e]+' <i class="fa '+impSelect.icon+'"></i> </button><div class="div_fechas_'+e+' verde div_fechas '+impSelect.fechasClass+'"><div class="grupo_fechas" id="grupo_fechas_'+e+'">'+select_dias({dia:e,id:'algo'})+'</div><button class="btn btn-flat btn-sm btn-outline-warning " id="agregar_turno_'+e+'" style="left: 0px;"><i class="fa fa-add"></i> &nbsp;Agregar turno</button> </div>';
+            sele = ' <button type="button" data-activo="'+impSelect.activo+'" class="btn  color_'+e+' '+impSelect.class+'   toogle_dias" data-dia="'+e+'" >'+diasTexto[e]+' <i class="fa '+impSelect.icon+'"></i> </button>';
             
             $("#botones_dias").append(sele);
+
+            $("#botones_horas").append('<input type="hidden" id="min_'+e+'" value=""><input type="hidden" id="max_'+e+'" value=""> ');
+            $("#botones_horas").append('<div class=" horarios div_fechas_'+e+' verde div_fechas '+impSelect.fechasClass+' color_'+e+'"><h3>'+diasTexto[e]+'</h3><div class="grupo_fechas" id="grupo_fechas_'+e+'">'+select_dias({dia:e,id:'algo'+count})+'</div><button class="btn btn-flat btn-sm btn-warning " id="agregar_turno_'+e+'" style="left: 0px;"><i class="fa fa-add"></i> &nbsp;Agregar turno</button> </div>');
             /*
             .change
             */
+            $(".color_"+e).css('background-color',colores[count]);
             $('#agregar_turno_'+e).on('click',function(){
                 console.log('agregar_turno');                
                 $('#grupo_fechas_'+e).append(select_dias({dia:e}));
             });
+            cambio_horario();
+            count++;
         });
+       
+        $(".div_fechas").hide();
         $('.toogle_dias').on('click',function(){
+            $(".div_fechas").hide();
+            let div = $(this).data('dia');
+            $(".div_fechas_"+div).show(100);
+
             $(this).toggleClass('btn-secondary','');
             $(this).toggleClass('dias_laborables','');
-            let div = $(this).data('dia');
-            $(".div_fechas_"+div).toggleClass('visible','');
-            $(".div_fechas_"+div).toggleClass('oculto','');
+            let act = $(this).data('activo');
+            console.log(act);
+            
+            if(act){
+                $(this).find("i").toggleClass('fa-toggle-off');
+                $(this).find("i").toggleClass('fa-toggle-on');
+            }else
             $(this).find("i").toggleClass('fa-toggle-on','fa-toggle-off');
         });
     }
