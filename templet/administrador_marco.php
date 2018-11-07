@@ -1,8 +1,14 @@
 <div col="row">
     <div col="col-md-12" >
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Panel JMY</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto" id="nav_administrador">
+            <a class="navbar-brand" href="#">Panel JMY</a>
+            <button class="navbar-toggler navbar-toggler-bsk" type="button"  data-target="#navbarSupportedContent" >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class=" navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto" id="nav_administrador">
+                </ul>
+            </div>
         </nav>
     </div>
 </div>

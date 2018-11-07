@@ -1,6 +1,14 @@
 jQuery(function ($) {  
     console.log('Preferencias de empleado');
-   
+    let horario_general = {
+        lunes:[{h_entrada: 1, h_salida: 0}],
+        martes:[{h_entrada: 1, h_salida: 0}],
+        miercoles:[{h_entrada: 1, h_salida: 0}],
+        jueves:[{h_entrada: 1, h_salida: 0}],
+        viernes:[{h_entrada: 1, h_salida: 0}],
+        sabado:[{h_entrada: 1, h_salida: 0}],
+        domingo:[{h_entrada: 1, h_salida: 0}],
+    };
     function cargar_preferencias(d=[]){
         console.log('cargar_preferencias',d);
         
@@ -70,23 +78,7 @@ jQuery(function ($) {
         let empleado = $("#id_perfil").val();
 
 
-        let horarios = [];
-        let d =[]
-        $(".horario_entrada").each(function () {
-            let id =$(this).data('id');
-
-            d .push( {
-                id : id,
-                h_entrada : Number($('option:selected',this).val()),
-                h_salida : (!isNaN(Number($('#'+id+'_salida option:selected').val())))?Number($('#'+id+'_salida option:selected').val()):0,
-                tipo : $(this).data('tipo'),
-                dia : $(this).data('dia')  
-            });
-            
-            //horarios[dia].push({""});
-            
-        });
-        console.log(d);
+        guardar_dias();
 
         let guardar ={
             horario_mat_ini:$("#horario_mat_ini option:selected").val(),
@@ -107,7 +99,7 @@ jQuery(function ($) {
         });*/
     }
     $("#boton_guardar").on('click',function(){
-        guardar_preferencias();
+        guardar();
     });
     function servicios(d=[]){
         const id = (d.id!=undefined)?d.id:'';
@@ -212,45 +204,122 @@ jQuery(function ($) {
             entrada_select = (!isNaN(entrada_select))?entrada_select:0;
         for (let i = 1; i <= 24; i++) {
             horas_entrada = horas_entrada  + '<option value="'+i+'" '+((entrada_select==i)?'selected':'')+'>'+i+' Hrs. </option>';
-            horas_salida = (hora_max_salida<=i)? horas_salida  + '<option value="'+i+'">'+i+' Hrs. </option>':'';
+            horas_salida = (entrada_select>=i)? '<option value="'+i+'">'+i+' Hrs. </option>':'';
         }
         let h = (!d.sin_grupo)?'<div id="'+d.id+'_grupo" >':'';
-        h=h+'<div class="form-group"> <label for="horario_mat_ini">Entrada</label><select data-id="'+d.id+'" id="'+d.id+'_entrada" class="form-control horario horario_'+d.dia+' horario_'+d.dia+' horario_'+d.dia+'_entrada horario_entrada form-control-sm valid" data-dia="'+d.dia+'" data-tipo="entrada" >'+horas_entrada+'</select></div> <div class="form-group"><label for="horario_mat_ini">Salida</label><select  data-id="'+d.id+'" id="'+d.id+'_salida" class="form-control horario_salida horario_'+d.dia+'  horario_'+d.dia+'_salida form-control-sm valid"  data-dia="'+d.dia+'" data-tipo="salida"  >'+horas_salida+' </select></div>';
+        h=h+'<div class="form-group"> <label for="horario_mat_ini">Entrada</label><select data-id="'+d.id+'" id="'+d.id+'_entrada" class="form-control horario horario_'+d.dia+' horario_'+d.dia+' horario_'+d.dia+'_entrada horario_entrada form-control-sm valid" data-dia="'+d.dia+'" data-tipo="entrada" >'+horas_entrada+'</select></div> <div class="form-group"><label for="horario_mat_ini">Salida</label><select  data-id="'+d.id+'" id="'+d.id+'_salida" class="form-control horario_salida horario_'+d.dia+'  horario_'+d.dia+'_salida form-control-sm valid"  data-dia="'+d.dia+'" data-tipo="salida"  >'+horas_entrada+' </select></div>';
         
         h=(!d.sin_grupo)?h+'</div>':h;
         
         return h;
     }
-    function cambio_horario(){
+    function cambio_horario(d=[]){
         let h_max = 0;
-        $(".horario").change(function () {
+        /*$(".horario").change(function () {
+           
             let h_min = Number($('option:selected',this).val());   
-            //console.log($('option:selected',this).val());
-            let d = $(this).data('dia');
+            console.log(h_min);
+            let dia = $(this).data('dia');
             let id = $(this).data('id');
            // console.log(id);
             
-            $(".horario_"+d).each(function () {
-                let h = Number($('option:selected',this).val());   
-                if( !isNaN(h) ){
-                    if( h_max<h ){
-                            console.log(h);
-                            h_max=h;
+            $(".horario_"+dia).each(function () {
+                if( !isNaN(h_min) ){
+                    if( h_max<h_min ){
+                            console.log(h_min);
+                            h_max=h_min;
                     }
                 }
             });
-                let sel = select_dias({
-                    dia:d,
-                    id:id,
-                    sin_grupo:true,
-                    salida:h_min,
-                    entrada_select:h_min
+
+            $.when(guardar_dias()).done(function(res){
+                console.log(res);
+                
+                console.log( 'horario_general',horario_general );
+                let horario  = res[dia];
+                $("#grupo_fechas_"+dia).html('');
+                horario.forEach(element => {
+                    $("#grupo_fechas_"+dia).append(
+                        select_dias({
+                        dia:dia,
+                        id:element.id,
+                        sin_grupo:true,
+                        salida:element.h_entrada,
+                        entrada_select:element.h_salida
+                    }));
                 });
-                //console.log(sel);
-                 
-                $("#grupo_fechas_"+d).html(sel);
-                cambio_horario();
+                cambio_horario({dias:d.dias});
+            });
+        });*/
+    }
+    function guardar(d=[]) {   
+        let id_perfil =$("#id_perfil").val();
+        if(id_perfil!=undefined&&id_perfil!=''){
+            let gdias= guardar_dias();
+            console.log(gdias);
+            let guardar = {
+               
+                    horario:gdias
+            
+            };
+            
+            
+            $.ajax({
+                url: location.origin + '/administradorws/usuarios/perfil/'+id_perfil,
+                type: 'post',	
+                dataType: 'json',
+                success: function(res) {
+                    console.log(res);
+                    let horario = res.usuarios.otFm[0].horario;
+                    horario = (horario!=''&&horario!=undefined)?JSON.parse(horario):horario_general;
+                    console.log(horario);
+                    
+                    horario_general = horario;
+                },
+                error: function(res) {
+                    console.log(res);
+                },
+                data: guardar
+            });
+        }else{
+            console.log('error, no hay id_perfil');
+        }
+    }
+    function guardar_dias(d=[]) {   
+        console.log(d);
+        let guardar = [];
+        let horarios = [];
+        let dias =[];
+        jQuery(function ($) {  
+            $(".horario_entrada").each(function () {
+                let id =$(this).data('id');
+
+                dias.push( {
+                    id : id,
+                    h_entrada : Number($('option:selected',this).val()),
+                    h_salida : (!isNaN(Number($('#'+id+'_salida option:selected').val())))?Number($('#'+id+'_salida option:selected').val()):0,
+                    tipo : $(this).data('tipo'),
+                    dia : $(this).data('dia')  
+                });
+                
+                //horarios[dia].push({""});
+                
+            });
         });
+        dias.forEach(element => {
+            if(!jQuery.inArray(element.dia,guardar))
+                guardar.push(element.dia);
+            if(guardar[element.dia]==undefined||guardar[element.dia]=='')
+                guardar[element.dia]=[];
+            let activo = $("#dia_campo_"+element.dia).val();
+            if(activo=='activo')
+                guardar[element.dia].push(element);
+        });
+        horario_general=guardar;
+        console.log(guardar);
+       // console.log(dias);
+        return guardar;
+        
     }
     function dias(d=[]){
         //console.log('dias',d);
@@ -281,36 +350,52 @@ jQuery(function ($) {
             
             $("#botones_dias").append(sele);
 
-            $("#botones_horas").append('<input type="hidden" id="min_'+e+'" value=""><input type="hidden" id="max_'+e+'" value=""> ');
+            //$("#botones_horas").append('<input type="hidden" id="min_'+e+'" value=""><input type="hidden" id="max_'+e+'" value=""> ');
             $("#botones_horas").append('<div class=" horarios div_fechas_'+e+' verde div_fechas '+impSelect.fechasClass+' color_'+e+'"><h3>'+diasTexto[e]+'</h3><div class="grupo_fechas" id="grupo_fechas_'+e+'">'+select_dias({dia:e,id:'algo'+count})+'</div><button class="btn btn-flat btn-sm btn-warning " id="agregar_turno_'+e+'" style="left: 0px;"><i class="fa fa-add"></i> &nbsp;Agregar turno</button> </div>');
             /*
             .change
             */
             $(".color_"+e).css('background-color',colores[count]);
+            console.log('count',count);
+            
             $('#agregar_turno_'+e).on('click',function(){
-                console.log('agregar_turno');                
-                $('#grupo_fechas_'+e).append(select_dias({dia:e}));
+                console.log('count',count);
+                console.log('agregar_turno'); 
+                count++;
+                $('#grupo_fechas_'+e).append(select_dias({dia:e,id:'algo'+count}));
+                guardar_dias();
+                cambio_horario();
+                
             });
-            cambio_horario();
+            cambio_horario({dias:dias});
             count++;
         });
        
         $(".div_fechas").hide();
+        $('.toogle_dias').each(function(){
+            let dia = $(this).data('dia');
+            let activo = $(this).data('activo');
+            $(this).after('<input type="hidden" value="" id="dia_campo_'+dia+'" class="dia_campo"> ');
+            $('#dia_campo_'+dia).val(((activo)?'activo':''));
+        });
         $('.toogle_dias').on('click',function(){
             $(".div_fechas").hide();
-            let div = $(this).data('dia');
-            $(".div_fechas_"+div).show(100);
+            let dia = $(this).data('dia');
 
             $(this).toggleClass('btn-secondary','');
             $(this).toggleClass('dias_laborables','');
-            let act = $(this).data('activo');
+            let act = $('#dia_campo_'+dia).val();
             console.log(act);
-            
-            if(act){
+            $('#dia_campo_'+dia).val(((act!='activo')?'activo':''));
+
+            if(act=='activo'){
+                
                 $(this).find("i").toggleClass('fa-toggle-off');
                 $(this).find("i").toggleClass('fa-toggle-on');
-            }else
-            $(this).find("i").toggleClass('fa-toggle-on','fa-toggle-off');
+            }else{
+                $(".div_fechas_"+dia).show(100);
+                $(this).find("i").toggleClass('fa-toggle-on','fa-toggle-off');
+            }
         });
     }
 });

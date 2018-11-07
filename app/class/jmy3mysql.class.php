@@ -160,7 +160,7 @@ class JMY3MySQL {
    json_decode($string);
    return (json_last_error() == JSON_ERROR_NONE);
   }
-  private function col($d=[],$ad=DB_JMY_ADD_ID_D,$col="NAME",$error="no"){ // ->col(["NOMBRE","APELLIDO"])
+  public function col($d=[],$ad=DB_JMY_ADD_ID_D,$col="NAME",$error="no"){ // ->col(["NOMBRE","APELLIDO"])
     if(count($d)>0){
       $sa=0;$ss="SELECT * FROM cat_d WHERE ".$col." IN ('".implode("','",$d)."') LIMIT 1000; ";
       $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
@@ -179,6 +179,6 @@ class JMY3MySQL {
               $ssI = "INSERT INTO `cat_d` (`NAME`) VALUES ('".implode("'),('",$fa)."')  ";
               if( !$rs = $cu->query($ssI) ){$error = " error ssI ".$cu->error;} 
               }}}$sa++;}}}
-    return ["d"=>$d,"o"=>$ot,"error"=>$error,"ss"=>$ss,"w"=>$w,"fa"=>$fa,"ad"=>$ad];
+            return ["d"=>$d,"o"=>$ot,"error"=>$error,/*"ss"=>$ss,*/"w"=>$w,/*"fa"=>$fa,"ad"=>$ad*/];
   }
 }

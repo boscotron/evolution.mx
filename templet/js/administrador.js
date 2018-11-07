@@ -7,38 +7,55 @@ jQuery(function ($) {
         h+h+'</div>';
         return h;
     }
+    
     function crear_menu(d=[]){
-        
-        let zi = $.session.get('i');
-        zi =(zi!=''&&zi!=undefined)? JSON.parse(zi):'';
-        
+        let i=$.session.get('i');
+        console.log(i);
+        let zi=(i!=''&&i!=undefined)?JSON.parse(i):[];
         $.ajax({
             url: location.origin + '/administradorws/modulos/'+zi.u,
             type: 'POST',
             dataType: 'json',
             success: function(res) {
-                let mtmp = res.modulos.modulos_key;
-                console.log('guardar_modulos',res);
+                let mtmp=res.modulos.modulos_key;
+                let utmp=res.usuarios.ot[zi.u];
+                utmp=(utmp!=''&&utmp!=undefined)?utmp.modulos:'';
+                utmp=(utmp!=''&&utmp!=undefined)?JSON.parse(utmp):[];
+                let pem = [];
+                utmp.forEach(e => {
+                    pem[e.modulo]=e.permiso;
+                });
+                let h = '';
                 if(mtmp!="" && mtmp!=undefined){
-                    let h = '';
                     let co = 0;
                     mtmp.forEach(e => {
                         const m=res.menu[e];
-                        console.log('m',m);
-                        if(m!=undefined)
+                        if(m!=undefined && pem[e]>0)
                             h=h+' <li class="nav-item"><a class="nav-link '+((m.submenu!='' && m.submenu!=undefined)?'dropdown-submenu':'')+' '+m.class+'" href="'+m.url+'" data-submenu="nav-menu-'+co+'">'+m.nombre+'</a>'+crear_submenu(m.submenu,'nav-menu-'+co)+'</li>';
                         co++;
                     });
-                    $("#nav_administrador").append(h);
-                    $(".dropdown-submenu").on('click',function () {
-                        event.preventDefault();
-                        $("#"+$(this).data('submenu')).toggle(50);
-                    });
-                    $(".navbar-toggler").on('click',function () {
-                        $($(this).data('target')).toggleClass('collapse',50);
-                        $(".dropdown-menu").hide();
-                    });                  
                 }
+                h=h+'<li class="nav-item"><a class="nav-link" href="'+location.origin+'/administrador/salir'+'" >Salir</a></li>';
+                $("#nav_administrador").append(h);
+                $(".dropdown-submenu").on('click',function () {
+                    event.preventDefault();
+                    $("#"+$(this).data('submenu')).toggle(50);
+                });
+                $(".navbar-toggler-bsk").on('click',function () {
+                    $($(this).data('target')).toggleClass('collapse',50);
+                    $(".dropdown-menu").hide();
+                });                
+                if($(window).width()<960)
+                    $('.navbar-collapse').addClass('collapse');
+                else
+                    $('.navbar-collapse').removeClass('collapse');
+                
+                $(window).resize(function(){
+                    if($(window).width()<960)
+                    $('.navbar-collapse').addClass('collapse');
+                    else
+                    $('.navbar-collapse').removeClass('collapse');
+                });   
             },
             error: function(res) {
                 console.log(res);
@@ -47,6 +64,15 @@ jQuery(function ($) {
         });
     }
     $(document).ready(function() {
-        crear_menu();        
+        crear_menu();    
+        $(document).ready(function(){
+            if($("#url_redirect").data('redirect'))
+                window.location = $("#url_redirect").val();
+            //else
+                //ver_id_proyecto();
+            $("#copiar_proyecto").on('click',function(){copiar_proyecto()});
+
+            
+    } );
     } );
 });

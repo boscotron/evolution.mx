@@ -20,11 +20,20 @@ if($jmyWeb->session()){
         case 'salir':            
             $url_marco='administrador_salida.php';
         break;
-        case 'productos':      
+        case 'importar':      
             $jmyWeb->cargar_css(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"]);    
             $jmyWeb->cargar_js(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"]);    
-            $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(["return"=>true])."js/administrador_productos.js?f=".$version]);    
-            $url_marco='administrador_productos.php';
+            $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(["return"=>true])."js/administrador_importar.js?f=".$version]);    
+            $s=$jmyWeb->session();
+            $t='importar_'.$s['body']['api_web']['ID_F'];
+            switch ($peticion[1]) {
+                case 'instalar':
+                    $jmyWeb ->pre(['p'=>$jmy->db([$t]),'t'=>'DB Instalar importador']);
+                break;
+                default:
+                break;
+            }
+            $url_marco='administrador_importar.php';
         break;
         case 'modulos':      
             $jmyWeb->cargar_css(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"]);    

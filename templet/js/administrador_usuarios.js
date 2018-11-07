@@ -32,19 +32,19 @@ jQuery(function ($) {
         console.log('lista_modulos',d);
         let pet_guardar = d.guardar;
         if(d.id_perfil!=''){
-            let permisos = [];
-            p.forEach(e => {
-                permisos[e.modulo]=e.permiso;
-            });
-            console.log('p',permisos);
+            
             
             $.ajax({
-                url: location.origin + '/administradorws/modulos/'+d.id_,
+                url: location.origin + '/administradorws/modulos/'+d.id_perfil,
                 type: 'post',
                 dataType: 'json',
                 success: function(res) {
                     console.log(d);              
                     console.log(res);   
+                    let u_permisos = res.usuarios.ot[d.id_perfil];
+                    u_permisos=(u_permisos!='' && u_permisos!=undefined)?u_permisos.modulos:'';
+                    u_permisos=(u_permisos!='' && u_permisos!=undefined)?JSON.parse(u_permisos):[];
+                    console.log('u_permisos',u_permisos);
                     let m_niveles = res.modulos.modulos_niveles;
                     console.log('m_niveles',m_niveles);
                     let modulos = res.modulos.modulos;
@@ -53,16 +53,19 @@ jQuery(function ($) {
                     console.log(modulos_key);
                     let modulos_label = res.modulos.modulos_label;
                     console.log('modulos_label',modulos_label);
-                    
+                    let permisos = [];
+                    u_permisos.forEach(e => {
+                        permisos[e.modulo]=e.permiso;
+                    });
+                    console.log('p',permisos);
                     
                     let h = '<div class="row"><div class="col-sm-6">Módulo</div><div class="col-sm-6">Permisos</div>';
                     modulos_key.forEach(e => {
                         let op = '';
                         for (let i = 0; i < m_niveles.length; i++) {
                             let se=(permisos[e]==i)?'selected':'';
-                            op=op+'<option value="'+i+'" '+se+'>'+m_niveles[i]+'</option>' ;                        
+                            op=op+'<option value="'+i+'" '+se+'>'+m_niveles[i]+'</option>' ;
                         }
-                        
                         h=h+'<div class="col-sm-6">'+modulos_label[e]+'</div><div class="col-sm-6"><select class="form-control form-control-sm modulos_select" data-modulo="'+e+'" >'+op+'</select></div>';
                     });
                     h = h+ '<div class="col-sm-8"></div><div class="col-sm-4"><button class="btn btn-sm btn-success btn-flat btn-block" id="guardar_modulos" data-id="'+d.id_perfil+'">Guardar</button></div></div>';
@@ -301,7 +304,7 @@ jQuery(function ($) {
                     }
                     if(d.tipo=='empleado'||d.tipo=='admin'){
                         $("#btn_preferencias_empledo").show(100);
-                        $("#btn_preferencias_empledo").attr('href',location.origin+'/administrador/perfil-empleado/'+d.perfil_principal);
+                        $("#btn_preferencias_empledo").attr('href',location.origin+'/perfil/preferencias-empleado/'+d.perfil_principal);
 
                     }
 
@@ -340,9 +343,11 @@ jQuery(function ($) {
                 let lista = res.perfil.otFm;
                 console.log(lista);
                 let h = '<option selected>Selecciona...</option>';
-                lista.forEach(e => {
-                    h = h + '<option  value="'+e.ID_F+'">'+e.nombre+'</option>';
-                });
+                if(lista!=undefined){
+                    lista.forEach(e => {
+                        h = h + '<option  value="'+e.ID_F+'">'+e.nombre+'</option>';
+                    });
+                }
                 $("#select_lista_perfiles").html(h);
             },
             error: function(res) {
@@ -357,13 +362,8 @@ jQuery(function ($) {
                     ver_perfil();
                 });
 
-
-    ver_perfil(); 
-    /* PARTE DE PERFIL.js */ 
-
-
-
-
-    lista_usuarios();
-
+    $(document).ready(function() {
+        ver_perfil(); 
+        lista_usuarios();
+    });
 });
