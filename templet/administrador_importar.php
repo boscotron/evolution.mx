@@ -11,7 +11,7 @@
             <div class="btn-group" role="group" >
             <button type="button" class="btn btn-secondary"><span class="glyphicon glyphicon-file"></span> Archivo de ejemplo</button>
             <button type="button" class="btn btn-info paso1" id=""><span class="glyphicon glyphicon-search"></span> Crear nueva importación</button>
-            <button type="button" class="btn btn-info paso1" id="btn_paso_4"><span class="glyphicon glyphicon-start"></span> Finalizar importación</button>
+            <button type="button" class="btn btn-info" id="btn_paso_4"><span class="glyphicon glyphicon-start"></span> Finalizar importación</button>
             </div>
             </p>
             <p></p>
@@ -39,12 +39,8 @@
     <div class="row" id="div_paso_paso2">
         <div class="col-md-12 ">
             <div class="row">
-                <div class="col-md-12">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Active</a>
-                        </li>
-                    </ul>
+                <div class="col-md-12" id="tabs_impot">
+                    
                 </div>
                 <div class="col-md-12" id="tablas">
 

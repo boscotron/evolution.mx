@@ -21,9 +21,11 @@ if($jmyWeb->session()){
             $url_marco='administrador_salida.php';
         break;
         case 'importar':      
+            $jmyWeb->cargar_css(["url"=>$jmyWeb->url_app(['return'=>true])."js/jsoneditor/jsoneditor.min.css"]);    
+             $jmyWeb->cargar_js(["url"=>$jmyWeb->url_app(['return'=>true])."js/jsoneditor/jsoneditor.min.js"]);    
             $jmyWeb->cargar_css(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"]);    
-            $jmyWeb->cargar_js(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"]);    
-            $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(["return"=>true])."js/administrador_importar.js?f=".$version]);    
+             $jmyWeb->cargar_js(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"]);    
+             $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(["return"=>true])."js/administrador_importar.js?f=".$version]);    
             $s=$jmyWeb->session();
             $t='importar_'.$s['body']['api_web']['ID_F'];
             switch ($peticion[1]) {

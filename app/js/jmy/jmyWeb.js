@@ -43,8 +43,31 @@ function jmy_web_guardar(d) {
 		}
 	});
 }
-function jmy_web_url_friendly(a,s='-'){return a.trim().toLowerCase().replace(/[^a-z0-9]+/g,s).replace(/^-+|-+$/g, s).replace(/^-+|-+$/g,'')};
+function jmy_web_url_friendly(a,s='-'){return a.trim().toLowerCase().replace(/[^a-z0-9]+/g,s).replace(/^-+|-+$/g, s).replace(/^-+|-+$/g,'')}
+function jmt_web_eliminar_caracteres_especiales(a){
+	// Definimos los caracteres que queremos eliminar
+	var s = "!@#$^&%*()+=-[]\/{}|:<>?,.";
 
+	// Los eliminamos todos
+	for (var i = 0; i < s.length; i++) {
+		a= a.replace(new RegExp("\\" + s[i], 'gi'), '');
+	}   
+ 
+	// Lo queremos devolver limpio en minusculas
+	a = a.toLowerCase();
+ 
+	// Quitamos espacios y los sustituimos por _ porque nos gusta mas asi
+	a = a.replace(/ /g,"_");
+ 
+	// Quitamos acentos y "ñ". Fijate en que va sin comillas el primer parametro
+	a = a.replace(/á/gi,"a");
+	a = a.replace(/é/gi,"e");
+	a = a.replace(/í/gi,"i");
+	a = a.replace(/ó/gi,"o");
+	a = a.replace(/ú/gi,"u");
+	a = a.replace(/ñ/gi,"n");
+	return a;
+}
 function botones(d = []) {
 	let left = d.pageX;
 	let top = d.pageY + 30;
@@ -138,19 +161,20 @@ function agregarSinGuardar(d){ /* ({id:785}) */
 		sinGuardar.push(d.id);		
 }
 function jmy_web_div_click(){
-	jQuery(function ($) { 
+	
+	jQuery(function ($) {
 		$(".jmy_web_div").each(function() {
 			if ($(this).data('editor') != 'no') $(this).attr("contenteditable", "true");
 			/*else console.log(this);*/
-			let t = $(this).attr('type');
+			let t = $(this).attr('type'); 
 			switch (t) {
 				case'select':					
-					let s={
-						v:$(this).data('value'),
-						i:$(this).attr('id'),
-						h:$(this).attr('placeholder'),
-						l:$(this).data('lista-id') // transformar en input
-					};
+				let s={
+					v:$(this).data('value'),
+					i:$(this).attr('id'),
+					h:$(this).attr('placeholder'),
+					l:$(this).data('lista-id') // transformar en input
+				};
 					let ta=s.i+'_select_id_';
 					if($('#'+ta).length) 
 						s.l=$('#'+ta).val();
@@ -687,6 +711,7 @@ function jmy_web_select_guardar(d=[]){
 		});
 	});	
 }
+let count = 0;
 function jmy_web_select(d=[]){
 	console.log('jmy_web_select',d);
 	
