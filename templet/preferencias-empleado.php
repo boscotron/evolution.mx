@@ -108,8 +108,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
                 
             </div>
             <div class="col-md-12">
-                <ul class="list-group">
-                    <li class="list-group-item disabled">Cras justo odio</li>
+                <ul class="list-group" id="mostrar_servicio">
+                    
                 </ul>
                 
             </div>
