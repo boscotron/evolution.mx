@@ -10,6 +10,7 @@ jQuery(function ($) {
         domingo:[{h_entrada: 1, h_salida: 0}],
     };
     let diasActivos =[];
+    let serviciosAgregados = [];
 
     function cargar_preferencias(d=[]){
         console.log('cargar_preferencias',d);
@@ -103,6 +104,7 @@ jQuery(function ($) {
     }
     $("#boton_guardar").on('click',function(){
         guardar();
+        listarServicios();
     });
     function servicios(d=[]){
         const id = (d.id!=undefined)?d.id:'';
@@ -276,7 +278,8 @@ jQuery(function ($) {
                 viernes:diasActivos.viernes,
                 sabado:diasActivos.sabado,
                 domingo:diasActivos.domingo,
-            }
+            },
+            serviciosAgregados:serviciosAgregados
         }:undefined; // MANDAR A GUARDAR ALGO
         let id_perfil =$("#id_perfil").val();
         $.ajax({
@@ -494,35 +497,35 @@ jQuery(function ($) {
             "tiempo_servicio":$("#tiempo_servicio").val()
         }
         console.log(guardar);
-        $("#mostrar_servicio").append('<li class="list-group-item disabled">'+guardar.nombre_servicio+' tiempo '+guardar.tiempo_servicio+' minutos<i class="fa fa-times"></i></li>');
+        $("#mostrar_servicio").append(
+            '<li class="list-group-item d-flex justify-content-between align-items-center listadoServicio" data-id="'+guardar.id_servicio+'" data-nombre="'+guardar.nombre_servicio+'" data-tiempo="'+guardar.tiempo_servicio+'">'+guardar.nombre_servicio+', '+guardar.tiempo_servicio+' minutos'+'<span class="badge badge-pill"><button type="button" class="btn btn-danger btn-xs quitarServicio" idS='+guardar.id_servicio+'><i class="fa fa-times"></i></button></span></li>'
+        );
+
+        $(".quitarServicio").on('click',function(){
+            $(this).parent().parent().remove();
+        });
+        serviciosAgregados.push({guardar});
+        console.log('serviciosAgregados',serviciosAgregados);
+        $("#servicios").val("Seleccione un servicio");
+        $("#tiempo_servicio").val("");
+        
     });
 
+    function listarServicios(){
+            let i = [];
+            $(".listadoServicio").each(function(){
+                let id = $(this).data("id");
+                let nombre = $(this).data("nombre");
+                let tiempo = $(this).data("tiempo");
+                //guardamos los valores en un arreglo
+                i.push({
+                    idServicio:id,
+                    nombreServicio:nombre,
+                    tiempoServicio:tiempo
+                });
+            });
+            serviciosAgregados = i;
+            console.log("Servicios agregados :", serviciosAgregados);
+    }
 });
 
-
-     "language": {
-
-            "sProcessing":     "Procesando...",
-            "sLengthMenu":     "Mostrar _MENU_ registros",
-            "sZeroRecords":    "No se encontraron resultados",
-            "sEmptyTable":     "Ningún dato disponible en esta tabla",
-            "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-            "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
-            "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-            "sInfoPostFix":    "",
-            "sSearch":         "Buscar:",
-            "sUrl":            "",
-            "sInfoThousands":  ",",
-            "sLoadingRecords": "Cargando...",
-            "oPaginate": {
-            "sFirst":    "Primero",
-            "sLast":     "Último",
-            "sNext":     "Siguiente",
-            "sPrevious": "Anterior"
-            },
-            "oAria": {
-                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-            }
-
-    }

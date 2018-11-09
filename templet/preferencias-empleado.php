@@ -108,6 +108,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
                 
             </div>
             <div class="col-md-12">
+                <h3>Servicios agregados:</h3>
                 <ul class="list-group" id="mostrar_servicio">
                     
                 </ul>
