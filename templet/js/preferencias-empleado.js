@@ -9,6 +9,9 @@ jQuery(function ($) {
         sabado:[{h_entrada: 1, h_salida: 0}],
         domingo:[{h_entrada: 1, h_salida: 0}],
     };
+    let diasActivos =[];
+    let serviciosAgregados = [];
+
     function cargar_preferencias(d=[]){
         console.log('cargar_preferencias',d);
         
@@ -46,7 +49,8 @@ jQuery(function ($) {
         });
     }
 
-    cargar_preferencias();
+    //cargar_preferencias();
+    
     function ver_horarios(d=[]) {
         let horarios = [];
         $('.horarios').each(function () {
@@ -100,6 +104,7 @@ jQuery(function ($) {
     }
     $("#boton_guardar").on('click',function(){
         guardar();
+        listarServicios();
     });
     function servicios(d=[]){
         const id = (d.id!=undefined)?d.id:'';
@@ -194,17 +199,20 @@ jQuery(function ($) {
         $("#horario_ves_ini").html(sele3);
         $("#horario_ves_fin").html(sele4);
     }
-    function select_dias(d=[]){ /*({dia:'lunes',id:'',salida:6})*/
+    function select_dias(d=[]){ /*({dia:'lunes',id:'',entrada_select:'',salida_select:''})*/
        console.log(d);
         
         let horas_entrada = '';
         let horas_salida = '';
         let hora_max_salida = d.salida;
         let entrada_select = Number(d.entrada_select);
+        let salida_select = Number(d.salida_select);
             entrada_select = (!isNaN(entrada_select))?entrada_select:0;
+            salida_select = (!isNaN(salida_select))?salida_select:0;
         for (let i = 1; i <= 24; i++) {
             horas_entrada = horas_entrada  + '<option value="'+i+'" '+((entrada_select==i)?'selected':'')+'>'+i+' Hrs. </option>';
-            horas_salida = (entrada_select>=i)? '<option value="'+i+'">'+i+' Hrs. </option>':'';
+
+            horas_salida = (entrada_select>=i)? '<option value="'+i+'" '+((salida_select==i)?'selected':'')+'>'+i+' Hrs. </option>':'';
         }
         let h = (!d.sin_grupo)?'<div id="'+d.id+'_grupo" >':'';
         h=h+'<div class="form-group"> <label for="horario_mat_ini">Entrada</label><select data-id="'+d.id+'" id="'+d.id+'_entrada" class="form-control horario horario_'+d.dia+' horario_'+d.dia+' horario_'+d.dia+'_entrada horario_entrada form-control-sm valid" data-dia="'+d.dia+'" data-tipo="entrada" >'+horas_entrada+'</select></div> <div class="form-group"><label for="horario_mat_ini">Salida</label><select  data-id="'+d.id+'" id="'+d.id+'_salida" class="form-control horario_salida horario_'+d.dia+'  horario_'+d.dia+'_salida form-control-sm valid"  data-dia="'+d.dia+'" data-tipo="salida"  >'+horas_entrada+' </select></div>';
@@ -252,35 +260,86 @@ jQuery(function ($) {
             });
         });*/
     }
-    function guardar(d=[]) {   
+    function obetner_dias(){
+        let gdias= guardar_dias();
+        console.log('guardar_dias()',gdias);
+        return gdias;
+    }
+    function wsperfil(d=[]) {   
+        console.log('diasActivos',diasActivos);
+        
+        let guardar = (d.g!=undefined)?{
+            dias:d.g,
+            diasActivos:{
+                lunes:diasActivos.lunes,
+                martes:diasActivos.martes,
+                miercoles:diasActivos.miercoles,
+                jueves:diasActivos.jueves,
+                viernes:diasActivos.viernes,
+                sabado:diasActivos.sabado,
+                domingo:diasActivos.domingo,
+            },
+            serviciosAgregados:serviciosAgregados
+        }:undefined; // MANDAR A GUARDAR ALGO
         let id_perfil =$("#id_perfil").val();
-        if(id_perfil!=undefined&&id_perfil!=''){
-            let gdias= guardar_dias();
-            console.log(gdias);
-            let guardar = {
-               
-                    horario:gdias
-            
-            };
-            
-            
-            $.ajax({
-                url: location.origin + '/administradorws/usuarios/perfil/'+id_perfil,
-                type: 'post',	
-                dataType: 'json',
-                success: function(res) {
-                    console.log(res);
-                    let horario = res.usuarios.otFm[0].horario;
-                    horario = (horario!=''&&horario!=undefined)?JSON.parse(horario):horario_general;
-                    console.log(horario);
+        $.ajax({
+            url: location.origin + '/administradorws/usuarios/perfil/'+id_perfil,
+            type: 'post',	
+            dataType: 'json',
+            success: function(res) {
+                console.log(res);
+                let datos = res.usuarios.ot[id_perfil];
+                
+                if(datos!=''&&datos!=undefined){
+                    console.log('datos',datos);
+                    let dias=(datos.dias!=''&&datos.dias!=undefined)?JSON.parse(datos.dias):horario_general;
+                    diasActivos=(datos.diasActivos!=''&&datos.diasActivos!=undefined)?JSON.parse(datos.diasActivos):{
+                        lunes:0,
+                        martes:0,
+                        miercoles:0,
+                        jueves:0,
+                        viernes:0,
+                        sabado:0,
+                        domingo:0,
+                    };
+                    console.log('dias',dias);
+                    horario_general.lunes=(dias.lunes!=undefined)?dias.lunes:horario_general.lunes;
+                    horario_general.martes=(dias.martes!=undefined)?dias.martes:horario_general.martes;
+                    horario_general.miercoles=(dias.miercoles!=undefined)?dias.miercoles:horario_general.miercoles;
+                    horario_general.jueves=(dias.jueves!=undefined)?dias.jueves:horario_general.jueves;
+                    horario_general.viernes=(dias.viernes!=undefined)?dias.viernes:horario_general.viernes;
+                    horario_general.sabado=(dias.sabado!=undefined)?dias.sabado:horario_general.sabado;
+                    horario_general.domingo=(dias.domingo!=undefined)?dias.domingo:horario_general.domingo;
+                    console.log('horario_general',horario_general);
                     
-                    horario_general = horario;
-                },
-                error: function(res) {
-                    console.log(res);
-                },
-                data: guardar
+                }
+                dias();
+
+            },
+            error: function(res) {
+                console.log(res);
+            },
+            data: guardar
+        });
+    }
+    wsperfil();
+    function guardar(d=[]) {   
+        
+        if(id_perfil!=undefined&&id_perfil!=''){
+            $.when(obetner_dias()).done(function(element){
+               console.log('element',element);
+               let g = {
+                   lunes:element['lunes'],
+                   martes:element['martes'],
+                   miercoles:element['miercoles'],
+                   jueves:element['jueves'],
+                   viernes:element['viernes'],
+                   sabado:element['sabado'],
+                   domingo:element['domingo']
+               };
+               wsperfil({g:g});
             });
+
         }else{
             console.log('error, no hay id_perfil');
         }
@@ -291,6 +350,7 @@ jQuery(function ($) {
         let horarios = [];
         let dias =[];
         jQuery(function ($) {  
+            
             $(".horario_entrada").each(function () {
                 let id =$(this).data('id');
 
@@ -312,11 +372,24 @@ jQuery(function ($) {
             if(guardar[element.dia]==undefined||guardar[element.dia]=='')
                 guardar[element.dia]=[];
             let activo = $("#dia_campo_"+element.dia).val();
-            if(activo=='activo')
+
+            if(!jQuery.inArray(element.dia,diasActivos))
+                if(!jQuery.isArray(diasActivos[element.dia]))
+                    diasActivos.push(element.dia);
+
+            if(diasActivos[element.dia]==undefined||diasActivos[element.dia]=='')
+                    diasActivos[element.dia]=0;
+
+            if(activo=='activo'){
+                diasActivos[element.dia]=1;
                 guardar[element.dia].push(element);
+            }else{
+                diasActivos[element.dia]=0;
+            }
         });
         horario_general=guardar;
         console.log(guardar);
+        console.log('diasActivos',diasActivos);
        // console.log(dias);
         return guardar;
         
@@ -331,32 +404,48 @@ jQuery(function ($) {
         let selec=(d.select!=undefined)?d.select:[];
         $("#botones_dias").html('');
         let count = 0;
-        dias.forEach(e => {
+        let countColores = 0;
+        $("#botones_horas").html('');
+        dias.forEach(e => { /* e = a el nombre del dia */
             let impSelect = {
                 class:"btn-secondary",
                 icon:"fa-toggle-off",
                 fechasClass:"oculto",
                 activo:false
             };
-            selec.forEach(sel => {                
-                impSelect = (e==sel) ?{
-                    class:"",
-                    icon:"fa-toggle-on",
-                    fechasClass:"visible",
-                    activo:true
-                }:impSelect;
-            });
+            console.log(e);
+            console.log(diasActivos);
+            impSelect = (diasActivos[e]=="1") ?{
+                class:"",
+                icon:"fa-toggle-on",
+                fechasClass:"visible",
+                activo:true
+            }:impSelect;
             sele = ' <button type="button" data-activo="'+impSelect.activo+'" class="btn  color_'+e+' '+impSelect.class+'   toogle_dias" data-dia="'+e+'" >'+diasTexto[e]+' <i class="fa '+impSelect.icon+'"></i> </button>';
             
             $("#botones_dias").append(sele);
 
             //$("#botones_horas").append('<input type="hidden" id="min_'+e+'" value=""><input type="hidden" id="max_'+e+'" value=""> ');
-            $("#botones_horas").append('<div class=" horarios div_fechas_'+e+' verde div_fechas '+impSelect.fechasClass+' color_'+e+'"><h3>'+diasTexto[e]+'</h3><div class="grupo_fechas" id="grupo_fechas_'+e+'">'+select_dias({dia:e,id:'algo'+count})+'</div><button class="btn btn-flat btn-sm btn-warning " id="agregar_turno_'+e+'" style="left: 0px;"><i class="fa fa-add"></i> &nbsp;Agregar turno</button> </div>');
+            console.log(horario_general[e]);
+            let horarios = '';
+            if(horario_general[e]!=''&&horario_general[e]!=undefined){
+                horario_general[e].forEach(element => {
+                    horarios = horarios + select_dias({
+                        dia:e,
+                        id:'algo'+count,
+                        entrada_select:element.h_entrada,
+                        salida_select:element.h_salida
+                    });
+                    count++;
+                });
+            }
+            $("#botones_horas").append('<div class=" horarios div_fechas_'+e+' verde div_fechas '+impSelect.fechasClass+' color_'+e+'"><h3>'+diasTexto[e]+'</h3><div class="grupo_fechas" id="grupo_fechas_'+e+'">'+horarios+'</div><button class="btn btn-flat btn-sm btn-warning " id="agregar_turno_'+e+'" style="left: 0px;"><i class="fa fa-add"></i> &nbsp;Agregar turno</button> </div>');
             /*
             .change
             */
-            $(".color_"+e).css('background-color',colores[count]);
-            console.log('count',count);
+            $(".color_"+e).css('background-color',colores[countColores]);
+            countColores++;
+            //console.log('count',count);
             
             $('#agregar_turno_'+e).on('click',function(){
                 console.log('count',count);
@@ -398,4 +487,45 @@ jQuery(function ($) {
             }
         });
     }
+
+    /* Seccion para los servicios */
+
+    $("#agregar_servicios").on('click',function(){
+        let guardar = {
+            "nombre_servicio":$("#servicios option:selected").html(),
+            "id_servicio":$("#servicios option:selected").val(),
+            "tiempo_servicio":$("#tiempo_servicio").val()
+        }
+        console.log(guardar);
+        $("#mostrar_servicio").append(
+            '<li class="list-group-item d-flex justify-content-between align-items-center listadoServicio" data-id="'+guardar.id_servicio+'" data-nombre="'+guardar.nombre_servicio+'" data-tiempo="'+guardar.tiempo_servicio+'">'+guardar.nombre_servicio+', '+guardar.tiempo_servicio+' minutos'+'<span class="badge badge-pill"><button type="button" class="btn btn-danger btn-xs quitarServicio" idS='+guardar.id_servicio+'><i class="fa fa-times"></i></button></span></li>'
+        );
+
+        $(".quitarServicio").on('click',function(){
+            $(this).parent().parent().remove();
+        });
+        serviciosAgregados.push({guardar});
+        console.log('serviciosAgregados',serviciosAgregados);
+        $("#servicios").val("Seleccione un servicio");
+        $("#tiempo_servicio").val("");
+        
+    });
+
+    function listarServicios(){
+            let i = [];
+            $(".listadoServicio").each(function(){
+                let id = $(this).data("id");
+                let nombre = $(this).data("nombre");
+                let tiempo = $(this).data("tiempo");
+                //guardamos los valores en un arreglo
+                i.push({
+                    idServicio:id,
+                    nombreServicio:nombre,
+                    tiempoServicio:tiempo
+                });
+            });
+            serviciosAgregados = i;
+            console.log("Servicios agregados :", serviciosAgregados);
+    }
 });
+

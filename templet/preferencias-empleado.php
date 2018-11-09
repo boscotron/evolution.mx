@@ -67,46 +67,55 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
 </style>
 
 <div class="container">
+    <input type = "hidden" id="id_perfil" value="<?php echo $data['data']['id_perfil']; ?>">
     <div class="row">
-        <div class="col-md-12">
-        
-            <input type = "hidden" id="id_perfil" value="<?php echo $data['data']['id_perfil']; ?>">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Horario y habilidades</h2>
-                </div>
+        <div class="col-lg-12">
+            <h2>Horario y habilidades</h2>
+        </div>
+    </div>                      
+    <div class="row">
+        <div class="col-md-3">
+            <div class="btn-group-vertical btn-group-vertical-dias " role="group" id="botones_dias" aria-label="Basic example">
             </div>
-        
+        </div>
+        <div class="col-md-5">
+            <div class="btn-group-vertical btn-group-vertical-dias " role="group" id="botones_horas" aria-label="Basic example">
+            
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3>Servicios</h3>
+            <div class=" col-md-12">
+                <div class="input-group">
+                <select 
+                type="select" 
+                class="custom-select  jmy_web_div" 
+                data-lista-id="casas_hogares" 
+                placeholder="Seleccione un servicio" 
+                data-value="<?php $this->pnt('servicios'); ?>"   
+                data-tabla="<?php echo $tabla; ?>" 
+                data-page="<?php echo $page; ?>" 
+                id="servicios" 
+                tabindex="5" 
+                >
+                </select>
+                <input type="text" class="form-control" id="tiempo_servicio" aria-label="" placeholder="Tiempo promedio de servico">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary " id="agregar_servicios" type="button" >Agregar</button>
+                    </div>
+                </div>
+                <label for="servicios">Selecciona un servicio para agregarlo</label>
                 
-            
-            <div class="row">
-                <div class="col-md-3">
-                   
-                    <div class="btn-group-vertical btn-group-vertical-dias " role="group" id="botones_dias" aria-label="Basic example">
-                    
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="btn-group-vertical btn-group-vertical-dias " role="group" id="botones_horas" aria-label="Basic example">
-                    
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <h3>Servicios</h3>
-                    <div class="btn-group-vertical btn-group-vertical-servicios" role="group" id="botones_servicios" aria-label="Basic example">
-                    
-                    </div>
-                </div>
             </div>
-    
-
-        
-            <button type="button" id="boton_guardar" class="btn btn-success">Guardar</button>
-        
-        <div id="ajax_contactform_msg"> </div>	
-        
-            
-
+            <div class="col-md-12">
+                <h3>Servicios agregados:</h3>
+                <ul class="list-group" id="mostrar_servicio">
+                    
+                </ul>
+                
+            </div>
+        </div>
     </div>
-    </div>
+    <button type="button" id="boton_guardar" class="btn btn-success">Guardar</button>
+    <div id="ajax_contactform_msg"> </div>
 </div>
