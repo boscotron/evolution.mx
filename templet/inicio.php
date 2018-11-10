@@ -1,13 +1,26 @@
-<div id="main"><!-- Main -->
+<div id="main" ><!-- Main -->
             <div class="banner">
             	<div class="fullwidth-section dt-sc-parallax-section slider-bg">
                 	<div class="parallax-spacing">
                     	<div class="container">
-                        	<div class="caption">
-                            	<h2>A Touch of class<br><strong>Hair Salon</strong></h2>
-                                <p>sed do eiusmod tempor incididunt ut labore et dolore <br>magna aliqua. Ut enim ad minim veniam, quis nostrud <br>exercitation ullamco laboris nisi ut</p>
-                                <div class="dt-sc-view-btn">
-                               		<a class="btn-eff2" href=""> View Details </a>
+                        	<div class=" caption jmy_web_div" data-page="inicio" id="main">
+                                <h2><?php $this->pnt('varialbe_titulo','
+                                A Touch of class',
+                               ' Hair Salon'); ?>
+                                       </h2>
+                                       
+                                       <p>
+                                       <?php $this->pnt('varialbe_tit','
+                                sed do eiusmod tempor incididunt ut labore et dolore <br>magna aliqua. Ut enim ad minim veniam, quis nostrud <br>exercitation ullamco laboris nisi ut');?>
+                                           </p>
+                                       <div class="dt-sc-view-btn">
+                                              <a class="btn-eff2" href=""> View Details </a>
+                             
+       
+                                           A Touch of class<br><strong>Hair Salon</strong></h2>
+                                       <p>sed do eiusmod tempor incididunt ut labore et dolore <br>magna aliqua. Ut enim ad minim veniam, quis nostrud <br>exercitation ullamco laboris nisi ut</p>
+                                       <div class="dt-sc-view-btn">
+                                              <a class="btn-eff2" href=""> View Details </a>
                                 </div>
                             </div>
                             <div class="hr-invisible"></div>
@@ -36,10 +49,11 @@
                 </div>
             </div>
             <div class="container"><!-- Container -->
-            	<h2 class="border-title aligncenter">
-                    Welcome to Trend Salon
+            	<h2 class="jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_bienvenida" data-editor="no"><?php $this->pnt('titulo_bienvenida',' Welcome to Trend Salon'); ?>
                 </h2>
-                <p class="aligncenter">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.</p>
+                <p class="aligncenter jmy_web_div" data-page="inicio" id="varialbe_titulo">
+                <?php $this->pnt('titulo_desc',' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.f'); ?>
+                    </p>
 				<div class="clear"></div>
                 <div class="hr-invisible-medium"></div>
                 <div class="hr-invisible-very-very-small"></div>
@@ -98,15 +112,16 @@
                 <div class="fullwidth-bg">
                     <div class="parallax-spacing">
                         <div class="container"><!-- Container -->
-                        	<h2 class="border-title aligncenter"> Our Latest Offers </h2>
+                        	<h2 class="jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_sec" data-editor="no"><?php $this->pnt('titulo_sec',' Our Latest Offers'); ?></h2>
                             <div class="hr-invisible-small"></div>
                             <div class="column dt-sc-one-fourth first">
                             	<div class="animate" data-delay="200" data-animation="fadeIn animated">
-                                    <h3 class="border-title">Our Salon <span>Offers</span></h3>
-                                    <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <h3 class="border-title jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_sec1" data-editor="no"><?php $this->pnt('titulo_sec1',' Our Salon Offers'); ?></h3>
+                                    <p class="aligncenter jmy_web_div" data-page="inicio" id="varialbe_titulo">
+                                    <?php $this->pnt('titulo_desc1','sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'); ?>
+                                    </p>
                                     <div class="dt-sc-offer-text">
-                                        <h2>50</h2>
-                                        <span>%<span>off</span></span>
+                                        <h2 class="border-title jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_sec2" data-editor="no"><?php $this->pnt('titulo_sec2','50% off'); ?></h2>
                                     </div>
                                     <div class="clear"></div>
                                     <ul class="dt-sc-offer-date">
@@ -130,9 +145,9 @@
                                                     <a href="#"><img src="images/offer-img1.jpg" alt="" title=""></a>
                                                 </figure>
                                                 <div class="gallery-details">
-                                                	<h4><a href="#">Hair Coloring</a></h4>
-                                                    <div class="dt-sc-price">
-                                                    	£ 200
+                                                	<h4><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>
+                                                    <div class="dt-sc-price aligncente jmy_web_div" data-page="principal" id="varialbe_precio">
+                                                    <?php $this->pnt('varialbe_precio','£ 200'); ?>
                                                     </div>
                                                     <div class="hr-invisible-very-very-small"></div>
                                                     <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
@@ -145,9 +160,9 @@
                                                     <a href="#"><img src="images/offer-img2.jpg" alt="" title=""></a>
                                                 </figure>
                                                 <div class="gallery-details">
-                                                	<h4><a href="#">Hair Coloring</a></h4>
-                                                    <div class="dt-sc-price">
-                                                    	£ 200
+                                                	<h4><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>
+                                                    <div class="dt-sc-price aligncente jmy_web_div" data-page="principal" id="varialbe_precio">
+                                                    <?php $this->pnt('varialbe_precio','£ 200'); ?>
                                                     </div>
                                                     <div class="hr-invisible-very-very-small"></div>
                                                     <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
@@ -160,9 +175,10 @@
                                                     <a href="#"><img src="images/blog-img2.jpg" alt="" title=""></a>
                                                 </figure>
                                                 <div class="gallery-details">
-                                                	<h4><a href="#">Hair Coloring</a></h4>
-                                                    <div class="dt-sc-price">
-                                                    	£ 200
+                                                	<h4><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>
+                                                    <div class="dt-sc-price aligncente jmy_web_div" data-page="principal" id="varialbe_precio">
+                                                    <?php $this->pnt('varialbe_precio','£ 200'); ?>
+
                                                     </div>
                                                     <div class="hr-invisible-very-very-small"></div>
                                                     <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
@@ -175,9 +191,9 @@
                                                     <a href="#"><img src="images/offer-img1.jpg" alt="" title=""></a>
                                                 </figure>
                                                 <div class="gallery-details">
-                                                	<h4><a href="#">Hair Coloring</a></h4>
-                                                    <div class="dt-sc-price">
-                                                    	£ 200
+                                                <h4><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>
+                                                    <div class="dt-sc-price aligncente jmy_web_div" data-page="principal" id="varialbe_precio">
+                                                    <?php $this->pnt('varialbe_precio','£ 200'); ?>
                                                     </div>
                                                     <div class="hr-invisible-very-very-small"></div>
                                                     <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
@@ -190,9 +206,9 @@
                                                     <a href="#"><img src="images/offer-img2.jpg" alt="" title=""></a>
                                                 </figure>
                                                 <div class="gallery-details">
-                                                	<h4><a href="#">Hair Coloring</a></h4>
-                                                    <div class="dt-sc-price">
-                                                    	£ 200
+                                                <h4><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>
+                                                    <div class="dt-sc-price aligncente jmy_web_div" data-page="principal" id="varialbe_precio">
+                                                    <?php $this->pnt('varialbe_precio','£ 200'); ?>
                                                     </div>
                                                     <div class="hr-invisible-very-very-small"></div>
                                                     <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
@@ -216,7 +232,7 @@
             <div class="fullwidth-section promo-parallax" style="background-position: 35% 0%;">
             	<div class="parallax-spacing">
                 	<div class="container">
-                        <h2 class="border-title aligncenter"> Our Beauty Product </h2>
+                        <h2 class="border-title aligncenter jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_des" data-editor="no"><?php $this->pnt('titulo_des',' Our Beauty Product'); ?> </h2>
                         <div class="hr-invisible"></div>
                         <div class="column dt-sc-one-third first">
                         </div>
@@ -227,9 +243,10 @@
                         </div>
                         <div class="column dt-sc-one-third">
                         	<div class="animate" data-delay="400" data-animation="fadeIn animated">
-                                <h3 class="border-title">Duis aute irure dolor <span>pariatur</span></h3>
-                                <ul class="dt-sc-fancy-list check italic">
-                                    <li> Sed do eiusmod tempor incididunt ut </li>
+                                <h3  class="border-title jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_b1" data-editor="no"><?php $this->pnt('titulo_b1','Duis aute irure dolor pariatur'); ?>
+                               </h3>
+                                <ul class="dt-sc-fancy-list check italic project-field jmy_web_div" id="listado" data-page="comsis-redes" data-editor="no">
+                                    <li > Sed do eiusmod tempor incididunt ut </li>
                                     <li> Labore et dolore magna aliqua </li>
                                     <li> Ut enim ad minim veniam quis </li>
                                     <li> Nostrud exercitation ullamco laboris </li>
@@ -245,10 +262,10 @@
                         <div class="column dt-sc-two-third">
                             <div class="dt-sc-notification">
                                 <div class="alignleft">
-                                    <h4>Lorem ipsum dolor sit amet, consectetur <span>Adipiscing elit</span></h4>
+                                    <h4 class="jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_b3" data-editor="no"><?php $this->pnt('titulo_b3',' Lorem ipsum dolor sit amet, consectetur Adipiscing elit'); ?></h4>
                                 </div>
                                 <div class="alignright">
-                                    <a class="dt-sc-button" href="#">£150</a>
+                                    <a class="dt-sc-button" href="<?php $this->url_#(); ?>#">£150</a>
                                 </div>
                             </div>
                         </div>
@@ -264,7 +281,9 @@
                     	<div class="column dt-sc-one-fourth first">
                         	<div class="dt-sc-counter animate" data-delay="100" data-animation="fadeIn animated">
                             	<div class="dt-sc-counter-number">
-                                    <p data-value="2500">2500</p>
+                                    <p data-value="2500" class="aligncenter jmy_web_div" data-page="inicio" id="varialbe_t4" >
+                                    <?php $this->pnt('varialbe_t4','2500'); ?>
+                                    </p>
                                 </div>
                                 <div class="hr-invisible-very-small"></div>
                                 <div class="hr-invisible-very-very-small"></div>
@@ -282,14 +301,17 @@
                                 <div class="hr-invisible-very-small"></div>
                                 <div class="hr-invisible-very-very-small"></div>
                                 <div class="dt-sc-counter-number">
-                                    <p data-value="100">100</p>
+                                <p data-value="100" class="aligncenter jmy_web_div" data-page="inicio" id="varialbe_t5" >
+                                    <?php $this->pnt('varialbe_t5','100'); ?>
+                                  </p>
                                 </div>
                             </div>
                         </div>
                         <div class="column dt-sc-one-fourth">
                         	<div class="dt-sc-counter animate" data-delay="300" data-animation="fadeIn animated">
                                 <div class="dt-sc-counter-number">
-                                    <p data-value="150">100</p>
+                                <p data-value="150" class="aligncenter jmy_web_div" data-page="inicio" id="varialbe_t6" >
+                                    <?php $this->pnt('varialbe_t6','100'); ?>   
                                 </div>
                                 <div class="hr-invisible-very-small"></div>
                                 <div class="hr-invisible-very-very-small"></div>
@@ -308,7 +330,8 @@
                                 <div class="hr-invisible-very-small"></div>
                                 <div class="hr-invisible-very-very-small"></div>
                                 <div class="dt-sc-counter-number">
-                                    <p data-value="250">250</p>
+                                <p data-value="250" class="aligncenter jmy_web_div" data-page="inicio" id="varialbe_t7" >
+                                    <?php $this->pnt('varialbe_t7','250'); ?>
                                 </div>
                             </div>
                         </div>
@@ -319,8 +342,11 @@
             <div class="clear"></div>
             <div class="hr-invisible"></div>
             <div class="container">
-            	<h2 class="border-title aligncenter"> Meet our Expert Stylists </h2>
-                <p class="aligncenter">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco </p>
+            	<h2 class="border-title aligncenter aligncenter jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_des2" data-editor="no"><?php $this->pnt('titulo_des2','Meet our Expert Stylists'); ?> </h2>
+                <p class="aligncenter jmy_web_div" data-page="inicio" id="varialbe_titulo7">
+                <?php $this->pnt('titulo_desc7',' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.f'); ?>
+                    </p>
+
                 <div class="hr-invisible"></div>
                 <div class="column dt-sc-one-fourth first">
                     <div class="dt-sc-team type1 animate" data-delay="100" data-animation="fadeIn animated">
@@ -389,7 +415,7 @@
                 <div class="fullwidth-bg">
                 	<div class="parallax-spacing">
                     	<div class="container">
-                        	<h2 class="border-title aligncenter"> From the Blog </h2>
+                            <h2 class="border-title aligncenter aligncenter jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_des8" data-editor="no"><?php $this->pnt('titulo_des8','From the Blog'); ?> </h2>
                             <div class="hr-invisible"></div>
                             <div class="column dt-sc-one-third first">
                             	<article class="blog-entry">
@@ -484,7 +510,7 @@
           	</div>
             <div class="clear"></div>
             <div class="hr-invisible"></div>
-            <h2 class="border-title aligncenter"> Our Pricing Plans </h2>
+            <h2 class="border-title aligncenter aligncenter jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_des9" data-editor="no"><?php $this->pnt('titulo_des9','Our Pricing Plans'); ?> </h2>
          	<div class="hr-invisible"></div>
             <div class="fullwidth-section pricing-container">
             <div class="left-image"></div>
@@ -563,7 +589,7 @@
             <div class="clear"></div>
             <div class="hr-invisible"></div>
             <div class="container">
-            	<h2 class="border-title aligncenter"> Client Testimonials </h2>
+                <h2 class="border-title aligncenter aligncenter jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_des10" data-editor="no"><?php $this->pnt('titulo_des10','Client Testimonials '); ?> </h2>
                 <div class="dt-sc-testimonial-carousel-wrapper">
                     <ul class="dt-sc-testimonial-carousel">
                         <li>
