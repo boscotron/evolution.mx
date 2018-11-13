@@ -200,7 +200,7 @@ jQuery(function ($) {
         $("#horario_ves_fin").html(sele4);
     }
     function select_dias(d=[]){ /*({dia:'lunes',id:'',entrada_select:'',salida_select:''})*/
-       console.log(d);
+       //console.log(d);
         
         let horas_entrada = '';
         let horas_salida = '';
@@ -293,6 +293,10 @@ jQuery(function ($) {
                 if(datos!=''&&datos!=undefined){
                     console.log('datos',datos);
                     let dias=(datos.dias!=''&&datos.dias!=undefined)?JSON.parse(datos.dias):horario_general;
+                    serviciosAgregados=(datos.serviciosAgregados!=''&&datos.serviciosAgregados!=undefined)?JSON.parse(datos.serviciosAgregados):[];
+                    console.log('serviciosAgregados',serviciosAgregados);
+                    
+                    imprimirServicios();
                     diasActivos=(datos.diasActivos!=''&&datos.diasActivos!=undefined)?JSON.parse(datos.diasActivos):{
                         lunes:0,
                         martes:0,
@@ -413,8 +417,8 @@ jQuery(function ($) {
                 fechasClass:"oculto",
                 activo:false
             };
-            console.log(e);
-            console.log(diasActivos);
+            //console.log(e);
+            //console.log(diasActivos);
             impSelect = (diasActivos[e]=="1") ?{
                 class:"",
                 icon:"fa-toggle-on",
@@ -426,7 +430,7 @@ jQuery(function ($) {
             $("#botones_dias").append(sele);
 
             //$("#botones_horas").append('<input type="hidden" id="min_'+e+'" value=""><input type="hidden" id="max_'+e+'" value=""> ');
-            console.log(horario_general[e]);
+            //console.log(horario_general[e]);
             let horarios = '';
             if(horario_general[e]!=''&&horario_general[e]!=undefined){
                 horario_general[e].forEach(element => {
@@ -448,8 +452,8 @@ jQuery(function ($) {
             //console.log('count',count);
             
             $('#agregar_turno_'+e).on('click',function(){
-                console.log('count',count);
-                console.log('agregar_turno'); 
+                //console.log('count',count);
+                //console.log('agregar_turno'); 
                 count++;
                 $('#grupo_fechas_'+e).append(select_dias({dia:e,id:'algo'+count}));
                 guardar_dias();
@@ -474,7 +478,7 @@ jQuery(function ($) {
             $(this).toggleClass('btn-secondary','');
             $(this).toggleClass('dias_laborables','');
             let act = $('#dia_campo_'+dia).val();
-            console.log(act);
+            //console.log(act);
             $('#dia_campo_'+dia).val(((act!='activo')?'activo':''));
 
             if(act=='activo'){
@@ -497,20 +501,33 @@ jQuery(function ($) {
             "tiempo_servicio":$("#tiempo_servicio").val()
         }
         console.log(guardar);
-        $("#mostrar_servicio").append(
-            '<li class="list-group-item d-flex justify-content-between align-items-center listadoServicio" data-id="'+guardar.id_servicio+'" data-nombre="'+guardar.nombre_servicio+'" data-tiempo="'+guardar.tiempo_servicio+'">'+guardar.nombre_servicio+', '+guardar.tiempo_servicio+' minutos'+'<span class="badge badge-pill"><button type="button" class="btn btn-danger btn-xs quitarServicio" idS='+guardar.id_servicio+'><i class="fa fa-times"></i></button></span></li>'
-        );
-
-        $(".quitarServicio").on('click',function(){
-            $(this).parent().parent().remove();
-        });
+        listarServicios();
+        imprimirServicios(guardar);
+        
         serviciosAgregados.push({guardar});
         console.log('serviciosAgregados',serviciosAgregados);
         $("#servicios").val("Seleccione un servicio");
         $("#tiempo_servicio").val("");
         
     });
-
+    
+    function imprimirServicios(guardar=[]){
+       
+        $("#mostrar_servicio").html('');
+        serviciosAgregados.forEach(element => {
+            $("#mostrar_servicio").append(
+                '<li class="list-group-item d-flex justify-content-between align-items-center listadoServicio" data-id="'+element.idServicio+'" data-nombre="'+element.nombreServicio+'" data-tiempo="'+element.tiempoServicio+'">'+element.nombreServicio+', '+element.tiempoServicio+' minutos'+'<span class="badge badge-pill"><button type="button" class="btn btn-danger btn-xs quitarServicio" idS='+element.idServicio+'><i class="fa fa-times"></i></button></span></li>'
+            );
+        });
+        if(guardar.nombre_servicio!=undefined)
+            $("#mostrar_servicio").append(
+                '<li class="list-group-item d-flex justify-content-between align-items-center listadoServicio" data-id="'+guardar.id_servicio+'" data-nombre="'+guardar.nombre_servicio+'" data-tiempo="'+guardar.tiempo_servicio+'">'+guardar.nombre_servicio+', '+guardar.tiempo_servicio+' minutos'+'<span class="badge badge-pill"><button type="button" class="btn btn-danger btn-xs quitarServicio" idS='+guardar.id_servicio+'><i class="fa fa-times"></i></button></span></li>'
+            );
+        
+        $(".quitarServicio").on('click',function(){
+            $(this).parent().parent().remove();
+        });
+    }
     function listarServicios(){
             let i = [];
             $(".listadoServicio").each(function(){
