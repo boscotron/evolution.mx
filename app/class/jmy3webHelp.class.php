@@ -152,15 +152,15 @@ class JMY3WEB extends JMY3MySQL{
 	public function guardar($d=[],$r="no data"){
 		global $tabla;
 		if($d['id']!=''&&$d['pagina']!=''&&$d['valor']!='' ){
-			//$d['opciones'] // guardar aparte
+			$d['pagina']=explode('__',$d['pagina']);
 			$ta=($d['tabla']!='')?$d['tabla']:$tabla;
 			$t=[$d['id']=>$d['valor']];
 			$t=["TABLA"=>$ta, 
-			"ID_F"=>$d['pagina'],
+			"ID_F"=>$d['pagina'][0],
 			"A_D"=>TRUE, 
 			"GUARDAR"=>$t	];
 			$r=parent::guardar($t);
-		} 
+		}
 		return [$t,$r];
 	}
 

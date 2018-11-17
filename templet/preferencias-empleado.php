@@ -90,7 +90,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
                 <select 
                 type="select" 
                 class="custom-select  jmy_web_div" 
-                data-lista-id="casas_hogares" 
+                data-lista-id="lista_de_servicios" 
                 placeholder="Seleccione un servicio" 
                 data-value="<?php $this->pnt('servicios'); ?>"   
                 data-tabla="<?php echo $tabla; ?>" 

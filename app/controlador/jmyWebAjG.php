@@ -8,7 +8,7 @@ if($jmyWeb->sesion()){
 			$ps=( $p['modulos_permisos'][$i]['permiso']>=1)?true:false;
 	}
 	if($_POST['pagina']!=''&&$_POST['id']!=''&&$_POST['valor']!='' && ($_SESSION['JMY3WEB'][DOY] || $ps)){
-		$o=$jmyWeb->guardar(['pagina'=>$_POST['pagina'],'id'=>$_POST['id'],'valor'=>$_POST['valor'],'tabla'=>($_POST['tabla']!='')?$_POST['tabla']:'vistaweb','opciones'=>$_POST['opciones']]);
+		$i=explode('__',$_POST['id']);$o=$jmyWeb->guardar(['pagina'=>$_POST['pagina'],'id'=>$i[0],'valor'=>$_POST['valor'],'tabla'=>($_POST['tabla']!='')?$_POST['tabla']:'vistaweb','opciones'=>$_POST['opciones']]);
 		if($_POST['opciones']['href']!='')
 			$o['href']=$jmyWeb->guardar(['pagina'=>$_POST['pagina'],'id'=>$_POST['id'].'_href','valor'=>$_POST['opciones']['href'],'tabla'=>$_POST['tabla']]);
 	}elseif($_POST['pagina']!=''&&$_POST['id']!=''&&$_POST['valor']!=''){
