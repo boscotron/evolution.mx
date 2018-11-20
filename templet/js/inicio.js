@@ -3,13 +3,15 @@ console.log('hola');
 jQuery(function($){
 
     function cargarCarousel(carousel){
+        console.log('cargarCarousel',carousel);
+        
         $('.'+carousel).carouFredSel({
             responsive: true,
             auto: false,
             width: '100%',
             height: 'variable',
-            prev: '.pricing.prev-arrow',
-            next: '.pricing.next-arrow',
+            prev: '.'+carousel+'-prev-arrow',
+            next: '.'+carousel+'-next-arrow',
             scroll: 1,				
             items: {
             width: $(this).find('.column').width(),
@@ -22,8 +24,6 @@ jQuery(function($){
         });
     }
 
-    
-    
     function serviciosws(){
         let carousel = 'dt-sc-pricing-carousel';
         $.ajax({
@@ -62,46 +62,12 @@ jQuery(function($){
 
             },
             error: function(res) {
-                console.log(res);
+                console.log('Error de servidor, listas no cargadas',res);
             },
             data: {}
         });
     }
-
-
-   
-    
-    $(document).ready(function(){
-        serviciosws();
-    });
-});
-
-console.log('hola');
-
-jQuery(function($){
-
-    function cargarCarousel(carousel){
-        $('.'+carousel).carouFredSel({
-            responsive: true,
-            auto: false,
-            width: '100%',
-            height: 'variable',
-            prev: '.pricing.prev-arrow',
-            next: '.pricing.next-arrow',
-            scroll: 1,				
-            items: {
-            width: $(this).find('.column').width(),
-            height: 'variable',
-            visible: {
-                min: 1,
-                max: 2
-            }
-            }				
-        });
-    }
-
-    
-    
+ 
     function serviciosws1(){
         let carousel = 'gallery-details';
         $.ajax({
@@ -146,16 +112,7 @@ jQuery(function($){
         });
     }
 
-
-   
-    
-    $(document).ready(function(){
-        serviciosws1();
-    });
-});
-
-
-function serviciosws2(){
+    function serviciosws2(){
     let carousel = 'author';
     $.ajax({
         url: location.origin + '/iniciows/servicios2/',
@@ -197,12 +154,14 @@ function serviciosws2(){
         },
         data: {}
     });
-}
+    }
 
 
-
-
-$(document).ready(function(){
-    serviciosws2();
+    $(document).ready(function(){
+        serviciosws();
+        serviciosws1();
+        serviciosws2();
+    });
 });
-});
+
+ 

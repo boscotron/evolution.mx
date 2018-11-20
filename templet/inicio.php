@@ -547,66 +547,11 @@
                     <div class="column dt-sc-three-fifth">
                         <div class="dt-sc-pricing-carousel-wrapper">
                             <div class="dt-sc-pricing-carousel">
-                                <div class="column dt-sc-one-half">
-                                    <ul class="menu-card check">
-                                        <li>Women's haircut<span>$75</span></li>
-                                        <li>Shampoo And Style<span>$55</span></li>
-                                        <li>Blow Dry Style<span>$49</span></li>
-                                        <li>Thermal Press Style<span>$51</span></li>
-                                        <li>Dandruff Rinse<span>$25</span></li>
-                                        <li>Hair Coloring<span>$30</span></li>
-                                        <li>Hair Color Removal<span>$35</span></li>
-                                        <li>Hair And Scalp<span>$19</span></li>
-                                        <li>Lash And Brow Tint<span>$38</span></li>
-                                        <li>Cap Frosting<span>$25</span></li>
-                                    </ul>
-                                </div>
-                                <div class="column dt-sc-one-half">
-                                    <ul class="menu-card check">
-                                        <li>Women's haircut<span>$75</span></li>
-                                        <li>Shampoo And Style<span>$55</span></li>
-                                        <li>Blow Dry Style<span>$49</span></li>
-                                        <li>Thermal Press Style<span>$51</span></li>
-                                        <li>Dandruff Rinse<span>$25</span></li>
-                                        <li>Hair Coloring<span>$30</span></li>
-                                        <li>Hair Color Removal<span>$35</span></li>
-                                        <li>Hair And Scalp<span>$19</span></li>
-                                        <li>Lash And Brow Tint<span>$38</span></li>
-                                        <li>Cap Frosting<span>$25</span></li>
-                                    </ul>
-                                </div>
-                                <div class="column dt-sc-one-half">
-                                    <ul class="menu-card check">
-                                        <li>Women's haircut<span>$75</span></li>
-                                        <li>Shampoo And Style<span>$55</span></li>
-                                        <li>Blow Dry Style<span>$49</span></li>
-                                        <li>Thermal Press Style<span>$51</span></li>
-                                        <li>Dandruff Rinse<span>$25</span></li>
-                                        <li>Hair Coloring<span>$30</span></li>
-                                        <li>Hair Color Removal<span>$35</span></li>
-                                        <li>Hair And Scalp<span>$19</span></li>
-                                        <li>Lash And Brow Tint<span>$38</span></li>
-                                        <li>Cap Frosting<span>$25</span></li>
-                                    </ul>
-                                </div>
-                                <div class="column dt-sc-one-half">
-                                    <ul class="menu-card check">
-                                        <li>Women's haircut<span>$75</span></li>
-                                        <li>Shampoo And Style<span>$55</span></li>
-                                        <li>Blow Dry Style<span>$49</span></li>
-                                        <li>Thermal Press Style<span>$51</span></li>
-                                        <li>Dandruff Rinse<span>$25</span></li>
-                                        <li>Hair Coloring<span>$30</span></li>
-                                        <li>Hair Color Removal<span>$35</span></li>
-                                        <li>Hair And Scalp<span>$19</span></li>
-                                        <li>Lash And Brow Tint<span>$38</span></li>
-                                        <li>Cap Frosting<span>$25</span></li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                             <div class="carousel-arrows">
-                                <a href="#" class="pricing prev-arrow"><i class="fa fa-angle-left"></i></a>
-                                <a href="#" class="pricing next-arrow"><i class="fa fa-angle-right"></i></a>
+                                <a href="#" class="pricing dt-sc-pricing-carousel-prev-arrow"><i class="fa fa-angle-left"></i></a>
+                                <a href="#" class="pricing dt-sc-pricing-carousel-next-arrow"><i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
