@@ -8,6 +8,7 @@ $out = $jmy->ver([
 $jmyWeb->cargar(["pagina"=>"inicio"]);
 
 $jmyWeb->cargar_js(["url"=>"../app/js/jmy/contacto.js"]); // carga de funciones de cotnacto
+$jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(['return'=>true])."js/inicio.js?f=".date("U")]); // carga de funciones de cotnacto
 
 $jmyWeb ->cargar_vista(["url"=>"inicio.php","data"=>["blog"=>$out]]);
 
