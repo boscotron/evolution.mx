@@ -104,7 +104,7 @@ jQuery(function ($) {
     }
     $("#boton_guardar").on('click',function(){
         guardar();
-        listarServicios();
+        imprimirServicios();
     });
     function servicios(d=[]){
         const id = (d.id!=undefined)?d.id:'';
@@ -496,36 +496,37 @@ jQuery(function ($) {
 
     $("#agregar_servicios").on('click',function(){
         let guardar = {
-            "nombre_servicio":$("#servicios option:selected").html(),
-            "id_servicio":$("#servicios option:selected").val(),
-            "tiempo_servicio":$("#tiempo_servicio").val()
+            "nombreServicio":$("#servicios option:selected").html(),
+            "idServicio":$("#servicios option:selected").val(),
+            "tiempoServicio":$("#tiempo_servicio").val()
         }
         console.log(guardar);
         listarServicios();
         imprimirServicios(guardar);
+        serviciosAgregados.push(guardar);
         
-        serviciosAgregados.push({guardar});
         console.log('serviciosAgregados',serviciosAgregados);
         $("#servicios").val("Seleccione un servicio");
         $("#tiempo_servicio").val("");
-        
     });
     
     function imprimirServicios(guardar=[]){
-       
+        
         $("#mostrar_servicio").html('');
         serviciosAgregados.forEach(element => {
             $("#mostrar_servicio").append(
                 '<li class="list-group-item d-flex justify-content-between align-items-center listadoServicio" data-id="'+element.idServicio+'" data-nombre="'+element.nombreServicio+'" data-tiempo="'+element.tiempoServicio+'">'+element.nombreServicio+', '+element.tiempoServicio+' minutos'+'<span class="badge badge-pill"><button type="button" class="btn btn-danger btn-xs quitarServicio" idS='+element.idServicio+'><i class="fa fa-times"></i></button></span></li>'
             );
         });
-        if(guardar.nombre_servicio!=undefined)
+        if(guardar.nombreServicio!=undefined)
             $("#mostrar_servicio").append(
-                '<li class="list-group-item d-flex justify-content-between align-items-center listadoServicio" data-id="'+guardar.id_servicio+'" data-nombre="'+guardar.nombre_servicio+'" data-tiempo="'+guardar.tiempo_servicio+'">'+guardar.nombre_servicio+', '+guardar.tiempo_servicio+' minutos'+'<span class="badge badge-pill"><button type="button" class="btn btn-danger btn-xs quitarServicio" idS='+guardar.id_servicio+'><i class="fa fa-times"></i></button></span></li>'
+                '<li class="list-group-item d-flex justify-content-between align-items-center listadoServicio" data-id="'+guardar.idServicio+'" data-nombre="'+guardar.nombreServicio+'" data-tiempo="'+guardar.tiempoServicio+'">'+guardar.nombreServicio+', '+guardar.tiempoServicio+' minutos'+'<span class="badge badge-pill"><button type="button" class="btn btn-danger btn-xs quitarServicio" idS='+guardar.idServicio+'><i class="fa fa-times"></i></button></span></li>'
             );
         
         $(".quitarServicio").on('click',function(){
             $(this).parent().parent().remove();
+            listarServicios();
+            imprimirServicios();
         });
     }
     function listarServicios(){
@@ -542,7 +543,7 @@ jQuery(function ($) {
                 });
             });
             serviciosAgregados = i;
-            console.log("Servicios agregados :", serviciosAgregados);
+            console.log("Servicios agregados (listar):", serviciosAgregados);
     }
 });
 
