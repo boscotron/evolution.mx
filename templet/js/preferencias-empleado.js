@@ -267,6 +267,7 @@ jQuery(function ($) {
     }
     function wsperfil(d=[]) {   
         console.log('diasActivos',diasActivos);
+        console.log('serviciosAgregados',serviciosAgregados);
         
         let guardar = (d.g!=undefined)?{
             dias:d.g,
@@ -279,7 +280,7 @@ jQuery(function ($) {
                 sabado:diasActivos.sabado,
                 domingo:diasActivos.domingo,
             },
-            serviciosAgregados:serviciosAgregados
+            serviciosAgregados:(serviciosAgregados.length>0)?serviciosAgregados:' '
         }:undefined; // MANDAR A GUARDAR ALGO
         let id_perfil =$("#id_perfil").val();
         $.ajax({
@@ -293,7 +294,7 @@ jQuery(function ($) {
                 if(datos!=''&&datos!=undefined){
                     console.log('datos',datos);
                     let dias=(datos.dias!=''&&datos.dias!=undefined)?JSON.parse(datos.dias):horario_general;
-                    serviciosAgregados=(datos.serviciosAgregados!=''&&datos.serviciosAgregados!=undefined)?JSON.parse(datos.serviciosAgregados):[];
+                    serviciosAgregados=(datos.serviciosAgregados!=''&&datos.serviciosAgregados!=' '&&datos.serviciosAgregados!=undefined)?JSON.parse(datos.serviciosAgregados):[];
                     console.log('serviciosAgregados',serviciosAgregados);
                     
                     imprimirServicios();
