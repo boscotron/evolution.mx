@@ -3,24 +3,28 @@
             	<div class="fullwidth-section dt-sc-parallax-section slider-bg">
                 	<div class="parallax-spacing">
                     	<div class="container">
-                        	<div class=" caption jmy_web_div" data-page="inicio" id="main">
-                                <h2><?php $this->pnt('varialbe_titulo','
-                                A Touch of class',
-                               ' Hair Salon'); ?>
-                                       </h2>
-                                       
-                                       <p>
-                                       <?php $this->pnt('varialbe_tit','
-                                sed do eiusmod tempor incididunt ut labore et dolore <br>magna aliqua. Ut enim ad minim veniam, quis nostrud <br>exercitation ullamco laboris nisi ut');?>
+                        	<div class="caption">
+                            <h2 class="jmy_web_div" data-page="inicio" id="texto_principal" data-editor="no">
+                                        <?php $this->pnt('texto_principal','A Touch of class<br><strong>Hair Salon</strong>
+                                        ');?>
+                                        </h2>         
+                                       <p class="jmy_web_div" data-page="inicio" id="texto_principal2" data-editor="no">
+                                       <?php $this->pnt('texto_principal2','
+                                sed do eiusmod tempor incididunt ut labore e
+                                t dolore <br>magna aliqua. Ut enim ad minim veniam,
+                                 quis nostrud <br>exercitation ullamco laboris nisi ut');?>
                                            </p>
                                        <div class="dt-sc-view-btn">
-                                              <a class="btn-eff2" href=""> View Details </a>
+                                              <a class="btn-eff2 jmy_web_div" data-page="inicio" id="texto_boton1" data-editor="no" href=""> 
+                                              <?php $this->pnt('texto_boton1',' View Details ');?></a>
                              
-       
-                                           A Touch of class<br><strong>Hair Salon</strong></h2>
-                                       <p>sed do eiusmod tempor incididunt ut labore et dolore <br>magna aliqua. Ut enim ad minim veniam, quis nostrud <br>exercitation ullamco laboris nisi ut</p>
+                    
+                                       <p class="jmy_web_div" data-page="inicio" id="texto_principal3" data-editor="no">
+                                       <?php $this->pnt('texto_principal3',' sed do eiusmod tempor incididunt ut labore et dolore <br>magna aliqua. Ut enim ad minim veniam, quis nostrud <br>exercitation ullamco laboris nisi ut
+                                       ');?> </p>
                                        <div class="dt-sc-view-btn">
-                                              <a class="btn-eff2" href=""> View Details </a>
+                                       <a class="btn-eff2 jmy_web_div" data-page="inicio" id="texto_boton2" data-editor="no" href=""> 
+                                              <?php $this->pnt('texto_boton2',' View Details ');?></a>
                                 </div>
                             </div>
                             <div class="hr-invisible"></div>
@@ -44,14 +48,18 @@
                         <li>Sunday: <span>Closed</span></li>
                     </ul>
                     <div class="alignright">
-                    	<a href="#" class="appointment-btn btn-eff2"><i class="fa fa-pencil-square-o"></i>Book an <span>Appointment</span></a>
+                    	<a href="#" class="appointment-btn btn-eff2 jmy_web_div" data-page="inicio" id="texto_boton3" data-editor="no">
+                            <i class="fa fa-pencil-square-o"></i>
+                            <?php $this->pnt('texto_boton3','Book an <span>Appointment</span>');?>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="container"><!-- Container -->
-            	<h2 class="jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_bienvenida" data-editor="no"><?php $this->pnt('titulo_bienvenida',' Welcome to Trend Salon'); ?>
+                <h2 class="aligncenter jmy_web_div" data-page="inicio" id="titulo_bienvenida" data-editor="no">
+                <?php $this->pnt('titulo_bienvenida','Welcome to Trend Salon'); ?>
                 </h2>
-                <p class="aligncenter jmy_web_div" data-page="inicio" id="varialbe_titulo">
+                <p class="aligncenter jmy_web_div" data-page="inicio" id="titulo_desc" data-editor="no">
                 <?php $this->pnt('titulo_desc',' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate id est laborum.f'); ?>
                     </p>
 				<div class="clear"></div>
@@ -66,7 +74,10 @@
                             <a href="#"><img class="first-img" src="images/service-icon1.png" alt="" title=""></a>
                             <a href="#"><img class="second-img" src="images/service-icon5.png" alt="" title=""></a>
                         </div>
-                        <h3><a href="#"> Cutting & Styling </a></h3>
+                        <h3 class="jmy_web_div" data-page="inicio" id="titulo_direcc" data-editor="no">
+                            <a href="#"> 
+                            <?php $this->pnt('titulo_direcc','Cutting & Styling'); ?>
+                             </a></h3>
                     </div>
                 </div>
                 <div class="column dt-sc-one-fourth">
@@ -78,7 +89,10 @@
                             <a href="#"><img class="first-img" src="images/service-icon2.png" alt="" title=""></a>
                             <a href="#"><img class="second-img" src="images/service-icon6.png" alt="" title=""></a>
                         </div>
-                        <h3><a href="#"> Beard Cutting </a></h3>
+                        <h3 class="jmy_web_div" data-page="inicio" id="titulo_direcc1" data-editor="no">
+                            <a href="#"> 
+                            <?php $this->pnt('titulo_direcc1','Beard Cutting'); ?>
+                             </a></h3>
                     </div>
                 </div>
                 <div class="column dt-sc-one-fourth">
@@ -90,7 +104,10 @@
                             <a href="#"><img class="first-img" src="images/service-icon3.png" alt="" title=""></a>
                             <a href="#"><img class="second-img" src="images/service-icon7.png" alt="" title=""></a>
                         </div>
-                        <h3><a href="#">Coloring & Styling </a></h3>
+                        <h3 class="jmy_web_div" data-page="inicio" id="titulo_direcc2" data-editor="no">
+                            <a href="#">
+                            <?php $this->pnt('titulo_direcc2','Coloring & Styling'); ?>
+                            </a></h3>
                     </div>
                 </div>
                 <div class="column dt-sc-one-fourth">
@@ -102,7 +119,10 @@
                             <a href="#"><img class="first-img" src="images/service-icon4.png" alt="" title=""></a>
                             <a href="#"><img class="second-img" src="images/service-icon8.png" alt="" title=""></a>
                         </div>
-                        <h3><a href="#"> Facial & Skin Therapy </a></h3>
+                        <h3 class="jmy_web_div" data-page="inicio" id="titulo_direcc3" data-editor="no">
+                            <a href="#">
+                            <?php $this->pnt('titulo_direcc3','Facial & Skin Therapy'); ?>
+                            </a></h3>
                     </div>
                 </div>
             </div><!-- End of Container -->
@@ -117,7 +137,7 @@
                             <div class="column dt-sc-one-fourth first">
                             	<div class="animate" data-delay="200" data-animation="fadeIn animated">
                                     <h3 class="border-title jmy_web_div" data-page="<?php echo $page; ?>" id="titulo_sec1" data-editor="no"><?php $this->pnt('titulo_sec1',' Our Salon Offers'); ?></h3>
-                                    <p class="aligncenter jmy_web_div" data-page="inicio" id="varialbe_titulo">
+                                    <p class="aligncenter jmy_web_div" data-page="inicio" id="titulo_desc1" data-editor="no">
                                     <?php $this->pnt('titulo_desc1','sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'); ?>
                                     </p>
                                     <div class="dt-sc-offer-text">
@@ -145,8 +165,11 @@
                                                     <a href="#"><img src="images/offer-img1.jpg" alt="" title=""></a>
                                                 </figure>
                                                 <div class="gallery-details">
-                                                	<h4><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>
-                                                    <div class="dt-sc-price aligncente jmy_web_div" data-page="principal" id="varialbe_precio">
+                                                    <h4 class="aligncente jmy_web_div" data-page="<?php echo $page; ?>" id="varialbe_texto" data-editor="no">
+                                                        <a href="<?php $this->url_inicio(); ?>#">
+                                                        <?php $this->pnt('varialbe_texto',' Hair Coloring'); ?>
+                                                </a></h4>
+                                                    <div class="dt-sc-price aligncente jmy_web_div" data-page="<?php echo $page; ?>" id="varialbe_precio" data-editor="no">
                                                     <?php $this->pnt('varialbe_precio','£ 200'); ?>
                                                     </div>
                                                     <div class="hr-invisible-very-very-small"></div>
@@ -160,9 +183,12 @@
                                                     <a href="#"><img src="images/offer-img2.jpg" alt="" title=""></a>
                                                 </figure>
                                                 <div class="gallery-details">
-                                                	<h4><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>
-                                                    <div class="dt-sc-price aligncente jmy_web_div" data-page="principal" id="varialbe_precio">
-                                                    <?php $this->pnt('varialbe_precio','£ 200'); ?>
+                                                	<h4 class="aligncente jmy_web_div" data-page="<?php echo $page; ?>" id="varialbe_texto1" data-editor="no">
+                                                        <a href="<?php $this->url_inicio(); ?>#">
+                                                        <?php $this->pnt('varialbe_texto1',' Hair Coloring'); ?>
+                                                    </a></h4>
+                                                    <div class="dt-sc-price aligncente jmy_web_div" data-page="<?php echo $page; ?>" id="varialbe_precio1" data-editor="no">
+                                                    <?php $this->pnt('varialbe_precio1','£ 200'); ?>
                                                     </div>
                                                     <div class="hr-invisible-very-very-small"></div>
                                                     <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
@@ -521,66 +547,11 @@
                     <div class="column dt-sc-three-fifth">
                         <div class="dt-sc-pricing-carousel-wrapper">
                             <div class="dt-sc-pricing-carousel">
-                                <div class="column dt-sc-one-half">
-                                    <ul class="menu-card check">
-                                        <li>Women's haircut<span>$75</span></li>
-                                        <li>Shampoo And Style<span>$55</span></li>
-                                        <li>Blow Dry Style<span>$49</span></li>
-                                        <li>Thermal Press Style<span>$51</span></li>
-                                        <li>Dandruff Rinse<span>$25</span></li>
-                                        <li>Hair Coloring<span>$30</span></li>
-                                        <li>Hair Color Removal<span>$35</span></li>
-                                        <li>Hair And Scalp<span>$19</span></li>
-                                        <li>Lash And Brow Tint<span>$38</span></li>
-                                        <li>Cap Frosting<span>$25</span></li>
-                                    </ul>
-                                </div>
-                                <div class="column dt-sc-one-half">
-                                    <ul class="menu-card check">
-                                        <li>Women's haircut<span>$75</span></li>
-                                        <li>Shampoo And Style<span>$55</span></li>
-                                        <li>Blow Dry Style<span>$49</span></li>
-                                        <li>Thermal Press Style<span>$51</span></li>
-                                        <li>Dandruff Rinse<span>$25</span></li>
-                                        <li>Hair Coloring<span>$30</span></li>
-                                        <li>Hair Color Removal<span>$35</span></li>
-                                        <li>Hair And Scalp<span>$19</span></li>
-                                        <li>Lash And Brow Tint<span>$38</span></li>
-                                        <li>Cap Frosting<span>$25</span></li>
-                                    </ul>
-                                </div>
-                                <div class="column dt-sc-one-half">
-                                    <ul class="menu-card check">
-                                        <li>Women's haircut<span>$75</span></li>
-                                        <li>Shampoo And Style<span>$55</span></li>
-                                        <li>Blow Dry Style<span>$49</span></li>
-                                        <li>Thermal Press Style<span>$51</span></li>
-                                        <li>Dandruff Rinse<span>$25</span></li>
-                                        <li>Hair Coloring<span>$30</span></li>
-                                        <li>Hair Color Removal<span>$35</span></li>
-                                        <li>Hair And Scalp<span>$19</span></li>
-                                        <li>Lash And Brow Tint<span>$38</span></li>
-                                        <li>Cap Frosting<span>$25</span></li>
-                                    </ul>
-                                </div>
-                                <div class="column dt-sc-one-half">
-                                    <ul class="menu-card check">
-                                        <li>Women's haircut<span>$75</span></li>
-                                        <li>Shampoo And Style<span>$55</span></li>
-                                        <li>Blow Dry Style<span>$49</span></li>
-                                        <li>Thermal Press Style<span>$51</span></li>
-                                        <li>Dandruff Rinse<span>$25</span></li>
-                                        <li>Hair Coloring<span>$30</span></li>
-                                        <li>Hair Color Removal<span>$35</span></li>
-                                        <li>Hair And Scalp<span>$19</span></li>
-                                        <li>Lash And Brow Tint<span>$38</span></li>
-                                        <li>Cap Frosting<span>$25</span></li>
-                                    </ul>
-                                </div>
+                                
                             </div>
                             <div class="carousel-arrows">
-                                <a href="#" class="pricing prev-arrow"><i class="fa fa-angle-left"></i></a>
-                                <a href="#" class="pricing next-arrow"><i class="fa fa-angle-right"></i></a>
+                                <a href="#" class="pricing dt-sc-pricing-carousel-prev-arrow"><i class="fa fa-angle-left"></i></a>
+                                <a href="#" class="pricing dt-sc-pricing-carousel-next-arrow"><i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>

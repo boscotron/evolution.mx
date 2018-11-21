@@ -79,6 +79,51 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
             </div>
         </div>
         <div class="col-md-5">
+
+        <!--
+
+            
+
+            let variable_x.lunes[X=13] = 0;
+
+            foreach
+                horario_general
+                    if (horario_general==X)
+                        variable_x.lunes[X=13] = 1;
+
+
+            {
+                lunes:{
+                    1:0,
+                    2:0,
+                    3:0,
+                    4:1,
+                    5:1,
+                    // horas
+                }, 
+                martes:{}....
+            }
+            -->
+
+
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Lunes</h5>
+                    <small>8 horas en total</small>
+                    </div>
+                    <p class="mb-1">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </p>
+                </a>
+               
+            </div>        
+
+
             <div class="btn-group-vertical btn-group-vertical-dias " role="group" id="botones_horas" aria-label="Basic example">
             
             </div>
@@ -90,7 +135,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
                 <select 
                 type="select" 
                 class="custom-select  jmy_web_div" 
-                data-lista-id="casas_hogares" 
+                data-lista-id="lista_de_servicios" 
                 placeholder="Seleccione un servicio" 
                 data-value="<?php $this->pnt('servicios'); ?>"   
                 data-tabla="<?php echo $tabla; ?>" 

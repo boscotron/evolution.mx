@@ -76,6 +76,10 @@ class JMY3MySQL {
             }}}}else{$error="Faltan Datos";}          
     return["o"=>$o,"error"=>$error];
   }
+  public function catalogos($d=[]){    
+   if($d['id']!=''){$o=$this->ver(["TABLA"=>"catalogos","COL"=>['id_catalogo'],"V"=>[$d['id']]]);
+    return $this->ver(["TABLA"=>"catalogos","ID_F"=>$o['otKey'],"SALIDA"=>"ARRAY"]);}
+  }
   public function ver($d=[]){    
     $d['ID_F']=($d['ID']!='')?$d['ID']:$d['ID_F'];
     $d['COL']=($d['COLUMNAS']!='')?$d['COLUMNAS']:$d['COL'];

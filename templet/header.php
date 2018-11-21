@@ -103,22 +103,32 @@
                         </li>
                         
                         <li class="alignright prod">&nbsp;&nbsp;<span class="fa fa-user"></span>
-                            <?php
-                                echo ($SESSION['user']['user_id']=='') ?  
-                                    '<a href="https://comsis.mx/app/entrar/?re='.$this->url_inicio(['return'=>true]).'perfil/entrar/&api=e2ad454bea7d919f0fc411a8b885580c&api_web='.JMY_API.'&sep=1"> Registrate | Iniciar Sesión</a>':
-                                    '<a class="linkprod" href="'.$this->url_inicio(['return'=>true]).'perfil/"> Mi perfil</a><ul class="submenu">
-                                    <li><a href="#">Salir</a></li>
-                                </ul>';
-                                ?>
-                        </li>
+                           
+                        </li>                       
+                           
 
-                	</ul>        
+                	</ul>  <ul align="right"> <li>
+                                <?php
+                                    echo ($SESSION['user']['user_id']=='') ?  
+                                        '<a href="https://comsis.mx/app/entrar/?re='.$this->url_inicio(['return'=>true]).'perfil/entrar/&api=e2ad454bea7d919f0fc411a8b885580c&api_web='.JMY_API.'&sep=1"> Registrate | Iniciar Sesión</a>':
+                                        '<a class="linkprod" href="'.$this->url_inicio(['return'=>true]).'perfil/"><ul><li> Mi perfil</a><li>
+                                        <li><a href="'.$this->url_inicio(['return'=>true]).'/entrar/salir">Salir</a></li></ul>
+                                    ';
+                                ?>
+                            </li></ul>       
                 </div>
             </div>
         </div><!-- End of Top Bar -->
         <header id="header" class="dt-sticky-menu type2"><!-- Header -->
-        	<div id="logo"><!-- Logo -->
-                <a title="TrendSalon" href="index.html"><img title="TrendSalon" alt="Trendy" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/logoblanco3.fw.png"></a>
+        	<div id="logo" class="jmy_web_slider" data-page="header"  data-tabla="vistaweb" id="logo_topmarco" data-marco="logo_topmarco" <?php 
+										  $va[] = [ "type"=>"imagen",
+											"id"=>"logo_top_img",
+											 "width"=>"209",
+											 "height"=>"48",
+											 "url"=>$this->url_templet(["return"=>true]).'images/logoblanco3.fw.png' ];  ?>  data-var='<?php echo json_encode($va); ?>'>
+											 
+											 <a href="<?php $this->url_inicio(); ?>"><img alt="" title="" id="logo_top_img" src="<?php $this->pnt('logo_top_img',$this->url_templet(['return'=>true]).'images/logoblanco3.fw.png',
+                                          ["secundario"=>"header"] ); ?>"/></a>
             </div><!-- End of Logo -->
             <div id="menu-container">
             	<div class="container">
@@ -129,17 +139,18 @@
                         </div>
                         <a title="TrendSalon" href="index.html" class="sticky-logo"><img title="TrendSalon" alt="Trendy" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/logo.png"></a>
                         <ul class="menu">
-                            <li class="current_page_item menu-item-simple-parent"><a href="index.html">Home</a>
-                            	<ul class="sub-menu">
+                            <li class="current_page_item menu-item-simple-parent"><a class="jmy_web_div" data-page="header" id="enlace_inicio" data-editor="no" href="<?php echo RUTA_ACTUAL; ?>inicio"><?php $this->pnt('enlace_inicio','Inicio ',["secundario"=>"header"]); ?></a>
+
+                            	<!-- <ul class="sub-menu">
                                     <li><a href="index-v2.html">Home 2</a></li>
                                     <li><a href="index-v3.html">Home 3</a></li>
                                     <li><a href="index-v4.html">Home 4</a></li>
                                     <li><a href="index-v5.html">Home 5</a></li>
                                 </ul>
-                                <a class="dt-menu-expand">+</a>
+                                <a class="dt-menu-expand">+</a> -->
                             </li>
-                            <li class="menu-item-simple-parent"><a href="about-us.html">Pages</a>
-                            	<ul class="sub-menu">
+                            <li class="menu-item-simple-parent"><a class="jmy_web_div" data-page="header" id="enlace_page" data-editor="no" href="<?php echo RUTA_ACTUAL; ?>promociones"><?php $this->pnt('enlace_page','Promociones',["secundario"=>"header"]); ?></a>
+                            	<!-- <ul class="sub-menu">
                                     <li><a href="about-us.html">About Us</a></li>
                                     <li><a href="shortcodes.html">Shortcodes</a></li>
                                     <li><a href="404.html">404</a></li>
@@ -153,38 +164,39 @@
                                 		<a class="dt-menu-expand">+</a>
                                     </li>
                                 </ul>
-                                <a class="dt-menu-expand">+</a>
+                                <a class="dt-menu-expand">+</a> -->
                             </li>
-                            <li class=""><a href="services.html">Service</a></li>
-                            <li class="menu-item-simple-parent"><a href="shop.html">Shop</a>
-                                <ul class="sub-menu">
+                            <li class=""><a class="jmy_web_div" data-page="header" id="enlace_servicio" data-editor="no" href="<?php echo RUTA_ACTUAL; ?>servicio"><?php $this->pnt('enlace_servicio','Servicios',["secundario"=>"header"]); ?></a></li>
+
+                            <li class="menu-item-simple-parent"><a class="jmy_web_div" data-page="header" id="enlace_tienda" data-editor="no" href="<?php echo RUTA_ACTUAL; ?>tienda"><?php $this->pnt('enlace_tienda','Tienda',["secundario"=>"header"]); ?></a>
+                                <!-- <ul class="sub-menu">
                                     <li><a href="shop-cart.html">Cart</a></li>
                                     <li><a href="shop-checkout.html">CheckOut</a></li>
                                 </ul>
-                                <a class="dt-menu-expand">+</a>
+                                <a class="dt-menu-expand">+</a> -->
                             </li>
-                            <li class="menu-item-simple-parent"><a href="blog.html">Blog</a>
-                                <ul class="sub-menu">
+                            <li class="menu-item-simple-parent"><a class="jmy_web_div" data-page="header" id="enlace_blog" data-editor="no" href="<?php echo RUTA_ACTUAL; ?>blog"><?php $this->pnt('enlace_blog','Blog',["secundario"=>"header"]); ?></a>
+                                <!-- <ul class="sub-menu">
                                     <li><a href="blog-details.html">Blog Details</a></li>
                                     <li><a href="blog-details-rhs.html">Blog Details With RHS</a></li>
                                     <li><a href="blog-details-lhs.html">Blog Details With LHS</a></li>
                                 </ul>
-                                <a class="dt-menu-expand">+</a>
+                                <a class="dt-menu-expand">+</a> -->
                             </li>
-                            <li class="menu-item-simple-parent"><a href="portfolio.html">Gallery</a>
-                            	<ul class="sub-menu">
+                            <li class="menu-item-simple-parent"><a class="jmy_web_div" data-page="header" id="enlace_galeria" data-editor="no" href="<?php echo RUTA_ACTUAL; ?>galeria"><?php $this->pnt('enlace_galeria','Galeria',["secundario"=>"header"]); ?></a>
+                            	<!-- <ul class="sub-menu">
                                     <li><a href="portfolio-details.html">Gallery Details</a></li>
                                     <li><a href="portfolio-details-rhs.html">Gallery Details With RHS</a></li>
                                     <li><a href="portfolio-details-lhs.html">Gallery Details With LHS</a></li>
                                 </ul>
-                                <a class="dt-menu-expand">+</a>
+                                <a class="dt-menu-expand">+</a> -->
                             </li>
-                            <li class="menu-item-simple-parent"><a href="contact.html">Contacts</a>
-                            	<ul class="sub-menu">
+                            <li class="menu-item-simple-parent"><a class="jmy_web_div" data-page="header" id="enlace_contacto" data-editor="no" href="<?php echo RUTA_ACTUAL; ?>contacto"><?php $this->pnt('enlace_contacto','Contacto',["secundario"=>"header"]); ?></a>
+                            	<!-- <ul class="sub-menu">
                                     <li><a href="contact.html">Contact</a></li>
                                     <li><a href="contact2.html">Contact 2</a></li>
                                 </ul>
-                                <a class="dt-menu-expand">+</a>
+                                <a class="dt-menu-expand">+</a> -->
                             </li>
                         </ul>
                     </nav><!-- End of Nav -->

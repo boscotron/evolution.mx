@@ -16,7 +16,7 @@ if($idUsuario!='' && $peticion[0]!=''){
     ]);
 }
  $out['lista']=$jmy->ver([	
-    "TABLA"=>"servicio",
+    "TABLA"=>"catalogos",
     "SALIDA"=>"ARRAY"
 ]);
 echo  json_encode(['out'=>$out]);

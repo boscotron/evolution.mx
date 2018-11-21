@@ -4,44 +4,64 @@
                 <div class="container">
                 	<div class="column dt-sc-one-fourth first">
                     	<aside class="widget widget_text">
-                    		<h4 class="widgettitle"> Location </h4>
+                    		<h4 class="widgettitle jmy_web_div"  id="locacion" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('locacion','Location',["secundario"=>"footer"]);
+						 ?> </h4>
                             <div class="dt-sc-contact-info address">
-                            	<p>2145 - 007 - 1566 <br>No 45, Season Street, Livingstone <br>LA, Inc - 4502</p>
+                            	<p class="jmy_web_div"  id="locacion_tex" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('locacion_tex','2145 - 007 - 1566 <br>No 45, Season Street, Livingstone <br>LA, Inc - 4502',["secundario"=>"footer"]);
+						 ?></p>
                             </div>
                             <div class="hr-invisible-very-very-small"></div>
-                            <h4 class="widgettitle"> Telephone Enquiry </h4>
+                            <h4 class="widgettitle jmy_web_div"  id="telefono_titulo" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('telefono_titulo',' Telephone Enquiry',["secundario"=>"footer"]);
+						 ?> </h4>
                             <div class="dt-sc-contact-info">
-                            	<p class="dt-sc-clr num"> +91 214 658 7852 </p>
+                            	<p class="dt-sc-clr num jmy_web_div"  id="telefono" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('telefono',' +91 214 658 7852',["secundario"=>"footer"]);
+						 ?>  </p>
                             </div>
                             <div class="hr-invisible-very-very-small"></div>
-                            <h4 class="widgettitle"> Email us </h4>
+                            <h4 class="widgettitle jmy_web_div"  id="email_titulo" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('email_titulo','Email us',["secundario"=>"footer"]);
+						 ?>  </h4>
                             <div class="dt-sc-contact-info">
-                            	<a href="mailto:yourname@somemail.com" class="dt-sc-clr"> designthemes@somemail.com </a>
+                            	<a href="mailto:yourname@somemail.com" class="dt-sc-clr jmy_web_div"  id="email" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('email','  designthemes@somemail.com ',["secundario"=>"footer"]);
+						 ?> </a>
                             </div>
                         </aside>
                     </div>
                     <div class="column dt-sc-one-fourth">
                     	<aside class="widget widget_text">
-                    		<h4 class="widgettitle"> About Us </h4>
-                            <div class="textwidget">
-                                <ul>
-                                    <li><a href="#"> About Us</a></li>
-                                    <li><a href="#"> Salons </a></li>
-                                    <li><a href="#"> Giftcards </a></li>
-                                    <li><a href="#"> Terms & Conditions </a></li>
-                                    <li><a href="#"> Work With Us </a></li>
-                                </ul>
+                    		<h4 class="widgettitle jmy_web_div"  id="nosotros_titulo" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('nosotros_titulo','  About Us ',["secundario"=>"footer"]);
+						 ?> </h4>
+                            <div class="textwidget jmy_web_div"  id="nosotros_vineta" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('nosotros_vineta',' <ul>
+                                        <li><a href="#"> About Us</a></li>
+                                        <li><a href="#"> Salons </a></li>
+                                        <li><a href="#"> Giftcards </a></li>
+                                        <li><a href="#"> Terms & Conditions </a></li>
+                                        <li><a href="#"> Work With Us </a></li>
+                                    </ul>',["secundario"=>"footer"]);
+						 ?> 
+                               
                             </div>     
                         </aside>
                     </div>
                     <div class="column dt-sc-one-fourth">
                     	<aside class="widget widget_tweetbox">
-                    		<h4 class="widgettitle"> Latest tweets </h4>
+                    		<h4 class="widgettitle jmy_web_div"  id="noticias_titulo" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('noticias_titulo',' Latest tweets   ',["secundario"=>"footer"]);
+						 ?>  </h4>
                             <div class="textwidget">
                                 <ul class="tweet_list"> 
                                     <li class="tweet">
-                                    	<span class="tweet-text">
-                                        	Excepteur sint occaecat <a href="#">cupidatat non</a> proident, sunt in culpa qui officia erunt mollit anim id est laborum.aute irure dolor in repre<br> <a href="#">http://test/domain name</a>
+                                    	<span class="tweet-text  jmy_web_div"  id="nosotros_text" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('nosotros_text',' Excepteur sint occaecat <a href="#">cupidatat non</a> proident, sunt in culpa qui officia erunt mollit anim id est laborum.aute irure dolor in repre<br> <a href="#">http://test/domain name ',["secundario"=>"footer"]);
+						 ?>
+                                        	</a>
                                         </span>
                                     </li>
                                 </ul>
@@ -50,14 +70,18 @@
                     </div>
                     <div class="column dt-sc-one-fourth">
                     	<aside class="widget widget_newsletter">
-                    		<h4 class="widgettitle"> Newsletter </h4>
+                    		<h4 class="widgettitle  jmy_web_div"  id="suscribirse" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('suscribirse','  Newsletter  ',["secundario"=>"footer"]);
+						 ?> </h4>
                             <form class="subscribe-frm" method="post" name="frmnewsletter" action="php/subscribe.php">
                                 <input type="email" placeholder="Enter email ID" required value="" name="mc_email" >
                                 <input class="dt-sc-button small" type="submit" value="" name="submit">
                             </form>
                             <div id="ajax_subscribe_msg"></div>
                             <div class="hr-invisible-very-very-small"></div>
-                            <h4 class="widgettitle"> Follow Us </h4>
+                            <h4 class="widgettitle  jmy_web_div"  id="seguir" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('seguir','  Follow Us  ',["secundario"=>"footer"]);
+						 ?> </h4>
                             <ul class="footer-icons">
                             	<li><a href="#" class="fa fa-facebook"></a></li>
                                 <li><a href="#" class="fa fa-twitter"></a></li>
@@ -72,7 +96,9 @@
             </div>
             <div class="copyright">
             	<div class="container">
-	            	<p>Copyright © 2015 Trend Salon All Rights Reserved | <a href="#">BuddhaThemes</a></p>
+	            	<p  jmy_web_div"  id="copyrigth" data-editor="no" data-tabla="vistaweb" data-page="footer"><?php 
+						$this->pnt('copyrigth',' Copyright © 2015 Trend Salon All Rights Reserved | <a href="#">BuddhaThemes</a>',["secundario"=>"footer"]);
+						 ?> </p>
                 </div>
             </div>
        	</footer>         
