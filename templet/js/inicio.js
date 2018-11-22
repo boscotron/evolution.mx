@@ -69,7 +69,7 @@ jQuery(function($){
     }
  
     function serviciosws1(){
-        let carousel = 'carousel-arrows';
+        let carousel = 'gallery-details';
         $.ajax({
             url: location.origin + '/iniciows/servicios1/',
             type: 'post',	
@@ -113,7 +113,7 @@ jQuery(function($){
     }
 
     function serviciosws2(){
-    let carousel = 'dt-sc-testimonial-carousel-wrapperr';
+    let carousel = 'author';
     $.ajax({
         url: location.origin + '/iniciows/servicios2/',
         type: 'post',	
