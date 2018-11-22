@@ -106,8 +106,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
             -->
 
 
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+            <div class="list-group" id="listado_dias">
+                <!--<a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
                     <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">Lunes</h5>
                     <small>8 horas en total</small>
@@ -119,7 +119,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80f1e767', e
                             <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </p>
-                </a>
+                </a>-->
                
             </div>        
 

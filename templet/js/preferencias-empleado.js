@@ -105,6 +105,8 @@ jQuery(function ($) {
     $("#boton_guardar").on('click',function(){
         guardar();
         imprimirServicios();
+        $("#listado_dias").show(100);
+
     });
     function servicios(d=[]){
         const id = (d.id!=undefined)?d.id:'';
@@ -411,6 +413,7 @@ jQuery(function ($) {
         let count = 0;
         let countColores = 0;
         $("#botones_horas").html('');
+        listaDias();
         dias.forEach(e => { /* e = a el nombre del dia */
             let impSelect = {
                 class:"btn-secondary",
@@ -429,7 +432,7 @@ jQuery(function ($) {
             sele = ' <button type="button" data-activo="'+impSelect.activo+'" class="btn  color_'+e+' '+impSelect.class+'   toogle_dias" data-dia="'+e+'" >'+diasTexto[e]+' <i class="fa '+impSelect.icon+'"></i> </button>';
             
             $("#botones_dias").append(sele);
-
+            
             //$("#botones_horas").append('<input type="hidden" id="min_'+e+'" value=""><input type="hidden" id="max_'+e+'" value=""> ');
             //console.log(horario_general[e]);
             let horarios = '';
@@ -483,14 +486,59 @@ jQuery(function ($) {
             $('#dia_campo_'+dia).val(((act!='activo')?'activo':''));
 
             if(act=='activo'){
-                
                 $(this).find("i").toggleClass('fa-toggle-off');
                 $(this).find("i").toggleClass('fa-toggle-on');
+                $("#listado_dias").show(100);
             }else{
+                $("#listado_dias").hide();
                 $(".div_fechas_"+dia).show(100);
                 $(this).find("i").toggleClass('fa-toggle-on','fa-toggle-off');
             }
         });
+    }
+
+    function listaDias(d=[]) {
+        let dias =['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
+        let horas_dia =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+        let horasOcupadas ={0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0,11:0,12:0,13:0,14:0,15:0,16:0,17:0,18:0,19:0,20:0,21:0,22:0,23:0};
+        let hora_entrada = 0;
+        let hora_salida = 0;
+        $("#listado_dias").html('');
+        let hora_ocupada = '<div class="progress-bar bg-success" role="progressbar" style="width: 4.16%" aria-valuenow="4.16" aria-valuemin="0" aria-valuemax="100"></div>';
+        let hora_libre = '<div class="progress-bar bg-dark" role="progressbar" style="width: 4.16%" aria-valuenow="4.16" aria-valuemin="0" aria-valuemax="100"></div>';
+        
+        dias.forEach(e => {
+            if(diasActivos[e]==1){
+                $("#listado_dias").append(
+                '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start "><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">'+e+'</h5><small>8 horas en total</small></div><p class="mb-1"><div class="progress" id="progress_horas_'+e+'"></div></p></a>'
+                );
+                if(horario_general[e]!=''&&horario_general[e]!=undefined){
+                    horario_general[e].forEach(element => {
+                        hora_entrada = element.h_entrada-1;
+                        console.log('hora_entrada['+e+']',hora_entrada);
+                        hora_salida = element.h_salida-1;
+                        console.log('hora_salida['+e+']',hora_salida);
+
+                        horas_dia.forEach(element => {
+                            //console.log(horas_dia[element]);
+                            if(horas_dia[element]<hora_entrada){
+                                horasOcupadas[element-1] = 0;
+                            }else if(horas_dia[element]>hora_salida){
+                                horasOcupadas[element-1] = 0;
+                            }else{
+                                horasOcupadas[element-1] = 1;
+                            }
+                            let progress = (horasOcupadas[element-1]==1)?hora_ocupada:hora_libre;
+                            $('#progress_horas_'+e).append(progress); 
+                        });              
+                    });
+                    console.log(e,horasOcupadas);
+                    horasOcupadas = {};
+                    console.log(horasOcupadas);
+                }
+            }
+        });
+        
     }
 
     /* Seccion para los servicios */
@@ -510,6 +558,19 @@ jQuery(function ($) {
         $("#servicios").val("Seleccione un servicio");
         $("#tiempo_servicio").val("");
     });
+
+    /*function listaDias(d=[]){
+        //console.log("dias activos",diasActivos);
+        console.log("d",d);
+        d.each(function() {
+            console.log("Ciclo horario_general",d);
+        });
+        horario_general.forEach(element => {
+            $("#listado_dias").append(
+            '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start "><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">Lunes</h5><small>8 horas en total</small></div><p class="mb-1"><div class="progress"><div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div><div class="progress-bar bg-exit" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div></div></p></a>'
+            );
+        });
+    }*/
     
     function imprimirServicios(guardar=[]){
         
@@ -547,4 +608,3 @@ jQuery(function ($) {
             console.log("Servicios agregados (listar):", serviciosAgregados);
     }
 });
-
