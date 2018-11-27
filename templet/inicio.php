@@ -160,7 +160,9 @@
                             	<div class="dt-sc-offer-carousel-wrapper animate" data-delay="400" data-animation="fadeIn animated">
                                 	<div class="dt-sc-offer-carousel">
                                     	<div class="column dt-sc-one-third">
-                                        	<div class="dt-sc-offer">
+                                        	<div class="dt-sc-offer"
+                                            
+                                            >
                                                 <figure class="gallery-thumb">
                                                     <a href="#"><img src="images/offer-img1.jpg" alt="" title=""></a>
                                                 </figure>

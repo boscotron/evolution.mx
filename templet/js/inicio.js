@@ -25,7 +25,7 @@ jQuery(function($){
     }
 
     function serviciosws(){
-        let carousel = 'dt-sc-pricing-carousel';
+        let carousel = 'dt-sc-pricing-carousel'; // nom. class del inicio Carrusel
         $.ajax({
             url: location.origin + '/iniciows/servicios/',
             type: 'post',	
@@ -42,13 +42,13 @@ jQuery(function($){
                 console.log(filas);
                 
                 for (let i = 0; i < columnas; i++) {
-                    html = html + '<div class="column dt-sc-one-half"><ul class="menu-card check">';
+                    html = html + '<div class="column dt-sc-one-half"><ul class="menu-card check">'; // contenedor de las tablas
                     for (let o = 0; o < filas; o++) {
                         const resultado = res[count];
                         count++;
                         console.log(resultado);
                         if(resultado!=undefined)
-                            html = html + '<li><div class="jmy_web_div" data-page="'+resultado.ID_F+'" data-tabla="catalogos" id="nombre__'+i+o+'" data-editor="no">'+resultado.nombre+'</div><span><div class="jmy_web_div" data-page="'+resultado.ID_F+'" data-tabla="catalogos" id="precio__'+i+o+'" data-editor="no">'+((resultado.precio!=undefined)?resultado.precio:'£ 200')+'</div></span></li>';
+                            html = html + '<li><div class="jmy_web_div" data-page="'+resultado.ID_F+'" data-tabla="catalogos" id="nombre__'+i+o+'" data-editor="no">'+resultado.nombre+'</div><span><div class="jmy_web_div" data-page="'+resultado.ID_F+'" data-tabla="catalogos" id="precio__'+i+o+'" data-editor="no">'+((resultado.precio!=undefined)?resultado.precio:'$75')+'</div></span></li>';
 
                     }
                     html = html + '</ul></div>';
@@ -69,7 +69,7 @@ jQuery(function($){
     }
  
     function serviciosws1(){
-        let carousel = 'gallery-details';
+        let carousel = 'dt-sc-offer-carousel-wrapper animate fadeIn animated';
         $.ajax({
             url: location.origin + '/iniciows/servicios1/',
             type: 'post',	
@@ -97,7 +97,7 @@ jQuery(function($){
                     }
                     html = html + '</figure></div>';
                 }
-                $('.caroufredsel_wrapper').css('height',(filas*51));
+                $('.caroufredsel_wrapper').css('height',(filas*51));  //nom cont prin
                 $('.'+carousel).html(html);
                 jmy_web_div_click();
                 console.log(html);
