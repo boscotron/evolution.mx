@@ -202,7 +202,7 @@ jQuery(function ($) {
         $("#horario_ves_fin").html(sele4);
     }
     function select_dias(d=[]){ /*({dia:'lunes',id:'',entrada_select:'',salida_select:''})*/
-       //console.log(d);
+       console.log(d);
         
         let horas_entrada = '';
         let horas_salida = '';
@@ -211,13 +211,14 @@ jQuery(function ($) {
         let salida_select = Number(d.salida_select);
             entrada_select = (!isNaN(entrada_select))?entrada_select:0;
             salida_select = (!isNaN(salida_select))?salida_select:0;
+            console.log(salida_select );
+            
         for (let i = 1; i <= 24; i++) {
-            horas_entrada = horas_entrada  + '<option value="'+i+'" '+((entrada_select==i)?'selected':'')+'>'+i+' Hrs. </option>';
-
-            horas_salida = (entrada_select>=i)? '<option value="'+i+'" '+((salida_select==i)?'selected':'')+'>'+i+' Hrs. </option>':'';
+            horas_entrada +=  '<option value="'+i+'" '+((entrada_select==i)?'selected':'')+'>'+i+' Hrs. </option>';
+            horas_salida += '<option data-algo="'+salida_select+'" value="'+i+'" '+(( salida_select==i )?'selected':'')+'>'+i+' Hrs. </option>';
         }
         let h = (!d.sin_grupo)?'<div id="'+d.id+'_grupo" >':'';
-        h=h+'<div class="form-group"> <label for="horario_mat_ini">Entrada</label><select data-id="'+d.id+'" id="'+d.id+'_entrada" class="form-control horario horario_'+d.dia+' horario_'+d.dia+' horario_'+d.dia+'_entrada horario_entrada form-control-sm valid" data-dia="'+d.dia+'" data-tipo="entrada" >'+horas_entrada+'</select></div> <div class="form-group"><label for="horario_mat_ini">Salida</label><select  data-id="'+d.id+'" id="'+d.id+'_salida" class="form-control horario_salida horario_'+d.dia+'  horario_'+d.dia+'_salida form-control-sm valid"  data-dia="'+d.dia+'" data-tipo="salida"  >'+horas_entrada+' </select></div>';
+        h=h+'<div class="form-group"> <label for="horario_mat_ini">Entrada</label><select data-id="'+d.id+'" id="'+d.id+'_entrada" class="form-control horario horario_'+d.dia+' horario_'+d.dia+' horario_'+d.dia+'_entrada horario_entrada form-control-sm valid" data-dia="'+d.dia+'" data-tipo="entrada" >'+horas_entrada+'</select></div> <div class="form-group"><label for="horario_mat_ini">Salida ----</label><select  data-id="'+d.id+'" id="'+d.id+'_salida" class="form-control horario_salida horario_'+d.dia+'  horario_'+d.dia+'_salida form-control-sm valid"  data-dia="'+d.dia+'" data-tipo="salida"  >'+horas_salida+' </select></div>';
         
         h=(!d.sin_grupo)?h+'</div>':h;
         
@@ -320,7 +321,7 @@ jQuery(function ($) {
                     console.log('horario_general',horario_general);
                     
                 }
-                dias();
+                dias({selec:horario_general});
 
             },
             error: function(res) {
@@ -403,6 +404,8 @@ jQuery(function ($) {
     }
     function dias(d=[]){
         //console.log('dias',d);
+        console.log('dias_laborables',d);
+        
         let dias =['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
         let diasTexto ={'lunes':'Lunes','martes':'Martes','miercoles':'Miércoles','jueves':'Jueves','viernes':'Viernes','sabado':'Sábado','domingo':'Domingo'};
         /*https://color.adobe.com/es/create/color-wheel/?base=2&rule=Shades&selected=4&name=Mi%20tema%20de%20Color&mode=rgb&rgbvalues=0.386680992607556,0.62,0.41045057530504037,0.3367866709807746,0.54,0.3574892107495513,0.27637540901109314,0.44313725490196076,0.2933644213122679,0.23699802772721174,0.38,0.2515664816385731,0.21205086691382105,0.34,0.2250857993608286&swatchOrder=0,1,2,3,4*/
@@ -421,7 +424,7 @@ jQuery(function ($) {
                 fechasClass:"oculto",
                 activo:false
             };
-            //console.log(e);
+            console.log(e);
             //console.log(diasActivos);
             impSelect = (diasActivos[e]=="1") ?{
                 class:"",
@@ -434,7 +437,7 @@ jQuery(function ($) {
             $("#botones_dias").append(sele);
             
             //$("#botones_horas").append('<input type="hidden" id="min_'+e+'" value=""><input type="hidden" id="max_'+e+'" value=""> ');
-            //console.log(horario_general[e]);
+            console.log(horario_general[e]);
             let horarios = '';
             if(horario_general[e]!=''&&horario_general[e]!=undefined){
                 horario_general[e].forEach(element => {
@@ -511,7 +514,7 @@ jQuery(function ($) {
             let temp_horas = [];
             if(diasActivos[e]==1){
                 $("#listado_dias").append(
-                '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start "><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">'+e+'</h5><small>8 horas en total</small></div><p class="mb-1"><div class="progress" id="progress_horas_'+e+'"></div></p></a>'
+                '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start "><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">'+e+'</h5><small>8 horas en total</small></div><table class="horario_regla"><tr><td>0 - 7 hrs</td><td>8 - 15 hrs</td><td>16 - 24 hrs</td></tr></table><div class="progress" id="progress_horas_'+e+'"></div></a>'
                 );
                 if(horario_general[e]!=''&&horario_general[e]!=undefined){
                     horario_general[e].forEach(element => {
@@ -524,18 +527,18 @@ jQuery(function ($) {
                             //console.log(horas_dia[element]);
                             if(horas_dia[element]<hora_entrada-1){
                                 horasOcupadas[element] = 0;
-                            }else if(horas_dia[element]>hora_salida-1){
+                            }else if(horas_dia[element]>hora_salida-2){
                                 horasOcupadas[element] = 0;
                             }else{
                                 horasOcupadas[element] = 1;
                             }
                         });
-                        console.log(e,horasOcupadas);
+                        //console.log(e,horasOcupadas);
                         horas_dia.forEach(element => {
-                            console.log(horasOcupadas[element]);
+                            //console.log(horasOcupadas[element]);
                             let progress = (horasOcupadas[element]==1)?hora_ocupada:hora_libre;
                             let color = (progress==hora_ocupada)?"verde":"gris";
-                            console.log(color);
+                            //console.log(color);
                             $('#progress_horas_'+e).append(progress);
                         });
                     });

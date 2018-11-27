@@ -1300,3 +1300,22 @@
 	.cms { backface-visibility: hidden; box-shadow: 0 0 1px rgba(0, 0, 0, 0); display: inline-block; position: relative; transform: translateZ(0px); transition-duration: 0.5s;     transition-property: color; vertical-align: middle; }
 	.cms:hover::before, .cms:focus::before, .cms:active::before { transform: scaleY(1); transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66); }
 	.cms:before { background: #2098d1; bottom: 0; content: ""; left: 0; position: absolute; right: 0; top: 0; transform: scaleY(0); transform-origin: 50% 0 0; transition-duration: 0.5s; transition-property: transform; transition-timing-function: ease-out; z-index: -1; }
+
+
+
+	table.horario_regla td {
+		padding: 0;
+		margin: 0;
+		font-size: 9px;
+		width: calc( 100% / 3);
+	}
+	table.horario_regla {
+		padding: 0;
+		margin: 0;
+		font-size: 9px;
+		text-align: center;
+		border: none;
+		position: absolute;
+		width: 91%;
+		color: #fff;
+	}
