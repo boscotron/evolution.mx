@@ -135,8 +135,6 @@ class JMY3WEB extends JMY3MySQL{
 	}
 
 	public function pnt($d,$ph="Texto texto texto",$op=[]){ 
-	// pnt(id, place holder);  imprime la infomración cargada por la funcion cargar 
-	// pnt(id, place holder, ["secundario"=>"NOMBRE DE LA VARIABLE EXTRA"]); 
 		global $print; global $printSec; 
 		if($op['secundario']!=''){
 			$o=($printSec[$op['secundario']][$d]!='')?$printSec[$op['secundario']][$d]:$ph;
@@ -149,19 +147,20 @@ class JMY3WEB extends JMY3MySQL{
 			return $o;
 	}
 
-	public function guardar($d=[],$r="no data"){
+	public function guardar($d=[],$r=["Datos de solicitud insuficientes o no se tienen los permisos de usuario"]){
 		global $tabla;
-		if($d['id']!=''&&$d['pagina']!=''&&$d['valor']!='' ){
-			$d['pagina']=explode('__',$d['pagina']);
-			$ta=($d['tabla']!='')?$d['tabla']:$tabla;
+		$s=$this->modulos(["modulos_permisos"=>1]);
+		$ta=($d['tabla']!='')?$d['tabla']:$tabla;
+		$t=explode('_',$ta);
+		if($d['id']!=''&&$d['pagina']!=''&&$d['valor']!='' &&$s['modulos_permisos'][$t[0]]>1){
 			$t=[$d['id']=>$d['valor']];
 			$t=["TABLA"=>$ta, 
-			"ID_F"=>$d['pagina'][0],
+			"ID_F"=>$d['pagina'],
 			"A_D"=>TRUE, 
 			"GUARDAR"=>$t	];
 			$r=parent::guardar($t);
-		}
-		return [$t,$r];
+		} 
+		return [$t,$r,$ta,$s];
 	}
 
 	public function pre($d=[]){
@@ -266,28 +265,33 @@ class JMY3WEB extends JMY3MySQL{
 	}
 	private function se_a_jmy($d=[],$logout=0){ 
 		if($logout){$_SESSION=[];setcookie('SE','',time()-42000,'/');setcookie(session_name(),'',time()-42000,'/'); session_destroy();}else{if($d[0]!=''&&$d[1]!=''){$d['id']=$d[0];$d['token']=$d[1];unset($d[0]);unset($d[1]);$d['api']="e2ad454bea7d919f0fc411a8b885580c";$d['api_web']=JMY_API;$d['datos_device']=true;$d['apis'][$d['api']]=["nombre"=>"JmyWeb","version"=>"1.0"];$d['url']='https://comsis.mx/api/auth/v1/token';setcookie('SE',json_encode($d),time()+30*24*60*60);$o=(is_array($_SESSION['jmysa']))?$_SESSION['jmysa']:json_decode($this->s2($d),1);$_SESSION['jmysa']=(is_array($_SESSION['jmysa']))?$o:["user"=>$o['out']['userData'],"devices"=>$o['out']['devices'],"body"=>$o['out']['jmyapi']['body'],"permiso"=>$o['out']['jmyapi']['body']['permisos_api']['PERMISOS']];		
-		}else{if($_SESSION['jmysa']['permiso']=='' && $_COOKIE['SE']!='')$_SESSION['jmysa']= json_decode($this->s2(json_encode($_COOKIE['SE'],1)),1);}$_SESSION['JMY3WEB'][DOY]=($_SESSION['jmysa']['permiso']>2)?1:0;return $_SESSION['jmysa'];
-	}}	
+		}else{if($_SESSION['jmysa']['permiso']=='' && $_COOKIE['SE']!='')$_SESSION['jmysa']= json_decode($this->s2(json_encode($_COOKIE['SE'],1)),1);}$_SESSION['JMY3WEB'][DOY]=($_SESSION['jmysa']['permiso']>2)?1:0; unset($o);switch($d['return']){
+			case'permisos_api':$o=$_SESSION['jmysa']['body']['permisos_api']['PERMISOS'];break;
+			case'db':$o=$_SESSION['jmysa']['body']['api_web']['ID_F'];break;
+			case'user_id':$o=$_SESSION['jmysa']['user']['user_id'];break;
+			default:$o=$_SESSION['jmysa'];break;}return$o;}}	
 
 	public function modulos($d=[]){	
 		$o=$this->se_a_jmy($d);
+		$i=($d['id']!='')?$d['id']:$o['user']['user_id'];
 		$p=$this->ver([
 			"TABLA"=>TABLA_USUARIOS.'_'.$o['body']['api_web']['ID_F'], 
-			"ID"=>$o['user']['user_id'], 
+			"ID"=>$i,
 			"COL"=>['modulos'], 
 		]);
 		if($d['modulos_permisos']){
-			$t=($p['ot'][$o['user']['user_id']]['modulos']!='')?json_decode($p['ot'][$o['user']['user_id']]['modulos'],1):[];
-			$p['ot'][$o['user']['user_id']]['modulos']=[];
+			$t=($p['ot'][$i]['modulos']!='')?json_decode($p['ot'][$i]['modulos'],1):[];
+			$p['ot'][$i]['modulos']=[];
 			foreach ($t as $key => $value) {
-				$p['ot'][$o['user']['user_id']]['modulos'][$value['modulo']]=$value['permiso'];
+				$p['ot'][$i]['modulos'][$value['modulo']]=$value['permiso'];
 			}
 		}
 		return [
+			"i"=>$i,
 			"modulos"=>$o['body']['api_web']['json']['modulos'],
 			"modulos_niveles"=>$o['body']['api_web']['json']['modulos_niveles'],
 			"modulos_label"=>$o['body']['api_web']['json']['modulos_label'],
-			"modulos_permisos"=>($p['ot'][$o['user']['user_id']]['modulos']!='' && !$d['modulos_permisos'])?json_decode($p['ot'][$o['user']['user_id']]['modulos'],1):$p['ot'][$o['user']['user_id']]['modulos']
+			"modulos_permisos"=>($p['ot'][$i]['modulos']!='' && !$d['modulos_permisos'])?json_decode($p['ot'][$i]['modulos'],1):$p['ot'][$i]['modulos']
 		];
 	}
 	public function sesion($d=null,$o=0){return $this->se_a_jmy($d,$o);} 

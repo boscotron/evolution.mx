@@ -1,5 +1,6 @@
 function jmy_web_guardar(d) {
 	console.log(d);
+	let fn = d.data.fn;
 	d = d.data;
 	jQuery(function ($) { 
 		if (d.id != '') {
@@ -30,6 +31,10 @@ function jmy_web_guardar(d) {
 				dataType: 'json',
 				success: function(res) {
 					console.log(res);
+					console.log(fn);
+					
+					if(fn!=undefined)
+						eval(d.fn+'('+JSON.stringify({d:d,r:res})+')');
 					mensajeGuardado();
 				},
 				error: function(res) {
@@ -295,17 +300,25 @@ function jmy_web_contador_click(){
 							"valor": v,
 							"page": d.p,
 							"id": d.id,	
-							"tabla": d.tabla,	
+							"tabla": (d.tabla!=undefined)?d.tabla:'vistaweb',	
+							"fn": "jmy_web_html_contador_respuesta",	
 						}});
-				if(d.re==undefined)
-					location.reload();
-				}else{
-					alert('valor incorrecto');
-				}
-			}	    
+					}else{
+						alert('valor incorrecto');
+					}
+				}	    
+			}); 
 		}); 
-	}); 
+	}
+function jmy_web_html_contador_respuesta(d=[]){
+	let res = d.r;
+	let error = res.error;
+	if(error==undefined)
+		location.reload();
+	else
+		alert('Faltan datos');
 }
+
 function jmy_web_html_contador(d=[]){
 	let c='';
 	let h='';
@@ -315,6 +328,8 @@ function jmy_web_html_contador(d=[]){
 			h='';
 			c=$(this).data('value');
 			b=$(this).data('button');
+			console.log(b);
+			
 			b=(b!=undefined)?b:'Carrucel de '+c+' páginas';
 			h = '<div style="background-color:rgba(30,170,30,0.7);padding:4px;font-size:16px;color:fcfcfc;border-radius:5px">'+b+'</div>';
 			$(this).html('');	

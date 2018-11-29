@@ -10,7 +10,7 @@ if($peticion[0]=='entrar'){
     $session = $jmyWeb->session([$peticion[1],$peticion[2]]);
     $jmyWeb->guardar_session();
 }
-//$jmyWeb ->pre(['p'=>$session,'t'=>'SESSION']);
+$jmyWeb ->pre(['p'=>$session,'t'=>'SESSION']);
 $idUsuario = $session['user']['user_id'];
 if($idUsuario!=''){
     $perfiles['principal']=$jmy->ver([

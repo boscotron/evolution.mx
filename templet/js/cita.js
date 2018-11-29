@@ -200,11 +200,12 @@ jQuery(function ($) {
 
                 console.log(personal);
                 console.log(ServicioPersonal);
-                for (var i = 0 ; i < personal.length ; i++) {
-                	 $("#personal").append(new Option(personal[i].nombre, personal[i].perfil_principal));
-                	//console.log(personal[i]);
-                	//personal[i];
-                }
+                if(personal!=undefined)
+                    for (var i = 0 ; i < personal.length ; i++) {
+                        $("#personal").append(new Option(personal[i].nombre, personal[i].perfil_principal));
+                        //console.log(personal[i]);
+                        //personal[i];
+                    }
             },
             error: function(res) {
                 console.log(res);
@@ -218,6 +219,8 @@ jQuery(function ($) {
             type: 'post',
             dataType: 'json',
             success: function(res) {
+                console.log(res);
+                
                 let horario = res.out.horario;
                 console.log(horario);
                 $("#horario").html('');
@@ -235,7 +238,7 @@ jQuery(function ($) {
     }
 
     $( "#personal" ).click(function() {
-        console.log('hola');
+        //console.log('hola');
       
         verPersonaHorario({
             servicios:$("#servicios option:selected").val(),

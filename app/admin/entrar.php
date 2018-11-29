@@ -50,7 +50,7 @@ if($token['permiso']!='' && $_SESSION['re_login']!=''){?>
 						<p>
 							<?php 
 							if($token['permiso']==''){?>
-							<a class="btn btn-success"  href="https://comsis.mx/app/entrar/?re=<?php $jmyWeb->url_inicio(); ?>entrar/&api=e2ad454bea7d919f0fc411a8b885580c&api_web=<?php echo JMY_API; ?>&sep=1" >Entrar</a>
+							<a class="btn btn-success"  href="https://comsis.mx/app/entrar/?re=<?php $jmyWeb->url_inicio(); ?>administrador/entrar/&api=e2ad454bea7d919f0fc411a8b885580c&api_web=<?php echo JMY_API; ?>&sep=1" >Entrar</a>
 							<?php }else{ ?>
 								<a class="btn btn-info"  href="<?php $jmyWeb->url_inicio(); ?>">Editar página</a>
 								<a class="btn btn-danger"  href="<?php $jmyWeb->url_inicio(); ?>/entrar/salir">Salir</a>
