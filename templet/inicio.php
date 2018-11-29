@@ -630,6 +630,13 @@
                         <a href="#" class="carousel-prev"></a>
                         <a href="#" class="carousel-next"></a>
                     </div>
+                    <div>
+                    <form method="post" action="comentar.php">
+                    <textarea name="comentario">Escribe tu comentario</textarea></p>
+                    <input type="submit" value="publicar">
+                    </form>
+                    <?php include("com.html"); ?>
+                    </div>
               	</div>  
                 <div class="clear"></div>  
             </div>
