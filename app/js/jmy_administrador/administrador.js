@@ -115,6 +115,8 @@ function jmywajson_campos(d=[]) {
     });
 }
 function jmywa_cargar_formulario(d=[]){ jQuery(function ($) {  
+    console.log(d);
+    
     const j = d.r.json_campos;
     let h = '';
     if(j!=undefined&&j!=''){
@@ -128,11 +130,14 @@ function jmywa_cargar_formulario(d=[]){ jQuery(function ($) {
             v = (v!=undefined)?v:'';
             switch (e.type) {
                 case 'select':
-                h=h+'<li class="list-group-item list-group-item-action list-group-item-light"><div class="d-flex w-100 justify-content-between"><div class="form-group w-80"><select type="select" class="form-control input-sm btn-mini  jmy_web_div" data-lista-id="'+e.lista_id+'" placeholder="'+((e.placeholder!=''&&e.placeholder!=undefined)?e.placeholder:'')+'" data-value="'+v+'"  data-tabla="'+d.d.i.tabla+'" data-page="'+d.d.i.page+'" id="'+e.id+'"  tabindex="60"></select></div><small><div class="jmy_web_recargar_select" data-lista-id="'+e.lista_id+'" data-id="'+e.id+'"> '+e.label+'</div></small>  </li>   ';
+                h+='<li class="list-group-item list-group-item-action list-group-item-light"><div class="d-flex w-100 justify-content-between"><div class="form-group w-80"><select type="select" class="form-control input-sm btn-mini  jmy_web_div" data-lista-id="'+e.lista_id+'" placeholder="'+((e.placeholder!=''&&e.placeholder!=undefined)?e.placeholder:'')+'" data-value="'+v+'"  data-tabla="'+d.d.i.tabla+'" data-page="'+d.d.i.page+'" id="'+e.id+'"  tabindex="60"></select></div><small><div class="jmy_web_recargar_select" data-lista-id="'+e.lista_id+'" data-id="'+e.id+'"> '+e.label+'</div></small>  </li>   ';
+                break;
+                case 'button':
+                    h+='<li class="list-group-item list-group-item-action list-group-item-light"><div class="d-flex w-100 justify-content-between"><a href="'+ location.origin +'/'+e.url+d.d.i.page+'">'+e.label+'<a></div></li>';
                 break;
                 default:
                 v=(v!=''&&v!=undefined)?v:'Sin información';
-                h=h+'  <li class="list-group-item list-group-item-action list-group-item-light"><div class="d-flex w-100 justify-content-between"><p class="mb-1 jmy_web_div" data-page="'+d.d.i.page+'" data-tabla="'+d.d.i.tabla+'" id="'+e.id+'" data-editor="no">'+v+'</p><small>'+e.label+'</small></div></div></li>';
+                h+='<li class="list-group-item list-group-item-action list-group-item-light"><div class="d-flex w-100 justify-content-between"><p class="mb-1 jmy_web_div" data-page="'+d.d.i.page+'" data-tabla="'+d.d.i.tabla+'" id="'+e.id+'" data-editor="no">'+v+'</p><small>'+e.label+'</small></div></div></li>';
                 break;
             }
         });

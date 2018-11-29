@@ -304,9 +304,9 @@ jQuery(function ($) {
                 type: 'post',
                 dataType: 'json',
                 success: function(res) {
-                    console.log(res);
+                    console.log(res,res.ta_us); 
 
-                    let form = '<div type="json_campos" class="jmy_web_administrador col-md-12" id="usuarios" data-tabla="usuarios_'+res.t+'" data-page="'+id_perfil+'" >Error al cargar Módulo</div>';
+                    let form = '<div type="json_campos" class="jmy_web_administrador col-md-12" id="'+res.ta_us+'" data-idregistro="'+id_perfil+'" data-tabla="'+res.ta_us+'_'+res.t+'" data-page="'+id_perfil+'" >Error al cargar Módulo</div>';
 
                     $("#formulario_perfil").html(form);
                     jmywajson_campos();// Recargar DOM

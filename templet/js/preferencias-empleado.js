@@ -292,7 +292,7 @@ jQuery(function ($) {
             dataType: 'json',
             success: function(res) {
                 console.log(res);
-                let datos = res.usuarios.ot[id_perfil];
+                let datos = res.ot[id_perfil];
                 
                 if(datos!=''&&datos!=undefined){
                     console.log('datos',datos);

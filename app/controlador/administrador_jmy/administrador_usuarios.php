@@ -62,6 +62,7 @@ switch ($peticion[1]) {
                 "ID"=>$id,
             ]);
             $out['usuario']=$out['ot'][$id];
+            $out['ta_us'] = TABLA_USUARIOS;
             $out['t']=$jmyWeb->sesion(['return'=>'db']);
         }else{
                 $out['error'] = 'Sin ID';
