@@ -15,9 +15,18 @@ if($idUsuario!='' && $peticion[0]!=''){
         ]
     ]);
 }
- $out['lista']=$jmy->ver([	
+$out['lista']=$jmy->ver([	
     "TABLA"=>"catalogos",
-    "SALIDA"=>"ARRAY"
+    "COL"=>["id_catalogo"],
+    "V"=>"lista_de_servicios"
+    //"SALIDA"=>"ARRAY"
 ]);
+if(count($out['lista']['otKey'])>1)
+    $out['lista']=$jmy->ver([	
+        "TABLA"=>"catalogos",
+        "ID"=>$out['lista']['otKey'],
+        "SALIDA"=>"ARRAY"
+    ]);
+
 echo  json_encode(['out'=>$out]);
 //$jmyWeb ->pre(['p'=>$out,'t'=>'TITULO_ARRAY']);

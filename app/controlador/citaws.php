@@ -1,77 +1,9 @@
 <?php
  
-/*
-$out['personal'][]=['nombre'=>'Alfredo',
-                    'horario_mat_ini'=>'8',
-                    'horario_mat_fin'=>'14',
-                    'horario_ves_ini'=>'15',
-                    'horario_ves_fin'=>'20',
-                    'dias_laborales'=>['lunes','martes','miercoles','jueves','viernes','sabado'],
-                    'servicios'=>['5b858452f1162']
-];
 
-$out['personal'][]=['nombre'=>'Esmeralda',
-                    'horario_mat_ini'=>'8',
-                    'horario_mat_fin'=>'14',
-                    'horario_ves_ini'=>'15',
-                    'horario_ves_fin'=>'20',
-                    'servicios'=>['5b858452f1162','5b858453026ac','5b8584530512a']
-];
-
-$out['personal'][]=['nombre'=>'Aida',
-                    'horario_mat_ini'=>'8',
-                    'horario_mat_fin'=>'14',
-                    'horario_ves_ini'=>'15',
-                    'horario_ves_fin'=>'20',
-                    'dias_laborales'=>['lunes','martes','miercoles','jueves','viernes','sabado'],
-                    'servicios'=>['5b858452f1162','5b858453026ac']
-];
-
-$out['personal'][]=['nombre'=>'Rafa',
-                    'horario_mat_ini'=>'8',
-                    'horario_mat_fin'=>'14',
-                    'horario_ves_ini'=>'15',
-                    'horario_ves_fin'=>'20',
-                    'dias_laborales'=>['lunes','martes','miercoles','jueves','viernes','sabado'],
-                    'servicios'=>['5b858453026ac']
-];
-
-$out['personal'][]=['nombre'=>'Beatris',
-                    'horario_mat_ini'=>'8',
-                    'horario_mat_fin'=>'14',
-                    'horario_ves_ini'=>'15',
-                    'horario_ves_fin'=>'20',
-                    'dias_laborales'=>['lunes','martes','miercoles','jueves','viernes','sabado'],
-                    'servicios'=>['5b858452f1162','5b8584530512a']
-];
-
-$out['personal'][]=['nombre'=>'Yoly',
-                    'horario_mat_ini'=>'8',
-                    'horario_mat_fin'=>'14',
-                    'horario_ves_ini'=>'15',
-                    'horario_ves_fin'=>'20',
-                    'dias_laborales'=>['lunes','martes','miercoles','jueves','viernes','sabado'],
-                    'servicios'=>['5b8584530512a']
-];
-/*
-$jmy->db(['personal']);
-
-for ($i=0; $i <count($out['personal']) ; $i++) { 
-    
-    $jmy->guardar([	"TABLA"=>"personal", // STRING
-    //"ID_F"=>[$get['id']], // Array
-    "A_D"=>TRUE, 
-    "GUARDAR"=>$out['personal'][$i],
-    ]);
-    
-}*/
-
-
-$session = $jmyWeb->session(); 
+$session = $jmyWeb->sesion(); 
 //$out['session'] = $session;
 $idUsuario = $session['user']['user_id'];
-
-
 
 switch ($_GET['peticion']) {
     case 'personal':
@@ -101,6 +33,50 @@ switch ($_GET['peticion']) {
             ]);*/
         break;
     case 'verPersonaHorario':
+        $out['empleados']=$jmy->ver([   
+            "TABLA"=>TABLA_USUARIOS."_".$jmyWeb->sesion(['return'=>'db']),
+            "COL"=>['tipo'], 
+            "V"=>['empleado','administrador'], 
+        ]);
+        if(count($out['empleados']['otKey'])>0)
+            $out['empleados']=$jmy->ver([   
+                "TABLA"=>TABLA_USUARIOS."_".$jmyWeb->sesion(['return'=>'db']),          
+                //"COL"=>["dias","diasActivos","horario","nombre"],
+                "ID"=>$out['empleados']['otKey'], 
+                "SALIDA"=>'ARRAY'
+            ]);
+            
+        foreach ($out['empleados']['otFm'] as $key => $value) {
+            $empleado[] = [
+                "dias"=>json_decode($value['dias'],1),
+                "diasActivos"=>json_decode($value['diasActivos'],1),
+                "horario"=>json_decode($value['horario'],1)
+            ];
+        }
+        
+        $out['empleado']=$empleado;
+        $out['dia_semana']=$_POST['fecha'];
+        $out['dia_semana']=$datetime = DateTime::createFromFormat('YmdHi', $_POST['fecha']);
+            
+        /*
+            $day_of_week = date('N', strtotime('Monday'));
+
+            $out['dia_semana'] = 'lunes';
+            $out['horas_disponibles'] = [0:0,1:0,2:0];
+
+        */
+
+        /*$out['verPersonaHorario']=$jmy->ver([   
+            "TABLA"=>"personal",
+            "ID"=>[$_POST['persona']], 
+            "SALIDA"=>'ARRAY'
+        ]);*/
+       
+
+
+
+    break;
+    /*case 'verPersonaHorario':
         $out['verPersonaHorario']=$jmy->ver([   
             "TABLA"=>"personal",
             "ID"=>[$_POST['persona']], 
@@ -156,7 +132,7 @@ switch ($_GET['peticion']) {
 
 
 
-    break;
+    break;*/
 
     case 'guardarCita':
            #$jmy->db(['agendarCita']);
