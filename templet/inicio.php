@@ -161,13 +161,18 @@
                         <div class="dt-sc-offer-carousel-wrapper animate" data-delay="400" data-animation="fadeIn animated">
                             <div class="dt-sc-offer-carousel">
                                 <div class="column dt-sc-one-third">
-                                    <div class="dt-sc-offer"
-                                    
-                                    >
+                                    <div class="dt-sc-offer">
+    
                                         <figure class="gallery-thumb">
                                             <a href="#"><img src="images/offer-img1.jpg" alt="" title=""></a>
                                         </figure>
+                                        <?php  $no_ofertas = $this->pnt('no_ofertas','2',['return'=>1]); ?>
+                                        <p>
+                                         <div class="jmy_web_contador" data-page="<?php echo $page; ?>"  id="no_ofertas" data-value="<?php echo $no_ofertas; ?>" data-button="Número de ofertas "></div>
+                                         </p>
                                         <div class="gallery-details">
+                                       
+                                        
                                             <h4 class="aligncente jmy_web_div" data-page="<?php echo $page; ?>" id="varialbe_texto" data-editor="no">
                                                 <a href="<?php $this->url_inicio(); ?>#">
                                                 <?php $this->pnt('varialbe_texto',' Hair Coloring'); ?>
@@ -180,71 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="column dt-sc-one-third">
-                                    <div class="dt-sc-offer">
-                                        <figure class="gallery-thumb">
-                                            <a href="#"><img src="images/offer-img2.jpg" alt="" title=""></a>
-                                        </figure>
-                                        <div class="gallery-details">
-                                            <h4 class="aligncente jmy_web_div" data-page="<?php echo $page; ?>" id="varialbe_texto1" data-editor="no">
-                                                <a href="<?php $this->url_inicio(); ?>#">
-                                                <?php $this->pnt('varialbe_texto1',' Hair Coloring'); ?>
-                                            </a></h4>
-                                            <div class="dt-sc-price aligncente jmy_web_div" data-page="<?php echo $page; ?>" id="varialbe_precio1" data-editor="no">
-                                            <?php $this->pnt('varialbe_precio1','£ 200'); ?>
-                                            </div>
-                                            <div class="hr-invisible-very-very-small"></div>
-                                            <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="column dt-sc-one-third">
-                                    <div class="dt-sc-offer">
-                                        <figure class="gallery-thumb">
-                                            <a href="#"><img src="images/blog-img2.jpg" alt="" title=""></a>
-                                        </figure>
-                                        <div class="gallery-details">
-                                            <h4><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>
-                                            <div class="dt-sc-price aligncente jmy_web_div" data-page="principal" id="varialbe_precio">
-                                            <?php $this->pnt('varialbe_precio','£ 200'); ?>
-
-                                            </div>
-                                            <div class="hr-invisible-very-very-small"></div>
-                                            <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="column dt-sc-one-third">
-                                    <div class="dt-sc-offer">
-                                        <figure class="gallery-thumb">
-                                            <a href="#"><img src="images/offer-img1.jpg" alt="" title=""></a>
-                                        </figure>
-                                        <div class="gallery-details">
-                                        <h4><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>
-                                            <div class="dt-sc-price aligncente jmy_web_div" data-page="principal" id="varialbe_precio">
-                                            <?php $this->pnt('varialbe_precio','£ 200'); ?>
-                                            </div>
-                                            <div class="hr-invisible-very-very-small"></div>
-                                            <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="column dt-sc-one-third">
-                                    <div class="dt-sc-offer">
-                                        <figure class="gallery-thumb">
-                                            <a href="#"><img src="images/offer-img2.jpg" alt="" title=""></a>
-                                        </figure>
-                                        <div class="gallery-details">
-                                        <h4><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>
-                                            <div class="dt-sc-price aligncente jmy_web_div" data-page="principal" id="varialbe_precio">
-                                            <?php $this->pnt('varialbe_precio','£ 200'); ?>
-                                            </div>
-                                            <div class="hr-invisible-very-very-small"></div>
-                                            <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                
                             <div class="carousel-arrows">
                                 <a href="#" class="prev-arrow"><i class="fa fa-angle-left"></i></a>
                                 <a href="#" class="next-arrow"><i class="fa fa-angle-right"></i></a>
@@ -588,9 +529,11 @@
                         <div class="jmy_web_div" data-page="'.$page.'" id="testimonio_comentario_'.$i.'" data-editor="no">'.$this->pnt('testimonio_comentario_'.$i,'<blockquote> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut <br>labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation<br> ullamco laboris nisi ut aliquip ex ea commodo consequat uis aute irure dolor </blockquote>',['return'=>1]).'</div>
 
 
-                        <div class="author-detail">
-                            Jos Buttler <span>Duis aute irure</span>
-                        </div>
+                        
+                        <div class="author-detail jmy_web_div" data-page="'.$page.'" id="testimonio_autor_'.$i.'" data-editor="no">'.$this->pnt
+                        ('testimonio_autor_'.$i,'Jos Buttler <span>Duis aute irure</span>',['return'=>1]).'</div>
+                            
+                        
                     </div>
                 </li>';
                 } ?>
