@@ -186,16 +186,16 @@ jQuery(function ($) {
     }*/
 
     function mostrarPersonal(data){
-        console.log(data);
+        console.log(data,location.origin + '/citaws/verPersonaHorario');
         
     	$.ajax({
-            url: location.origin + '/personalws/',
+            url: location.origin + '/citaws/verPersonaHorario',
             type: 'post',
             dataType: 'json',
             success: function(res) {
                 console.log(res);
                 $("#personal").html('');
-                personal = res.out.ResultadoNombre.otFm;
+             /*   personal = res.out.ResultadoNombre.otFm;
                 ServicioPersonal = res.out.resultado.otFm;
 
                 console.log(personal);
@@ -206,6 +206,7 @@ jQuery(function ($) {
                         //console.log(personal[i]);
                         //personal[i];
                     }
+                    */
             },
             error: function(res) {
                 console.log(res);
@@ -214,7 +215,7 @@ jQuery(function ($) {
         });
     }
     function verPersonaHorario(data){
-    	$.ajax({
+    	/*$.ajax({
             url: location.origin + '/citaws/verPersonaHorario',
             type: 'post',
             dataType: 'json',
@@ -234,7 +235,7 @@ jQuery(function ($) {
                 console.log(res);
             },
             data: data
-        });
+        });*/
     }
 
     $( "#personal" ).click(function() {
