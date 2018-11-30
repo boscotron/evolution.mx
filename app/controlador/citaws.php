@@ -1,6 +1,7 @@
 <?php
  
 
+ 
 $session = $jmyWeb->sesion(); 
 //$out['session'] = $session;
 $idUsuario = $session['user']['user_id'];

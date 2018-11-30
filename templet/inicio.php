@@ -169,7 +169,7 @@
                                         <?php  $no_ofertas = $this->pnt('no_ofertas','2',['return'=>1]); ?>
                                         <p>
                                          <div class="jmy_web_contador" data-page="<?php echo $page; ?>"  id="no_ofertas" data-value="<?php echo $no_ofertas; ?>" data-button="Número de ofertas "></div>
-                                         </p>
+                                         </p><?php echo $no_ofertas; ?>
                                         <div class="gallery-details">
                                        
                                         
@@ -185,6 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                                 
                             <div class="carousel-arrows">
                                 <a href="#" class="prev-arrow"><i class="fa fa-angle-left"></i></a>
