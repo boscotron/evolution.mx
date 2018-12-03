@@ -169,21 +169,21 @@
                                         <?php  $no_ofertas = $this->pnt('no_ofertas','2',['return'=>1]); ?>
                                         <p>
                                          <div class="jmy_web_contador" data-page="<?php echo $page; ?>"  id="no_ofertas" data-value="<?php echo $no_ofertas; ?>" data-button="Número de ofertas "></div>
-                                         </p><?php echo $no_ofertas; ?>
+                                         </p>
+                                         <?php echo $no_ofertas; ?>
                                         <div class="gallery-details">
-                                       
-                                        
-                                            <h4 class="aligncente jmy_web_div" data-page="<?php echo $page; ?>" id="varialbe_texto" data-editor="no">
-                                                <a href="<?php $this->url_inicio(); ?>#">
-                                                <?php $this->pnt('varialbe_texto',' Hair Coloring'); ?>
-                                        </a></h4>
-                                            <div class="dt-sc-price aligncente jmy_web_div" data-page="<?php echo $page; ?>" id="varialbe_precio" data-editor="no">
-                                            <?php $this->pnt('varialbe_precio','£ 200'); ?>
-                                            </div>
-                                            <div class="hr-invisible-very-very-small"></div>
-                                            <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
-                                        </div>
-                                    </div>
+                                        <?php echo $no_ofertas; ?>
+                                        <?php for ($i=0; $i < $no_ofertas ; $i++) { 
+
+                                          echo '
+                                                <div class="aligncente  jmy_web_div" data-page="'.$page.'" id="varialbe_texto_'.$i.'" data-editor="no">'.$this->pnt('varialbe_texto_'.$i,'<h4 class="aligncente"><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>',['return'=>1]).'</div>
+                                                 <div class="dt-sc-price aligncente jmy_web_div" data-page="'.$page.'" id="varialbe_precio_'.$i.'" data-editor="no">'.$this->pnt('varialbe_precio_'.$i,'£ 200',['return'=>1]).'</div>
+                                                 </div>
+                                                <div class="hr-invisible-very-very-small"></div>
+                                                <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
+                                                 </div>';
+                                                } ?>
+                                                 </div>
                                 </div>
                             </div>
                                 
@@ -531,8 +531,7 @@
 
 
                         
-                        <div class="author-detail jmy_web_div" data-page="'.$page.'" id="testimonio_autor_'.$i.'" data-editor="no">'.$this->pnt
-                        ('testimonio_autor_'.$i,'Jos Buttler <span>Duis aute irure</span>',['return'=>1]).'</div>
+                        <div class="author-detail jmy_web_div" data-page="'.$page.'" id="testimonio_autor_'.$i.'" data-editor="no">'.$this->pnt('testimonio_autor_'.$i,'Jos Buttler <span>Duis aute irure</span>',['return'=>1]).'</div>
                             
                         
                     </div>
