@@ -23,7 +23,8 @@
                         <h4> Salon evolution </h4>
                         <h6><a href="index.html">Inicio</a></h6>
                     </div>
-                </div>                
+                </div>  
+              
             </section>
             <div class="hr-invisible-very-small"></div>
             <div class="clear"></div>
@@ -108,59 +109,11 @@
                     <div class="column dt-sc-two-third hidden" id="div_paso_3">
                         <h3 class="border-title">Paso <span>Tres</span></h3>
                         <div class="contact-form" >
-                            <div class="column dt-sc-one-half first">
-                                <div class="" data-delay="100" data-animation="fadeIn">
-                                    
-                                   
-                                    <p>Quien quieres que te atienda</p>
-                                    <p><select id="personal">
-                                                                               
-                                            <option value="">Seleccionar</option>
-                                          <!-- <option value="Cualquiera">Cualquiera</option>
-                                            <option value="Alfredo">Alfredo</option>
-                                            <option value="Esmeralda">Esmeralda</option>
-                                            <option value="Aida">Aida</option>
-                                            <option value="Beatris">Beatris</option>-->
-                                        </select></p>
-                                </div>
+                            <div id="listado_dias"></div>
+                            <div id="horarios_disponibles">
+                               
                             </div>
-                            <div class="column dt-sc-one-half">
-                                <div class="" data-delay="300" data-animation="fadeIn">
-                                    <!--<p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>
-                                    <p>Hora:
-                                        <select>
-                                            <option>09:00 am</option>
-                                            <option>10:00 am</option>
-                                            <option>11:00 am</option>
-                                            <option>12:00 pm</option>
-                                            <option>01:00 pm</option>
-                                            <option>02:00 pm</option>
-                                            <option>03:00 pm</option>
-                                            <option>04:00 pm</option>
-                                            <option>05:00 pm</option>
-                                            <option>06:00 pm</option>
-                                            <option>07:00 pm</option>
-                                            <option>08:00 pm</option>
-                                        </select>
-                                    </p>-->
-                                    <!-- <p>Hora <input type="time" name="hora" value="00:00:00" step="1"></p>--><p>Horario: 
-                                        <select id="horario">
-                                          <!-- html comment 
-                                              <option value="">09:00 am</option>
-                                            <option value="">10:00 am</option>
-                                            <option value="">11:00 am</option>
-                                            <option value="">12:00 pm</option>
-                                            <option value="">13:00 pm</option>
-                                            <option value="">14:00 pm</option>
-                                            <option value="">15:00 pm</option>
-                                            <option value="">16:00 pm</option>
-                                            <option value="">17:00 pm</option>
-                                            <option value="">18:00 pm</option>
-                                            <option value="">19:00 pm</option>
-                                            <option value="">20:00 pm</option>-->
-                                        </select></p>
-                                </div>
-                            </div>
+
 
                             <div class="form-row aligncenter " data-delay="7 00" data-animation="fadeIn">
                                 <div class="column dt-sc-one-half first">

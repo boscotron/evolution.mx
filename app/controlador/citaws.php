@@ -34,11 +34,28 @@ switch ($_GET['peticion']) {
             ]);*/
         break;
     case 'verPersonaHorario':
+        //Filtro por tipo de usuario
         $out['empleados']=$jmy->ver([   
             "TABLA"=>TABLA_USUARIOS."_".$jmyWeb->sesion(['return'=>'db']),
             "COL"=>['tipo'], 
             "V"=>['empleado','administrador'], 
         ]);
+        //Catálogo de servicios
+        $out['catalogo_servicios']=$jmy->catalogos([
+            "id"=>"lista_de_servicios",
+            "ID_F"=>$_POST['servicios']
+            ]);
+        foreach ($out['catalogo_servicios']['otFm'] as $key => $value) {
+            $out['catalogo_servicios_valor'][] = $value['value'];
+        }
+        //Fitro por catálogo de servicio 
+        if(count($out['empleados']['otKey'])>0)
+            $out['empleados']=$jmy->ver([   
+                "TABLA"=>TABLA_USUARIOS."_".$jmyWeb->sesion(['return'=>'db']),
+                "COL"=>['serviciosAgregados'], 
+                "LIKE_V"=> $out['catalogo_servicios_valor'], 
+            ]);
+        //infomración de los empleados
         if(count($out['empleados']['otKey'])>0)
             $out['empleados']=$jmy->ver([   
                 "TABLA"=>TABLA_USUARIOS."_".$jmyWeb->sesion(['return'=>'db']),          
@@ -46,18 +63,39 @@ switch ($_GET['peticion']) {
                 "ID"=>$out['empleados']['otKey'], 
                 "SALIDA"=>'ARRAY'
             ]);
-            
-        foreach ($out['empleados']['otFm'] as $key => $value) {
-            $empleado[] = [
-                "dias"=>json_decode($value['dias'],1),
-                "diasActivos"=>json_decode($value['diasActivos'],1),
-                "horario"=>json_decode($value['horario'],1)
-            ];
-        }
         
-        $out['empleado']=$empleado;
+        
+        
+
         $out['dia_semana']=$_POST['fecha'];
-        $out['dia_semana']=$datetime = DateTime::createFromFormat('YmdHi', $_POST['fecha']);
+        $out['dia_semana']=date('w',strtotime( $_POST['fecha']))-1;
+        $out['dia_semana']=($out['dia_semana']<0)?6:$out['dia_semana'];
+        $out['dia_semana_nombre']=str_replace([0,1,2,3,4,5,6], ["lunes","martes","miercoles","jueves","viernes","sabado","domingo"], $out['dia_semana']);
+
+            foreach ($out['empleados']['otFm'] as $key => $value) {
+                $dias_activos=json_decode($value['diasActivos'],1);
+                
+                $disponible=$dias_activos[$out['dia_semana_nombre']];
+                if($disponible)
+                    $empleado[] = [
+                        "nombre"=>$value['nombre'],
+                        "ID_F"=>$value['ID_F'],
+                        "foto_perfil"=>$value['foto_perfil'],
+                        "dias"=>json_decode($value['dias'],1),
+                        "diasActivos"=>$dias_activos,
+                        "horario"=>json_decode($value['horario'],1),
+                        "dispoible"=>$disponible,
+                    ];
+            }
+
+
+        $out['empleado']=$empleado;
+        $out['error']=($empleado!="")?'':"No hay empleados disponibles para la fecha ".$_POST['fecha'];
+        unset($out['catalogo_servicios_valor']);
+        //unset($out['catalogo_servicios']);
+        unset($out['dia_semana']);
+       // unset($out['empleados']);
+
             
         /*
             $day_of_week = date('N', strtotime('Monday'));
