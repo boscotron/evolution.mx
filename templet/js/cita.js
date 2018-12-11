@@ -205,15 +205,15 @@ jQuery(function ($) {
                 $("#listado_dias").append(
                 ' <div class="row"><div class="col-md-4">SERVICIO</div><div class="col-md-4"><div class="" data-delay="100" data-animation="fadeIn"><p>Quien quieres que te atienda</p><p><select id="personal_'+ID_F+'"></select></p></div></div><div class="col-md-4"><div class="" data-delay="300" data-animation="fadeIn"><p>Horario: <select id="horario_'+ID_F+'"></select></p></div></div></div>');
                 if(horario_general[e]!=''&&horario_general[e]!=undefined){
-                    console.log("d",d);
+                    
                     
                     let turnos = horario_general[e].length;
                     //console.log('turnos '+e+':',turnos);
                     if(turnos==1){
                         hora_entrada = horario_general[e][0].h_entrada;
-                        console.log('hora_entrada['+e+']',hora_entrada);
+                       // console.log('hora_entrada['+e+']',hora_entrada);
                         hora_salida = horario_general[e][0].h_salida;
-                        console.log('hora_salida['+e+']',hora_salida);
+                      //  console.log('hora_salida['+e+']',hora_salida);
                         temp_horas = hora_salida - hora_entrada;
                         horas_dia.forEach(element => {
                             //console.log(horasOcupadas[element]);
@@ -231,9 +231,9 @@ jQuery(function ($) {
                     }else{
                         for(ciclo = 0 ; ciclo < turnos ; ciclo++){
                             hora_entrada = horario_general[e][ciclo].h_entrada;
-                            console.log('hora_entrada['+e+']',hora_entrada);
+                           // console.log('hora_entrada['+e+']',hora_entrada);
                             hora_salida = horario_general[e][ciclo].h_salida;
-                            console.log('hora_salida['+e+']',hora_salida);
+                           // console.log('hora_salida['+e+']',hora_salida);
                             temp_horas = hora_salida - hora_entrada;
                             total_horas += temp_horas;
                             horas_dia.forEach(element => {
@@ -256,6 +256,7 @@ jQuery(function ($) {
                         });
                         horasOcupadas = {};
                     }
+                    console.log("d",d);
                     console.log('horas ocupadas '+e+'',horasOcupadas);
                     let t_horas = (turnos==1)?temp_horas:total_horas;
                    // $("#totalHoras_"+e).append('<small>'+t_horas+' horas en total</small>');
