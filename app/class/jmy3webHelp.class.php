@@ -151,7 +151,7 @@ class JMY3WEB extends JMY3MySQL{
 		global $tabla;
 		$s=$this->modulos(["modulos_permisos"=>1]);
 		$ta=($d['tabla']!='')?$d['tabla']:$tabla;
-		$t=explode('_',$ta);
+		$t=explode('__',$ta);
 		if($d['id']!=''&&$d['pagina']!=''&&$d['valor']!='' &&$s['modulos_permisos'][$t[0]]>1){
 			$t=[$d['id']=>$d['valor']];
 			$t=["TABLA"=>$ta, 
@@ -251,6 +251,28 @@ class JMY3WEB extends JMY3MySQL{
 					unset($_SESSION['JMY3WEB']['add_c'][$i]);
 			}
 			unset($_SESSION['JMY3WEB']['add_c']);
+			echo $tmp;
+		}
+	}
+	public function cargar_meta($d=[]){	
+		if(!is_array($_SESSION['JMY3WEB']['add_m']))
+			$_SESSION['JMY3WEB']['add_m']=[];
+		if($d['url']!="" && !in_array($d['meta'],$_SESSION['JMY3WEB']['add_m']))
+			$_SESSION['JMY3WEB']['add_m'][]=$d['url'];
+		if($d['unico'])
+			$_SESSION['JMY3WEB']['cargar_m_borrar'][]=$d['url'];
+	}
+	public function llamar_meta($d=[],$tmp = ''){	
+		if(is_array($_SESSION['JMY3WEB']['add_m'])){
+			$key = array_keys($_SESSION['JMY3WEB']['add_m']);
+			for($i=0;$i<count($key) ;$i++){
+				if($_SESSION['JMY3WEB']['add_m'][$i]!=''){
+					$tmp.=$_SESSION['JMY3WEB']['add_m'][$key[$i]]; 
+				}
+				if(in_array($_SESSION['JMY3WEB']['add_m'][$i],$_SESSION['JMY3WEB']['cargar_m_borrar']))
+					unset($_SESSION['JMY3WEB']['add_m'][$i]);
+			}
+			unset($_SESSION['JMY3WEB']['add_m']);
 			echo $tmp;
 		}
 	}
