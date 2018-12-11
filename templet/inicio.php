@@ -158,7 +158,7 @@
                         </div>
                     </div>
                     <div class="column dt-sc-three-fourth">
-                        <div class="dt-sc-offer-carousel-wrapper animate" data-delay="400" data-animation="fadeIn animated">
+                        <div class="dt-sc-offer-carousel-wrapper" data-delay="400" data-animation="fadeIn animated">
                             <div class="dt-sc-offer-carousel">
                                 <div class="column dt-sc-one-third">
                                     <div class="dt-sc-offer">
@@ -169,23 +169,24 @@
                                         <?php  $no_ofertas = $this->pnt('no_ofertas','2',['return'=>1]); ?>
                                         <p>
                                          <div class="jmy_web_contador" data-page="<?php echo $page; ?>"  id="no_ofertas" data-value="<?php echo $no_ofertas; ?>" data-button="Número de ofertas "></div>
-                                         </p>
                                          <?php echo $no_ofertas; ?>
+                                         </p>
+                                         
                                         <div class="gallery-details">
-                                        <?php echo $no_ofertas; ?>
                                         <?php for ($i=0; $i < $no_ofertas ; $i++) { 
-
                                           echo '
-                                                <div class="aligncente  jmy_web_div" data-page="'.$page.'" id="varialbe_texto_'.$i.'" data-editor="no">'.$this->pnt('varialbe_texto_'.$i,'<h4 class="aligncente"><a href="<?php $this->url_inicio(); ?>#">Hair Coloring</a></h4>',['return'=>1]).'</div>
+                                                <div class="aligncente  jmy_web_div" data-page="'.$page.'" id="varialbe_texto_'.$i.'" data-editor="no">'.$this->pnt('varialbe_texto_'.$i,'<h4 class="aligncente"><a href="'.$this->url_inicio(["return"=>1]).'#">Hair Coloring</a></h4>',['return'=>1]).'</div>
                                                  <div class="dt-sc-price aligncente jmy_web_div" data-page="'.$page.'" id="varialbe_precio_'.$i.'" data-editor="no">'.$this->pnt('varialbe_precio_'.$i,'£ 200',['return'=>1]).'</div>
-                                                 </div>
+                                                 
                                                 <div class="hr-invisible-very-very-small"></div>
                                                 <a class="dt-sc-button btn-eff3" href="#" data-text="View Details"><span>View Details</span></a>
-                                                 </div>';
+                                                ';
                                                 } ?>
                                                  </div>
+                                             </div>
+                                         </div>
+                                    </div>
                                 </div>
-                            </div>
                                 
                             <div class="carousel-arrows">
                                 <a href="#" class="prev-arrow"><i class="fa fa-angle-left"></i></a>
@@ -518,18 +519,11 @@
                 <?php for ($i=0; $i < $no_testimoniales ; $i++) { 
                     echo '<li>
                     <div class="dt-sc-testimonial"> 
-
-
                         <div class="author">
                             <img alt="" src="images/testimonial-img1.jpg">
                         </div>
-
                         <div class="hr-invisible-small"></div>
-
-
                         <div class="jmy_web_div" data-page="'.$page.'" id="testimonio_comentario_'.$i.'" data-editor="no">'.$this->pnt('testimonio_comentario_'.$i,'<blockquote> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut <br>labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation<br> ullamco laboris nisi ut aliquip ex ea commodo consequat uis aute irure dolor </blockquote>',['return'=>1]).'</div>
-
-
                         
                         <div class="author-detail jmy_web_div" data-page="'.$page.'" id="testimonio_autor_'.$i.'" data-editor="no">'.$this->pnt('testimonio_autor_'.$i,'Jos Buttler <span>Duis aute irure</span>',['return'=>1]).'</div>
                             
