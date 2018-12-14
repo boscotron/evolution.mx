@@ -187,6 +187,7 @@ jQuery(function ($) {
 
     function listaDias(d=[]) {
         let dias =d.dia;
+        let empleado = d.empleados;
         let ID_F =d.ID_F;
         let horas_dia =[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
         let horasOcupadas ={0:0,1:0,2:0,3:0,4:0,5:0,6:0,7:0,8:0,9:0,10:0,11:0,12:0,13:0,14:0,15:0,16:0,17:0,18:0,19:0,20:0,21:0,22:0,23:0};
@@ -195,25 +196,25 @@ jQuery(function ($) {
         let hora_entrada = 0;
         let hora_salida = 0;
         let ciclo = 0;
-        let porcentaje = 100 / 24;
+        /*let porcentaje = 100 / 24;
         
         let hora_ocupada = '<div class="progress-bar bg-success" role="progressbar" style="width: '+porcentaje+'%" aria-valuenow="'+porcentaje+'" aria-valuemin="0" aria-valuemax="100"></div>';
-        let hora_libre = '<div class="progress-bar bg-dark" role="progressbar" style="width: '+porcentaje+'%" aria-valuenow="'+porcentaje+'" aria-valuemin="0" aria-valuemax="100"></div>';
-        
+        let hora_libre = '<div class="progress-bar bg-dark" role="progressbar" style="width: '+porcentaje+'%" aria-valuenow="'+porcentaje+'" aria-valuemin="0" aria-valuemax="100"></div>';*/
+
         dias.forEach(e => {
-            if(diasActivos[e]==1){
+            //if(diasActivos[e]==1){
                 $("#listado_dias").append(
-                ' <div class="row"><div class="col-md-4">SERVICIO</div><div class="col-md-4"><div class="" data-delay="100" data-animation="fadeIn"><p>Quien quieres que te atienda</p><p><select id="personal_'+ID_F+'"></select></p></div></div><div class="col-md-4"><div class="" data-delay="300" data-animation="fadeIn"><p>Horario: <select id="horario_'+ID_F+'"></select></p></div></div></div>');
+                ' <div class="row"><div id="nombre_'+ID_F+'" class="col-md-4">SERVICIO:<p>'+d.nombre+'</p></div><div class="col-md-4"><div class="" data-delay="100" data-animation="fadeIn"><p>Quien quieres que te atienda:</p><p><select id="personal_'+ID_F+'"></select></p></div></div><div class="col-md-4"><div class="" data-delay="300" data-animation="fadeIn"><p>Horario: <select id="horario_'+ID_F+'"></select></p></div></div></div><h1><hr>');
+                
+                console.log('horario_general['+e+']',horario_general);
                 if(horario_general[e]!=''&&horario_general[e]!=undefined){
-                    
-                    
                     let turnos = horario_general[e].length;
-                    //console.log('turnos '+e+':',turnos);
+                    console.log('turnos '+e+':',turnos);
                     if(turnos==1){
                         hora_entrada = horario_general[e][0].h_entrada;
-                       // console.log('hora_entrada['+e+']',hora_entrada);
+                        //console.log('hora_entrada['+e+']',hora_entrada);
                         hora_salida = horario_general[e][0].h_salida;
-                      //  console.log('hora_salida['+e+']',hora_salida);
+                        //console.log('hora_salida['+e+']',hora_salida);
                         temp_horas = hora_salida - hora_entrada;
                         horas_dia.forEach(element => {
                             //console.log(horasOcupadas[element]);
@@ -224,7 +225,7 @@ jQuery(function ($) {
                             }else{
                                 horasOcupadas[element] = 1;
                             }
-                            let progress = (horasOcupadas[element]==1)?hora_ocupada:hora_libre;
+                            //let progress = (horasOcupadas[element]==1)?hora_ocupada:hora_libre;
                             //$('#progress_horas_'+e).append(progress);
                         });
                         //console.log('horas ocupadas '+e+'',horasOcupadas);
@@ -247,25 +248,38 @@ jQuery(function ($) {
                                 }
                             });
                         }
-                      
-                        horas_dia.forEach(element => {
-                            if(horasOcupadas[element]==1){
-                                $("#horario_"+ID_F).append('<option value="'+element+'">'+element+' hrs</option>');
-                                $("#horario_"+ID_F).append('<option value="'+element+'">'+element+' hrs</option>');
-                            }
-                        });
                         horasOcupadas = {};
                     }
                     console.log("d",d);
                     console.log('horas ocupadas '+e+'',horasOcupadas);
-                    let t_horas = (turnos==1)?temp_horas:total_horas;
+                    horas_dia.forEach(element => {
+                        if(horasOcupadas[element]==1){
+                            $("#horario_"+ID_F).append('<option value="'+(element+1)+'">'+(element+1)+' hrs</option>');
+                            //$("#horario_"+ID_F).append('<option value="'+element+'">'+element+' hrs</option>');
+                        }
+                    });
+                    //let t_horas = (turnos==1)?temp_horas:total_horas;
                    // $("#totalHoras_"+e).append('<small>'+t_horas+' horas en total</small>');
-                    total_horas = 0;
+                    //total_horas = 0;
                 
                 }
-            }
+            //}
+        });
+        $('#personal_'+ID_F).append('<option>Seleccionar</option>');
+        empleado.forEach(e => {
+            e.serviciosAgregados.forEach(elem => {
+                //console.log('Servicios de empleado '+e.nombre+':',elem.nombreServicio);
+                if(elem.nombreServicio == d.nombre){
+                    $('#personal_'+ID_F).append('<option value="'+e.ID_F+'">'+e.nombre+'</option>');
+                    //console.log('Empleado que da el servicio de '+elem.nombreServicio+':',e.nombre);
+                }
+            });
+        });
+        $('#personal_'+ID_F).change(function(){
+
         });
     }
+
     let diasActivos = [];
     let horario_general = [];
     function mostrarPersonal(data){
@@ -278,13 +292,31 @@ jQuery(function ($) {
             success: function(res) {
                 console.log(res);
                 $("#personal").html('');
-                diasActivos =res.out.empleado[0].diasActivos;
+                $("#listado_dias").html('');
+                let empleado = res.out.empleado;
+                //console.log("Empleados:",empleado);
+                let servicios = res.out.catalogo_servicios.otFm;
+                //console.log(servicios);
+
+                //console.log("info_empleados",info_empleados);
+                if(servicios!=undefined){
+                    servicios.forEach(e => {
+                        listaDias({
+                            ID_F:e.ID_F,
+                            nombre:e.nombre,
+                            servicio:e,
+                            dia:[res.out.dia_semana_nombre],
+                            empleados:empleado
+                        });
+                    });
+                }
+
+                /*diasActivos =res.out.empleado[0].diasActivos;
                 horario_general =res.out.empleado[0].dias;
                 let servicios = res.out.catalogo_servicios.otFm;
-                console.log(servicios);
-                
                 console.log(diasActivos);
                 console.log(horario_general);
+                console.log(servicios);
                 $("#listado_dias").html('');
                 if(servicios!=undefined)
                     servicios.forEach(e => {
@@ -293,9 +325,10 @@ jQuery(function ($) {
                             nombre:e.nombre,
                             servicio:e,
                             foto_perfil:e.foto_perfil,
-                            dia:[res.out.dia_semana_nombre]
+                            dia:[res.out.dia_semana_nombre],
+                            respuesta:res.out
                         });
-                    });
+                    });*/
                 
              /*   personal = res.out.ResultadoNombre.otFm;
                 ServicioPersonal = res.out.resultado.otFm;
