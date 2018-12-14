@@ -85,6 +85,7 @@ switch ($_GET['peticion']) {
                         "diasActivos"=>$dias_activos,
                         "horario"=>json_decode($value['horario'],1),
                         "dispoible"=>$disponible,
+                        "serviciosAgregados"=>json_decode($value['serviciosAgregados'])
                     ];
             }
 
