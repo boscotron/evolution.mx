@@ -37,43 +37,40 @@
 //id
 //if
 
-if($_POST['proveedor']!=''){
-    $var ["proveedor"]=$jmy->ver([
-        "TABLA"=>"proveedor",
-        "ID"=>$_POST['proveedor'],
-        //"COL"=>["nombre","precio","proveedor","cantidad","fecha_compra","fecha_venta"],   
+    if($_POST['proveedor']!=''){
+        $var ["proveedor"]=$jmy->ver([
+            "TABLA"=>"proveedor",
+            "ID"=>$_POST['proveedor'],
+            //"COL"=>["nombre","precio","proveedor","cantidad","fecha_compra","fecha_venta"],   
 
-    ]);
+        ]);
 }
 
 
-//$var ["guardar"]=
-$jmy->guardar([
-    "TABLA"=>"productos",
-    "ID"=>$_POST['ID'],
-    "A_D"=>TRUE,
-    "FO"=>TRUE,
-    "GUARDAR"=>[
-        "nombre"=>$_POST['nombre'],
-        "precio"=>$_POST['precio'],
-        "proveedor"=>$_POST['proveedor'],
-        "cantidad"=>$_POST['cantidad'],
-        "fecha_compra"=>$_POST['fecha_compra'],
-        "fecha_venta"=>$_POST['fecha_venta'],
-        "PRUEBA"=>[
-            [
-                "producto"=>"gel",
-                "id"=>"asd5a6d5a6s5da",
-                "cantidad"=>"5",
-            ],[
-                "producto"=>"cera",
-                "id"=>"asd5a6d5a6asdda",
-                "cantidad"=>"1",
-            ],
-        ],
-    ],
+if(count($_POST)>0){
+    $var["ID"]=($_POST['ID']!='')?$_POST['ID']:uniqid();
+    if($_POST['nombre']!='' && $_POST['precio']!=''&& $_POST['proveedor']!=''){
+        //$var ["guardar"]=
+        $jmy->guardar([
+            "TABLA"=>"productos",
+            "ID"=>$_POST['ID'],
+            "A_D"=>TRUE,
+            "FO"=>TRUE,
+            "GUARDAR"=>[
+                "nombre"=>$_POST['nombre'],
+                "precio"=>$_POST['precio'],
+                "proveedor"=>$_POST['proveedor'],
+                "cantidad"=>$_POST['cantidad'],
+                "fecha_compra"=>$_POST['fecha_compra'],
+                "fecha_venta"=>$_POST['fecha_venta'],
                 
-]);
+                ],
+                    
+            ]);
+        }else{
+            $var['error'][]="Faltan campos nombre, precio,proveedor para guardar";
+        }
+    }
 
 $var ["ver"]=$jmy->ver([
     "TABLA"=>"productos",
