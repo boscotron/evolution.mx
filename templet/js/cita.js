@@ -83,6 +83,7 @@ jQuery(function ($) {
         console.log('paso 3');
         let fecha = $("#dpt").val();
         console.log(fecha);
+        informacion_servicios = [];
         let servicios_seleccionados = [];
         $('.servicios_seleccionados').each(function(){
 
@@ -204,9 +205,9 @@ jQuery(function ($) {
         dias.forEach(e => {
             //if(diasActivos[e]==1){
                 $("#listado_dias").append(
-                ' <div class="row"><div id="nombre_'+ID_F+'" class="col-md-4">SERVICIO:<p>'+d.nombre+'</p></div><div class="col-md-4"><div class="" data-delay="100" data-animation="fadeIn"><p>Quien quieres que te atienda:</p><p><select id="personal_'+ID_F+'"></select></p></div></div><div class="col-md-4"><div class="" data-delay="300" data-animation="fadeIn"><p>Horario: <select id="horario_'+ID_F+'"></select></p></div></div></div><h1><hr>');
+                ' <div class="row ser_list" id="'+ID_F+'" data-idf="'+ID_F+'"><div id="nombre_'+ID_F+'" class="col-md-4">SERVICIO:<p >'+d.nombre+'</p></div><div class="col-md-4"><div class="" data-delay="100" data-animation="fadeIn"><p>Quien quieres que te atienda:</p><p><select id="personal_'+ID_F+'"></select></p></div></div><div class="col-md-4"><div class="" data-delay="300" data-animation="fadeIn"><p>Horario: <select id="horario_'+ID_F+'"><option>Elige un empleado</option></select></p></div></div></div><h1><hr>');
                 
-                console.log('horario_general['+e+']',horario_general);
+                //console.log('horario_general['+e+']',horario_general);
                 if(horario_general[e]!=''&&horario_general[e]!=undefined){
                     let turnos = horario_general[e].length;
                     console.log('turnos '+e+':',turnos);
@@ -276,12 +277,72 @@ jQuery(function ($) {
             });
         });
         $('#personal_'+ID_F).change(function(){
-
+            if($('#personal_'+ID_F).val()!="Seleccionar"){
+                let empleado_elegido = $('#personal_'+ID_F).val();
+                //console.log("empleado_elegido",empleado_elegido);
+                if(empleado_elegido!=""&&empleado_elegido!=undefined){
+                    empleado.forEach(e => {
+                        if(e.ID_F == empleado_elegido){
+                            let resul = [];
+                            $('#horario_'+ID_F).html('');
+                            $('#horario_'+ID_F).append('<option>Seleccionar</option>');
+                            e.dias[dias].forEach(element => {
+                                resul.push(element);
+                                //console.log("element de empleado_elegido",resul);
+                                resul.forEach(el => {
+                                    hora_entrada = element.h_entrada;
+                                    hora_salida = element.h_salida;
+                                    horas_dia.forEach(ho => {
+                                        if(horas_dia[ho] < hora_entrada){
+                                        }else if(horas_dia[ho] > hora_salida-1){
+                                        }else{
+                                            $('#horario_'+ID_F).append('<option value="'+ho+'">'+ho+' hrs</option>');
+                                        }
+                                    });
+                                });
+                            });
+                        }
+                    });
+                }
+            }else{
+                $('#horario_'+ID_F).html('');
+                $('#horario_'+ID_F).append('<option>Elige un empleado</option>');
+            }
         });
+        $('#horario_'+ID_F).change(function(){
+            if($('#horario_'+ID_F)!="Seleccionar"){
+                //console.log("tamaño del arreglo de informacion_servicios",informacion_servicios.length);
+                if(informacion_servicios.length==0){
+                    informacion_servicios.push({
+                        servicio:d.nombre,
+                        empleado:$('#personal_'+ID_F+' option:selected').val(),
+                        hora:$('#horario_'+ID_F+' option:selected').val()
+                    });
+                }else{
+                    let indice = 0;
+                    informacion_servicios.forEach(element => {
+                        console.log(element.servicio,d.nombre)
+                        if(element.servicio == d.nombre){
+                            informacion_servicios.splice(indice,1);
+                        }
+                        indice = indice + 1;
+                        //console.log(indice);
+                    });
+                    informacion_servicios.push({
+                        servicio:d.nombre,
+                        empleado:$('#personal_'+ID_F+' option:selected').val(),
+                        hora:$('#horario_'+ID_F+' option:selected').val()
+                    })
+                }
+                console.log("informacion_servicios",informacion_servicios);
+            }
+        });
+
     }
 
     let diasActivos = [];
     let horario_general = [];
+    let informacion_servicios = [];
     function mostrarPersonal(data){
         console.log(data,location.origin + '/citaws/verPersonaHorario');
         
@@ -389,13 +450,27 @@ jQuery(function ($) {
         
     });
 
-    function guardarCita(){
+    function datosCita(){
+        let infoCita = [];
+        infoCita["cliente"] = $("#select_lista_perfiles option:selected").val();
+        infoCita["fecha"] = $("#dpt").val();
+        infoCita["servicios-info"] = informacion_servicios;
+        console.log(infoCita);
+    }
 
-           let data = { servicios:$("#servicios option:selected").val(),
-            persona:$("#personal option:selected").val(),
-            horario:$("#horario option:selected").val(),
-            id_perfil:$("#select_lista_perfiles option:selected").val(),
-            fecha:$("#dpt").val()}
+    function guardarCita(){
+        let ServiciosElegidos = [];
+        $(".ser_list").each(function(){
+            let r = $(this).data("nom");
+            //console.log("Servicios seleccionados:",r);
+            ServiciosElegidos.push(r);
+        });
+        console.log(ServiciosElegidos);
+            let data = { servicios:ServiciosElegidos,
+                persona:$("#personal option:selected").val(),
+                horario:$("#horario option:selected").val(),
+                id_perfil:$("#select_lista_perfiles option:selected").val(),
+                fecha:$("#dpt").val()}
 
     	$.ajax({
             url: location.origin + '/citaws/guardarCita',
@@ -455,8 +530,34 @@ jQuery(function ($) {
 
 
     $("#btn_guardar").click(function(){
-       
-       guardarCita();
+        let numero = 0;
+        $(".ser_list").each(function(){
+            numero = numero + 1;
+        });
+        if(numero==informacion_servicios.length){
+            datosCita();
+            swal({
+                type: "success",
+                title: "Cita agendada",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar",
+                closeOnConfirm: true
+                }).then((result)=>{
+                       
+           });
+        }else{
+            swal({
+                type: "warning",
+                title: "Complete todos los campos",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar",
+                closeOnConfirm: true
+                }).then((result)=>{
+                       
+           });
+        }
+        
+        //guardarCita();
 
     });
 
