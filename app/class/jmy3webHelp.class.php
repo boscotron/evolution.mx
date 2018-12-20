@@ -354,4 +354,4 @@ class JMY3WEB extends JMY3MySQL{
 		//-->
 		</script>';
 	}
-}
+} 

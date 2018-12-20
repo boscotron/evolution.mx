@@ -4,7 +4,7 @@ jQuery(function ($) {
 	 	header: { 
 	  		left : 'today,prev,next',
 	  		center: 'title',
-	  		right : 'month,agendaWeek,agendaDay'
+	  		right : 'agendaWeek,month,agendaDay'
 	  	},
 	  	dayClick:function(date,jsEvent,view){
 	  		$(this).css('background-color','blue');

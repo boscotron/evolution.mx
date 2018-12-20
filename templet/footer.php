@@ -106,7 +106,7 @@
 </div><!-- End of Wrapper -->
   
 <!-- **jQuery** -->    
-<script src="<?php $this->url_templet();?>js/jquery.min.js" type="text/javascript"></script>
+<!-- IVAN <script src="<?php $this->url_templet();?>js/jquery.min.js" type="text/javascript"></script> -->
 <script
   src="https://code.jquery.com/jquery-2.2.4.js"
   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
@@ -130,12 +130,12 @@
 
 <script src="<?php $this->url_templet(); ?>js/animate-txt.js"></script>
 
-
+<!-- IVAN 
 <script src="<?php $this->url_templet();?>js/moment.min.js" type="text/javascript"></script>
 
 <script src="<?php $this->url_templet();?>js/fullcalendar.min.js" type="text/javascript"></script>
 <script src="<?php $this->url_templet();?>js/es.js" type="text/javascript"></script>
-
+-->
 <?php  $this->llamar_js(); ?> 
 
 </body>

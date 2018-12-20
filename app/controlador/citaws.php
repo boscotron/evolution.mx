@@ -177,18 +177,20 @@ switch ($_GET['peticion']) {
     case 'guardarCita':
            #$jmy->db(['agendarCita']);
             // CAMBIAR EL NOMBRE DE VARIABLE mostrarCitas al final del desarrollo
+        $out['mensaje']='ola k ace?';
+
 
             $out['error']='';
             $guardar = true;
             $out['mostrarCitas_fil_1'] = $jmy->ver([
                 "TABLA"=>"agendarcita",
-                "V"=>[$_POST['fecha']],
+                "V"=>[$_POST['datosCita']['fecha']],
             ]);
     
             $out['mostrarCitas_fil_2'] = $jmy->ver([
                 "TABLA"=>"agendarcita",
                 "COL"=>['horario'],
-                "V"=>[$_POST['horario']],
+                "V"=>[$_POST['guardar']['horario']],
                 "FO"=>true,
 
                 "ID"=>$out['mostrarCitas_fil_1']['otKey']
@@ -199,8 +201,8 @@ switch ($_GET['peticion']) {
             if(!$guardar){
                 $out['mostrarCitas'] = $jmy->ver([
                     "TABLA"=>"agendarcita",
-                    "COL"=>['persona'],
-                    "V"=>[$_POST['persona']],
+                    "COL"=>['empleado'],
+                    "V"=>[$_POST['guardar']['empleado']],
                     "FO"=>true,
                     "ID"=>$out['mostrarCitas_fil_2']['otKey']
                     ]);   
@@ -214,12 +216,12 @@ switch ($_GET['peticion']) {
                 $out['agendarcita'] = $jmy->guardar([
                     "TABLA"=>"agendarcita",
                     "A_D"=>TRUE,
-                    "GUARDAR"=>["nombre"=>$_POST['servicios'],
-                                "persona"=>$_POST['persona'],
+                    "GUARDAR"=>["servicio"=>$_POST['guardar']['servicio'],
+                                "empleado"=>$_POST['guardar']['empleado'],
                                 "usuario"=>$idUsuario,
-                                "id_perfil"=>$_POST['id_perfil'],
-                                "horario"=>$_POST['horario'],
-                                "fecha"=>$_POST['fecha']
+                                "id_perfil"=>$_POST['datosCita']['cliente'],
+                                "horario"=>$_POST['guardar']['horario'],
+                                "fecha"=>$_POST['datosCita']['fecha']
                             ]
                     ]);
             }else{
