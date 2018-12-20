@@ -106,6 +106,7 @@
 </div><!-- End of Wrapper -->
   
 <!-- **jQuery** -->    
+<script src="<?php $this->url_templet();?>js/jquery.min.js" type="text/javascript"></script>
 <script
   src="https://code.jquery.com/jquery-2.2.4.js"
   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
@@ -120,12 +121,22 @@
 <script src="<?php $this->url_templet(); ?>js/jquery.gmap.min.js"></script>
 
 <script src="<?php $this->url_templet(); ?>js/jquery-1.11.3.min.js"></script>  
+
 <script type="text/javascript" src="<?php $this->url_templet(); ?>js/jquery.sticky.min.js"></script> 
+
 <script src="<?php $this->url_templet(); ?>js/jsplugins.js" type="text/javascript"></script>
+
 <script src="<?php $this->url_templet(); ?>js/jquery.meanmenu.min.js" type="text/javascript"></script>
 
 <script src="<?php $this->url_templet(); ?>js/animate-txt.js"></script>
 
+
+<script src="<?php $this->url_templet();?>js/moment.min.js" type="text/javascript"></script>
+
+<script src="<?php $this->url_templet();?>js/fullcalendar.min.js" type="text/javascript"></script>
+<script src="<?php $this->url_templet();?>js/es.js" type="text/javascript"></script>
+
 <?php  $this->llamar_js(); ?> 
+
 </body>
 </html>

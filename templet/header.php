@@ -46,6 +46,10 @@
     <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+
+     <!-- fullcalendar -->
+    <link rel="stylesheet" href="<?php $this->url_templet();?>css/fullcalendar.min.css">
+
     <?php  $this->llamar_css(); ?> 
 
     
@@ -55,8 +59,15 @@
     
     <!-- jQuery -->
     <script src="<?php $this->url_templet();?>js/modernizr.custom.js"></script>
+
+  
+
      <!-- SweetAlert 2 -->
     <script src="<?php $this->url_templet();?>js/sweetalert2.all.js"></script>
+
+   
+
+    
     
 </head>
 
