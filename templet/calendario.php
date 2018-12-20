@@ -1,3 +1,4 @@
+<?php $this ->pre(['p'=>$data,'t'=>'TITULO_ARRAY']); ?>
 <div class="main">
 	<h1>calendario</h1>
 	<div class="row">
