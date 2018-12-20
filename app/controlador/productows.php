@@ -54,17 +54,9 @@ if(count($_POST)>0){
         $jmy->guardar([
             "TABLA"=>"productos",
             "ID"=>$_POST['ID'],
-            "A_D"=>TRUE,
+            //"A_D"=>TRUE,
             "FO"=>TRUE,
-            "GUARDAR"=>[
-                "nombre"=>$_POST['nombre'],
-                "precio"=>$_POST['precio'],
-                "proveedor"=>$_POST['proveedor'],
-                "cantidad"=>$_POST['cantidad'],
-                "fecha_compra"=>$_POST['fecha_compra'],
-                "fecha_venta"=>$_POST['fecha_venta'],
-                
-                ],
+            "GUARDAR"=>$_POST 
                     
             ]);
         }else{
@@ -75,7 +67,7 @@ if(count($_POST)>0){
 $var ["ver"]=$jmy->ver([
     "TABLA"=>"productos",
     "ID"=>$_POST['ID'],
-    "COL"=>["nombre","precio","proveedor","cantidad","fecha_compra","fecha_venta"],   
+   // "COL"=>["nombre","precio","proveedor","cantidad","fecha_compra","fecha_venta"],   
 ]);
 
 
