@@ -2,7 +2,7 @@
 
 $citas = $jmy->ver([
     "TABLA"=>"agendarcita",
-    "COL"=>["V"],
+    "SALIDA"=>"ARRAY",
 ]);
 
 $salida=[

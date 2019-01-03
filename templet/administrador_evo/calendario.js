@@ -42,7 +42,7 @@
   function lista(d=[]) {
     jQuery(function ($) {    
         $.ajax({
-            url: location.origin+"/administradorws/cita_calendario",
+            url: location.origin+"/administradorws/citas",
             type:"post",
             dataType:"json",
             data:{dato:"dato"},

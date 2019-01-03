@@ -41,6 +41,7 @@ $modulos =  [
         "nombre"=>"Citas",
         "url_marco"=>"administrador_evo/calendario.php",
         "controlador"=>"app/controlador/administrador_evo/cita_calendario.php",    
+        "controlador_ws"=>"app/controlador/administrador_evo/cita_calendariows.php",    
     ],
     "proveedores"=>[
         "nombre"=>"Proveedores",
