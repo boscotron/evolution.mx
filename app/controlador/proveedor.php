@@ -16,7 +16,7 @@ if(count($_POST)>0){
             ],                        
         ]);
     }else{
-        $var['error'][]="Faltan campos nombre, telefono para guardar";
+        $var['error'][]="Faltan campos nombre, telefono; para guardar";
     }
 }
 

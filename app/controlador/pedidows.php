@@ -13,6 +13,15 @@ if(count($_POST)>0){
 
         //filtro  - Exista productos
         ////
+        $var["ver_productos"]=$jmy->ver([
+            "TABLA"=>"productos",
+            "ID"=>$_POST['productos'],
+        ]);
+
+        $var["ver_sucursal"]=$jmy->ver([
+            "TABLA"=>"sucursal",
+            "ID"=>$_POST['sucursal'],
+        ]);
 
 
 
@@ -26,7 +35,7 @@ if(count($_POST)>0){
                 "FO"=>TRUE,
                 "GUARDAR"=>[
                     "dia_pedido"=>$_POST['dia_pedido'],
-                    "cliente"=>$_POST['cliente'], //sucursal
+                    "sucursal"=>$_POST['sucursal'], //sucursal
                     "proveedor"=>$_POST['proveedor'],
                     "productos"=>$_POST['productos'],
                     "estatus"=>$_POST['estatus'],
