@@ -1,40 +1,43 @@
-jQuery(function ($) {
-	//muestra el calendario
-	$('#calendar').fullCalendar({
-	 	header: { 
-	  		left : 'today,prev,next',
-	  		center: 'title',
-	  		right : 'agendaWeek,month,agendaDay'
-	  	},
-	  	dayClick:function(date,jsEvent,view){
-	  		$(this).css('background-color','blue');
-	  	},
-	  	eventSources:[{
-		  	events: [
-				    {
-				      title  : 'event1',
-				      start  : '2018-12-01',
-				      color:"blue",
-					  textColor:"white"	
-				    },
-				    {
-				      title  : 'event2',
-				      start  : '2018-12-05',
-				      end    : '2018-12-07',
-				      color:"green",
-					  textColor:"white"	
-				    },
-				    {
-				      title  : 'event3',
-				      start  : '2018-12-09T12:30:00',
-				      allDay : false,
-				      color:"black",
-					  textColor:"white"	
-				    }
-			],
-			
-	  	}]
-	  	 
-	});
 
-});
+// import { Calendar } from 'fullcalendar.js';
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      defaultDate: '2018-12-12',
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2018-12-01'
+        },
+        {
+          title: 'Long Event',
+          start: '2018-12-07',
+          end: '2018-12-10'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2018-12-09T16:00:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2018-12-12T20:00:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2018-12-13T07:00:00'
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2018-12-28'
+        }
+      ]
+    });
+
+    calendar.render();
+  });
