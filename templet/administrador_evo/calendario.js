@@ -1,6 +1,3 @@
-
-// import { Calendar } from 'fullcalendar.js';
-
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
@@ -41,3 +38,32 @@
 
     calendar.render();
   });
+
+  function lista(d=[]) {
+    jQuery(function ($) {    
+        $.ajax({
+            url: location.origin+"/administradorws/citas",
+            type:"post",
+            dataType:"json",
+            data:{dato:"dato"},
+            success:function(respuesta){
+                console.log('respuesta',respuesta);
+                
+
+            },error:function (e) {
+               // console.log(e);
+                
+            }
+
+        });
+        
+    });
+}
+
+
+jQuery(function($){
+    $(document).ready(function () {
+        lista();
+
+    });
+});

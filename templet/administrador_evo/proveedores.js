@@ -10,7 +10,7 @@ function lista(d=[]) {
                 
 
             },error:function (e) {
-                console.log(e);
+               // console.log(e);
                 
             }
 
