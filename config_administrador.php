@@ -48,6 +48,12 @@ $modulos =  [
         "controlador"=>"app/controlador/administrador_evo/proveedores.php",    
         "controlador_ws"=>"app/controlador/administrador_evo/proveedoresws.php",
     ],
+    "productos"=>[
+        "nombre"=>"Productos",
+        "url_marco"=>"administrador_evo/productos.php",
+        "controlador"=>"app/controlador/administrador_evo/productos.php",    
+        "controlador_ws"=>"app/controlador/administrador_evo/productosws.php",
+    ],
     "perfil-empleado"=>[
         "nombre"=>"Perfil empleado",
         "url_marco"=>"error404.php", 
