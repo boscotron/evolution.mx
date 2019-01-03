@@ -15,7 +15,7 @@ if(count($_POST)>0){
             ],
         ]);
     }else{
-        $var['error'][]="Faltan campos: dirección, responsable; para poder guardar"
+        $var['error'][]="Faltan campos: dirección, responsable; para poder guardar";
     }
 }
 $var ["ver"]=$jmy->ver([
