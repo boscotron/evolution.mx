@@ -39,8 +39,8 @@ $menu =  [
 $modulos =  [
     "citas"=>[
         "nombre"=>"Citas",
-        "url_marco"=>"administrador_evo/lista.php",
-        "controlador"=>"app/controlador/admin_mdeamor/casas.php",    
+        "url_marco"=>"administrador_evo/calendario.php",
+        "controlador"=>"app/controlador/administrador_evo/cita_calendario.php",    
     ],
     "proveedores"=>[
         "nombre"=>"Proveedores",
