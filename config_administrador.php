@@ -27,6 +27,11 @@ $menu =  [
         "nombre"=>"Productos",
         "url"=>$jmyWeb->url_inicio(['return'=>true])."administrador/productos",
         "class"=>"",
+    ],
+    "proveedores"=>[
+        "nombre"=>"Proveedores",
+        "url"=>$jmyWeb->url_inicio(['return'=>true])."administrador/proveedores",
+        "class"=>"",
     ]
 ];
 
@@ -36,6 +41,12 @@ $modulos =  [
         "nombre"=>"Citas",
         "url_marco"=>"administrador_evo/lista.php",
         "controlador"=>"app/controlador/admin_mdeamor/casas.php",    
+    ],
+    "proveedores"=>[
+        "nombre"=>"Proveedores",
+        "url_marco"=>"administrador_evo/proveedores.php",
+        "controlador"=>"app/controlador/administrador_evo/proveedores.php",    
+        "controlador_ws"=>"app/controlador/administrador_evo/proveedoresws.php",
     ],
     "perfil-empleado"=>[
         "nombre"=>"Perfil empleado",
