@@ -4,3 +4,4 @@ $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(['return'=>true]).'administrador
 
 $jmyWeb ->pre(['p'=>$out,'t'=>'TITULO_ARRAY']);
 
+?>

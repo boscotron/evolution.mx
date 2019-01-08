@@ -1,18 +1,18 @@
 <div class="row">
     <div class="col-md-12">
-       <h1>Administrador de Proveedores</h1>
+       <h1>Administrador de Productos</h1>
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-6" >
-       <h2 class="lista_proveedores">Lista de Proveedores</h1>
+       <h2 class="lista_proveedores">Lista de Productos</h1>
      
        <table id="listado_proveedores_tabla" class="display" style="width:100%">
 </table>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-6" id="datos">
-        <h2 onclick="ver_perfil()">Editar proveedor</h1>
+        <h2 onclick="ver_perfil()">Editar productos</h1>
 
         <style>
             .btn_tabs {width:50%;}
@@ -36,13 +36,13 @@
                         <form class="contact-form" method="post" name="enqform" action="php/send.php">
                             <div class="col-lg-10">
                                 <div data-delay="100" data-animation="fadeIn">
-                                    <p><input type="text" id="proveedor_nombre" name="username" placeholder="Nombre (requerido)" required/> </p>
+                                    <p><input type="text" id="prod_nombre" name="username" placeholder="Nombre (requerido)" required/> </p>
                                 </div>
                             </div>
                             <div class="col-lg-10">
                                 <div  data-delay="300" data-animation="fadeIn">
-                                    <p><input type="text" id="proveedor_telefono"  required name="txtname" placeholder="Telefono (requerido)"/></p>
-                                    <p><input type="text" id="proveedor_direccion"  required name="txtname" placeholder="Dirección (requerido)"/></p>
+                                    <p><input type="text" id="prod_precio"  required name="txtname" placeholder="Precio (requerido)"/></p>
+                                    <p><input type="text" id="prod_provedor"  required name="txtname" placeholder="Proveedor (requerido)"/></p>
                                     <p><input id="datepicker" type="text" placeholder="Dia de Pedido" value="" name="datepicker"><span class="icons fa fa-calendar"></span></p>
                                 </div>
                             </div>
