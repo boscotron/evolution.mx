@@ -5,6 +5,7 @@ jQuery(function ($) {
     let personal = [];
     let ServicioPersonal = [];
     $(".hidden").hide(0);
+    $(".paso1").css("color","green");
  
 
     function select_lista_perfiles(){
@@ -53,6 +54,8 @@ jQuery(function ($) {
 
 
     $("#btn_paso_1").click(function(){
+        $(".paso1").css("color","");
+        $(".paso2").css("color","#006400");
         console.log('paso 2');
         let valor = $("#select_lista_perfiles option:selected").val();
         console.log(valor);
@@ -73,6 +76,8 @@ jQuery(function ($) {
     });
 
     $("#btn_paso_r1").click(function(){
+        $(".paso2").css("color","");
+        $(".paso1").css("color","#006400");
         console.log('regresar al paso 1');
         $("#div_paso_2").hide(50);
         $("#div_paso_1").show(200);
@@ -80,6 +85,8 @@ jQuery(function ($) {
     });
 
     $("#btn_paso_2").click(function(){
+        $(".paso2").css("color","");
+        $(".paso3").css("color","#006400");
         console.log('paso 3');
         let fecha = $("#dpt").val();
         console.log(fecha);
@@ -114,6 +121,8 @@ jQuery(function ($) {
     });
 
     $("#btn_paso_r2").click(function(){
+        $(".paso3").css("color","");
+        $(".paso2").css("color","#006400");
         console.log('regresar al paso 2');
         $("#div_paso_3").hide(50);
         $("#div_paso_2").show(200);
@@ -205,7 +214,7 @@ jQuery(function ($) {
         dias.forEach(e => {
             //if(diasActivos[e]==1){
                 $("#listado_dias").append(
-                ' <div class="row ser_list" id="'+ID_F+'" data-idf="'+ID_F+'"><div id="nombre_'+ID_F+'" class="col-md-4">SERVICIO:<p >'+d.nombre+'</p></div><div class="col-md-4"><div class="" data-delay="100" data-animation="fadeIn"><p>Quien quieres que te atienda:</p><p><select id="personal_'+ID_F+'"></select></p></div></div><div class="col-md-4"><div class="" data-delay="300" data-animation="fadeIn"><p>Horario: <select id="horario_'+ID_F+'"><option value="sin_elegir">Elige un empleado</option></select></p></div></div></div><h1><hr>');
+                ' <div class="row ser_list" id="'+ID_F+'" data-idf="'+ID_F+'"><div id="nombre_'+ID_F+'" class="col-md-4">SERVICIO:<p >'+d.nombre+'</p></div><div class="col-md-4"><div class="" data-delay="100" data-animation="fadeIn"><p>Quien quieres que te atienda:</p><p><select id="personal_'+ID_F+'"></select></p></div></div><div class="col-md-4"><div class="" data-delay="300" data-animation="fadeIn"><p>Horario: <select id="horario_'+ID_F+'"><option value="sin_elegir">Elige un empleado</option></select></p></div></div></div><hr>');
                 
                 //console.log('horario_general['+e+']',horario_general);
                 if(horario_general[e]!=''&&horario_general[e]!=undefined){
@@ -470,8 +479,9 @@ jQuery(function ($) {
         };
         let guardar = d;
         if(guardar!=undefined){
-            guardar.forEach(element => {               
-
+            console.log("guardar",guardar);
+            guardar.forEach(element => {     
+                let id_servicio = element.servicio;
                 $.ajax({
                     url: location.origin + '/citaws/guardarCita',
                     type: 'post',
@@ -495,6 +505,20 @@ jQuery(function ($) {
                                    //window.location = "cita";
                                    }
                                });*/
+                                swal({
+                                    type: "error",
+                                    title: "Ya existe una cita en esta hora",
+                                    showConfirmButton: true,
+                                    confirmButtonText: "Cerrar",
+                                    closeOnConfirm: true
+                                    }).then((result)=>{
+                               
+                                });
+                                    console.log(id_servicio);
+                                $('#horario_'+id_servicio).css("border","1.5px solid red");
+                                $('#horario_'+id_servicio).click(function(){
+                                    $('#horario_'+id_servicio).css("border","");
+                                });
                         }else{
                             $.when(swal({
                                 type: "success",
@@ -504,12 +528,14 @@ jQuery(function ($) {
                                 closeOnConfirm: true
                                 }).then((result)=>{
                                     if(result.value){
-                                       
+                                       //window.location = "cita";
                                     }
                                })).done(function (){
                                   
-                               });      
-        
+                               });
+                               let div_idServicio = element.servicio;
+                               console.log("guardar element",div_idServicio);
+                               $('#'+div_idServicio).remove();
                         }
                     },
                     error: function(res) {
@@ -520,12 +546,8 @@ jQuery(function ($) {
                         guardar:element
                     }
                 });
-
-
-
-
-
             });
+            
         }
         
         
@@ -541,8 +563,7 @@ jQuery(function ($) {
                 horario:$("#horario option:selected").val(),
                 id_perfil:$("#select_lista_perfiles option:selected").val(),
                 fecha:$("#dpt").val()}
-
-    	
+    	return true;
     }
 
 
@@ -588,16 +609,27 @@ jQuery(function ($) {
            });
         else{
             //datosCita();
-            guardarCita(guardar);
-            swal({
-                type: "success",
-                title: "Cita agendada",
-                showConfirmButton: true,
-                confirmButtonText: "Cerrar",
-                closeOnConfirm: true
-                }).then((result)=>{
-                       
-           });
+            $.when(guardarCita(guardar)).done(function(){
+                swal({
+                    type: "success",
+                    title: "Cita agendada",
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar",
+                    closeOnConfirm: true
+                    }).then((result)=>{
+                        let contador = 0;
+                        $('.ser_list').each(function(){
+                            console.log("Hola");
+                            contador++;
+                        });
+                        console.log("contador",contador);
+                        if(contador==0){
+                            window.location = "cita";
+                        }
+               });
+            });
+            
+            
         }
         
         //

@@ -38,11 +38,9 @@
                         <h3 class="border-title" id="alerta">  </h3>
                         <h3 class="border-title"> Pasos <span>ha seguir:</span> </h3>
                         <ul class="opening-time branch_details">
-                            <li><span>Paso 1</span><h5>Elige para quien es el servicio</h5></li>
-                            <br>
-                            <li><span>Paso 2</span><h5>Elige el servicio</h5></li>
-                            <br>
-                            <li><span>Paso 3</span><h5>Elige la hora y fecha</h5></li>
+                            <li><span class="paso1">Paso 1</span><h5 class="paso1">Elige para quien es el servicio</h5></li><hr>
+                            <li><span class="paso2">Paso 2</span><h5 class="paso2">Elige el servicio</h5></li><hr>
+                            <li><span class="paso3">Paso 3</span><h5 class="paso3">Elige la hora y fecha</h5></li><hr>
                           
                         </ul>
                     </div>
@@ -55,7 +53,7 @@
                     	<div class="box" >
                             <div class="column dt-sc-one-half first ">
                             	<div class="" data-delay="100" data-animation="fadeIn">
-                                    <p>Para quien es el servicio</p>                      
+                                    <p>Para quien es el servicio:</p>                      
                                
                                     <p><select id="select_lista_perfiles">
                                          
@@ -75,7 +73,7 @@
                     	<div class="contact-form" >
                             <div class="column dt-sc-one-half first">
                                 <div class="" data-delay="100" data-animation="fadeIn">
-                                <p>Selecciona la fecha</p>                                     
+                                <p>Selecciona la fecha:</p>                                     
                                 <p>
                                     <input id="altField" type="hidden" />
                                     <input id="dpt" type="text" placeholder="Fecha de la cita" value="" name="dpt"><span class="icons fa fa-calendar"></span></p>

@@ -22,7 +22,7 @@ if($peticion[0]=='entrar'){
 			"GUARDAR"=>['perfil_principal'=>$idUsuario],
 		]);
 	}
-	$jmyWeb ->pre(['p'=>$usuario,'t'=>'usuario']);
+	//$jmyWeb ->pre(['p'=>$usuario,'t'=>'usuario']);
 	
 }
 
@@ -39,7 +39,7 @@ if($idUsuario!=''){
 		//$jmyWeb ->pre(['p'=>$editar,'t'=>'editar']);
 	}
 
-	$jmyWeb ->pre(['p'=>$peticion[1],'t'=>'editar']);
+	//$jmyWeb ->pre(['p'=>$peticion[1],'t'=>'editar']);
 	$jmyWeb->cargar(["pagina"=>"cita"]);
 	$jmyWeb->cargar_js(["url"=>BASE_TEMPLET."js/cita.js?d=".date('U'),"unico"=>true]);
 	

@@ -195,9 +195,9 @@ switch ($_GET['peticion']) {
 
                 "ID"=>$out['mostrarCitas_fil_1']['otKey']
             ]);
-
-            $guardar = (count($out['mostrarCitas_fil_2']['ot'])>0)?false:true;
-            
+            $out["lo_que_sea"][] = $guardar;
+            $guardar = ($out['mostrarCitas_fil_2']['otKey'][0]!="")?false:true;
+            $out["lo_que_sea"][] = $guardar;
             if(!$guardar){
                 $out['mostrarCitas'] = $jmy->ver([
                     "TABLA"=>"agendarcita",
@@ -208,10 +208,11 @@ switch ($_GET['peticion']) {
                     ]);   
                     
                 $guardar = (count($out['mostrarCitas']['ot'])>0)?false:true;
+                $out["lo_que_sea"][] = $guardar;
             }
 
             $out['resultado_guardar'] = $guardar;
-
+            $out["lo_que_sea"][] = $guardar;
             if($guardar){
                 $out['agendarcita'] = $jmy->guardar([
                     "TABLA"=>"agendarcita",
