@@ -1,45 +1,36 @@
   document.addEventListener('DOMContentLoaded', function() {
+    var idioma = 'es';
+    
     var calendarEl = document.getElementById('calendar');
 
+    var f = new Date();
+
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      defaultDate: '2018-12-12',
+      header:{
+         left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listWeek'
+      },
+      defaultDate:f,
+      locale:idioma,
       editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2018-12-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2018-12-07',
-          end: '2018-12-10'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2018-12-09T16:00:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2018-12-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2018-12-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2018-12-28'
-        }
-      ]
+      eventLimit: true,
+      eventSources: {
+        url: "../../app/controlador/administrador_evo/cita_calendario.php",
+      }
     });
 
     calendar.render();
   });
-
+let eventos = [];
+    jQuery(function($){
+        $(document).ready(function () {
+           lista();
+           console.log('eventos',eventos);
+        });
+    });
   function lista(d=[]) {
+
     jQuery(function ($) {    
         $.ajax({
             url: location.origin+"/administradorws/citas",
@@ -47,12 +38,17 @@
             dataType:"json",
             data:{dato:"dato"},
             success:function(respuesta){
-                console.log('respuesta',respuesta);
-                
-
+                console.log('hola',respuesta);
+                let algo = respuesta.cita.otFm;
+                let inf =[];
+                algo.forEach(element => {
+                  inf["title"] = element.servicio;
+                  inf["start"] = element.fecha+"T"+element.horario+":00:00";
+                  //eventos.push(inf);
+                  console.log('info',inf);
+                });
             },error:function (e) {
-               // console.log(e);
-                
+              
             }
 
         });
@@ -60,10 +56,3 @@
     });
 }
 
-
-jQuery(function($){
-    $(document).ready(function () {
-        lista();
-
-    });
-});

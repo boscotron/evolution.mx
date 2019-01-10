@@ -133,7 +133,7 @@
 
  <!-- fullcalendar -->
 <script src='<?php $this->url_templet();?>js/fullcalendar.min.js' type="text/javascript"></script>
-<script src="<?php $this->url_templet();?>js/es.js" type="text/javascript"></script>
+<script src="<?php $this->url_templet();?>js/locales-all.js" type="text/javascript"></script>
 <!-- IVAN 
 <script src="<?php $this->url_templet();?>js/moment.min.js" type="text/javascript"></script>
 -->
