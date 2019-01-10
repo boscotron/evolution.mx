@@ -1,27 +1,4 @@
-  document.addEventListener('DOMContentLoaded', function() {
-    var idioma = 'es';
-    
-    var calendarEl = document.getElementById('calendar');
 
-    var f = new Date();
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      header:{
-         left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay,listWeek'
-      },
-      defaultDate:f,
-      locale:idioma,
-      editable: true,
-      eventLimit: true,
-      eventSources: {
-        url: "../../app/controlador/administrador_evo/cita_calendario.php",
-      }
-    });
-
-    calendar.render();
-  });
 let eventos = [];
     jQuery(function($){
         $(document).ready(function () {
@@ -29,8 +6,7 @@ let eventos = [];
            console.log('eventos',eventos);
         });
     });
-  function lista(d=[]) {
-
+function lista(d=[]) {
     jQuery(function ($) {    
         $.ajax({
             url: location.origin+"/administradorws/citas",
@@ -39,14 +15,39 @@ let eventos = [];
             data:{dato:"dato"},
             success:function(respuesta){
                 console.log('hola',respuesta);
-                let algo = respuesta.cita.otFm;
-                let inf =[];
-                algo.forEach(element => {
-                  inf["title"] = element.servicio;
-                  inf["start"] = element.fecha+"T"+element.horario+":00:00";
-                  //eventos.push(inf);
-                  console.log('info',inf);
+                var idioma = 'es';
+                var calendarEl = document.getElementById('calendar');
+                var f = new Date();
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                  header:{
+                     left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay,listWeek'
+                  },
+                  defaultDate:f,
+                  locale:idioma,
+                  editable: false,
+                  eventLimit: true,
+                  events: respuesta.propiedad,
+                  eventClick: function(info) {
+                    console.log('Event: ' + info.event.id);
+                    console.log('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                    console.log('View: ' + info.view.type);
+                    detalles({
+                      id:info.event.id
+                    });
+                    // change the border color just for fun
+                    info.el.style.borderColor = 'red';
+                  }
+                
                 });
+            
+                calendar.render();
+
+
+
+
+                
             },error:function (e) {
               
             }
@@ -54,5 +55,27 @@ let eventos = [];
         });
         
     });
+}
+function detalles(d=[]){
+  jQuery(function ($) {    
+    $.ajax({
+        url: location.origin+"/administradorws/citas/"+((d.id!=undefined)?d.id:''),
+        type:"post",
+        dataType:"json",
+        data:{dato:"dato"},
+        success:function(respuesta){
+            console.log('Detalles de la cita',respuesta);
+          
+
+
+
+            
+        },error:function (e) {
+          
+        }
+
+    });
+    
+});
 }
 
