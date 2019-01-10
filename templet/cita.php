@@ -116,7 +116,7 @@
                             <div class="form-row aligncenter " data-delay="7 00" data-animation="fadeIn">
                                 <div class="column dt-sc-one-half first">
                                     <div class="" data-delay="100" data-animation="fadeIn">
-                                        <button type="button" id="btn_paso_r2">Regresar</button>  
+                                        <!--<button type="button" id="btn_paso_r2">Regresar</button>-->  
                                     </div>
                                 </div>
                                 <div class="column dt-sc-one-half">

@@ -120,13 +120,13 @@ jQuery(function ($) {
         
     });
 
-    $("#btn_paso_r2").click(function(){
+    /*$("#btn_paso_r2").click(function(){
         $(".paso3").css("color","");
         $(".paso2").css("color","#006400");
         console.log('regresar al paso 2');
         $("#div_paso_3").hide(50);
         $("#div_paso_2").show(200);
-    });
+    });*/
 
 
 
@@ -536,6 +536,15 @@ jQuery(function ($) {
                                let div_idServicio = element.servicio;
                                console.log("guardar element",div_idServicio);
                                $('#'+div_idServicio).remove();
+                               let contador = 0;
+                                $('.ser_list').each(function(){
+                                    console.log("Hola");
+                                    contador++;
+                                });
+                                console.log("contador",contador);
+                                if(contador==0){
+                                    window.location = "cita";
+                                }
                         }
                     },
                     error: function(res) {
@@ -617,15 +626,8 @@ jQuery(function ($) {
                     confirmButtonText: "Cerrar",
                     closeOnConfirm: true
                     }).then((result)=>{
-                        let contador = 0;
-                        $('.ser_list').each(function(){
-                            console.log("Hola");
-                            contador++;
-                        });
-                        console.log("contador",contador);
-                        if(contador==0){
-                            window.location = "cita";
-                        }
+                        
+
                });
             });
             
