@@ -26,6 +26,7 @@ function lista(d=[]) {
                   },
                   defaultDate:f,
                   locale:idioma,
+                  navLinks: true,
                   editable: false,
                   eventLimit: true,
                   events: respuesta.propiedad,
@@ -39,19 +40,15 @@ function lista(d=[]) {
                     // change the border color just for fun
                     info.el.style.borderColor = 'red';
                   }
-                
-                });
-            
+                });          
                 calendar.render();
-
-
-
-
-                
             },error:function (e) {
-              
+              swal({
+                type:"error",
+                text:"Upss a pasado algo",
+                 confirmButtonText: 'Cerrar'
+              })
             }
-
         });
         
     });
@@ -65,11 +62,15 @@ function detalles(d=[]){
         data:{dato:"dato"},
         success:function(respuesta){
             console.log('Detalles de la cita',respuesta);
-          
+            // let fecha = respuesta.detalles[0]["fecha"];
+            // console.log(fecha);
+            $("#detalle").show();
+            swal({
+                  title: '<h1><b>Detalles de la cita.</b></h1><p>Fecha: '+respuesta.detalles[0]["fecha"]+'</p><p>Servicio: '+respuesta.detalles[0]["servicio"]+'</p><p>horario: '+respuesta.detalles[0]["horario"]+':00:00</p><p>Cliente: '+respuesta.detalles[0]["usuario"]+'</p><p>Empleado: '+respuesta.detalles[0]["empleado"]+'</p>',
+                  confirmButtonColor: '#3885d6',
+                  confirmButtonText: 'Cerrar'
+                })
 
-
-
-            
         },error:function (e) {
           
         }

@@ -144,11 +144,7 @@ jQuery(function ($) {
                         title: 'Nuevo Servicio<p>Indica el nombre del nuevo servicio</p><p> <input id="nuevo_servicio" type="text" placeholder="Nombre del nuevo servicio"></p><p>Indica la duración de servicio</p><p> <input id="nuevo_tiempo_estimado" type="text" placeholder="Duración de servicio"></p>',
                         showConfirmButton: true,
                         confirmButtonText: "Guardar",
-                        closeOnConfirm: true
-                        }).then((result)=>{
-                            if(result.value){
-                                console.log('swal',result);
-                                let nombre = $('#nuevo_servicio').val();
+                        closeOnConfirm: true }).then((result)=>{if(result.value){console.log('swal',result); let nombre = $('#nuevo_servicio').val();
                                 if(nombre!=''){
                                     servicios_guardar({
                                         id:'nuevo',

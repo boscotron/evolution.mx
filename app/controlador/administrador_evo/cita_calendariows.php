@@ -1,11 +1,78 @@
 <?php
+$session = $jmyWeb->session(); 
 
 if($peticion[1]!=''){ // si viene con ID despliega detalles
     $citas["detalles"] = $jmy->ver([
         "TABLA"=>"agendarcita",
         "ID"=>$peticion[1],
     ]);
-    $citas["detalles"] = $citas["detalles"]["ot"][$peticion[1]];
+     $citas['lista']=$jmy->ver([	
+	    "TABLA"=>"catalogos",
+	    "COL"=>["id_catalogo"],
+	    "V"=>"lista_de_servicios"
+	    //"SALIDA"=>"ARRAY"
+	]);
+if(count($citas['lista']['otKey'])>1)
+    $citas['lista']=$jmy->ver([	
+        "TABLA"=>"catalogos",
+        "ID"=>$citas['lista']['otKey'],
+        "SALIDA"=>"ARRAY"
+    ]);
+
+    // $citas['perfil']=$jmy->ver([   
+    //     "TABLA"=>TABLA_USUARIOS."_".$jmyWeb->sesion(['return'=>'db']),
+    //     "COL"=>['tipo'], 
+    //     "V"=>['empleado','administrador'], 
+    // ]);
+	
+	$citas['filtro'] = $jmy->ver([
+                "TABLA"=>"clientes_".$session['body']['api_web']['ID_F'],
+                "COL"=>["perfil_principal"],
+                "V"=>$idUsuario
+            ]);
+    $citas['perfil'] = $jmy->ver([
+    "TABLA"=>"clientes_".$session['body']['api_web']['ID_F'],
+   	"ID_F"=>$citas['filtro']['otKey'],
+    "SALIDA"=>"ARRAY"
+    ]);
+
+    // $num = "";
+
+
+
+
+
+	$detalles = array();
+    $d_detalles = array();
+    if ($citas["detalles"]["ot"][$peticion[1]]) {
+    	foreach ($citas["detalles"]["ot"] as $key) {
+    		$n_ser = "";
+    		$n_emp = "";
+    		$n_usr = "";
+			foreach ($citas['lista']["otFm"] as $val) {
+				if($key["servicio"] == $val["ID_F"]){
+					$n_ser = $val["nombre"];
+				}
+			}
+	    	foreach ($citas['perfil']["otFm"] as $valp) {
+	    		if ($key["usuario"] == $valp["perfil_principal"]) {
+	    			$n_usr = $valp["nombre"];
+	    		}
+	    		if ($valp["tipo"] === "empleado") {
+	    			$n_emp = $valp["nombre"]; 
+	    		}
+	    	//$num = $key["perfil_principal"];
+	    	}
+
+    		$d_detalles["fecha"] = $key["fecha"];
+    		$d_detalles["servicio"] = $n_ser;
+    		$d_detalles["empleado"] = $n_emp;
+    		$d_detalles["horario"] = $key["horario"];
+    		$d_detalles["usuario"] = $n_usr;
+     		array_push($detalles, $d_detalles);
+    	}
+    }
+
 }else{ // Si no tiene ID depliega lista
 
 
@@ -49,8 +116,9 @@ foreach ($citas["cita"]["ot"] as $contador) {
 unset($out);
 //$out['datos']= $citas["cita"];
 $out['propiedad']= $propiedad;
-$out['detalles']= $citas["detalles"];
+$out['detalles']= $detalles;
 $out['lista']= $citas["lista"]["otFm"];
+$out['perfil'] =  $citas['perfil']["otFm"];
 
 //$out['peticion']= $peticion;
 
