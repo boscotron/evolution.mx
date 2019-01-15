@@ -9,7 +9,7 @@ $n='CREATE TABLE IF NOT EXISTS `cat_d` (
   UNIQUE KEY `NAME` (`NAME`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;';
 if(!$cu->query($n)){$error[] = "Tabla existente-".$cu->error;}else{$jmyWeb ->pre(['p'=>['db'=>true],'t'=>'CAT INDEX']);}
-$jmyWeb ->pre(['p'=>$jmy->db(['vistaweb','blog']),'t'=>'Auto DB']);
+$jmyWeb ->pre(['p'=>$jmy->db(['vistaweb','blog','catalogos']),'t'=>'Auto DB']);
 if(TABLAS_EXTRAS!=''){
   $jmyWeb ->pre(['p'=>$jmy->db(explode(',',TABLAS_EXTRAS)),'t'=>'Extras DB']);
 }

@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col"></div>
 		<div class="col-8">
-			<div id='lista'></div>
+			<table id='lista'></table>
 		</div>
 		<div class="col"></div>
 	</div>

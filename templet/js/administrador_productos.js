@@ -10,10 +10,10 @@ jQuery(function ($) {
                 let lista = res.productos.otFm;
                 let url = '';                
                 let data = [];                
-                lista.forEach(e => {
+              /*  lista.forEach(e => {
                     url = '<a href="'+location.origin+'/productos/'+e.ID_F+'/'+urlFr(e.nombre)+'" class="btn btn-round btn-sm btn-info"><i class="fa fa-link"></i></a>';       
                     data.push([e.ID_F,e.nombre,url]);
-                });
+                });*/
                 console.log(data);
                /* https://datatables.net/manual/index */
                 $('#lista').DataTable( {

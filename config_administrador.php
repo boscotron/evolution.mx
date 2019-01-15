@@ -51,7 +51,7 @@ $modulos =  [
     ],
     "productos"=>[
         "nombre"=>"Productos",
-        "url_marco"=>"administrador_evo/productos.php",
+        "url_marco"=>"administrador_evo/productos.php",//vista esto esta en templet 
         "controlador"=>"app/controlador/administrador_evo/productos.php",    
         "controlador_ws"=>"app/controlador/administrador_evo/productosws.php",
     ],
