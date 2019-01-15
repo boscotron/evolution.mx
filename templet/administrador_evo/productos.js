@@ -6,7 +6,29 @@ function lista(d=[]) {
             dataType:"json",
             data:{ola:"que hace :) 2 post"},
             success:function(respuesta){
-                console.log('respuesta',respuesta);
+                console.log(res);
+                let lista = res.productos.otFm;
+                let url = '';                
+                let data = [];                
+                lista.forEach(e => {
+                    url = '<a href="'+location.origin+'/productos/'+e.ID_F+'/'+urlFr(e.nombre)+'" class="btn btn-round btn-sm btn-info"><i class="fa fa-link"></i></a>';       
+                    data.push([e.ID_F,e.nombre,url]);
+                });
+                console.log(data);
+               /* https://datatables.net/manual/index */
+                $('#lista').DataTable( {
+                    data: data,
+                    columns: [
+                        { title: "Id" },
+                        { title: "Nombre" },
+                        { title: "Precio" },
+                        { title: "Proveedor"},
+                        { title: "Cantidad"},
+                        { title: "Fecha de compra"},
+                        { title: "Fecha de venta"},
+                        { title: "Editar" }
+                    ]
+                } );        
                 
 
             },error:function (e) {

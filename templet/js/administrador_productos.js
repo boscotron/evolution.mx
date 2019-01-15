@@ -16,7 +16,7 @@ jQuery(function ($) {
                 });
                 console.log(data);
                /* https://datatables.net/manual/index */
-                $('#tabla_productos').DataTable( {
+                $('#lista').DataTable( {
                     data: data,
                     columns: [
                         { title: "Id" },
