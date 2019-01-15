@@ -43,7 +43,7 @@ if($idUsuario!=''){
                 ]);
                 $out['perfil'] = (is_array($out['perfil']['ot'][$peticion[1]]))?$out['perfil']['ot'][$peticion[1]]:["error"=>"No existe usuario"];
             }else{
-                $out['perfil'] = ["error"=>"No de entrego id usuario"];
+                $out['perfil'] = ["error"=>"No se entrego id usuario"];
             }
         break;
         case 'lista_perfiles': 
