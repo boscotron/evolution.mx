@@ -12,9 +12,7 @@ jQuery(function ($) {
                 let data = [];                
                 lista.forEach(e => {
                     url = '<a href="'+location.origin+'/productos/'+e.ID_F+'/'+urlFr(e.nombre)+'" class="btn btn-round btn-sm btn-info"><i class="fa fa-link"></i></a>';       
-                    let foto=(e.foto_producto!=undefined && e.foto_producto!='')?e.foto_producto:'http://local.evolution.mx/templet/images/portfolio-images/portfolio-img1.jpg';
-                    foto = '<img src="'+foto+'" width="30" >';
-                    data.push([e.ID_F,e.nombre,foto,url]);
+                    data.push([e.ID_F,e.nombre,url]);
                 });
                 console.log(data);
                /* https://datatables.net/manual/index */
@@ -23,7 +21,11 @@ jQuery(function ($) {
                     columns: [
                         { title: "Id" },
                         { title: "Nombre" },
-                        { title: "Foto" },
+                        { title: "Precio" },
+                        { title: "Proveedor"},
+                        { title: "Cantidad"},
+                        { title: "Fecha de compra"},
+                        { title: "Fecha de venta"},
                         { title: "Editar" }
                     ]
                 } );        

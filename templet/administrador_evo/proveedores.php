@@ -4,15 +4,52 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-6" >
-       <h2 class="lista_proveedores">Lista de Proveedores</h1>
+        <div class="col-sm-12 col-md-12 col-lg-6" id="datos" style="display: none;">
+            <h2 onclick="ver_proveedor()">Editar proveedor</h2>
+
+            <style>
+                .btn_tabs {width:50%;}
+                
+            </style>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group btn-block" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn_tabs btn-secondary active" data-div="perfil">Perfil</button>
+                        <button type="button" class="btn btn_tabs btn-secondary" data-div="modulos">Módulos</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+
+                <div class="container div_tabs" id="div_perfil" style="display: none;">
+                    <input type="hidden" id="id_perfil" value="">
+                    <div id="formulario_perfil">
+                   </div>
+                </div>
+                <div class="container div_tabs" id="div_modulos" style="display: none;">
+                    <div class="card w-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Módulos</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Accesos a los módulos de este sitio</h6>
+                            <p class="card-text">Edite los permisos que dese darle al usuario.</p>
+                            <div id="listado_modulo_tabla"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-invisible"></div>
+
+            </div>
+        </div>
+    </div>
+
+
      
        <table id="listado_proveedores_tabla" class="display" style="width:100%">
 </table>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-6" id="datos">
-        <h2 onclick="ver_perfil()">Editar proveedor</h1>
+        <h2 onclick="ver_proveedor()">Editar proveedor</h1>
 
         <style>
             .btn_tabs {width:50%;}
