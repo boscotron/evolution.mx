@@ -39,8 +39,8 @@
                         <h3 class="border-title"> Pasos <span>ha seguir:</span> </h3>
                         <ul class="opening-time branch_details">
                             <li><span class="paso1">Paso 1</span><h5 class="paso1">Elige para quien es el servicio</h5></li><hr>
-                            <li><span class="paso2">Paso 2</span><h5 class="paso2">Elige el servicio</h5></li><hr>
-                            <li><span class="paso3">Paso 3</span><h5 class="paso3">Elige la hora y fecha</h5></li><hr>
+                            <li><span class="paso2">Paso 2</span><h5 class="paso2">Elige la fecha y el servicio</h5></li><hr>
+                            <li><span class="paso3">Paso 3</span><h5 class="paso3">Elige el empleado y la hora</h5></li><hr>
                           
                         </ul>
                     </div>
@@ -116,7 +116,7 @@
                             <div class="form-row aligncenter " data-delay="7 00" data-animation="fadeIn">
                                 <div class="column dt-sc-one-half first">
                                     <div class="" data-delay="100" data-animation="fadeIn">
-                                        <!--<button type="button" id="btn_paso_r2">Regresar</button>-->  
+                                        <button type="button" id="btn_paso_r2">Regresar</button> 
                                     </div>
                                 </div>
                                 <div class="column dt-sc-one-half">
