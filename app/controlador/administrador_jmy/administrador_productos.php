@@ -12,3 +12,4 @@ switch ($peticion[1]) {
             ]);
     break;
 }
+?>

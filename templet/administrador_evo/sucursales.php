@@ -1,9 +1,9 @@
 <div class="main">
-	<h1>Lista de proveedores</h1>
+	<h1>Lista de sucursales</h1>
 	<div class="row">
 		<div class="col"></div>
 		<div class="col-8">
-			<table id='listaPRO'></table>
+			<table id='listaSU'></table>
 		</div>
 		<div class="col"></div>
 	</div>

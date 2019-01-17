@@ -23,16 +23,22 @@ $menu =  [
         "url"=>$jmyWeb->url_inicio(['return'=>true])."administrador/citas",       
         "class"=>"",
     ],
+    "proveedores"=>[
+        "nombre"=>"Proveedores",
+        "url"=>$jmyWeb->url_inicio(['return'=>true])."administrador/proveedores",
+        "class"=>"",
+    ],
     "productos"=>[
         "nombre"=>"Productos",
         "url"=>$jmyWeb->url_inicio(['return'=>true])."administrador/productos",
         "class"=>"",
     ],
-    "proveedores"=>[
-        "nombre"=>"Proveedores",
-        "url"=>$jmyWeb->url_inicio(['return'=>true])."administrador/proveedores",
+    "sucursales"=>[
+        "nombre"=>"Sucursales",
+        "url"=>$jmyWeb->url_inicio(['return'=>true])."administrador/sucursales",
         "class"=>"",
     ]
+
 ];
 
 
@@ -54,6 +60,12 @@ $modulos =  [
         "url_marco"=>"administrador_evo/productos.php",//vista esto esta en templet 
         "controlador"=>"app/controlador/administrador_evo/productos.php",    
         "controlador_ws"=>"app/controlador/administrador_evo/productosws.php",
+    ],
+    "sucursales"=>[
+        "nombre"=>"Sucursales",
+        "url_marco"=>"administrador_evo/sucursales.php",//vista esto esta en templet 
+        "controlador"=>"app/controlador/administrador_evo/sucursales.php",    
+        "controlador_ws"=>"app/controlador/administrador_evo/sucursales.php",
     ],
     "perfil-empleado"=>[
         "nombre"=>"Perfil empleado",

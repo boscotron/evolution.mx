@@ -1,5 +1,5 @@
 <div class="main">
-	<h1>calendario</h1>
+	<h1>Lista de productos</h1>
 	<div class="row">
 		<div class="col"></div>
 		<div class="col-8">
@@ -9,7 +9,7 @@
 	</div>
 	<div class="row">
 		<div class="col">
-			<h1>Resultado</h1>
+			
 			<div id="resultado">	
 			</div>
 		</div>

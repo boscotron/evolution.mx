@@ -25,8 +25,8 @@ function lista(d=[]) {
                         { title: "Proveedor"},
                         { title: "Cantidad"},
                         { title: "Fecha de compra"},
-                        { title: "Fecha de venta"},
-                        { title: "Editar" }
+                        { title: "Fecha de venta"}
+                        
                     ]
                 } );        
                 
