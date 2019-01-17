@@ -2,12 +2,12 @@
 if($jmyWeb->sesion()){
 	$o=["error"=>"datos insuficientes"];
 	$p=$jmyWeb->modulos(["modulos_permisos"=>true]);
-	$t=($_POST['tabla']!='')?explode('__',$_POST['tabla']):['vistaweb'];
-	$t=(is_array($t))?$t[0]:'vistaweb';
+	$ta=($_POST['tabla']!='')?explode('__',$_POST['tabla']):['vistaweb'];
+	$t=(is_array($ta))?$ta[0]:'vistaweb';
 	if($_POST['pagina']!=''&&$_POST['id']!=''&&$_POST['valor']!='' && ($_SESSION['JMY3WEB'][DOY] || $p['modulos_permisos'][$t]>1)){
-		$o=$jmyWeb->guardar(['pagina'=>$_POST['pagina'],'id'=>$_POST['id'],'valor'=>$_POST['valor'],'tabla'=>$t,'opciones'=>$_POST['opciones']]);
+		$o=$jmyWeb->guardar(['pagina'=>$_POST['pagina'],'id'=>$_POST['id'],'valor'=>$_POST['valor'],'tabla'=>$ta,'opciones'=>$_POST['opciones']]);
 		if($_POST['opciones']['href']!='')
-			$o['href']=$jmyWeb->guardar(['pagina'=>$_POST['pagina'],'id'=>$_POST['id'].'_href','valor'=>$_POST['opciones']['href'],'tabla'=>$t],$p);
+			$o['href']=$jmyWeb->guardar(['pagina'=>$_POST['pagina'],'id'=>$_POST['id'].'_href','valor'=>$_POST['opciones']['href'],'tabla'=>$ta]);
 	}elseif($_POST['pagina']!=''&&$_POST['id']!=''&&$_POST['valor']!=''){
 		$o=['out'=>'No tienes acceso a escribir en esta sección'];
 	}
