@@ -157,7 +157,7 @@ class JMY3WEB extends JMY3MySQL{
 			$t=["TABLA"=>$ta, 
 			"ID_F"=>$d['pagina'],
 			"A_D"=>TRUE, 
-			"GUARDAR"=>$t	];
+			"GUARDAR"=>$ta	];
 			$r=parent::guardar($t);
 		} 
 		return [$t,$r,$ta,$s,"real"=>[ $d['id'],$d['pagina'],$d['valor'],$s['modulos_permisos'],$t ]];
