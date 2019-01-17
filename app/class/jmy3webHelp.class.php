@@ -160,7 +160,8 @@ class JMY3WEB extends JMY3MySQL{
 			"GUARDAR"=>$t	];
 			$r=parent::guardar($t);
 		} 
-		return [$t,$r,$ta,$s];
+		return [$t,$r,$ta,$s,"real"=>[ $d['id'],$d['pagina'],$d['valor'],$s['modulos_permisos'][$t[0]] ]];
+			  //0 , 1 , 2  , 3
 	}
 
 	public function pre($d=[]){
