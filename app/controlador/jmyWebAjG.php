@@ -7,7 +7,7 @@ if($jmyWeb->sesion()){
 	if($_POST['pagina']!=''&&$_POST['id']!=''&&$_POST['valor']!='' && ($_SESSION['JMY3WEB'][DOY] || $p['modulos_permisos'][$t]>1)){
 		$o=$jmyWeb->guardar(['pagina'=>$_POST['pagina'],'id'=>$_POST['id'],'valor'=>$_POST['valor'],'tabla'=>$t,'opciones'=>$_POST['opciones']]);
 		if($_POST['opciones']['href']!='')
-			$o['href']=$jmyWeb->guardar(['pagina'=>$_POST['pagina'],'id'=>$_POST['id'].'_href','valor'=>$_POST['opciones']['href'],'tabla'=>$t]);
+			$o['href']=$jmyWeb->guardar(['pagina'=>$_POST['pagina'],'id'=>$_POST['id'].'_href','valor'=>$_POST['opciones']['href'],'tabla'=>$t],$p);
 	}elseif($_POST['pagina']!=''&&$_POST['id']!=''&&$_POST['valor']!=''){
 		$o=['out'=>'No tienes acceso a escribir en esta sección'];
 	}
