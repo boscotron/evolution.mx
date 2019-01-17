@@ -8,7 +8,7 @@ if($jmyWeb->sesion()){
             $t=$_POST['t'];
             $id="json_campos_".$t['id'];
             $in=$_POST['i'];
-            $tabla='administrador_config'."_".$jmyWeb->sesion(['return'=>'db']);
+            $tabla='administrador_config'."__".$jmyWeb->sesion(['return'=>'db']);
             if($t['guardar']!='')
                 $out['guardar']= $jmy->guardar([
                     "TABLA"=>$tabla,
