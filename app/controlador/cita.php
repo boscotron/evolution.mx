@@ -31,7 +31,7 @@ if($idUsuario!=''){
 
 	if($peticion[0]=='editar'){
 		$editar = $jmy->ver([
-			"TABLA"=>"agendarcita",
+			"TABLA"=>"citas__agendarcita",
 			"ID"=>$peticion[1],
 
 		]);

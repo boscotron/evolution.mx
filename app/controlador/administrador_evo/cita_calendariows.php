@@ -3,7 +3,7 @@ $session = $jmyWeb->session();
 
 if($peticion[1]!=''){ // si viene con ID despliega detalles
     $citas["detalles"] = $jmy->ver([
-        "TABLA"=>"agendarcita",
+        "TABLA"=>"citas__agendarcita",
         "ID"=>$peticion[1],
     ]);
      $citas['lista']=$jmy->ver([	
@@ -36,12 +36,12 @@ if(count($citas['lista']['otKey'])>1)
     "SALIDA"=>"ARRAY"
     ]);
 
+    // $cita['cambiarestatus'] = $jmy->guardar([
+    //     "TABLA"=>"citas__agendarcita",
+    //     "GUARDAR"=>["estatus"=>$_POST['estatus']]
+    // ]);
+
     // $num = "";
-
-
-
-
-
 	$detalles = array();
     $d_detalles = array();
     if ($citas["detalles"]["ot"][$peticion[1]]) {
@@ -77,10 +77,15 @@ if(count($citas['lista']['otKey'])>1)
 
 
     $citas["cita"] = $jmy->ver([
-        "TABLA"=>"agendarcita",
+        "TABLA"=>"citas__agendarcita",
         "SALIDA"=>"ARRAY",
     ]);
 
+    $citas["estatus"] = $jmy->ver([
+        "TABLA"=>"citas__agendarcita",
+        "COL"=>["estatus"],
+        "SALIDA"=>"ARRAY",
+    ]);
 
     $citas['lista']=$jmy->ver([	
 	    "TABLA"=>"catalogos",
@@ -96,8 +101,8 @@ if(count($citas['lista']['otKey'])>1)
     ]);
 }
 
-$propiedad = array();
 
+$propiedad = array();
 $array = array();
 foreach ($citas["cita"]["ot"] as $contador) {
 	$ser = "";
@@ -111,6 +116,7 @@ foreach ($citas["cita"]["ot"] as $contador) {
      $array["id"] = $contador["ID_F"];
 	 $array["title"] = $ser;
 	 $array["start"] = $newDate."T".(($hora==2)?$contador["horario"].":00:00":"0".$contador["horario"].":00:00");
+     $array["color"] = $contador["estatus"];
 	 array_push($propiedad, $array);
 }
 unset($out);
@@ -119,6 +125,7 @@ $out['propiedad']= $propiedad;
 $out['detalles']= $detalles;
 $out['lista']= $citas["lista"]["otFm"];
 $out['perfil'] =  $citas['perfil']["otFm"];
+$out['estatus']= $citas["cita"];
 
 //$out['peticion']= $peticion;
 
