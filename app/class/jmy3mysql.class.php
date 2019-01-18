@@ -6,17 +6,20 @@ class JMY3MySQL {
     $d['A_D']=($d['AGRGAR_COLUMNAS']!='')?$d['AGRGAR_COLUMNAS']:$d['A_D'];
     $c=1;$r=['TABLA'];//Buscar antes de guardar
     for($i=0;$i<count($r);$i++){ $c= ( ($d[$r[$i]]!='' || is_array($d[$r[$i]]))&&$c==1)?1:0;}
-    if($c){$g=$d["GUARDAR"];$tm=[];
-      foreach ($g as $k=>$v){$tm=explode('__',$k);$tg[$tm[0]]=$v;}$g=$tg;
+    if($c){$g=$d["GUARDAR"];
       $colKey = (is_array($g)) ? array_keys($g):$d['ID_D'];
       $col = $this->col($colKey,$d['A_D']);
       $tm=[];$fa=[];$ac=[];
       $IDF=($d['ID_F']!='')?$d['ID_F']:uniqid();
-      for($i=0;$i<count($colKey);$i++){$tm.='';$ID_D[] = $col['o']['n'][$colKey[$i]]; }   
+
+      for($i=0;$i<count($colKey);$i++){$tm.='';$ID_D[] = $col['o']['n'][$colKey[$i]]; }     
+
       $ver =($d["TABLA"]!=''&&$d["ID_F"]!='')?$this->ver(["TABLA"=>$d["TABLA"],"ID_D"=>$ID_D,"ID_F"=>$IDF]):[];
+      //Helper -------------------------------------------------------------------------------------------------------AQUI PNEDEJO!!!!
       $tmb=($IDF!='')?$IDF:'';
       $tm=(is_array($ver['ot'])&&$IDF!='')?$ver['ot'][$tmb]:[];    
-      $tmkey=(is_array($tm))?array_keys($tm):[];     
+      $tmkey=(is_array($tm))?array_keys($tm):[];
+     
       $resCol=$col;
       $col=$col['o']; 
       for($i=0;$i<count($colKey);$i++){
@@ -25,6 +28,7 @@ class JMY3MySQL {
           $fa[]=$tmb;}else{$ac[]=$tmb;} 
         $comparando[]=$tmb;}
       $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
+      mysqli_set_charset($db, "utf8");
       if ($cu->connect_error) { $error ='Error de Conexi�n ('.$mysqli->connect_errno.')'. $mysqli->error;}else{
         if(count($fa)>0){ 
           for($ib=0;$ib<count($IDF);$ib++){
@@ -60,6 +64,7 @@ class JMY3MySQL {
   public function db($d=[]){
     if(count($d)>0 && DB_JMY_ADD_TABLA===true){      
       $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
+      mysqli_set_charset($db, "utf8");
       if ($cu->connect_error) { $error ='Error de Conexi�n ('.$mysqli->connect_errno.')'. $mysqli->error;}else{        
         for($i=0;$i<count($d);$i++){
           $t=$d[$i];
@@ -74,8 +79,8 @@ class JMY3MySQL {
     return["o"=>$o,"error"=>$error];
   }
   public function catalogos($d=[]){    
-    if($d['id']!=''&&$d['ID_F']==''){$o=$this->ver(["TABLA"=>"catalogos","COL"=>['id_catalogo'],"V"=>[$d['id']]]);}
-    if(count($o['otKey'])>0||is_array($d['ID_F'])){ return $this->ver(["TABLA"=>"catalogos","COL"=>($d["COL"]!='')?$d["COL"]:null,"ID_F"=>(is_array($d['ID_F']))?$d['ID_F']:$o['otKey'],"SALIDA"=>"ARRAY"]);}
+    if($d['id']!=''){$o=$this->ver(["TABLA"=>"catalogos","COL"=>['id_catalogo'],"V"=>[$d['id']]]);
+     return $this->ver(["TABLA"=>"catalogos","ID_F"=>$o['otKey'],"SALIDA"=>"ARRAY"]);}
   }
   public function ver($d=[]){    
     $d['ID_F']=($d['ID']!='')?$d['ID']:$d['ID_F'];
@@ -112,6 +117,7 @@ class JMY3MySQL {
           $ca=($d['SELECT']!='')?$d['SELECT']:'ID_F,ID_D,V ';
           $ss="SELECT ".$ca." FROM ".DB_PX.$pr." WHERE ".$w." ".$or." ".$limit." ";
           $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
+          mysqli_set_charset($db, "utf8");
           if($cu->connect_error){$error='Error de Conexi�n ('.$mysqli->connect_errno.') '.$mysqli->connect_error;}else{$ot=[];  
             if(!is_array($d['COL']) && !count($d['COL'])>0) {
             if( !$rs = $cu->query($ss) ){$error = " error ss ".$cu->error;}else{
@@ -165,6 +171,7 @@ class JMY3MySQL {
     if(count($d)>0){
       $sa=0;$ss="SELECT * FROM cat_d WHERE ".$col." IN ('".implode("','",$d)."') LIMIT 1000; ";
       $cu=new mysqli(DB_HO,DB_US,DB_PA,DB_DB);
+      mysqli_set_charset($db, "utf8");
       if($cu->connect_error){$error='Error de Conexi�n ('.$mysqli->connect_errno.') '.$mysqli->connect_error;}else{
         while($sa<3){if(!$rs=$cu->query($ss)){$error="error-col-ss".$cu->error;}else{$ot=[];          
             while( $rw = $rs->fetch_assoc() ){  
