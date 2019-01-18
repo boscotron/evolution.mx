@@ -1,6 +1,6 @@
 <?php
 
-$tabla=TABLA_."_".$out['session']['body']['api_web']['ID_F'];
+$tabla=TABLA_SUCURSAL."_".$out['session']['body']['api_web']['ID_F'];
 $columnas=['direccion','telefono','responsable'];
 switch ($peticion[1]) {
     default:

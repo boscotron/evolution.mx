@@ -65,7 +65,7 @@ $modulos =  [
         "nombre"=>"Sucursales",
         "url_marco"=>"administrador_evo/sucursales.php",//vista esto esta en templet 
         "controlador"=>"app/controlador/administrador_evo/sucursales.php",    
-        "controlador_ws"=>"app/controlador/administrador_evo/sucursales.php",
+        "controlador_ws"=>"app/controlador/administrador_evo/sucursalesws.php",
     ],
     "perfil-empleado"=>[
         "nombre"=>"Perfil empleado",

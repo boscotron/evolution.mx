@@ -7,22 +7,23 @@ function lista(d=[]) {
             data:{ola:"que hace :) 2 post"},
             success:function(respuesta){
                 console.log(res);
-                let listaSU = res.sucursales.otFm;
+                let lista = res.sucursales.otFm;
                 let url = '';                
                 let data = [];                
-                listaSU.forEach(e => {
+                lista.forEach(e => {
                     url = '<a href="'+location.origin+'/sucursales/'+e.ID_F+'/'+urlFr(e.nombre)+'" class="btn btn-round btn-sm btn-info"><i class="fa fa-link"></i></a>';       
                     data.push([e.ID_F,e.nombre,url]);
                 });
                 console.log(data);
                /* https://datatables.net/manual/index */
-                $('#listaSU').DataTable( {
+                $('#lista').DataTable( {
                     data: data,
                     columns: [
                         { title: "Id" },
                         { title: "Dirección" },
                         { title: "Telefono" },
-                        { title: "Responsable"},
+                        { title: "Responsable"}
+                        
                         
                     ]
                 } );        
@@ -41,6 +42,6 @@ function lista(d=[]) {
 
 jQuery(function($){
     $(document).ready(function () {
-        listaSU();
+        lista();
     });
 });

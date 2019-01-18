@@ -2,7 +2,7 @@
 	<h1>Lista de productos</h1>
 	<div class="row">
 		<div class="col"></div>
-		<div class="col-8">
+		<div class="col-4">
 			<table id='lista'></table>
 		</div>
 		<div class="col"></div>
