@@ -37,10 +37,10 @@
 //id
 //if
 
-    if($_POST['proveedor']!=''){
-        $var ["proveedor"]=$jmy->ver([
-            "TABLA"=>"proveedor",
-            "ID"=>$_POST['proveedor'],
+    if($_POST['productos']!=''){
+        $var ["productos"]=$jmy->ver([
+            "TABLA"=>"productos",
+            "ID"=>$_POST['productos'],
             //"COL"=>["nombre","precio","proveedor","cantidad","fecha_compra","fecha_venta"],   
 
         ]);
@@ -56,9 +56,15 @@ if(count($_POST)>0){
             "ID"=>$_POST['ID'],
             //"A_D"=>TRUE,
             "FO"=>TRUE,
-            "GUARDAR"=>$_POST 
-                    
-            ]);
+            "GUARDAR"=>[
+                "nombre"=>$_POST['nombre'],
+                "precio"=>$_POST['precio'],
+                "proveedor"=>$_POST['proveedor'],
+                "cantidad"=>$_POST['cantidad'],
+                "fecha_compra"=>$_POST['fecha_compra'],
+                "fecha_venta"=>$_POST['fecha_venta'],
+            ],                        
+        ]);
         }else{
             $var['error'][]="Faltan campos nombre, precio,proveedor para guardar";
         }
@@ -67,7 +73,7 @@ if(count($_POST)>0){
 $var ["ver"]=$jmy->ver([
     "TABLA"=>"productos",
     "ID"=>$_POST['ID'],
-   // "COL"=>["nombre","precio","proveedor","cantidad","fecha_compra","fecha_venta"],   
+    "COL"=>["nombre","precio","proveedor","cantidad","fecha_compra","fecha_venta"],   
 ]);
 
 

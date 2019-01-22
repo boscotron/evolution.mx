@@ -18,6 +18,8 @@ function editar(d=[]) {
                 
                 $("#nombre").val(campos.nombre);
                 $("#telefono").val(campos.telefono);
+                $("#direccion").val(campos.direccion);
+                $("#dia_pedido").val(campos.dia_pedido);
             },
             error: function(res) {
                 console.log(res);
@@ -26,6 +28,8 @@ function editar(d=[]) {
                 ID:id,
                 nombre:$("#nombre").val(),
                 telefono:$("#telefono").val(),
+                direccion:$("#direccion").val(),
+                dia_pedido:$("#dia_pedido").val(),
             }
         });
 
@@ -91,6 +95,8 @@ jQuery(function ($) {
     function limpiar_campos() {
         $("#nombre").val("");
         $("#telefono").val("");
+        $("#direccion").val("");
+        $("#dia_pedido").val("");
     }
 
     $(document).ready(function() {

@@ -41,9 +41,24 @@ function lista(d=[]) {
     });
 }
 
+function nuevo(d=[]) {
+    console.log('hola');
+    jQuery(function($){
+        $("#agregarNuevo").on('click', function () {
+          
+            
+            let html = '<div type="json_campos" class="jmy_web_administrador col-md-12" id="formulario_productos" data-idregistro="formulario_productos" data-tabla="productos" data-page="" >Error al cargar los datos</div>';
+           
+            $("#resultado").html(html);
+            jmywajson_campos();// Recargar DOM   
+
+        });
+    });    
+}
 
 jQuery(function($){
     $(document).ready(function () {
         lista();
+        nuevo();
     });
 });
