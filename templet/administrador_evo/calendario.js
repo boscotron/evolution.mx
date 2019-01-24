@@ -3,13 +3,7 @@ let eventos = [];
     jQuery(function($){
         $(document).ready(function () {
            lista();
-           console.log('eventos',eventos);
         });
-      // $('#estatus').change(function() {
-      //          lista();           
-      //          // let opcion = $("#estatus option:selected").val();
-      //                     // console.log("opcion seleccionada",opcion);
-      // });
     });
 
 function lista(d=[]) {
@@ -52,11 +46,7 @@ function lista(d=[]) {
                       id:info.event.id
                     });
                     info.el.style.borderColor = 'red';
-                    // jQuery(function($){
-                      
-                     
-                    // });
-                  }
+                  },
                 });          
                 calendar.render();
             },error:function (e) {
@@ -70,9 +60,6 @@ function lista(d=[]) {
         
     });
 }
-// function definirColor(){
-  
-// }
 
 function detalles(d=[]){
   jQuery(function ($) {    
@@ -83,6 +70,7 @@ function detalles(d=[]){
         data:{dato:"dato"},
         success:function(respuesta){
             let datos = respuesta;
+            let i = 0;
             console.log('dato',datos);
             console.log('Detalles de la cita',respuesta);
             
@@ -94,15 +82,18 @@ function detalles(d=[]){
                   html:'<p>Fecha: '+respuesta.detalles[0]["fecha"]+'</p><p>Servicio: '+respuesta.detalles[0]["servicio"]+'</p><p>Horario: '+respuesta.detalles[0]["horario"]+':00:00</p><p>Cliente: '+respuesta.detalles[0]["usuario"]+'</p><p>Empleado: '+respuesta.detalles[0]["empleado"]+'</p><div type="json_campos" class="jmy_web_administrador col-md-12" id="estado" data-idregistro="cambio_estado" data-tabla="citas__agendarcita" data-page="'+d.id+'" >Error al cargar Módulo</div>',
                   confirmButtonColor: '#3885d6',
                   confirmButtonText: 'Cerrar',
-                })).done(function (){
-                    // $("#estatus").change(function(){
-                    //   alert("cambio");
-                    //   $("#calendar").html('');
-                    //   lista();  
-                    // });           
+                }).then((result) => {
+                      if (result.value) {
+                        lista();
+                        $("#calendar").html("");
+                      }
+                    }
+                  )
+                ).done(function(){
+                  
                 });
 
-                 jmywajson_campos();// Recargar DOM   
+                 jmywajson_campos();
                  
         },error:function (e) {  
         }
@@ -110,3 +101,4 @@ function detalles(d=[]){
     
   });
 }
+
