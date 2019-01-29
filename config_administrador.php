@@ -37,7 +37,13 @@ $menu =  [
         "nombre"=>"Sucursales",
         "url"=>$jmyWeb->url_inicio(['return'=>true])."administrador/sucursales",
         "class"=>"",
+    ],
+    "pedidos"=>[
+        "nombre"=>"Pedidos",
+        "url"=>$jmyWeb->url_inicio(['return'=>true])."administrador/pedidos",
+        "class"=>"",
     ]
+
 
 ];
 
@@ -66,6 +72,12 @@ $modulos =  [
         "url_marco"=>"administrador_evo/sucursales.php",//vista esto esta en templet 
         "controlador"=>"app/controlador/administrador_evo/sucursales.php",    
         "controlador_ws"=>"app/controlador/administrador_evo/sucursalesws.php",
+    ],
+    "pedidos"=>[
+        "nombre"=>"Pedidos",
+        "url_marco"=>"administrador_evo/pedidos.php",//vista esto esta en templet 
+        "controlador"=>"app/controlador/administrador_evo/pedidos.php",    
+        "controlador_ws"=>"app/controlador/administrador_evo/pedidosws.php",
     ],
     "perfil-empleado"=>[
         "nombre"=>"Perfil empleado",
