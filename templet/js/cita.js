@@ -93,10 +93,13 @@ jQuery(function ($) {
         informacion_servicios = [];
         let servicios_seleccionados = [];
         $('.servicios_seleccionados').each(function(){
-
-            servicios_seleccionados.push($("option:selected",this).val());
-
+            let opcion = $("option:selected",this).val();
+            if(opcion!=""){
+                servicios_seleccionados.push(opcion);
+            }
         });
+        let sinRepetidos = servicios_seleccionados.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual);
+        servicios_seleccionados = sinRepetidos;
         console.log('servicios_seleccionados',servicios_seleccionados);
             
         if(fecha!=''){
