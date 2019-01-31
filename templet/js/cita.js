@@ -93,10 +93,13 @@ jQuery(function ($) {
         informacion_servicios = [];
         let servicios_seleccionados = [];
         $('.servicios_seleccionados').each(function(){
-
-            servicios_seleccionados.push($("option:selected",this).val());
-
+            let opcion = $("option:selected",this).val();
+            if(opcion!=""){
+                servicios_seleccionados.push(opcion);
+            }
         });
+        let sinRepetidos = servicios_seleccionados.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual);
+        servicios_seleccionados = sinRepetidos;
         console.log('servicios_seleccionados',servicios_seleccionados);
             
         if(fecha!=''){
@@ -276,11 +279,11 @@ jQuery(function ($) {
             //}
         });
         $('#personal_'+ID_F).append('<option>Seleccionar</option>');
-        console.log('empleado',empleado);
+        //console.log('empleado',empleado);
         let i = 0;
         if(empleado!=undefined){
             empleado.forEach(e => {
-                console.log('e.servicios',e.serviciosAgregados);
+                //console.log('e.servicios',e.serviciosAgregados);
                 e.serviciosAgregados.forEach(elem => {
                     //console.log('Servicios de empleado '+e.nombre+':',elem.nombreServicio);
                     if(elem.nombreServicio == d.nombre){
@@ -365,8 +368,9 @@ jQuery(function ($) {
     let horario_general = [];
     let informacion_servicios = [];
     function mostrarPersonal(data){
-        console.log(data,location.origin + '/citaws/verPersonaHorario');
-        
+        let servicios_ele = data.servicios;
+        console.log(servicios_ele);
+
     	$.ajax({
             url: location.origin + '/citaws/verPersonaHorario',
             type: 'post',
@@ -376,21 +380,27 @@ jQuery(function ($) {
                 $("#personal").html('');
                 $("#listado_dias").html('');
                 let empleado = res.out.empleado;
-                //console.log("Empleados:",empleado);
                 let servicios = res.out.catalogo_servicios.otFm;
-                //console.log(servicios);
+                //console.log(servicios,empleado);
 
                 //console.log("info_empleados",info_empleados);
-                if(servicios!=undefined){
-                    servicios.forEach(e => {
-                        listaDias({
-                            ID_F:e.ID_F,
-                            nombre:e.nombre,
-                            servicio:e,
-                            dia:[res.out.dia_semana_nombre],
-                            empleados:empleado
+                if(servicios!=undefined&&servicios_ele!=undefined){
+                    servicios_ele.forEach(el => {
+                        servicios.forEach(e => {
+                            //console.log(e.ID_F,el);
+                            if(e.ID_F==el){
+                                //console.log(e.ID_F,el,"COINCIDIO...!!!!");
+                                listaDias({
+                                    ID_F:e.ID_F,
+                                    nombre:e.nombre,
+                                    servicio:e,
+                                    dia:[res.out.dia_semana_nombre],
+                                    empleados:empleado
+                                });
+                            }
                         });
                     });
+                    
                 }
 
                 /*diasActivos =res.out.empleado[0].diasActivos;

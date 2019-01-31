@@ -106,8 +106,7 @@
 </div><!-- End of Wrapper -->
   
 <!-- **jQuery** -->    
-<!-- IVAN 
-    <script src="<?php $this->url_templet();?>js/jquery.min.js" type="text/javascript"></script> -->
+
 <script
   src="https://code.jquery.com/jquery-2.2.4.js"
   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
@@ -137,6 +136,7 @@
 <!-- IVAN 
 <script src="<?php $this->url_templet();?>js/moment.min.js" type="text/javascript"></script>
 -->
+<!-- <script src='<?php $this->url_templet();?>js/daterangepicker.js' type="text/javascript"></script> -->
 
 <?php  $this->llamar_js(); ?> 
 

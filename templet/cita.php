@@ -73,11 +73,11 @@
                     	<div class="contact-form" >
                             <div class="column dt-sc-one-half first">
                                 <div class="" data-delay="100" data-animation="fadeIn">
-                                <p>Selecciona la fecha:</p>                                     
-                                <p>
-                                    <input id="altField" type="hidden" />
-                                    <input id="dpt" type="text" placeholder="Fecha de la cita" value="" name="dpt"><span class="icons fa fa-calendar"></span></p>
-                                                                                            
+                                    <p>Selecciona la fecha:</p>                                     
+                                    <p>
+                                        <input id="altField" type="hidden" />
+                                        <input id="dpt" type="text" placeholder="Fecha de la cita" value="" name="dpt"><span class="icons fa fa-calendar"></span></p>
+                                                                                                
                                 </div>
                             </div>
                             <div class="column dt-sc-one-half">
