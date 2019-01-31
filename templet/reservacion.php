@@ -1,16 +1,7 @@
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-<style type="text/css">
-    #inf{
-        position: relative;
-        background: rgba(201, 76, 76, 0.3);
-        width: 150px;
-        height: 200px;
-        border-color: blue;
-    };
 
-</style>
 
 <div id="main"><!-- Main -->
         	<div class="hr-invisible-small"></div>
@@ -30,40 +21,38 @@
                 <div class="clear"></div>
                 <div class="hr-invisible-medium"></div>
                 <div class="container">
-<!-- Parte uno -->
-                    <div class="column dt-sc-three-third form-group" id="div_paso_1">
-                        <h3 class="border-title">Reserva tú habitación</h3>
-                        <div class="box" >
-                            <!-- entrada -->
-                            
-                            <div class="column dt-sc-one-half first ">                                        
-                                <div class="form-group">
-                                    <p><input type="text"  autocomplete="off" placeholder="Entrada" id="txtCheckin" /><span class="icons fa fa-calendar"></span></p>                
-                                </div>                        
-                            </div> 
-                            <!-- salida -->                            
-                             <div class="column dt-sc-one-half">
-                                <div class="form-group">
-                                    <p><input type="text"  autocomplete="off" placeholder="Salida" id="txtCheckout" /><span class="icons fa fa-calendar"></span></p>              
-                                </div> 
-                             </div>
-                            <!-- adultos,niños y habitaciones --> 
-                             <div class="column dt-sc-one-half">
-                                <div class="form-group">
-
-                                        <p><input id="reservacion_cita" type="text" value="1 Adulto - 0 Niños - 1 Habitación" ><span class="icons fa fa-users"></span></p>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <p><input type="text"  autocomplete="off" placeholder="Fecha de Entrada" id="txtCheckin" /><span class="icons fa fa-calendar"></span></p>         
+                                    </div> 
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <p><input type="text"  autocomplete="off" placeholder="Fecha de Salida" id="txtCheckout" /><span class="icons fa fa-calendar"></span></p>              
+                                    </div> 
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <p><input id="reservacion_cita" type="text" value="1 Adulto - Niños - 1 Habitación" readonly><span class="icons fa fa-users"></span></p>
                                         <div id="inf" style="display:none;">
                                             Adultos <select id="adultos"></select>
                                             Niños <select id="ninos"></select>
                                             Habitaciones <select id="habitaciones"></select>
+                                            <div id="edad_ninos"></div>
+                                            <hr>
+                                            <button type="button" class="btn btn-primary cerrar">Aceptar</button>
                                         </div> 
+
+                                        <button type="button" class="btn btn-primary enviar">Reservar</button>        
                                 </div> 
-                             </div>                             
-                                          
-                        </div>                                                                                             
-                            <div class="form-row aligncenter " data-delay="7 00" data-animation="fadeIn">
-                                <button type="button" id="btn_paso_1">Buscar</button>
-                            </div>
+                             </div>                                          
+                            </div>                                                
+                        </div>
+                        <div class="col-sm-1"></div>
                     </div>
                 </div>
 
