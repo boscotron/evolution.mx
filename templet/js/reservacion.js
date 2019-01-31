@@ -45,9 +45,19 @@ $("#reservacion_cita").click(function(){
         }
 
     }
-    $("#inf").toggle();
+    var adultos = $("#adultos option:selected").val();
+    var ninos = $("#ninos option:selected").val();
+    var habitacion = $("#habitaciones option:selected").val();
+    console.log(adultos,ninos,habitacion);
+    
     console.log("hola");
+    $("#inf").show(100);
+    $("#inf").toggle();
 });
+
+$(".cerrar").click(function(){
+   $("#inf").hide(50); 
+})
 
 $(".enviar").on("click",function(){
     console.log("hola");

@@ -38,18 +38,18 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <p><input id="reservacion_cita" type="text" value="1 Adulto - Niños - 1 Habitación" readonly><span class="icons fa fa-users"></span></p>
-                                        <div id="inf" style="display:none;">
+                                        <div id="inf" style="display:block;">
                                             Adultos <select id="adultos"></select>
                                             Niños <select id="ninos"></select>
                                             Habitaciones <select id="habitaciones"></select>
                                             <div id="edad_ninos"></div>
                                             <hr>
                                             <button type="button" class="btn btn-primary cerrar">Aceptar</button>
-                                        </div> 
-
-                                        <button type="button" class="btn btn-primary enviar">Reservar</button>        
+                                        </div>                                
                                 </div> 
-                             </div>                                          
+
+                             </div>
+                               <button type="button" class="btn btn-primary enviar">Reservar</button>                                             
                             </div>                                                
                         </div>
                         <div class="col-sm-1"></div>
