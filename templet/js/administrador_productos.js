@@ -51,7 +51,8 @@ jQuery(function ($) {
                 console.log(res);
                 let lista = res.var.ver.otFm;
                 console.log(lista);               
-                let data = [];                
+                let data = [];        
+                if(lista!=undefined)        
                 lista.forEach(element => {
                     data.push([
                         element.ID_F,

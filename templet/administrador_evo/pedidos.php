@@ -27,9 +27,9 @@
 				</div>
 
 				<div class="form-group">
-					<label for="cliente">Cliente</label>
-					<input type="cliente" class="form-control" id="cliente" aria-describedby="phonelHelp" placeholder="Enter cliente">
-					<small id="cliente" class="form-text text-muted">Datos obligatorios para poder guardar</small>
+					<label for="sucursal">Sucursal</label>
+					<input type="sucursal" class="form-control" id="sucursal" aria-describedby="sucursallHelp" placeholder="Enter sucursal">
+					<small id="sucursal" class="form-text text-muted">Datos obligatorios para poder guardar</small>
 				</div>
 
 				<div class="form-group">

@@ -18,14 +18,14 @@ if(count($_POST)>0){
             ],                        
         ]);
     }else{
-        $var['error'][]="Faltan campos dirección, telefono; para guardar";
+        $var['error'][]="Faltan campos dia de pedido, proveedor, estatus; para guardar";
     }
 }
 
 $var ["ver"]=$jmy->ver([
     "TABLA"=>"sucursal",
     "ID"=>$var['ID'],
-    "COL"=>["dia_pedido","cliente","proveedor","productos","estatus"],
+    "COL"=>["dia_pedido","sucursal","proveedor","productos","estatus"],
     "SALIDA"=>"ARRAY"
 ]);
 
