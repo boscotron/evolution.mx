@@ -52,17 +52,17 @@ jQuery(function ($) {
                 console.log(lista);
                 let data = [];
                 if(lista!=undefined)
-                lista.forEach(element => {
-                    data.push([
-                        element.ID_F,
-                        element.dia_pedido,
-                        element.sucursal,
-                        element.proveedor,
-                        element.productos,
-                         element.estatus,
-                        '<button class="btn btn-sm btn-flat ver_pedido" data-id="'+element.ID_F+'"> <i class="fa fa-eye"></i> editar</botton>'
-                    ]);
-                });
+                    lista.forEach(element => {
+                        data.push([
+                            element.ID_F,
+                            element.dia_pedido,
+                            element.sucursal,
+                            element.proveedor,
+                            element.productos,
+                            element.estatus,
+                            '<button class="btn btn-sm btn-flat ver_pedido" data-id="'+element.ID_F+'"> <i class="fa fa-eye"></i> editar</botton>'
+                        ]);
+                    });
                 console.log(data);
                /* https://datatables.net/manual/index */
                 $.when($('#lista').DataTable( {

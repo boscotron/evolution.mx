@@ -2,7 +2,7 @@
 
 if(count($_POST)>0){
     $var["ID"]=($_POST['ID']!='')?$_POST['ID']:uniqid();
-    if($_POST['cliente']!='' && $_POST['proveedor']!=''&& $_POST['estatus']!=''){
+    if($_POST['dia_pedido']!='' && $_POST['proveedor']!=''&& $_POST['estatus']!=''){
         //$var ["guardar"]=
         $jmy->guardar([
             "TABLA"=>"pedido",
