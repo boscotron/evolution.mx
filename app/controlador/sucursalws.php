@@ -21,10 +21,7 @@ $var ["ver"]=$jmy->ver([
     "ID"=>$var['ID'],
     "COL"=>["direccion","responsable","telefono"],
 ]);
-$var ["usuarios"]=$jmy->ver([
-    "TABLA"=>TABLA_USUARIOS,
-    "COL"=>["nombre","foto_perfil"],
-]);
+
 
 $var["post"]=$_POST;
 

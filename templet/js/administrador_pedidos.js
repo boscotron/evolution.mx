@@ -6,7 +6,7 @@ function editar(d=[]) {
     jQuery(function ($) {  
 
         $.ajax({
-            url: location.origin + '/administradorws/proveedores',
+            url: location.origin + '/administradorws/pedidos',
             type: 'post',
             dataType: 'json',
             success: function(res) {
@@ -16,20 +16,22 @@ function editar(d=[]) {
                 let campos = res.var.ver.ot[id];
                 console.log(campos);
                 
-                $("#nombre").val(campos.nombre);
-                $("#telefono").val(campos.telefono);
-                $("#direccion").val(campos.direccion);
                 $("#dia_pedido").val(campos.dia_pedido);
+                $("#sucursal").val(campos.sucursal);
+                $("#proveedor").val(campos.proveedor);
+                $("#productos").val(campos.productos);
+                $("#estatus").val(campos.estatus);
             },
             error: function(res) {
                 console.log(res);
             },
             data: {
                 ID:id,
-                nombre:$("#nombre").val(),
-                telefono:$("#telefono").val(),
-                direccion:$("#direccion").val(),
                 dia_pedido:$("#dia_pedido").val(),
+                sucursal:$("#sucursal").val(),
+               proveedor:$("#proveedor").val(),
+                productos:$("#productos").val(),
+                estatus:$("#estatus").val(),
             }
         });
 
@@ -38,49 +40,51 @@ function editar(d=[]) {
 
 jQuery(function ($) {  
     function urlFr(a){return a.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "-").replace(/^-+|-+$/g, '')};
-    function lista_proveedores(){        
+    function lista_pedidos(){        
         $.ajax({
-            url: location.origin + '/administradorws/proveedores',
+            url: location.origin + '/administradorws/pedidos',
             type: 'post',
             dataType: 'json',
             success: function(res) {
                 console.log(res);
                 //console.log('id',id);
-                let listaPROV = res.var.ver.otFm;
-                console.log(listaPROV);
+                let lista = res.var.ver.otFm;
+                console.log(lista);
                 let data = [];
-                if(listaPROV!=undefined)
-                listaPROV.forEach(element => {
-                    data.push([
-                        element.ID_F,
-                        element.nombre,
-                        element.telefono,
-                        element.direccion,
-                        element.dia_pedido,
-                        '<button class="btn btn-sm btn-flat ver_proveedor" data-id="'+element.ID_F+'"> <i class="fa fa-eye"></i> editar</botton>'
-                    ]);
-                });
+                if(lista!=undefined)
+                    lista.forEach(element => {
+                        data.push([
+                            element.ID_F,
+                            element.dia_pedido,
+                            element.sucursal,
+                            element.proveedor,
+                            element.productos,
+                            element.estatus,
+                            '<button class="btn btn-sm btn-flat ver_pedido" data-id="'+element.ID_F+'"> <i class="fa fa-eye"></i> editar</botton>'
+                        ]);
+                    });
                 console.log(data);
                /* https://datatables.net/manual/index */
-                $.when($('#listaPROV').DataTable( {
+                $.when($('#lista').DataTable( {
                     data: data,
                     columns: [
                         { title: "Id" },
-                        { title: "Nombre" },
-                        { title: "Telefono" },
-                        { title: "Dirección"},
                         { title: "Dia de pedido"} ,
+                        { title: "Sucursal" },
+                        { title: "Proveedor" },
+                        { title: "Productos"},
+                        { title: "Estatus"} ,
                         { title: " "} 
                     ]
                 } )).done(function () {
-                    console.log('id_proveedor');
-                    $(".ver_proveedor").on('click', function () {
-                        let id_proveedor = $(this).data('id');
-                        console.log('id_proveedor',id_proveedor);
+                    console.log('id_pedido');
+                    $(".ver_pedido").on('click', function () {
+                        let id_pedido = $(this).data('id');
+                        console.log('id_pedido',id_pedido);
                         limpiar_campos();
-                        if(id_proveedor!=undefined && id_proveedor!=''){
+                        if(id_pedido!=undefined && id_pedido!=''){
                             
-                            id= id_proveedor;
+                            id= id_pedido;
                             editar(); 
                         }
                     });
@@ -94,14 +98,15 @@ jQuery(function ($) {
     }
 
     function limpiar_campos() {
-        $("#nombre").val("");
-        $("#telefono").val("");
-        $("#direccion").val("");
         $("#dia_pedido").val("");
+        $("#sucursal").val("");
+        $("#proveedor").val("");
+        $("#productos").val("");
+        $("#estatus").val("");
     }
 
     $(document).ready(function() {
-        lista_proveedores();    
+        lista_pedidos();    
         $("#agregarNuevo").on('click', function () {
             id='';
             //console.log('id',id);

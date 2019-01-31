@@ -1,29 +1,29 @@
 <?php
+
 if(count($_POST)>0){
     $var["ID"]=($_POST['ID']!='')?$_POST['ID']:uniqid();
-    if($_POST['nombre']!='' && $_POST['telefono']!=''){
+    if($_POST['direccion']!='' && $_POST['responsable']!=''){
         //$var ["guardar"]=
         $jmy->guardar([
-            "TABLA"=>"proveedor",
+            "TABLA"=>"sucursal",
             "ID"=>$var['ID'],
             "A_D"=>TRUE,
             "FO"=>TRUE,
             "GUARDAR"=>[
-                "nombre"=>$_POST['nombre'],
-                "telefono"=>str_replace(["-","_","#"],"",trim($_POST['telefono'])),
                 "direccion"=>$_POST['direccion'],
-                "dia_pedido"=>$_POST['dia_pedido'],
+                "telefono"=>str_replace(["-","_","#"],"",trim($_POST['telefono'])),
+                "responsable"=>$_POST['responsable'],
             ],                        
         ]);
     }else{
-        $var['error'][]="Faltan campos nombre, telefono; para guardar";
+        $var['error'][]="Faltan campos dirección, telefono; para guardar";
     }
 }
 
 $var ["ver"]=$jmy->ver([
-    "TABLA"=>"proveedor",
+    "TABLA"=>"sucursal",
     "ID"=>$var['ID'],
-    "COL"=>["nombre","telefono","direccion","dia_pedido"],
+    "COL"=>["direccion","telefono","responsable"],
     "SALIDA"=>"ARRAY"
 ]);
 
@@ -34,9 +34,6 @@ $var["post"]=$_POST;
 
 
     $out= ["POST"=>$_POST,"GET"=>$_GET,"var"=>$var]
-
-
-
 
 
 ?>

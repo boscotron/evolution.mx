@@ -39,9 +39,24 @@ function lista(d=[]) {
     });
 }
 
+function nuevo(d=[]) {
+    console.log('hola');
+    jQuery(function($){
+        $("#agregarNuevo").on('click', function () {
+          
+            
+            let html = '<div type="json_campos" class="jmy_web_administrador col-md-12" id="formulario_proveedores" data-idregistro="formulario_proveedores" data-tabla="proveedor" data-page="" >Error al cargar los datos</div>';
+           
+            $("#resultado").html(html);
+            jmywajson_campos();// Recargar DOM   
+
+        });
+    });    
+}
 
 jQuery(function($){
     $(document).ready(function () {
         listaPROV();
+        nuevo();
     });
 });

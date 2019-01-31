@@ -153,14 +153,13 @@ class JMY3WEB extends JMY3MySQL{
 		$ta=($d['tabla']!='')?$d['tabla']:$tabla;
 		$t=explode('__',$ta);
 		if($d['id']!=''&&$d['pagina']!=''&&$d['valor']!='' &&$s['modulos_permisos'][$t[0]]>1){
-			$t=[$d['id']=>$d['valor']];
 			$t=["TABLA"=>$ta, 
 			"ID_F"=>$d['pagina'],
 			"A_D"=>TRUE, 
-			"GUARDAR"=>$t	];
+			"GUARDAR"=>[$d['id']=>$d['valor']]	];
 			$r=parent::guardar($t);
 		} 
-		return [$t,$r,$ta,$s,"real"=>[ $d['id'],$d['pagina'],$d['valor'],$s['modulos_permisos'],$t[0] ]];
+		return [$t,$r,$ta,$s,"real"=>[ $d['id'],$d['pagina'],$d['valor'],$s['modulos_permisos'],$t[0],$ta,$d['tabla'] ]];
 			  //0 , 1 , 2  , 3
 	}
 

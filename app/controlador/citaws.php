@@ -183,12 +183,12 @@ switch ($_GET['peticion']) {
             $out['error']='';
             $guardar = true;
             $out['mostrarCitas_fil_1'] = $jmy->ver([
-                "TABLA"=>"agendarcita",
+                "TABLA"=>"citas__agendarcita",
                 "V"=>[$_POST['datosCita']['fecha']],
             ]);
     
             $out['mostrarCitas_fil_2'] = $jmy->ver([
-                "TABLA"=>"agendarcita",
+                "TABLA"=>"citas__agendarcita",
                 "COL"=>['horario'],
                 "V"=>[$_POST['guardar']['horario']],
                 "FO"=>true,
@@ -200,7 +200,7 @@ switch ($_GET['peticion']) {
             $out["lo_que_sea"][] = $guardar;
             if(!$guardar){
                 $out['mostrarCitas'] = $jmy->ver([
-                    "TABLA"=>"agendarcita",
+                    "TABLA"=>"citas__agendarcita",
                     "COL"=>['empleado'],
                     "V"=>[$_POST['guardar']['empleado']],
                     "FO"=>true,
@@ -214,15 +214,16 @@ switch ($_GET['peticion']) {
             $out['resultado_guardar'] = $guardar;
             $out["lo_que_sea"][] = $guardar;
             if($guardar){
-                $out['agendarcita'] = $jmy->guardar([
-                    "TABLA"=>"agendarcita",
+                $out['citas__agendarcita'] = $jmy->guardar([
+                    "TABLA"=>"citas__agendarcita",
                     "A_D"=>TRUE,
                     "GUARDAR"=>["servicio"=>$_POST['guardar']['servicio'],
                                 "empleado"=>$_POST['guardar']['empleado'],
                                 "usuario"=>$idUsuario,
                                 "id_perfil"=>$_POST['datosCita']['cliente'],
                                 "horario"=>$_POST['guardar']['horario'],
-                                "fecha"=>$_POST['datosCita']['fecha']
+                                "fecha"=>$_POST['datosCita']['fecha'],
+                                "estatus"=>'espera'
                             ]
                     ]);
             }else{
