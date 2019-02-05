@@ -23,7 +23,7 @@ if(count($_POST)>0){
 }
 
 $var ["ver"]=$jmy->ver([
-    "TABLA"=>"sucursal",
+    "TABLA"=>"pedido",
     "ID"=>$var['ID'],
     "COL"=>["dia_pedido","sucursal","proveedor","productos","estatus"],
     "SALIDA"=>"ARRAY"

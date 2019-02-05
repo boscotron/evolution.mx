@@ -5,6 +5,7 @@ $jmyWeb->cargar_js(["url"=>"https://cdn.datatables.net/v/dt/dt-1.10.18/datatable
 
 $jmyWeb->cargar_js(["url"=>$jmyWeb->url_templet(['return'=>true]).'js/administrador_pedidos.js']);
 
+
 $jmyWeb ->pre(['p'=>$out,'t'=>'TITULO_ARRAY']);
 
 ?>

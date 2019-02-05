@@ -28,21 +28,22 @@
 
 				<div class="form-group">
 					<label for="telefono">Teléfono</label>
-					<input type="phone" class="form-control" id="telefono" aria-describedby="phonelHelp" placeholder="Enter Telefono">
+					<input type="text" class="form-control" id="telefono" aria-describedby="phonelHelp" placeholder="Enter Telefono">
 					<small id="phoneHelp" class="form-text text-muted">Datos obligatorios para poder guardar</small>
 				</div>
 
 				<div class="form-group">
 					<label for="direccion">Dirección</label>
-					<input type="adreess" class="form-control" id="direccion" aria-describedby="addresslHelp" placeholder="Enter Dirección">
+					<input type="text" class="form-control" id="direccion" aria-describedby="addresslHelp" placeholder="Enter Dirección">
 					
 				</div>
 
-				<div class="form-group">
-					<label for="dia_pedido">Dia de pedido</label>
-					<input type="pedido" class="form-control" id="dia_pedido" aria-describedby="pedidolHelp" placeholder="Enter Dia de pedido">
-					
-				</div>
+				<div class="col-sm-4">
+                    <div class="form-group">
+							<label for="dia_pedido">Dia de pedido</label>
+                            <p><input type="text"  autocomplete="off" placeholder="Fecha de Pedido" id="dia_pedido" /><span class="icons fa fa-calendar"></span></p>         
+                    </div> 
+                </div>
 			
 				<button id="guardar" class="btn btn-primary">Guardar</button>
 				
