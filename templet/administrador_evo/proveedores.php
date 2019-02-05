@@ -40,8 +40,7 @@
 
 				<div class="col-sm-4">
                     <div class="form-group">
-							<label for="dia_pedido">Dia de pedido</label>
-                            <p><input type="text"  autocomplete="off" placeholder="Fecha de Pedido" id="dia_pedido" /><span class="icons fa fa-calendar"></span></p>         
+							<p>Dia de pedido <input type="text" id="dia_pedido"></p>         
                     </div> 
                 </div>
 			

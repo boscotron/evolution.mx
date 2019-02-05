@@ -123,4 +123,11 @@ jQuery(function ($) {
             //console.log('id',id);
         });
     } );
+
+    $( function fecha_compra() {
+        $( "#fecha_compra" ).datepicker();
+      } );
+      $( function fecha_venta() {
+        $( "#fecha_venta" ).datepicker();
+      } );
 });

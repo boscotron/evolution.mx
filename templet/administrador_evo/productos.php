@@ -46,15 +46,13 @@
 			
 				<div class="col-sm-4">
                     <div class="form-group">
-							<label for="fecha_compra">Fecha de Compra</label>
-                            <p><input type="text"  autocomplete="off" placeholder="Fecha de Compra" id="fecha_compra" /><span class="icons fa fa-calendar"></span></p>         
+							<p>Fecha de Compra <input type="text" id="fecha_compra"></p>         
                     </div> 
                 </div>
 
 				<div class="col-sm-4">
                     <div class="form-group">
-							<label for="fecha_venta">Fecha de Venta</label>
-                            <p><input type="text"  autocomplete="off" placeholder="Fecha de Compra" id="fecha_venta" /><span class="icons fa fa-calendar"></span></p>         
+							<p>Fecha de Venta <input type="text" id="fecha_venta"></p>         
                     </div> 
                 </div>
 

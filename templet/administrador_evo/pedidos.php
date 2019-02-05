@@ -19,13 +19,7 @@
 			</div>
 			<div id="formulario">	
 			<form>
-				<div class="col-sm-4">
-                    <div class="form-group">
-							<label for="dia_pedido">Dia de pedido</label>
-                            <p><input type="text"  autocomplete="off" placeholder="Fecha de Entrada" id="dia_pedido" /><span class="icons fa fa-calendar"></span></p>         
-                    </div> 
-                </div>
-
+	
 				<div class="form-group">
 					<label for="sucursal">Sucursal</label>
 					<input type="text" class="form-control" id="sucursal" aria-describedby="sucursallHelp" placeholder="Enter sucursal">
@@ -49,6 +43,12 @@
 					<input type="text" class="form-control" id="estatus" aria-describedby="responsablelHelp" placeholder="Enter Estatus">
 					<small id="estatus" class="form-text text-muted">Datos obligatorios para poder guardar</small>
 				</div>
+
+				<div class="col-sm-4">
+                    <div class="form-group">
+							<p>Dia de pedido <input type="text" id="dia_pedido"></p>         
+                    </div> 
+                </div>
 			
 				<button id="guardar" class="btn btn-primary">Guardar</button>
 				

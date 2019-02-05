@@ -115,4 +115,7 @@ jQuery(function ($) {
             //console.log('id',id);
         });
     } );
+    $( function dia_pedido() {
+        $( "#dia_pedido" ).datepicker();
+      } );
 });
