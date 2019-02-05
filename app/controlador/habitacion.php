@@ -1,13 +1,11 @@
-<?php 
+<?php
 $peticion = explode("",$_GET['peticion']);
 $session = $jmyWeb->session();
-
 $idUsuario = $session['user']['user_id'];
 
 if($peticion[0]=='entrar'){
 	$session = $jmyWeb->session([$peticion[1],$peticion[2]]);
 	$jmyWeb->guardar_session();//$jmyWeb->guardar_session(["instalar"=>true]);
-
 
 	$usuario = $jmy->ver([
 		"TABLA"=>"clientes_".$session['body']['api_web']['ID_F'],
@@ -21,21 +19,18 @@ if($peticion[0]=='entrar'){
 			"GUARDAR"=>['perfil_principal'=>$idUsuario],
 		]);
 	}
-
 }
-if ($idUsuario != '') {
-	$jmyWeb->cargar(["pagina"=>"reservacion"]);
-$jmyWeb->cargar_js(["url"=>BASE_TEMPLET."js/reservacion.js?d=".date('U'),"unico"=>true]);
-$jmyWeb ->cargar_vista([	
-		"url"=>"reservacion.php",
+if ($idUsuario != ''){
+	$jmyWeb->cargar(["pagina"=>"habitacion"]);
+	$jmyWeb->cargar_js(["url"=>BASE_TEMPLET."js/habitacion.js?d=".date('U'),"unico"=>true]);
+	$jmyWeb ->cargar_vista([	
+		"url"=>"habitacion.php",
 		"data"=>[
 			"id_perfil"=>($peticion[1]!='')?$peticion[1]:$idUsuario,
 			"editar"=>$editar,
 		]
 	]);
-//$jmyWeb->cargar(["pagina"=>"reservacion"]);
-//$jmyWeb->cargar_js(["url"=>BASE_TEMPLET."js/reservacion.js?d=".date('U'),"unico"=>true]);
 }else{
-	$jmyWeb->cargar(["pagina"=>"inicioreservacion"]);
-	$jmyWeb ->cargar_vista(["url"=>"inicioreservacion.php"]);
+	$jmyWeb->cargar(["pagina"=>"iniciohabitacion"]);
+	$jmyWeb ->cargar_vista(["url"=>"iniciohabitacion.php"]);
 }
