@@ -28,25 +28,25 @@
 
 				<div class="form-group">
 					<label for="sucursal">Sucursal</label>
-					<input type="sucursal" class="form-control" id="sucursal" aria-describedby="sucursallHelp" placeholder="Enter sucursal">
+					<input type="text" class="form-control" id="sucursal" aria-describedby="sucursallHelp" placeholder="Enter sucursal">
 					<small id="sucursal" class="form-text text-muted">Datos obligatorios para poder guardar</small>
 				</div>
 
 				<div class="form-group">
 					<label for="proveedor">Proveedor</label>
-					<input type="proveedor" class="form-control" id="proveedor" aria-describedby="responsablelHelp" placeholder="Enter Proveedor">
+					<input type="text" class="form-control" id="proveedor" aria-describedby="responsablelHelp" placeholder="Enter Proveedor">
 					<small id="proveedor" class="form-text text-muted">Datos obligatorios para poder guardar</small>
 				</div>
 
                 <div class="form-group">
 					<label for="productos">Productos</label>
-					<input type="productos" class="form-control" id="productos" aria-describedby="responsablelHelp" placeholder="Enter Productos">
+					<input type="text" class="form-control" id="productos" aria-describedby="responsablelHelp" placeholder="Enter Productos">
 					<small id="productos" class="form-text text-muted">Datos obligatorios para poder guardar</small>
 				</div>
 
                  <div class="form-group">
 					<label for="estatus">Estatus</label>
-					<input type="estatus" class="form-control" id="estatus" aria-describedby="responsablelHelp" placeholder="Enter Estatus">
+					<input type="text" class="form-control" id="estatus" aria-describedby="responsablelHelp" placeholder="Enter Estatus">
 					<small id="estatus" class="form-text text-muted">Datos obligatorios para poder guardar</small>
 				</div>
 			

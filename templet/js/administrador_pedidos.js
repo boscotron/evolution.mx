@@ -15,7 +15,7 @@ function editar(d=[]) {
                 
                 let campos = res.var.ver.ot[id];
                 console.log(campos);
-                if(lista!=undefined)
+                
                 $("#dia_pedido").val(campos.dia_pedido);
                 $("#sucursal").val(campos.sucursal);
                 $("#proveedor").val(campos.proveedor);
