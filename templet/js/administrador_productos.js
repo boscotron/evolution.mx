@@ -51,7 +51,8 @@ jQuery(function ($) {
                 console.log(res);
                 let lista = res.var.ver.otFm;
                 console.log(lista);               
-                let data = [];                
+                let data = [];        
+                if(lista!=undefined)        
                 lista.forEach(element => {
                     data.push([
                         element.ID_F,
@@ -122,4 +123,11 @@ jQuery(function ($) {
             //console.log('id',id);
         });
     } );
+
+    $( function fecha_compra() {
+        $( "#fecha_compra" ).datepicker();
+      } );
+      $( function fecha_venta() {
+        $( "#fecha_venta" ).datepicker();
+      } );
 });

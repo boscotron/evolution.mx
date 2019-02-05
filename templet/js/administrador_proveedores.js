@@ -49,6 +49,7 @@ jQuery(function ($) {
                 let listaPROV = res.var.ver.otFm;
                 console.log(listaPROV);
                 let data = [];
+                if(listaPROV!=undefined)
                 listaPROV.forEach(element => {
                     data.push([
                         element.ID_F,
@@ -114,4 +115,7 @@ jQuery(function ($) {
             //console.log('id',id);
         });
     } );
+    $( function dia_pedido() {
+        $( "#dia_pedido" ).datepicker();
+      } );
 });

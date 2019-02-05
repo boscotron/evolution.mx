@@ -28,33 +28,33 @@
 
 				<div class="form-group">
 					<label for="precio">Precio</label>
-					<input type="precio" class="form-control" id="precio" aria-describedby="precioHelp" placeholder="Enter precio">
+					<input type="text" class="form-control" id="precio" aria-describedby="precioHelp" placeholder="Enter precio">
 					<small id="precioHelp" class="form-text text-muted">Datos obligatorios para poder guardar.</small>
 				</div>
 
 				<div class="form-group">
 					<label for="proveedor">Proveedor</label>
-					<input type="proveedor" class="form-control" id="proveedor" aria-describedby="proveedorHelp" placeholder="Enter proveedor">
+					<input type="text" class="form-control" id="proveedor" aria-describedby="proveedorHelp" placeholder="Enter proveedor">
 					<small id="proveedorHelp" class="form-text text-muted">Datos obligatorios para poder guardar.</small>
 				</div>
 
 				<div class="form-group">
 					<label for="cantidad">Cantidad</label>
-					<input type="cantidad" class="form-control" id="cantidad" aria-describedby="cantidadHelp" placeholder="Enter cantidad">
+					<input type="text" class="form-control" id="cantidad" aria-describedby="cantidadHelp" placeholder="Enter cantidad">
 					
 				</div>
 			
-				<div class="form-group">
-					<label for="fecha_compra">Fecha de Compra</label>
-					<input type="fecha_compra" class="form-control" id="fecha_compra" aria-describedby="fecha_compralHelp" placeholder="Enter fecha de compra">
-					
-				</div>
+				<div class="col-sm-4">
+                    <div class="form-group">
+							<p>Fecha de Compra <input type="text" id="fecha_compra"></p>         
+                    </div> 
+                </div>
 
-				<div class="form-group">
-					<label for="fecha_venta">Fecha de Venta</label>
-					<input type="fecha_venta" class="form-control" id="fecha_venta" aria-describedby="ventalHelp" placeholder="Enter fecha de venta">
-					
-				</div>
+				<div class="col-sm-4">
+                    <div class="form-group">
+							<p>Fecha de Venta <input type="text" id="fecha_venta"></p>         
+                    </div> 
+                </div>
 
 				<button id="guardar" class="btn btn-primary">Guardar</button>
 				
