@@ -46,15 +46,14 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label>Complementos de la habitación:</label>
-                                
-                                <div id="mostrarEntrada">
+                                <div id="chebox">
+                                </div>
+                                 <div id="mostrarEntrada">
                                  <label>Agregar complemento:</label>
                                     <input type="text" id="agregarTexto" placeholder="" required>
                                     <button type="button" id="agregarComplemento">Agregar</button>
                                 </div>
-                                <div id="chebox">
-                                    
-                                </div>
+                                <br>
                                 <button type="button" class="btn btn-primary btn-sm valorCheck"><i class="fa fa-plus"></i></button>
                             </div> 
                         </div>

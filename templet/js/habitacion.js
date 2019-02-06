@@ -41,12 +41,14 @@ jQuery(function($) {
 		        	console.log(respuesta)
 		        	complemento = respuesta.out.otFm;
 		        	console.log("com",complemento)
-		        	// if (complemento != "") {
+		        	if (complemento != undefined) {
 		        		for (var i = 0; i < complemento.length; i++){
 			        		$("#chebox").append('<input type="checkbox" class="comp" name="checks[]" value="'+complemento[i].complemento+'">'+complemento[i].complemento+'<br>');
 			        		console.log(complemento[i]);
 		        		}
-		        	// }
+		        	}else {
+		        		$("#chebox").append('<h5>Sin complementos</h5>');
+		        	}
 		        	
 		        },error: function(res) {
 		            console.log(res);
