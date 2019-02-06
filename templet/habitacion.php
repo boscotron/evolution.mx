@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <div class="form-group">
-                                Número<input type="number">
+                                Número<input type="number" id="num_hab" placeholder="--" min="1" required>
                             </div> 
                         </div>
                         <div class="col-sm-4">
@@ -33,41 +33,51 @@
                                         type="select" 
                                         class="custom-select  jmy_web_div" 
                                         data-lista-id="lista_de_habitaciones" 
-                                        placeholder="Seleccione una habitación" 
+                                        placeholder="Seleccionar" 
                                         data-value="<?php $this->pnt('habitaciones'); ?>"   
                                         data-tabla="<?php echo $tabla; ?>" 
                                         data-page="<?php echo $page; ?>" 
                                         id="habitaciones" 
-                                        tabindex="5"></select>
+                                        tabindex="5" required></select>
                                     </div>
                                 </div>
                             </div> 
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label>Hora entrada: </label>
-                                <span class="fa fa-clock-o"></span>
-                                <div class='input-group date' id='h_entrada'>
-                                    <input type='time' class="form-control" />
-                                 </div><br>
-                                <label>Hora salida: </label><span class="fa fa-clock-o"></span>
-                                <div class='input-group date' id='h_salida'>
-                                    <input type='time' class="form-control" />
+                                <label>Complementos de la habitación:</label>
+                                
+                                <div id="mostrarEntrada">
+                                 <label>Agregar complemento:</label>
+                                    <input type="text" id="agregarTexto" placeholder="" required>
+                                    <button type="button" id="agregarComplemento">Agregar</button>
                                 </div>
+                                <div id="chebox">
+                                    
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm valorCheck"><i class="fa fa-plus"></i></button>
                             </div> 
                         </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                Precio<input type="number" id="precio_habitacion" placeholder="0.0" min="1" required>
+                            </div>
+
+                             
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <label>Complementos de la habitación:</label>
-                            <button type="button" class="btn btn-primary btn-sm agregarChecbok"><i class="fa fa-plus"></i></button>
-                                <div class="checkbox">
-                                </div>
-                        </div>                                              
-                    </div>
-                <div class="col-sm-1"></div>
+                <div class="col-sm-1">
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-10"></div>
+            <div class="col-2"> 
+                <div class="float-right"><button type="button" id="enviarDato" class="btn float-right">Agregar</button>
+                </div> 
             </div>
         </div>
+        </div>
+       
 
             <div class="clear"></div>
             <div class="hr-invisible-medium"></div>
