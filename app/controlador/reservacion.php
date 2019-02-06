@@ -1,5 +1,5 @@
 <?php 
-$peticion = explode("",$_GET['peticion']);
+$peticion = explode("/",$_GET['peticion']);
 $session = $jmyWeb->session();
 
 $idUsuario = $session['user']['user_id'];
@@ -23,10 +23,11 @@ if($peticion[0]=='entrar'){
 	}
 
 }
+
 if ($idUsuario != '') {
 	$jmyWeb->cargar(["pagina"=>"reservacion"]);
-$jmyWeb->cargar_js(["url"=>BASE_TEMPLET."js/reservacion.js?d=".date('U'),"unico"=>true]);
-$jmyWeb ->cargar_vista([	
+	$jmyWeb->cargar_js(["url"=>BASE_TEMPLET."js/reservacion.js?d=".date('U'),"unico"=>true]);
+	$jmyWeb ->cargar_vista([	
 		"url"=>"reservacion.php",
 		"data"=>[
 			"id_perfil"=>($peticion[1]!='')?$peticion[1]:$idUsuario,

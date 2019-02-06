@@ -1,5 +1,5 @@
 <?php
-$peticion = explode("",$_GET['peticion']);
+$peticion = explode("/",$_GET['peticion']);
 $session = $jmyWeb->session();
 $idUsuario = $session['user']['user_id'];
 

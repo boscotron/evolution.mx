@@ -27,7 +27,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <h5>Tipo de habitación</h5>
-                                <div class=" col-md-12">
+                                <div class="col-md-12">
                                     <div class="input-group">
                                         <select 
                                         type="select" 
@@ -45,20 +45,26 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label>Hora entrada</label>
+                                <label>Hora entrada: </label>
+                                <span class="fa fa-clock-o"></span>
                                 <div class='input-group date' id='h_entrada'>
                                     <input type='time' class="form-control" />
-                                    <span class="fa fa-clock-o"></span>
-                                </div><br>
-                                <label>Hora salida</label>
+                                 </div><br>
+                                <label>Hora salida: </label><span class="fa fa-clock-o"></span>
                                 <div class='input-group date' id='h_salida'>
                                     <input type='time' class="form-control" />
-                                    <span class="fa fa-clock-o"></span>
                                 </div>
                             </div> 
                         </div>
-                    </div>                                                
-                </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label>Complementos de la habitación:</label>
+                            <button type="button" class="btn btn-primary btn-sm agregarChecbok"><i class="fa fa-plus"></i></button>
+                                <div class="checkbox">
+                                </div>
+                        </div>                                              
+                    </div>
                 <div class="col-sm-1"></div>
             </div>
         </div>
