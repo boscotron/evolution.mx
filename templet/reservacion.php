@@ -25,26 +25,25 @@
                         <div class="col-sm-1"></div>
                         <div class="col-sm-10">
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group">
-                                        <p><input type="text"  autocomplete="off" placeholder="Fecha de Entrada" id="txtCheckin" /><span class="icons fa fa-calendar"></span></p>         
+                                        <p>Fecha de entrada<input type="text"  autocomplete="off" placeholder="Fecha de Entrada" id="txtCheckin" /><span class="icons fa fa-calendar"></span></p>         
                                     </div> 
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group">
-                                        <p><input type="text"  autocomplete="off" placeholder="Fecha de Salida" id="txtCheckout" /><span class="icons fa fa-calendar"></span></p>              
+                                        <p>Fecha de salida<input type="text"  autocomplete="off" placeholder="Fecha de Salida" id="txtCheckout" /><span class="icons fa fa-calendar"></span></p>              
                                     </div> 
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3">
                                     <div class="form-group">
-                                        <p><input id="reservacion_cita" type="text" value="1 Adulto - 0 Niños - 1 Habitación" readonly><span class="icons fa fa-users"></span></p>
+                                        <p><input id="reservacion_cita" type="text" value="1 Adulto - 0 Niños" readonly><span class="icons fa fa-users"></span></p>
                                         <div id="inf" style="display:block;">
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         Adultos <select id="adultos"></select>
                                                         Niños <select id="ninos"></select>
-                                                        Habitaciones <select id="habitaciones"></select>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
@@ -58,8 +57,26 @@
                                         </div>
                                     </div> 
                                 </div>
-                                <button type="button" class="btn btn-primary enviar">Reservar</button>
-                            </div>                                                
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <p><span>Tipo de habitación</span>
+                                        <select id="habitaciones">
+                                            <!--<option>Seleccionar</option>
+                                            <option>Individual</option>
+                                            <option>Doble</option>
+                                            <option>Suite</option>-->
+                                        </select></p>
+                                    </div> 
+                                </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="container" id="disponibilidad">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary enviar">Reservar</button>
                         </div>
                         <div class="col-sm-1"></div>
                     </div>
