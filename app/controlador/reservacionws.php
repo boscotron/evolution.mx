@@ -4,10 +4,9 @@
 if ($peticion[1]=='') {
     switch ($_GET['peticion']) {
         case 'verHabitacion':
-            $out['tipo_hab']=$jmy->catalogos([
-            "id"=>"lista_de_habitaciones",
-            "ID_F"=>$_POST['habitaciones'],
-            "SALIDA"=>"ARRAY"
+            $out['tipo_hab'] = $jmy->ver([
+                "TABLA"=>"habitacion",
+                "SALIDA"=>"ARRAY",
             ]);
         break;
         case 'guardarReservacion':

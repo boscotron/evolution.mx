@@ -34,12 +34,12 @@ jQuery(function($){
             dataType:'json',
             success:function(respuesta){
                 let hab = respuesta.out.tipo_hab.otFm;
-                //console.log(hab);
+                console.log(hab);
                 if(hab!=undefined){
                     $('#habitaciones').html('');
                     $('#habitaciones').append('<option>Seleccionar</option>');
                     hab.forEach(element => {
-                        $('#habitaciones').append('<option>'+element.nombre+'</option>');
+                        $('#habitaciones').append('<option>'+element.habitacion+'</option>');
                     });
                 }else{
                     $('#habitaciones').html('');

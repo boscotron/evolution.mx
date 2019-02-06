@@ -34,8 +34,6 @@ if ($idUsuario != '') {
 			"editar"=>$editar,
 		]
 	]);
-//$jmyWeb->cargar(["pagina"=>"reservacion"]);
-//$jmyWeb->cargar_js(["url"=>BASE_TEMPLET."js/reservacion.js?d=".date('U'),"unico"=>true]);
 }else{
 	$jmyWeb->cargar(["pagina"=>"inicioreservacion"]);
 	$jmyWeb ->cargar_vista(["url"=>"inicioreservacion.php"]);
