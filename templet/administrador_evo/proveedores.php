@@ -2,6 +2,7 @@
 	<h1>Lista de proveedores</h1>
 	<h5>
             <a href="#" id="agregarNuevo"> <i class="fa fa-add"></i> Agregar nuevo proveedor </a>
+			
     </h5>
 	<div class="row">
 		<div class="col"></div>

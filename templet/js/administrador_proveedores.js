@@ -57,7 +57,10 @@ jQuery(function ($) {
                         element.telefono,
                         element.direccion,
                         element.dia_pedido,
-                        '<button class="btn btn-sm btn-flat ver_proveedor" data-id="'+element.ID_F+'"> <i class="fa fa-eye"></i> editar</botton>'
+                        '<button class="btn btn-sm btn-flat ver_proveedor" data-id="'+element.ID_F+'"> <i class="fa fa-eye"></i> editar</botton>',
+                        '<a href="'+location.origin+'/administrador/productos/proveedor/'+element.ID_F+'"> <i class="fa fa-eye"></i> ver </a>'
+                        
+
                     ]);
                 });
                 console.log(data);
@@ -70,7 +73,8 @@ jQuery(function ($) {
                         { title: "Telefono" },
                         { title: "Dirección"},
                         { title: "Dia de pedido"} ,
-                        { title: " "} 
+                        { title: " "},
+                        { title: " Productos"}  
                     ]
                 } )).done(function () {
                     console.log('id_proveedor');

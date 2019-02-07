@@ -23,7 +23,7 @@ function lista(d=[]) {
                         { title: "Nombre" },
                         { title: "Telefono" },
                         { title: "Dirección"},
-                        { title: "Dia de pedido"}
+                        { title: "Dia de pedido"},
                         
                     ]
                 } );        
