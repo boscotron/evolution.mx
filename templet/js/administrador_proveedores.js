@@ -76,7 +76,7 @@ jQuery(function ($) {
                         { title: "Dirección"},
                         { title: "Dia de pedido"} ,
                         { title: " "},
-                        { title: " Productos"}  
+                        { title: "  Editar Proveedores"}  
                     ]
                 } )).done(function () {
                     console.log('id_proveedor');
