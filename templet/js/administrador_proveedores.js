@@ -57,7 +57,7 @@ jQuery(function ($) {
                         element.telefono,
                         element.direccion,
                         element.dia_pedido,
-                        '<a href="'+location.origin+'/administrador/productos/proveedor/'+element.ID_F+'"> <i class="fa fa-eye"></i> ver </a>',
+                        '<a href="'+location.origin+'/administrador/productos/proveedor/'+element.ID_F+'" class="color_g"> <i class="fa fa-eye"></i> ver </a>',
                         '<button class="btn btn-sm btn-flat ver_proveedor" data-id="'+element.ID_F+'"> <i class="fa fa-eye"></i> editar</botton>'
                     
                         
