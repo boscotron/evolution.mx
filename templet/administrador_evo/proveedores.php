@@ -1,10 +1,11 @@
 <div class="container mt-0 py-1 ">
 	<div class="row ">
-		<div class="col-12 pb-3">
+		<div class="col-12 pb-1 ">
 			<h1 class="display-3 text-center">Proveedores</h1>
 		</div>
 	</div>
-	<div class="row">
+	
+	<div class="row pb-1">
 		<div class="col-3">
 		</div>
 		<div class="col-6 color_ text-center">
@@ -15,13 +16,8 @@
 	</div>	
 
 	<div class="row">
-		<div class="row">
-			<div class="main">
-				<div class="col-6">
-					<table id='listaPROV'></table>
-				</div>
-				<div class="col-6"></div>
-			</div>
+		<div class="col-12 text-center">
+			<table class="table table-hover enlistar" id='listaPROV'></table>
 		</div>
 	</div>	
 

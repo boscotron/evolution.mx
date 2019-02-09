@@ -47,38 +47,6 @@
 	
 	body, textarea, .dt-sc-counter-number p { font-family: 'Roboto Slab', serif; font-weight: 300; }
 	#main-menu, .dt-sc-service h3, h3.border-title, .dt-sc-offer-text, .dt-sc-offer .gallery-details h4, .dt-sc-price, .dt-sc-button, .dt-sc-notification h4, .dt-sc-team.type1 > h4, .entry-details .entry-meta h6, .entry-title h3, .dt-sc-testimonial .author-detail, #footer h4.widgettitle, h4.dt-sc-abt-title, .contact-us h4, a.appointment-btn, .blog-items .entry-metadata .author, .blog-items .entry-metadata .tags, .blog-items .entry-body, .pagination ul li a, .pagination .next-post a, .pagination .prev-post a , .dt-sc-view-btn, .author-name a, .commentmetadata, .reply, .widget ul.recent_entries li h6, .widget.widget_tag_cloud .tagcloud a, .product-border .product-details h4, .product-border .product-thumb span.new, h3.product-title, .dt-sc-share-post span, th, .shop_table td h5, td.price, td.total, input.btn[type="submit"], .shipping-box label, h4.coupon-title, .shipping-box .amount, .nav-roundslide.collapse a.menu-btn h3 { font-family: "Roboto",sans-serif; }
-.color_g{
-	color: red;
-}
-	
-.color_ > a:link, a:visited{
-	background:  rgb(0, 100, 00, .9);
-	color:white;
-	padding: 14px 25px;
-	text-align: center;
-	text-decoration: none;
-	border-radius: 5px;
-	font-size: 110%;
-
-
-}
-
-.color_ > a:hover{
-	color:rgb(255, 255, 255);
-	background:  rgb(0, 100, 00, .7);
-	text-decoration: none;
-	font-size: 110%;
-
-
-}
-
-.color_ > a:active {
-	text-decoration: none;
-	background:  rgb(0, 100, 00, .9);
-	color:white;
-	font-size: 110%;
-
-}
 
 	
 	/*----*****---- << 02. Headings >> ----*****----*/
@@ -1351,4 +1319,68 @@
 		position: absolute;
 		width: 91%;
 		color: #fff;
+	}
+
+	
+
+	.color_  a:link, a:visited{
+		background:  rgb(0, 100, 00, .9);
+		color:white;
+		padding: 14px 25px;
+		text-align: center;
+		text-decoration: none;
+		border-radius: 5px;
+		font-size: 110%;
+	
+	
+	}
+	
+	.color_  a:hover{
+		color:rgb(255, 255, 255);
+		background:  rgb(0, 100, 00, .7);
+		text-decoration: none;
+		font-size: 110%;
+	
+	
+	}
+	
+	.color_  a:active {
+		text-decoration: none;
+		background:  rgb(0, 100, 00, .9);
+		color:white;
+		font-size: 110%;
+	
+	}
+
+	a.color_g{
+		color:white;
+		background:  rgb(0, 100, 00, .9);
+		border-radius: 5px;
+		padding: 8px 18px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+	}
+	a.color_g:hover{
+		color:white;
+		background:  rgb(0, 100, 00, .5);
+		border-radius: 5px;
+		padding: 8px 18px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		
+	}
+
+	table.enlistar th{
+		background-color:rgba(13, 14, 13);
+		color:white;
+	}
+	table.enlistar {
+		border-radius: 10px;
+		border-collapse: collapse;
+  width: 100%;
+	}
+	table.enlistar td, th{
+		border: 1px solid #ddd;
 	}
