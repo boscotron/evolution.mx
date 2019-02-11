@@ -6,9 +6,9 @@ $tabla = ($data['tabla']!='')?$data['tabla']:'clientes';
 ?>
 
 
-<div col="row " style="position: fixed;width: 100%;z-index: 99999;top:100px;">
+<div col="row" class="sticky2 " style="">
     <div col="col-md-12" >
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark administrdor_nav" style="margin-bottom: 0px !important;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark administrdor_nav sticky4" style="margin-bottom: 0px !important;">
             <a href="#" class="navbar-brand jmy_web_div" data-page="configuracion_panel" id="titulo_panel" data-editor="no"><?php $this->pnt('titulo_panel','Panel JMY V3'); ?></a>
             <button class="navbar-toggler navbar-toggler-bsk" type="button"  data-target="#navbarSupportedContent" >
                 <span class="navbar-toggler-icon"></span>

@@ -46,6 +46,7 @@
     <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+    <link href='https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'>
 
      <!-- fullcalendar -->
     <link rel='stylesheet' href='<?php $this->url_templet();?>css/fullcalendar.min.css' />
@@ -84,7 +85,7 @@
     	SalonEvolution
     </h3>
 </div><!-- PreLoader -->
-<div class="wrapper"><!-- Wrapper -->
+<div class="wrapper " ><!-- Wrapper -->
     <div class="inner-wrapper"><!-- Inner-Wrapper -->
     	<div class="top-bar"><!-- Top Bar -->
         	<div class="container">
@@ -129,7 +130,7 @@
                 </div>
             </div>
         </div><!-- End of Top Bar -->
-        <header id="header" class="dt-sticky-menu type2"><!-- Header -->
+        <header id="header" class="dt-sticky-menu type2" ><!-- Header -->
         	<div id="logo" class="jmy_web_slider" data-page="header"  data-tabla="vistaweb" id="logo_topmarco" data-marco="logo_topmarco" <?php 
 										  $va[] = [ "type"=>"imagen",
 											"id"=>"logo_top_img",
@@ -140,14 +141,14 @@
 											 <a href="<?php $this->url_inicio(); ?>"><img alt="" title="" id="logo_top_img" src="<?php $this->pnt('logo_top_img',$this->url_templet(['return'=>true]).'images/logoblanco3.fw.png',
                                           ["secundario"=>"header"] ); ?>"/></a>
             </div><!-- End of Logo -->
-            <div id="menu-container">
+            <div id="menu-container" >
             	<div class="container">
-                    <nav id="main-menu"><!-- Nav - Starts -->
+                    <nav id="main-menu"  "><!-- Nav - Starts -->
                         <div id="dt-menu-toggle" class="dt-menu-toggle">
                             Menu
                             <span class="dt-menu-toggle-icon"></span>
                         </div>
-                        <a title="TrendSalon" href="index.html" class="sticky-logo"><img title="TrendSalon" alt="Trendy" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/logo.png"></a>
+                        <a title="TrendSalon" href="index.html" class="sticky-logo"><img title="TrendSalon" class="sticky2_logo" alt="Trendy" src="<?php echo RUTA_ACTUAL.BASE_TEMPLET; ?>images/logo.png"></a>
                         <ul class="menu">
                             <li class="current_page_item menu-item-simple-parent"><a class="jmy_web_div" data-page="header" id="enlace_inicio" data-editor="no" href="<?php echo RUTA_ACTUAL; ?>inicio"><?php $this->pnt('enlace_inicio','Inicio ',["secundario"=>"header"]); ?></a>
 

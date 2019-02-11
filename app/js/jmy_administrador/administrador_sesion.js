@@ -91,6 +91,17 @@
 
 $.session._init();
 
+$(window).on('scroll',function () { 
+    if ($(window).scrollTop() &&  $(".is-sticky").length) {
+        $('.sticky2_logo').hide(); 
+        $('.sticky2').addClass('sticky3'); 
+    }
+    else{
+        $('.sticky2').removeClass('sticky3');
+        console.log("nop");
+    }
+});
+
 })(jQuery);
 jQuery(function ($) {  
     let int = 0;

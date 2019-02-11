@@ -1,11 +1,11 @@
-<div class="container mt-0 py-1 ">
-	<div class="row ">
+<div class="container ">
+	<div class="row my-auto ">
 		<div class="col-12 pb-1 ">
 			<h1 class="display-3 text-center">Proveedores</h1>
 		</div>
 	</div>
-	
-	<div class="row pb-1">
+
+	<div class="row py-4 pb-4 my-4">
 		<div class="col-3">
 		</div>
 		<div class="col-6 color_ text-center">
@@ -13,17 +13,19 @@
 		</div>
 		<div class="col-4">
 		</div>
-	</div>	
+	</div>
 
-	<div class="row">
-		<div class="col-12 text-center">
-			<table class="table table-hover enlistar" id='listaPROV'></table>
+	<div class="row color_">
+		<div class="col-12 text-center ">
+			<table class=" enlistar example" id='listaPROV'></table>
 		</div>
 	</div>	
 
+		
+
 </div>
 
-<div class="main">
+<div class="main" id="formulario">
 	<div class="row">
 		<div class="col"></div>
 		<div class="col-6">
@@ -37,8 +39,8 @@
 				
 			</div>
 			
-			<div id="formulario">	
-				<form id="formulario_">
+			<div>	
+				<form >
 
 					<div class="form-group">
 						<label for="nombre">Nombre</label>

@@ -35,7 +35,6 @@ function editar(d=[]) {
 
     });    
 }
-
 jQuery(function ($) {  
     function urlFr(a){return a.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "-").replace(/^-+|-+$/g, '')};
     function lista_proveedores(){        
@@ -77,7 +76,8 @@ jQuery(function ($) {
                         { title: "Dia de pedido"} ,
                         { title: " "},
                         { title: "  Editar Proveedores"}  
-                    ]
+                    ],
+                    language:idioma_espanol
                 } )).done(function () {
                     console.log('id_proveedor');
                     $(".ver_proveedor").on('click', function () {
@@ -98,7 +98,31 @@ jQuery(function ($) {
             data: {}
         });
     }
-
+let idioma_espanol = 
+            {
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            }
     function limpiar_campos() {
         $("#nombre").val("");
         $("#telefono").val("");
@@ -107,13 +131,21 @@ jQuery(function ($) {
     }
 
     $(document).ready(function() {
-        lista_proveedores();    
+        lista_proveedores();  
+        $("#formulario").hide();
         $("#agregarNuevo").on('click', function () {
+            $("#formulario").show("slow");
             id='';
             //console.log('id',id);
             limpiar_campos();
             editar();
         });
+        /* $("#ocultar").on('click', function () {
+            console.log('hola');
+            event.preventDefault();
+            editar();
+            //console.log('id',id);
+        }); */
         $("#guardar").on('click', function () {
             console.log('hola');
             event.preventDefault();

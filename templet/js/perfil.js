@@ -1,5 +1,5 @@
 jQuery(function ($) {  
-    console.log('ola k ase');
+    console.log('ola k ase XXD:');
 
     function guardar_perfil() {
         // AQUI VAN LAS REGLAS DE INGRESO
