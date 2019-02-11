@@ -159,7 +159,11 @@ let idioma_espanol =
             //console.log('id',id);
         });
     } );
-    $( function dia_pedido() {
+
+    $(function dia_pedido() {
+        $('dia_pedido').datetimepicker();
+    });
+    /*$( function dia_pedido() {
         $( "#dia_pedido" ).datepicker();
-      } );
+      } );*/
 });

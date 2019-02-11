@@ -102,6 +102,13 @@
 								<p>Dia de pedido <input type="text" id="dia_pedido"></p>         
 						</div> 
 					</div>
+
+					 <div class='input-group date' id='dia_pedido'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                	</div>
 				
 					<button id="guardar" class="btn btn-primary">Guardar</button>
 					
