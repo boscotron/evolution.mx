@@ -1372,21 +1372,27 @@
 	}
 
 	
-	table.enlistar {		
-		border-collapse: collapse;
+	table .enlistar {		
+		border-collapse: collapse !important;
 		width: 100%;
 		margin: 0px;
 		padding: 0;
 
 	}
+	table.enlistar td{
+		border-collapse: collapse;	
+		border: 1px solid rgb(246, 244, 244);	
+	}
+
 	table.enlistar td, th{
 		padding:8px;
-		border-bottom: 1px solid #ddd;
-		
+		border-collapse: collapse;		
 	}
 	table.enlistar th{
 		background-color:rgba(40, 40, 40);
 		color:white;
+		border: 1px solid rgb(40, 40, 40);
+		border-collapse: collapse;
 	}
 
 	table.enlistar tr:hover{
@@ -1415,7 +1421,10 @@ div.sticky3{
 	nav.sticky4{
 		top:-15px;
 		background: rgb(40, 40, 40) !important;
-	}/* 
+	}
+	
+	
+	/* 
 	div.sticky2{
 		position: -webkit-sticky;
 		position: sticky;		

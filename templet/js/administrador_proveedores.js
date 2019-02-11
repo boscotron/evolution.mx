@@ -66,6 +66,7 @@ jQuery(function ($) {
                 });
                 console.log(data);
                /* https://datatables.net/manual/index */
+               
                 $.when($('#listaPROV').DataTable( {
                     data: data,
                     columns: [
@@ -77,6 +78,11 @@ jQuery(function ($) {
                         { title: " "},
                         { title: "  Editar Proveedores"}  
                     ],
+                    deferRender: true,
+                    scrollY:     300,
+                    scroller: {
+                    loadingIndicator: true
+                    },
                     language:idioma_espanol
                 } )).done(function () {
                     console.log('id_proveedor');
