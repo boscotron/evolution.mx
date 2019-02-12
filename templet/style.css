@@ -1442,6 +1442,13 @@ div.sticky3{
 		font-size: 110%;
 	
 	}
+	.agregarNuevo {
+		background: rgb(0, 100, 00, .9) !important; 
+	}
+	
+	.cerrar_form {
+		background: rgb(0, 100, 00, .9) !important; 
+	}
 	
 	/* 
 	div.sticky2{

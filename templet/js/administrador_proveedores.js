@@ -139,14 +139,18 @@ let idioma_espanol =
     $(document).ready(function() {
         lista_proveedores();  
         $("#formulario").hide();
-        $("#Cerrar").on('click', function () {
-            $("#formulario").show("slow");
-            id='';
-            //console.log('id',id);
-            limpiar_campos();
-            editar();
+        $("#cerrar_form").hide();
+        $("#cerrar_form").on('click', function () {
+        $("#agregarNuevo").show("slow");
+        $("#cerrar_form2").hide("slow");
+        $("#cerrar_form").hide("slow");
+            
         });
+
         $("#agregarNuevo").on('click', function () {
+            $("#cerrar_form2").show("slow");
+            $("#agregarNuevo").hide("slow");
+            $("#cerrar_form").show("slow");
             $("#formulario").show("slow");
             id='';
             //console.log('id',id);
@@ -168,7 +172,7 @@ let idioma_espanol =
     } );
 
     $(function dia_pedido() {
-        $('dia_pedido').datetimepicker();
+        $('#dia_pedido').datepicker();
     });
     /*$( function dia_pedido() {
         $( "#dia_pedido" ).datepicker();
