@@ -8,8 +8,15 @@
 	<div class="row py-4 pb-4 my-4">
 		<div class="col-3">
 		</div>
-		<div class="col-6 color_ text-center">
-			<a href="#formulario_" id="agregarNuevo"> <i class="fa fa-add"></i> Agregar nuevo proveedor </a>
+		<div class="col-6  text-center">
+			<div class="row">
+				<div class="col-6 color_">
+					<a href="" id="agregarNuevo"> <i class="fa fa-add"></i> Agregar nuevo proveedor </a>
+				</div>
+				<div class="col-6 color_amarillo">
+					<a href="" id="cerrar_form"> <i class="fa fa-add"></i> Cerrar Formulario </a>
+				</div>
+			</div>		
 		</div>
 		<div class="col-4">
 		</div>

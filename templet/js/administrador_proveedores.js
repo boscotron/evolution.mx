@@ -139,6 +139,13 @@ let idioma_espanol =
     $(document).ready(function() {
         lista_proveedores();  
         $("#formulario").hide();
+        $("#Cerrar").on('click', function () {
+            $("#formulario").show("slow");
+            id='';
+            //console.log('id',id);
+            limpiar_campos();
+            editar();
+        });
         $("#agregarNuevo").on('click', function () {
             $("#formulario").show("slow");
             id='';

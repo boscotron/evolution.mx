@@ -1326,7 +1326,7 @@
 		background:  rgb(0, 100, 00, .9);
 		color:white;
 		padding: 8px 18px;
-		text-align: center;
+		text-align: right;
 		text-decoration: none;
 		border-radius: 5px;
 		font-size: 110%;
@@ -1423,6 +1423,25 @@ div.sticky3{
 		background: rgb(40, 40, 40) !important;
 	}
 	
+
+	.color_amarillo  a:link,a:visited{
+		background: rgb(221, 171, 33);
+		color:white;
+		padding: 8px 18px;
+		text-align: left;
+		text-decoration: none;
+		border-radius: 5px;
+		font-size: 110%;
+	
+	
+	}
+	.color_amarillo  a:active {
+		text-decoration: none;
+		background: rgb(221, 171, 33);
+		color:white;
+		font-size: 110%;
+	
+	}
 	
 	/* 
 	div.sticky2{
