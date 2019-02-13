@@ -16,7 +16,7 @@ function editar(d=[]) {
                 let campos = res.var.ver.ot[id];
                 console.log(campos);
                 
-                $("#nombre").val(campos.nombre);
+               // $("#nombre").val(campos.nombre);
                 $("#telefono").val(campos.telefono);
                 $("#direccion").val(campos.direccion);
                 $("#dia_pedido").val(campos.dia_pedido);
@@ -171,10 +171,12 @@ let idioma_espanol =
         });
     } );
 
-    $(function dia_pedido() {
-        $('#dia_pedido').datepicker();
-    });
-    /*$( function dia_pedido() {
-        $( "#dia_pedido" ).datepicker();
-      } );*/
+
+
+    $( function dia_pedido() {
+        $( "#dia_pedido" ).datepicker({
+            uiLibrary: 'bootstrap2',
+            showOtherMonths: true
+        });
+      } );
 });
