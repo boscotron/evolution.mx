@@ -40,11 +40,11 @@ jQuery(function($) {
 		        success:function(respuesta){
 		        	console.log(respuesta)
 		        	complemento = respuesta.out.otFm;
-		        	console.log("com",complemento)
+		        	//console.log("com",complemento);
 		        	// if (complemento != "") {
 		        		for (var i = 0; i < complemento.length; i++){
 			        		$("#chebox").append('<input type="checkbox" class="comp" name="checks[]" value="'+complemento[i].complemento+'">'+complemento[i].complemento+'<br>');
-			        		console.log(complemento[i]);
+			        		//console.log(complemento[i]);
 		        		}
 		        	// }
 		        	
@@ -70,19 +70,9 @@ jQuery(function($) {
 
 	$("#enviarDato").on("click",function(){
 		console.log("enviando");
+		// validarNumHab();
 		if ($("#num_hab").val() != "" && $("#habitaciones option:selected").val() != "Seleccionar" &&  $("#precio_habitacion").val() !=  "") {
-			guardarHabitacion();
-			swal({
-				type:"success",
-				title:"Se agrego la habitación",
-				showConfirmButton: true,
-				confirmButtonText:"Aceptar",
-				closeOnConfirm:true
-			}).then((result)=>{
-				if (result.value) {
-					window.location = "habitacion";
-				}
-			});
+			validarNumHab();
 		}else {
 			swal({
 				type:"warning",
@@ -95,6 +85,46 @@ jQuery(function($) {
 		
 	});
 
+	function validarNumHab(){
+		let habi = $("#num_hab").val();
+		//console.log(habi);
+		$.ajax({
+			url:location.origin + '/habitacionws/numeroHabitacion',
+			type:'post',
+			dataType:'json',
+			success:function(r){
+		       	console.log(r);
+		       	let numHab = r.out.numero.otFm;
+		       	console.log(numHab);
+		       	if(numHab!=undefined){
+		       		swal({
+						type:"warning",
+						title:"Número de habitación repetido",
+						showConfirmButton: true,
+						confirmButtonText:"Aceptar",
+						closeOnConfirm:true
+					});
+		       	}else{
+		       		guardarHabitacion();
+		       		swal({
+						type:"success",
+						title:"Se agrego la habitación",
+						showConfirmButton: true,
+						confirmButtonText:"Aceptar",
+						closeOnConfirm:true
+					}).then((result)=>{
+						if (result.value) {
+							window.location = "habitacion";
+						}
+					});
+		       	}
+			},error: function(res) {
+			    console.log(res);
+			},
+			data:{"NumeroHabitacion":habi}
+	    });
+	}
+
 	function guardarHabitacion(){
 		$('input[type=checkbox]:checked').each(function(){
 			var v = $(this).val();
@@ -102,16 +132,14 @@ jQuery(function($) {
 			console.log(v);
 		});
 		let sinRepetidos = check.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual);
-		
 		check = sinRepetidos;
-
 		console.log(check);
 
 		console.log("Guardar datos");
 		let datohabitacion = {
 			num:$("#num_hab").val(),
 			habitacion:$("#habitaciones option:selected").val(),
-			complementos: check,
+			complementos: (check!="")?check:"Sin complementos",
 			precio: $("#precio_habitacion").val()
 		}
 		console.log(datohabitacion);

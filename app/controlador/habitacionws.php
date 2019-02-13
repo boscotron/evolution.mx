@@ -2,7 +2,16 @@
 	// $jmy->db(['habitacion']);
 
 	switch ($_GET['peticion']) {
+		case 'numeroHabitacion':
+			$out['numero'] = $jmy->ver([
+				"TABLA"=>"habitacion",
+				"COL"=>["num_habitacion"],
+				"V"=>[$_POST["NumeroHabitacion"]["habi"]],
+				"SALIDA"=>"ARRAY"
+			]);
+		break;
 		case 'guardar':
+
 			$out['habitacion'] = $jmy->guardar([
 			"TABLA"=>"habitacion",
 			"A_D"=>true,
@@ -12,7 +21,7 @@
 						'precio'=>$_POST["datohabitacion"]["precio"],
 						]
 			]);
-			break;
+		break;
 		
 		default:
 			
