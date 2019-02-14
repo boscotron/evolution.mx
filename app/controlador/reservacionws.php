@@ -21,31 +21,16 @@ if ($peticion[1]=='') {
                 ]
             ]);
         break;
-
-        case 'mostrarHabitacion':
-                $out['t_habitacion'] = $jmy->ver([
-                    "TABLA"=>"reservacion_hotel",
-                    "COL"=>["habitacion"],
-                    "V"=>[$_POST['datoHabitacion']["habitacion"]],
-                    "SALIDA"=>"ARRAY"
-                ]);
-                // $out['t_habitacion'] = $jmy->ver([
-                //     "TABLA"=>"reservacion_hotel",
-                //     "COL"=>["fechaInicio"],
-                //     "V"=>[$_POST['datoHabitacion']["habitacion"]],
-                // ]);
-                // $out['FI']=>$jmy->ver([]);
-
-        break;
-
+        
         default:
+            # code...
         break;
     }
 	
 }
 
 
-echo json_encode(['POST'=>$_POST,'GET'=>$_GET,'out'=>$out]);
+echo json_encode(['POST'=>$_POST,'GET'=>$_GET,'out'=>$out,'respuesta'=>$respuesta]);
 
 
 

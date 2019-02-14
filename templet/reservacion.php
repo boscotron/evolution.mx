@@ -60,7 +60,7 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <p><span>Tipo de habitación</span>
-                                        <select id="habitaciones" class="text-capitalize">
+                                        <select id="habitaciones">
                                             <!--<option>Seleccionar</option>
                                             <option>Individual</option>
                                             <option>Doble</option>
@@ -76,18 +76,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary enviar">Buscar habitación</button>
+                            <button type="button" class="btn btn-primary enviar">Reservar</button>
                         </div>
                         <div class="col-sm-1"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="filtro_habitacion">
-                                
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
 
                 <div class="clear"></div>
                 <div class="hr-invisible-medium"></div>

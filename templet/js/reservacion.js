@@ -28,26 +28,18 @@ jQuery(function($){
     });
     mostrarHabitaciones();
     function mostrarHabitaciones(){
-        var hab_unicas = [];
         $.ajax({
             url:location.origin + '/reservacionws/verHabitacion',
             type:'post',
             dataType:'json',
             success:function(respuesta){
                 let hab = respuesta.out.tipo_hab.otFm;
-
                 console.log(hab);
                 if(hab!=undefined){
                     $('#habitaciones').html('');
                     $('#habitaciones').append('<option>Seleccionar</option>');
                     hab.forEach(element => {
-                        hab_unicas.push(element.habitacion);  
-                    });
-
-                    let sinRepetir = hab_unicas.filter((valor, indiceActual, arreglo) => arreglo.indexOf(valor) === indiceActual);
-
-                    sinRepetir.forEach(ele=>{
-                         $('#habitaciones').append('<option>'+ele+'</option>');
+                        $('#habitaciones').append('<option>'+element.habitacion+'</option>');
                     });
                 }else{
                     $('#habitaciones').html('');
@@ -83,17 +75,11 @@ jQuery(function($){
         //$("#inf").toggle();
     });
 
-    $(".enviar").click(function() {
-       $("filtro_habitacion").html("");
-       mostrarTodasHabitaciones();
-
-    });
-
     $(".cerrar").click(function(){
        $("#inf").hide(50); 
     })
 
-    /*$(".enviar").on("click",function(){
+    $(".enviar").on("click",function(){
         //console.log("hola");
         guardarReservacion();
         $("#reservacion_cita").val('1 Adulto - 0 Niños - 1 Habitación');
@@ -102,8 +88,9 @@ jQuery(function($){
         $("#habitaciones option:selected").val("1");
         //$('#edad_ninos').html('');
         $("#txtCheckin").val('Fecha de Entrada');
-        $("#txtCheckout").val('Fecha de Salida');   
-    });*/
+        $("#txtCheckout").val('Fecha de Salida');
+       
+    });
 
     $("#adultos").change(function(){
         $("#reservacion_cita").html('');
@@ -124,7 +111,7 @@ jQuery(function($){
         }
     });
 
-   /* $("#habitaciones").change(function(){
+    $("#habitaciones").change(function(){
         $("#disponibilidad").html('');
         let hab = $('#habitaciones option:selected').val();
         let num_hab = 0;
@@ -140,7 +127,7 @@ jQuery(function($){
                 $("#disponibilidad").append('<div><label class="checkbox-inline"><input type="checkbox" value=""> Cuarto '+i+'</label></div>');
             }
         }
-    });*/
+    });
 
     function seleccionar(){
         $("#reservacion_cita").html('');
@@ -181,41 +168,8 @@ jQuery(function($){
                 "datosReservacion":datosReservacion
             }
         });
+
         console.log(datosReservacion);
-    }
-
-    function mostrarTodasHabitaciones(){
-        let datoHabitacion = {
-            // fechaI: $("#txtCheckin").val(),
-            // fechaF: $("#txtCheckout").val(),
-            habitacion: $("#habitaciones option:selected").val()
-        }
-        // let datoFechaI = {
-        //     fechaI: $("#txtCheckin").val()
-        // }
-        console.log(datoHabitacion);
-         $.ajax({
-            url:location.origin + '/reservacionws/mostrarHabitacion',
-            type:'post',
-            dataType:'json',
-            success:function(respuesta){
-                console.log("respuesta",respuesta);
-                var datosHabitacion = respuesta.out.t_habitacion.otFm;
-                datosHabitacion.forEach(ele=>{
-                    $(".filtro_habitacion").append('<button class="text-capitalize agendar"style ="height: 50px; width: 40px;margin: 15px 10px; float:left; background: #03cbf8d1; border: none; border-radius:10px;">'+ele.habitacion+'</button>');
-                });
-            $("filtro_habitacion").html("");      
-            },error: function(res) {
-                console.log(res);
-            },
-            data:{"datoHabitacion":datoHabitacion}
-        }); 
-
-    }
+    }  
 
 });
-
-// <div class="btn-group btn-group-toggle" data-toggle="buttons">
-//   <label class="btn btn-secondary active">
-//     <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
-//   </label>
