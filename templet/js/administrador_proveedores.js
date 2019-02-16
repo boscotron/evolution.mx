@@ -172,11 +172,17 @@ let idioma_espanol =
     } );
 
 
+   
+    $('#dia_pedido').datepicker({
+        dateFormat: 'dd/mm/yy',
+        inline: true,
+        firstDay: 0,
+        showOtherMonths: true,
+        dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+        monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+        
 
-    $( function dia_pedido() {
-        $( "#dia_pedido" ).datepicker({
-            uiLibrary: 'bootstrap2',
-            showOtherMonths: true
-        });
-      } );
+    });
+
 });

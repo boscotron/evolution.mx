@@ -50,6 +50,7 @@ jQuery(function ($) {
                         element.direccion,
                         element.telefono,
                         element.responsable,
+                        '<a href="'+location.origin+'/administrador/usuarios/sucursal/'+element.ID_F+'" class="color_g"> <i class="fa fa-eye"></i> ver </a>',
                         '<button class="btn btn-sm btn-flat ver_sucursal" data-id="'+element.ID_F+'"> <i class="fa fa-eye"></i> editar</botton>'
                     ]);
                 });
@@ -62,10 +63,17 @@ jQuery(function ($) {
                         { title: "Dirección" },
                         { title: "Telefono" },
                         { title: "Responsable"},
-                        { title: " "}
+                        { title: " "},
+                        { title: "  Editar Responsable"}
                         
-                    ]
-                } )).done(function () {
+                    ],
+                    deferRender: true,
+                    scrollY:     300,
+                    scroller: {
+                    loadingIndicator: true
+                    },
+                    language:idioma_espanol
+                    } )).done(function () {
                     console.log('id_sucursal');
                     $(".ver_sucursal").on('click', function () {
                         let id_sucursal = $(this).data('id');
@@ -85,7 +93,31 @@ jQuery(function ($) {
             data: {}
         });
     }
-
+    let idioma_espanol = 
+            {
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            }
     function limpiar_campos() {
         $("#direccion").val("");
         $("#telefono").val("");
@@ -93,8 +125,20 @@ jQuery(function ($) {
     }
 
     $(document).ready(function() {
-        lista_sucursales();      
+        lista_sucursales();  
+        $("#formulario").hide();
+        $("#cerrar_form").hide();
+        $("#cerrar_form").on('click', function () {
+        $("#agregarNuevo").show("slow");
+        $("#cerrar_form2").hide("slow");
+        $("#cerrar_form").hide("slow");
+            
+        });
         $("#agregarNuevo").on('click', function () {
+            $("#cerrar_form2").show("slow");
+            $("#agregarNuevo").hide("slow");
+            $("#cerrar_form").show("slow");
+            $("#formulario").show("slow");
             id='';
             //console.log('id',id);
             limpiar_campos();
