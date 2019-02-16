@@ -27,23 +27,23 @@
                             <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <p>Fecha de entrada<input type="text"  autocomplete="off" placeholder="Fecha de Entrada" id="txtCheckin" /><span class="icons fa fa-calendar"></span></p>         
+                                        <p>Fecha de entrada<input type="text"  autocomplete="off" placeholder="Fecha de Entrada" id="txtCheckin" required /><span class="icons fa fa-calendar"></span></p>         
                                     </div> 
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <p>Fecha de salida<input type="text"  autocomplete="off" placeholder="Fecha de Salida" id="txtCheckout" /><span class="icons fa fa-calendar"></span></p>              
+                                        <p>Fecha de salida<input type="text"  autocomplete="off" placeholder="Fecha de Salida" id="txtCheckout" required /><span class="icons fa fa-calendar"></span></p>              
                                     </div> 
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <p><input id="reservacion_cita" type="text" value="1 Adulto - 0 Niños" readonly><span class="icons fa fa-users"></span></p>
+                                        <p>Huespedes<input id="reservacion_cita" type="text" value="1 Adulto - 0 Niños" readonly><span class="icons fa fa-users"></span></p>
                                         <div id="inf" style="display:block;">
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        Adultos <select id="adultos"></select>
-                                                        Niños <select id="ninos"></select>
+                                                        Adultos <select id="adultos" required></select>
+                                                        Niños <select id="ninos" required></select>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
@@ -60,12 +60,13 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <p><span>Tipo de habitación</span>
-                                        <select id="habitaciones" class="text-capitalize">
+                                        <select id="habitaciones" class="text-capitalize" required>
                                             <!--<option>Seleccionar</option>
                                             <option>Individual</option>
                                             <option>Doble</option>
                                             <option>Suite</option>-->
                                         </select></p>
+                                        <input type="hidden" id="ident_f">
                                     </div> 
                                 </div>
                                 
@@ -78,15 +79,65 @@
                             </div>
                             <button type="button" class="btn btn-primary enviar">Buscar habitación</button>
                         </div>
-                        <div class="col-sm-1"></div>
+                        <div class="col-sm-1">
+                            
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-8">
-                            <div class="filtro_habitacion">
+                        <div class="col-sm-7" >
+                            <div class="filtro_habitacion style="background-color: #f1f2f3;"">
                                 
                             </div>
                         </div>
-                    </div>
+                        <div class="col-sm-5" >
+                            <div class="form-group info_Reservacion" style="background-color: #a3b2c4;">
+
+                              <!--   <div class="form-row">
+                                    <div class="col">
+                                        <label for="fi">Fecha de entrada</label>
+                                        <input type="text" id="" name="fi" class="form-control" readonly>
+                                    </div>
+                                    <div class="col">
+                                        <label for="fi">Fecha de Salida</label>
+                                        <input type="text" class="form-control" id="" name="ff" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="ad">Adultos</label>
+                                        <input type="text" id="" name="ad" class="form-control" readonly>
+                                    </div>
+                                    <div class="col">
+                                        <label for="ni">Niños</label>
+                                        <input type="text" class="form-control" id="" name="ni" readonly>
+                                    </div>
+                                </div> 
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="nh"># habitacion</label>
+                                        <input type="text" id="" name="nh" class="form-control" readonly>
+                                    </div>
+                                    <div class="col">
+                                        <label for="tp">Tipo de habitación</label>
+                                        <input type="text" class="form-control" id="" name="tp" readonly>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <label for="">Servicios</label>
+                                    <ul>
+                                        <li>ll</li>
+                                        <li>jjh</li>
+                                    </ul>
+                                </div>
+                                <div class="form-group text-right">
+                                    <label for="">precio</label>
+                                </div>
+                                <hr>
+                                <button class="agendar">Reservar</button>  --> 
+                            </div>
+                        </div>
+
                 </div>
 
                 <div class="clear"></div>

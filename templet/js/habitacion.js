@@ -86,8 +86,8 @@ jQuery(function($) {
 	});
 
 	function validarNumHab(){
-		let habi = $("#num_hab").val();
-		//console.log(habi);
+		let habi = {nhab:$("#num_hab").val()};
+		console.log(habi);
 		$.ajax({
 			url:location.origin + '/habitacionws/numeroHabitacion',
 			type:'post',
