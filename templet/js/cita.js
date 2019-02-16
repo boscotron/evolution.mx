@@ -544,7 +544,7 @@ jQuery(function ($) {
                                   
                                });
                                let div_idServicio = element.servicio;
-                               //console.log("guardar element",div_idServicio);
+                               console.log("guardar element",div_idServicio);
                                $('#'+div_idServicio).remove();
                                let contador = 0;
                                 $('.ser_list').each(function(){

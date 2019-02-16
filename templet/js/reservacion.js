@@ -4,7 +4,7 @@ jQuery(function($){
             $("#txtCheckin").datepicker({
                 minDate:0,
                 language: 'es',
-                dateFormat: "dd-M-yy",
+                dateFormat: "dd-mm-yy",
                 onSelect: function (date) {
                     var date2 = $('#txtCheckin').datepicker('getDate');
                     date2.setDate(date2.getDate());
@@ -14,7 +14,7 @@ jQuery(function($){
                 }
             });
             $('#txtCheckout').datepicker({
-                dateFormat: "dd-M-yy",
+                dateFormat: "dd-mm-yy",
                 onClose: function () {
                     var dt1 = $('#txtCheckin').datepicker('getDate');
                     console.log(dt1);
@@ -60,6 +60,7 @@ jQuery(function($){
             data:{}
         });
     }
+
     $("#adultos").html('');
     $("#ninos").html('');
     for (var i = 0; i <= 8; i++) {
@@ -84,16 +85,15 @@ jQuery(function($){
     });
 
     $(".enviar").click(function() {
-       $("filtro_habitacion").html("");
+       $(".filtro_habitacion").html('');
        mostrarTodasHabitaciones();
-
     });
 
     $(".cerrar").click(function(){
        $("#inf").hide(50); 
     })
 
-    /*$(".enviar").on("click",function(){
+    /*$(".agendar").on("click",function(){
         //console.log("hola");
         guardarReservacion();
         $("#reservacion_cita").val('1 Adulto - 0 Niños - 1 Habitación');
@@ -150,6 +150,107 @@ jQuery(function($){
         console.log('adultos',adultos,"ninos",ninos);
     }
 
+    function mostrarTodasHabitaciones(){
+         let datoHabitacion = {
+            fechaI: $("#txtCheckin").val(),
+            fechaF: $("#txtCheckout").val(),
+            habitacion: $("#habitaciones option:selected").val()
+        }
+        console.log(datoHabitacion);
+         $.ajax({
+            url:location.origin + '/reservacionws/mostrarHabitacion',
+            type:'post',
+            dataType:'json',
+            success:function(respuesta){
+                console.log("respuesta",respuesta);
+                var datosHabitacion = respuesta.out.t_habitacion.otFm;
+                if ($("#habitaciones option:selected").val() != "Seleccionar") {
+                    datosHabitacion.forEach(ele=>{ 
+                        $(".filtro_habitacion").append('<button class="text-capitalize validar" idHabitacion="'+ele.ID_F+'" style ="height: 50px; width: 40px;margin: 15px 10px; float:left; background: #03cbf8d1; border: none; border-radius:10px;">'+ele.habitacion+'</button>');
+                    });
+                }
+               $(".validar").click(function() {
+                    var fI= $("#txtCheckin").val();
+                    var fF= $("#txtCheckout").val();
+                    var as= $("#adultos option:selected").val();
+                   var idHab = {
+                        idH : $(this).attr("idHabitacion")
+                    };
+                    $("#ident_f").val($(this).attr("idHabitacion"));
+                    
+                    $.ajax({
+                        url:location.origin + '/reservacionws/datos_habitacion',
+                        type:'post',
+                        dataType:'json',
+                        success:function(respuesta){
+                            console.log("hola",respuesta);
+                            var res = respuesta.out.dato_habitacion.otFm;
+                            res.forEach(ele=>{                                
+                            $(".info_Reservacion").append('<div class="form-row">'+
+                                    '<div class="col">'+
+                                        '<label for="fi">Fecha de entrada</label>'+
+                                        '<input type="text" id="" name="fi" class="form-control" value="'+fI+'" readonly>'+
+                                    '</div>'+
+                                    '<div class="col">'+
+                                        '<label for="fi">Fecha de Salida</label>'+
+                                        '<input type="text" class="form-control" id="" name="ff" value="'+fF+'" readonly>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="form-row">'+
+                                    '<div class="col">'+
+                                        '<label for="ad">Adultos</label>'+
+                                        '<input type="text" id="" name="ad" class="form-control" value="'+as+'" readonly>'+
+                                    '</div>'+
+                                    '<div class="col">'+
+                                        '<label for="ni">Niños</label>'+
+                                        '<input type="text" class="form-control" id="" name="ni" readonly>'+
+                                    '</div>'+
+                                '</div>'+
+
+                                '<div class="form-row">'+
+                                    '<div class="col">'+
+                                        '<label for="nh"># habitacion</label>'+
+                                        '<input type="text" id="" name="nh" class="form-control" value="'+ele.num_habitacion+'" readonly>'+
+                                    '</div>'+
+                                    '<div class="col">'+
+                                        '<label for="tp">Tipo de habitación</label>'+
+                                        '<input type="text" class="form-control text-capitalize" value="'+ele.habitacion+'" id="" name="tp" readonly>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<hr>'+
+                                '<div class="form-group">'+
+                                    '<label for="">Servicios:</label><br>'+
+                                    '<label>'+ele.complementos+
+                                    '</label>'+
+                                '</div>'+
+                                '<div class="form-group text-right">'+
+                                    '<label for="">Precio</label>'+
+                                    '<label>$'+ele.precio+'</label>'+
+                                '</div>'+
+                                '<hr>'+
+                                '<button class="agendar">Reservar</button>')
+                            });
+                        },error: function(res) {
+                            console.log(res);
+                        },
+                        data:{"idHab":idHab}
+                    });
+                    $(".info_Reservacion").html('');
+                });
+            },error: function(res) {
+                console.log(res);
+            },
+            data:{"datoHabitacion":datoHabitacion}
+        }); 
+
+    }
+
+    $(".info_Reservacion").on('click', 'button.agendar', function() {
+       console.log("enviando datos..");
+       guardarReservacion();
+       msj_success();
+    });
+
     function guardarReservacion(){  
         console.log("Datos a guardar");
         let edad_menores = [];
@@ -161,12 +262,13 @@ jQuery(function($){
             edad_menores.push(m);
         });
         console.log(edad_menores);
-        let datosReservacion = {
+         datosReservacion = {
             fechaI: $("#txtCheckin").val(),
             fechaF: $("#txtCheckout").val(),
             adultos: $("#adultos option:selected").val(),
             nino: ((edad_menores.length>0)?edad_menores:0),
-            habitacion: $("#habitaciones option:selected").val()
+            habitacion: $("#habitaciones option:selected").val(),
+            identificador: $("#ident_f").val()
         }
         $.ajax({
             url:location.origin + '/reservacionws/guardarReservacion',
@@ -183,39 +285,20 @@ jQuery(function($){
         });
         console.log(datosReservacion);
     }
-
-    function mostrarTodasHabitaciones(){
-        let datoHabitacion = {
-            // fechaI: $("#txtCheckin").val(),
-            // fechaF: $("#txtCheckout").val(),
-            habitacion: $("#habitaciones option:selected").val()
-        }
-        // let datoFechaI = {
-        //     fechaI: $("#txtCheckin").val()
-        // }
-        console.log(datoHabitacion);
-         $.ajax({
-            url:location.origin + '/reservacionws/mostrarHabitacion',
-            type:'post',
-            dataType:'json',
-            success:function(respuesta){
-                console.log("respuesta",respuesta);
-                var datosHabitacion = respuesta.out.t_habitacion.otFm;
-                datosHabitacion.forEach(ele=>{
-                    $(".filtro_habitacion").append('<button class="text-capitalize agendar"style ="height: 50px; width: 40px;margin: 15px 10px; float:left; background: #03cbf8d1; border: none; border-radius:10px;">'+ele.habitacion+'</button>');
-                });
-            $("filtro_habitacion").html("");      
-            },error: function(res) {
-                console.log(res);
-            },
-            data:{"datoHabitacion":datoHabitacion}
-        }); 
-
+    
+    function msj_success(d=[]){
+         swal({
+             type: "success",
+             title: "Habitación reservada!",
+             showConfirmButton: true,
+             confirmButtonText: "Cerrar",
+             closeOnConfirm: true
+             }).then((result)=>{
+             if(result.value){
+                window.location = "reservacion";
+                }
+            });
     }
 
 });
 
-// <div class="btn-group btn-group-toggle" data-toggle="buttons">
-//   <label class="btn btn-secondary active">
-//     <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
-//   </label>
